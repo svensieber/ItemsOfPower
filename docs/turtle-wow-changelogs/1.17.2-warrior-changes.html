@@ -1,0 +1,282 @@
+<div class="content"><div class="inline-attachment">
+
+
+    <dl class="file">
+        <dt class="attach-image"><img src="./download/file.php?id=32" class="postimage" alt="1.png" onclick="viewableArea(this);"></dt>
+        <!--<dd>1.png (145.98 KiB) Viewed 1063785 times</dd>-->
+    </dl>
+
+
+</div>
+
+    <br>
+    Warrior in Vanilla observably has a healthy amount of working builds, with Arms seen in leveling dungeons and battlegrounds, with Fury in leveling and both damage dealing and tanking in raids, and Protection in late dungeons and early raiding. And even better, these builds are fun to play. <br>
+    <br>
+    We know we can do even better, preserving what already works while also allowing Arms players to continue into raids, see Fury open up options for solo sustain in the world and battlegrounds, and improve Protection's playstyle where we've carved in a niche in leveling and battlegrounds, as now offer a portion of the thrill and performance of the Fury tanking builds.<br>
+    <br>
+    As such, the changes we've made to Warrior involve a good amount of shuffling class power around, and so it's easier to explain by writing the changelog in a slightly different format as you'll see below.<br>
+    <br>
+    <br>
+    <br>
+    <span style="color:#8dc63f"><b>BASELINE CHANGES</b></span><br>
+    <br>
+    <span style="color:#ffbf40">Rage Generation. </span><br>
+    <br>
+    In Vanilla, the rage generation formula rewards players with the resource with a simple formula converting auto-attack damage done to rage gained, only modified by a coefficient that scales the damage requirements each level.<br>
+    <br>
+    While Vanilla’s system shines for late 60 raiders, unfortunately everywhere else, players are harshly punished and suffering rage-starvation, especially for:
+    <ul><li>Levelers that don’t have the absolute greatest weapon possible.</li></ul>
+    <ul><li>Dungeoneers and fresh raiders, in fights where you are unable to offtank for the added rage income.</li></ul>
+    <ul><li>When dueling the more heavily armored (and especially shield wearing) player classes.</li></ul>
+    We do recognize the enjoyment found in top-end raiding, and we aim to retain a similar game-feel there. To retain this, and relieve the widespread pain points above, we find that a new rage generation formula that's calculated 90% depending on your gear and 10% of it is predetermined based on your weapon speed best helps achieve this. With the formula change, players will notice significantly increased rage generation in these cases. The top is the same, but the bottom has been raised up.<br>
+    <br>
+    Rage decay portion of <span style="color:#ffbf40">Anger Management</span> has been made baseline, while the in combat part is compensated by the rage generation changes.
+    <hr>
+    <span style="color:#ffbf40">Execute</span> has seen a rebalance, reducing its base damage while increasing the extra rage conversion damage, the values go as follows:<br>
+    <br>
+    Rank 1 (Level 24): 125 to 75 Damage, 3 to 4 Damage per Extra Rage<br>
+    Rank 2 (Level 32): 200 to 150 Damage, 6 to 8 Damage per Extra Rage<br>
+    Rank 3 (Level 40): 325 to 225 Damage, 9 to 12 Damage per Extra Rage<br>
+    Rank 4 (Level 48): 450 to 300 Damage, 12 to 16 Damage per Extra Rage<br>
+    Rank 5 (Level 56): 600 to 375 Damage, 15 to 20 Damage per Extra Rage<br>
+    <br>
+    <span style="color:#ffbf40">Execute</span> now also has a 5.5 second cooldown.
+    <hr>
+    Your off-hand weapon attacks are no longer guaranteed to land while your <span style="color:#ffbf40">Heroic Strike</span> is queued.<br>
+    <br>
+    <span style="opacity:0.7"><i>Developer Comment: While this mechanic promoted different gearing in comparision to Rogues, it has proven to be quite unintuitive and clunky to use. To compensate for this change the Dual Wield Specialization now increases your chance to hit with your off-hand weapon by 2/4/6/8/10%, more details on that in the Fury section.</i></span><br>
+
+    <hr>
+    <span style="color:#ffbf40">Dual Wield</span> is now taught at level 10.
+    <hr>
+    <span style="color:#ffbf40">Intervene</span> is now taught at 20 instead of a book item.
+    <hr>
+    <span style="color:#ffbf40">Pummel</span> now only has one rank that deals 5% of your Attack Power as damage instead of a flat value and is now taught at level 18 and will be available for use in Battle Stance.
+    <hr>
+    <span style="color:#ffbf40">Slam</span> is now taught at level 14 and pauses your weapon swing timer instead of resetting it. <br>
+    <span style="opacity:0.7"><i><br>
+Developer Comment: This change will help two-handed warrior builds and reduce the unfair advantage of players with better internet connection.</i></span>
+    <hr>
+    <span style="color:#ffbf40">Rend</span> now scales with your Attack Power.
+    <hr>
+    <span style="color:#ffbf40">Rage Decay</span> when out of combat is now consistently 2 rage per 2 seconds.
+    <hr>
+    <span style="color:#ffbf40">Hamstring</span> now has a 6 second cooldown.<br>
+    <br>
+    <span style="color:#ffbf40">Sunder Armor</span>'s rage cost has been reduced from 15 to 10 rage.<br>
+    <span style="opacity:0.7"><i><br>
+Developer Comment: These changes were done to reduce Warrior's stickiness in player combat while elevating Sunder Armor as a tool to trigger weapon effects in its place.</i></span>
+    <hr>
+    <span style="color:#ffbf40">Shield Wall </span>is now ended prematurely if you unequip your Shield while the effect is active.
+    <hr>
+
+    <br>
+    <br>
+    <span style="color:#8dc63f"><b>ARMS</b></span><br>
+    <br>
+
+    <div class="inline-attachment">
+
+
+        <dl class="file">
+            <dt class="attach-image"><img src="./download/file.php?id=58" class="postimage" alt="005.jpg" onclick="viewableArea(this);"></dt>
+            <!--<dd>005.jpg (236.95 KiB) Viewed 1063568 times</dd>-->
+        </dl>
+
+
+    </div>
+
+    <br>
+    The Arms tree in Vanilla did see plenty of use both early and deep, but builds dipping lower were really only done because of the cleaving power of Sweeping Strikes and/or the healer counter on Mortal Strike. We've fleshed out the lower half of the tree, and have re-homed an ability earlier in the tree as well. This, in combination with becoming the true home of twohanded Slam builds, should now see Arms builds function into raiding, all while maintaining a similar power level for battlegrounds.<br>
+    <br>
+
+    <hr>
+    <span style="color:#ffbf40">Tactical Mastery</span> has been moved from the 2nd row to the 1st row.
+    <hr>
+    <span style="color:#ffbf40">Improved Rend</span> now requires 2 points instead of 3 points, and increases the bleed damage done by your Rend ability by 10/20% instead of 15/25/35%.
+    <hr>
+    <span style="color:#ffbf40">Deflection</span> has been moved from the 1st row to the 2nd row.
+    <hr>
+    Amount of rage generated by <span style="color:#ffbf40">Improved Charge</span> has been increased from 3/6 rage to 5/10 rage.
+    <hr>
+    <span style="color:#ffbf40">Deep Wounds</span> now deals damage every 1.5 seconds and lasts 6 seconds.<br>
+    <br>
+    <span style="opacity:0.7"><i>Developer Comment: This change makes Deep Wounds more useful even in situations where its quickly refreshed by multiple Warriors (such as raids), allowing it to deal atleast a part of its damage before its replaced while doubling its output for situations outside of raids.</i></span>
+    <hr>
+    <span style="color:#ffbf40">Improved Hamstring</span> has been removed.
+    <hr>
+    New Talent: <span style="color:#ffbf40">Counterattack</span> (3rd Row Keystone): A strike that becomes active after parrying an opponent's attack. This attack deals X damage plus 10% of your Attack Power and immobilizes the target for 3 sec. Counterattack cannot be blocked, dodged, or parried. <br>
+    (5 second cooldown.)<br>
+    <br>
+    <span style="text-decoration:underline">Damage Values:</span><br>
+    Rank 1 (Level 20/Talent): 40 Damage<br>
+    Rank 2 (Level 30): 80 Damage<br>
+    Rank 3 (Level 40): 120 Damage<br>
+    Rank 4 (Level 50): 160 Damage<br>
+    Rank 5 (Level 60): 200 Damage
+    <hr>
+    <span style="color:#ffbf40">Improved Slam</span> is now an Arms tree talent, total points have been reduced from 5 to 2, and now affects global cooldown of Slam in addition to regular cooldown.
+    <hr>
+    <span style="color:#ffbf40">Two-Handed Weapon Specialization</span> now requires 3 points instead of 5 points, increases the damage you deal with two-handed weapons by 2/4/6% and now increases your skill in all two-handed weapons by 1/2/3.
+    <hr>
+    <span style="color:#ffbf40">Poleaxe Specialization</span> and <span style="color:#ffbf40">Sword Specialization</span> has been removed.<br>
+    New Talent: <span style="color:#ffbf40">Master of Arms</span> (5th Row / 5 Points): Adds the following effects to your weapon, based on the weapon type.
+    <ul><li>Axe - Increases your chance to get a critical strike by 1/2/3/4/5%.</li></ul>
+    <ul><li>Mace - Causes your attacks to ignore 2/4/6/8/10 of your target's Armor per level.</li></ul>
+    <ul><li>Sword - Gives you a 1/2/3/4/5% chance to get an extra attack on the same target after hitting your target.</li></ul>
+    <ul><li>Polearm - Increase the range of melee attacks with melee attacks by 0.4/0.8/1.2/1.6/2.0 yards.</li></ul>
+    <hr>
+    <span style="color:#ffbf40">Sweeping Strikes</span> now costs 20 rage instead of 30 rage and is no longer spent by off-hand hits.
+    <hr>
+    New Talent: <span style="color:#ffbf40">Precision Cut</span> (5th Row / 3 Points): Increases the damage done per extra rage point spent on Execute by 20/40/60%.
+    <hr>
+    New Talent: <span style="color:#ffbf40">Boundless Anger</span> (6th Row / 3 Points): Increases your maximum rage by 10/20/30.
+    <hr>
+    <span style="color:#ffbf40">Improved Disciplines</span> now reduces the cooldown of Retalliation, Recklessness and Shield Wall by 4/8/12 minutes instead of 2/4/6 minutes.
+    <hr>
+
+    <br>
+    <br>
+    <span style="color:#8dc63f"><b>FURY</b></span><br>
+    <br>
+
+    <div class="inline-attachment">
+
+
+        <dl class="file">
+            <dt class="attach-image"><img src="./download/file.php?id=59" class="postimage" alt="001.jpg" onclick="viewableArea(this);"></dt>
+            <!--<dd>001.jpg (223.16 KiB) Viewed 1063568 times</dd>-->
+        </dl>
+
+
+    </div>
+
+    <br>
+    Fury Warrior in Vanilla is famous for its performance and high octane gameplay in raiding, and we intend to not only keep this intact but even enhance it with significant Enrage uptime. However, in all other regards, this tree is lacking. With our talent reworks, ability tuning, and efforts to enhance the tree's neglected berserker flavor, we've carved an additional niche into the Tree, and building into Fury should now be less questionable for use in leveling and in battlegrounds.<br>
+    In the end, Fury gameplay should remain very similar to the old playstyle, with new exciting Enrage procs and better scaling in early game.<br>
+
+    <hr>
+    <span style="color:#ffbf40">Booming Voice</span> now increases the area of effect of all shouts and its effects have been increased from 10/20/30/40/50% to 12/24/36/48/60%. <br>
+    <br>
+    <span style="opacity:0.7"><i>Developer Comment: All shouts indicate that this talent now also affects Intimidating Shout, Piercing Howl and Challenging Shout.</i></span>
+    <hr>
+    <span style="color:#ffbf40">Unbridled Wrath</span>'s proc chance has been increased from 8/16/24/32/40% to 15/30/45/60/75% and its effect is now doubled for two-handed weapons.
+    <hr>
+    <span style="color:#ffbf40">Dual Wield Specialization</span> has been moved from the 4th row to the 2nd row and now also increases your chance to hit with your off-hand weapon by 2/4/6/8/10%.
+    <hr>
+    Improved Demoralizing Shout has been merged with Improved Battle Shout into a new talent called <span style="color:#ffbf40">Improved Shouts</span> in the 3rd row, possessing the effects of both talents.
+    <hr>
+    <span style="color:#ffbf40">Blood Craze</span>'s healing has been increased from 1/2/3% to 2/4/6% of your total health.
+    <hr>
+    Improved Execute has been replaced by <span style="color:#ffbf40">Reckless Execute</span>, reducing the cooldown of your Execute by 2/4 seconds. The second point removes the cooldown of your Execute.
+    <hr>
+    <span style="color:#ffbf40">Enrage</span> now lasts 8 seconds instead of 12 seconds but no longer has a maximum of 12 swings.
+    <hr>
+    New Talent: <span style="color:#ffbf40">Improved Pummel</span> (4th Row / 2 Points): Gives your Pummel ability a 25/50% chance to daze the victim for 4 seconds, and spellcasting school lockouts now last 1/2 sec longer.
+    <hr>
+    <span style="color:#ffbf40">Improved Slam</span> has been moved to the Arms tree.
+    <hr>
+    New Talent: <span style="color:#ffbf40">Improved Whirlwind</span> (5th Row / 3 Points): Reduces the cooldown of your Whirlwind ability by 1/1.5/2 sec.
+    <hr>
+    Improved Intercept has been renamed to <span style="color:#ffbf40">Battlefield Mobility</span> and now also reduces the cooldown of Intervene.
+    <hr>
+    <span style="color:#ffbf40">Improved Berserker Rage</span> has been removed.
+    <hr>
+    New Talent: <span style="color:#ffbf40">Blood Drinker</span> (6th Row / 3 Points): While under the effects of Enrage, Death Wish, or Recklessness, your critical strikes with abilities   cause your next 5 melee attacks to heal you for 1/1.5/2% of your maximum health.
+    <hr>
+    <span style="color:#ffbf40">Bloodthirst</span> has been reworked to the following ability: Instantly perform a reckless attack dealing X damage plus 30% attack power, and you suffer a self-inflicted wound for your recklessness.<br>
+    <br>
+    <span style="text-decoration:underline">Damage Values:</span><br>
+    Rank 1 (Level 40/Talent): 80 Flat Damage<br>
+    Rank 2 (Level 48): 100 Flat Damage<br>
+    Rank 3 (Level 56): 120 Flat Damage<br>
+    Rank 4 (Level 60): 150 Flat Damage<br>
+    <br>
+    <span style="opacity:0.7"><i>Developer Comment: This self-harm does half the base damage, half the scaling and takes your armor damage reduction into account. This self damage can critically strike you and proc Enrage, this chance is equal to your physical critical strike chance.</i></span><br>
+    <br>
+    <br>
+    <br>
+    <span style="color:#8dc63f"><b>PROTECTION</b></span><br>
+    <br>
+
+    <div class="inline-attachment">
+
+
+        <dl class="file">
+            <dt class="attach-image"><img src="./download/file.php?id=60" class="postimage" alt="023.jpg" onclick="viewableArea(this);"></dt>
+            <!--<dd>023.jpg (238.34 KiB) Viewed 1063568 times</dd>-->
+        </dl>
+
+
+    </div>
+
+    <br>
+    Protection is an odd tree in Vanilla, with the top half offering good defensive options, while the bottom half offered basically nothing good until the capstone. In the interest of improving Protection leveling builds and opening up new builds for end-game, Shield Slam (now talentable at lv 30) has gained significant damage scaling, and alongside it the lower half of the tree has been jazzed up with many new threat and damage options, as well as one relocated defensive option. <br>
+
+    <hr>
+    <span style="color:#ffbf40">Improved Bloodrage</span> moved to row 1. Now generates additional 5/10 instant rage.
+    <hr>
+    <span style="color:#ffbf40">Shield Specialization</span> now generates 1/2/3/4/5 rage when a block occurs in addition to increased block chance.
+    <hr>
+    <span style="color:#ffbf40">Anticipation</span> reduced to 3 ranks, grants 7/14/20 Defence.
+    <hr>
+    <span style="color:#ffbf40">Improved Shield Block</span> removed. <br>
+    <span style="opacity:0.7"><i>Developer Comment: This ability is probably one of the most overtuned single talent points in vanilla, as it doubles the potency of Shield Block, an ability which itself is extremely potent in its hidden feature of granting nearly any user immunity to both critical strikes and crushing blows for the single block. While this isn’t that useful in dungeons and versus fast attacking mobs, this ability plus its talent grant 4.4 sec of this immunity every 5 seconds, versus the average raid boss. We don’t want to take away this uniqueness from Warrior tanking, but we also felt that this power being available in row 3 was a little too good. Instead, we’ve moved the power onto a side talent of Shield Slam.</i></span>
+    <hr>
+    <span style="color:#ffbf40">Toughness</span> now additionally increases the amount of damage absorbed by your shield by 3/6/9/12/15%.
+    <hr>
+    <span style="color:#ffbf40">New Talent: Improved Intervene</span> grants a 50/100% chance to gain immunity to movement impairing effects for 3 sec after using Intervene.
+    <hr>
+    <span style="color:#ffbf40">Improved Taunt</span> moved from row 4 to row 3.
+    <hr>
+    <span style="color:#ffbf40">Improved Revenge</span> now reduces cooldown of Revenge by 0.5/1/1.5 sec. in addition to the previous effect.<br>
+    <span style="opacity:0.7"><i>Developer Comment: Improved Revenge didn’t see much effective use, especially in raiding, so we’ve added a cooldown reduction component that makes it more generally useful.</i></span>
+    <hr>
+    <span style="color:#ffbf40">Defiance</span> moved from row 3 to row 4.
+    <hr>
+    <span style="color:#ffbf40">Improved Sunder Armor</span> removed. Base cost of Sunder Armor has been reduced by 5 rage.
+    <hr>
+    <span style="color:#ffbf40">Improved Shield Bash</span> renamed to <span style="color:#ffbf40">Gag Order</span> and moved to row 4. Now gives your Shield Slam additional 25/50% chance to dispell a magic effect from the target in addition to he previous effect.
+    <hr>
+    <span style="color:#ffbf40">Improved Disarm</span> reduced to 2 points. Now decreases the cooldown of your Disarm ability by 10/20 secs instead.
+    <hr>
+    <span style="color:#ffbf40">One-Handed Weapon Specialization</span> moved from row 6 to row 5.
+    <hr>
+    <span style="color:#ffbf40">Shield Slam</span> moved to row 5. Damage of Shield Slam is now modified by your attack power in addition to shield block value.
+    <hr>
+    <span style="color:#ffbf40">New Talent: Improved Shield Slam:</span> Reduces the cooldown of Shield Slam by 0.5/1 sec, and using this ability will also grant you an extra 35/70% chance to block the next attack within 5 sec.
+    <hr>
+    <span style="color:#ffbf40">New Talent: Reprisal:</span> Increases the damage dealt by your Revenge ability by 25/50%, and has a 50/100% chance to refund its rage cost if successful.
+    <hr>
+    <span style="color:#ffbf40">Improved Shield Wall</span> moved from row 5 to row 6. Now reduces the cooldown of Shield Wall by 5/10 min and increases its duration by 1/2 sec.<br>
+    <span style="opacity:0.7"><i>Developer Comment: We found that the increased duration of Improved Shield Wall is far less useful than simply being able to use it more often. We don’t want players feeling like they’d have to go deep into Arms for Improved Disciplines to enjoy a smaller cooldown for Shield Wall, so we’ve moved some of the power of this talent off of the duration extension, and into a cooldown reduction.</i></span>
+    <hr>
+    <span style="color:#ffbf40">New Talent: Defensive Tactics:</span> While wearing a shield, you retain 50/100/150% of the increased threat generation from Defensive Stance in other stances.
+    <hr>
+    <span style="color:#ffbf40">Concussion Blow</span> moved from row 5 to row 7. Now deals damage, causes a high amount of threat and penetrates 50% of the enemy's armor in addition to the previous effect.<br>
+    <span style="opacity:0.7"><i>Developer Comment: Another disparity between Vanilla raiding Deep Protection and Fury/Prot hybrid, is how Death Wish’s damage bonus provides for noticeably increased opener/snap threat, while Deep Protection has no such equivalent.<br>
+Additionally, vanilla Concussion Blow as it stands is a simple clone of Paladin’s Hammer of Justice, so we feel it warrants some differentiation. <br>
+As Concussion Blow is less of a magical stun and more of a strong head-cracking blow, we have added a damaging component that half-penetrates the enemy’s armor. This design should result in Concussion Blow being used for maximizing single target opener/snap threat as the first global cooldown.</i></span><br>
+    <br>
+    <br>
+    <br>
+    <span style="color:#4bd3ff"><strong class="text-strong">UPDATES | Dated: October 21 2024</strong></span><br>
+    <br>
+    <span style="color:#ffbf40">Improved Shield Slam</span>: Effect duration and cooldown reduced from 5 seconds to 4.5 seconds and the cooldown reduction on Shield Slam increased from 0.5/1 seconds to 0.75/1.5 seconds.<br>
+    <br>
+    <br>
+    <span style="color:#4bd3ff"><strong class="text-strong">UPDATES | Dated: November 1 2024</strong></span><br>
+    <br>
+    Damage increase bonus granted by <span style="color:#ffbf40">Enrage</span> reduced from 25% to 15%.
+    <hr>
+    <span style="color:#ffbf40">Bloodrage</span> now activates your Enrage.
+    <hr>
+    <span style="color:#ffbf40">Slam</span> cast time increased from 1.5 seconds to 2 seconds.
+    <hr>
+    <span style="color:#ffbf40">Decisive Strike</span> cast time increased from 2 seconds to 2.5 seconds.
+    <hr>
+    <span style="color:#ffbf40">Rend</span> now scales by 5% of your Attack Power per tick of damage, for all ranks.
+    <hr>
+    <span style="color:#ffbf40">Mortal Strike</span> now does 105/110/115/120% weapon damage, instead of weapon damage plus 85/110/135/160.
+    <hr>
+    <span style="color:#ffbf40">Defensive Tactics</span>' multipliers have been raised to 55/110/165%.</div>

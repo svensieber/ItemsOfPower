@@ -870,7 +870,8 @@ do
         { pattern = "Reduces the mana cost of your Healing Touch%, Regrowth%, Rejuvenation and Tranquility spells by (%d+)%%%.", effect = "CHEAPERDRUID" },
         { pattern = "On Healing Touch critical hits%, you regain (%d+)%% of the mana cost of the spell%.", effect = "REFUNDHTCRIT" },
         { pattern = "Reduces the mana cost of your Renew spell by (%d+)%%%.", effect = "CHEAPERRENEW" },
-        { pattern = "Increases the amount healed by your Judgement of Light by 20 and Flash of Light by 60.", effect = { "IMPFLASHOFLIGHT"}, value = {60}},
+        -- Turtle WoW T3 Set Bonuses (recognized but not used in StatSet.lua - set bonuses should not affect individual item power calculations)
+        { pattern = "Increases the amount healed by your Judgement of Light by 20 and Flash of Light by 60.", effect = { "IMPFLASHOFLIGHT" }, value = { 60 } },
         { pattern = "Increases your spell penetration by (%d+)%.", effect = "SPELLPEN" },
         { pattern = "Increases attack power by (%d+)%.", effect = "ATTACKPOWER" },
         { pattern = "Your attacks ignore (%d+) of the target's armor%.", effect = "ARMORIGNORE" },  -- ADDED LINE
@@ -963,11 +964,11 @@ do
         { pattern = "Stamina %+16 and Armor %+100", effect = { "STA", "ARMOR" }, value = { 16, 100 } },
         { pattern = "Attack Power %+26 and %+1%% Critical Strike", effect = { "ATTACKPOWER", "CRIT" }, value = { 26, 1 } },
         { pattern = "Spell Damage %+15 and %+1%% Spell Critical Strike", effect = { "DMG", "HEAL", "SPELLCRIT" }, value = { 15, 15, 1 } },
-				
-	--Twow new Ring echants
-	{ pattern = "Healing %+7", effect = { "HEAL"}, value = {7} },
-	{ pattern = "Healing %+12", effect = { "HEAL"}, value = {12} },
-				
+
+        -- Turtle WoW Ring Enchants
+        { pattern = "Healing %+7", effect = { "HEAL" }, value = { 7 } },
+        { pattern = "Healing %+12", effect = { "HEAL" }, value = { 12 } },
+
       },
     }
   elseif locale == "frFR" then

@@ -44,3 +44,14 @@ SetGroup.lua
 ItemFormula.lua
 FullEquipmentFormula.lua
 BestItems.lua
+
+# Turtle WoW StatSets
+statsets\turtlewow_warrior.lua
+statsets\turtlewow_paladin.lua
+statsets\turtlewow_hunter.lua
+statsets\turtlewow_rogue.lua
+statsets\turtlewow_priest.lua
+statsets\turtlewow_shaman.lua
+statsets\turtlewow_mage.lua
+statsets\turtlewow_warlock.lua
+statsets\turtlewow_druid.lua

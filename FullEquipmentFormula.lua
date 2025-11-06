@@ -28,6 +28,11 @@ end
 function FullEquipmentFormula.prototype:init(Name, argFormula, argBaseEquipment)
   FullEquipmentFormula.super.prototype.init(self)
 
+  -- Lazy initialization of db (in case FullEquipmentFormulas are created before OnEnable)
+  if not db then
+    db = ItemsOfPower:AcquireDBNamespace("FullEquipmentFormula")
+  end
+
   if not db.profile[Name] then
     db.profile[Name] = {
       Formula = argFormula or "",

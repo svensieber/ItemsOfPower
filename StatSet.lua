@@ -77,6 +77,11 @@ end
 function StatSet.prototype:init(Name, Stats)
   StatSet.super.prototype.init(self)
 
+  -- Lazy initialization of db (in case StatSets are created before OnEnable)
+  if not db then
+    db = ItemsOfPower:AcquireDBNamespace("StatSet")
+  end
+
   if not db.profile[Name] then
     db.profile[Name] = {
       Stats = Stats or { },

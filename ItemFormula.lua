@@ -28,6 +28,11 @@ end
 function Formula.prototype:init(Name, argFormula)
   Formula.super.prototype.init(self)
 
+  -- Lazy initialization of db (in case Formulas are created before OnEnable)
+  if not db then
+    db = ItemsOfPower:AcquireDBNamespace("Formula")
+  end
+
   if not db.profile[Name] then
     db.profile[Name] = {
       Formula = argFormula or "",

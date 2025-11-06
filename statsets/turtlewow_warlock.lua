@@ -21,6 +21,11 @@
   - tools/turtle_wow_adjustments.lua
 ]]
 
+-- Initialize pending StatSets queue
+if not ItemsOfPower_PendingStatSets then
+  ItemsOfPower_PendingStatSets = {}
+end
+
 -- ============================================================================
 -- AFFLICTION
 -- ============================================================================
@@ -79,8 +84,8 @@ print("  SPELLTOHIT: " .. string.format("%.2f", vanillaAffliction.SPELLTOHIT) ..
 print("  DMG: " .. string.format("%.2f", vanillaAffliction.DMG) .. " → " .. string.format("%.2f", turtleAffliction.DMG) .. " (+15%)")
 print("  SPELLHASTE: " .. string.format("%.2f", vanillaAffliction.SPELLHASTE) .. " → " .. string.format("%.2f", turtleAffliction.SPELLHASTE) .. " (+10%)")
 
--- Create StatSet
-do
+-- Queue StatSet creation (delayed until OnEnable)
+table.insert(ItemsOfPower_PendingStatSets, function()
   local stats = turtleAffliction
 
   if not ItemsOfPower.SetByName["Turtle WoW - Warlock - Affliction"] then
@@ -90,7 +95,7 @@ do
   else
     print("StatSet already exists: Turtle WoW - Warlock - Affliction")
   end
-end
+end)
 
 -- ============================================================================
 -- DEMONOLOGY
@@ -164,8 +169,8 @@ print("  INT: " .. string.format("%.2f", vanillaDemonology.INT) .. " → " .. st
 print("  STA: " .. string.format("%.2f", vanillaDemonology.STA) .. " → " .. string.format("%.2f", turtleDemonology.STA) .. " (+50%)")
 print("  SPELLCRIT: " .. string.format("%.2f", vanillaDemonology.SPELLCRIT) .. " → " .. string.format("%.2f", turtleDemonology.SPELLCRIT) .. " (+20%)")
 
--- Create StatSet
-do
+-- Queue StatSet creation (delayed until OnEnable)
+table.insert(ItemsOfPower_PendingStatSets, function()
   local stats = turtleDemonology
 
   if not ItemsOfPower.SetByName["Turtle WoW - Warlock - Demonology"] then
@@ -175,7 +180,7 @@ do
   else
     print("StatSet already exists: Turtle WoW - Warlock - Demonology")
   end
-end
+end)
 
 -- ============================================================================
 -- DESTRUCTION
@@ -246,8 +251,8 @@ print("  SPELLCRIT: " .. string.format("%.2f", vanillaDestruction.SPELLCRIT) .. 
 print("  SHADOWDMG: " .. string.format("%.2f", vanillaDestruction.SHADOWDMG) .. " → " .. string.format("%.2f", turtleDestruction.SHADOWDMG) .. " (+20%)")
 print("  FIREDMG: " .. string.format("%.2f", vanillaDestruction.FIREDMG) .. " → " .. string.format("%.3f", turtleDestruction.FIREDMG) .. " (+10%)")
 
--- Create StatSet
-do
+-- Queue StatSet creation (delayed until OnEnable)
+table.insert(ItemsOfPower_PendingStatSets, function()
   local stats = turtleDestruction
 
   if not ItemsOfPower.SetByName["Turtle WoW - Warlock - Destruction"] then
@@ -257,7 +262,7 @@ do
   else
     print("StatSet already exists: Turtle WoW - Warlock - Destruction")
   end
-end
+end)
 
 print("")
 print("All Turtle WoW Warlock StatSets created!")

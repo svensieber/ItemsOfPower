@@ -19,6 +19,11 @@
   - tools/turtle_wow_adjustments.lua
 ]]
 
+-- Initialize pending StatSets queue
+if not ItemsOfPower_PendingStatSets then
+  ItemsOfPower_PendingStatSets = {}
+end
+
 -- ============================================================================
 -- ASSASSINATION
 -- ============================================================================
@@ -77,8 +82,8 @@ print("  TOHIT: " .. string.format("%.2f", vanillaAssassination.TOHIT) .. " → 
 print("  AP: " .. string.format("%.2f", vanillaAssassination.ATTACKPOWER) .. " → " .. string.format("%.3f", turtleAssassination.ATTACKPOWER) .. " (+35%)")
 print("  CRIT: " .. string.format("%.2f", vanillaAssassination.CRIT) .. " → " .. string.format("%.2f", turtleAssassination.CRIT) .. " (+10%)")
 
--- Create StatSet
-do
+-- Queue StatSet creation (delayed until OnEnable)
+table.insert(ItemsOfPower_PendingStatSets, function()
   local stats = turtleAssassination
 
   if not ItemsOfPower.SetByName["Turtle WoW - Rogue - Assassination"] then
@@ -88,7 +93,7 @@ do
   else
     print("StatSet already exists: Turtle WoW - Rogue - Assassination")
   end
-end
+end)
 
 -- ============================================================================
 -- COMBAT
@@ -152,8 +157,8 @@ print("  AGI: " .. string.format("%.2f", vanillaCombat.AGI) .. " → " .. string
 print("  CRIT: " .. string.format("%.2f", vanillaCombat.CRIT) .. " → " .. string.format("%.2f", turtleCombat.CRIT) .. " (+10%)")
 print("  HASTE: " .. string.format("%.2f", vanillaCombat.HASTE) .. " → " .. string.format("%.2f", turtleCombat.HASTE) .. " (+5%)")
 
--- Create StatSet
-do
+-- Queue StatSet creation (delayed until OnEnable)
+table.insert(ItemsOfPower_PendingStatSets, function()
   local stats = turtleCombat
 
   if not ItemsOfPower.SetByName["Turtle WoW - Rogue - Combat"] then
@@ -163,7 +168,7 @@ do
   else
     print("StatSet already exists: Turtle WoW - Rogue - Combat")
   end
-end
+end)
 
 -- ============================================================================
 -- SUBTLETY
@@ -222,8 +227,8 @@ print("  TOHIT: " .. string.format("%.2f", vanillaSubtlety.TOHIT) .. " → " .. 
 print("  AP: " .. string.format("%.2f", vanillaSubtlety.ATTACKPOWER) .. " → " .. string.format("%.2f", turtleSubtlety.ATTACKPOWER) .. " (+20%)")
 print("  HEALTH: " .. string.format("%.3f", vanillaSubtlety.HEALTH) .. " → " .. string.format("%.3f", turtleSubtlety.HEALTH) .. " (+50%)")
 
--- Create StatSet
-do
+-- Queue StatSet creation (delayed until OnEnable)
+table.insert(ItemsOfPower_PendingStatSets, function()
   local stats = turtleSubtlety
 
   if not ItemsOfPower.SetByName["Turtle WoW - Rogue - Subtlety"] then
@@ -233,7 +238,7 @@ do
   else
     print("StatSet already exists: Turtle WoW - Rogue - Subtlety")
   end
-end
+end)
 
 print("")
 print("All Turtle WoW Rogue StatSets created!")

@@ -487,6 +487,14 @@ function ItemsOfPower:OnEnable()
       SetClass.LoadSets()
     end
 
+    -- Load pending StatSets from queue (Turtle WoW sets loaded at file-load time)
+    if ItemsOfPower_PendingStatSets then
+      for _, createFunc in ipairs(ItemsOfPower_PendingStatSets) do
+        createFunc()
+      end
+      ItemsOfPower_PendingStatSets = nil  -- Clear queue
+    end
+
     self:ClearCache()
   end
 

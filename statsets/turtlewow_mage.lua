@@ -22,6 +22,11 @@
   - tools/turtle_wow_adjustments.lua
 ]]
 
+-- Initialize pending StatSets queue
+if not ItemsOfPower_PendingStatSets then
+  ItemsOfPower_PendingStatSets = {}
+end
+
 -- ============================================================================
 -- ARCANE
 -- ============================================================================
@@ -101,8 +106,8 @@ print("  SPI: " .. string.format("%.2f", vanillaArcane.SPI) .. " → " .. string
 print("  INT: " .. string.format("%.2f", vanillaArcane.INT) .. " → " .. string.format("%.3f", turtleArcane.INT) .. " (+20% Arcane Power)")
 print("  SPELLHASTE: " .. string.format("%.2f", vanillaArcane.SPELLHASTE) .. " → " .. string.format("%.2f", turtleArcane.SPELLHASTE) .. " (+15% Accelerated Arcana)")
 
--- Create StatSet
-do
+-- Queue StatSet creation (delayed until OnEnable)
+table.insert(ItemsOfPower_PendingStatSets, function()
   local stats = turtleArcane
 
   if not ItemsOfPower.SetByName["Turtle WoW - Mage - Arcane"] then
@@ -112,7 +117,7 @@ do
   else
     print("StatSet already exists: Turtle WoW - Mage - Arcane")
   end
-end
+end)
 
 -- ============================================================================
 -- FIRE
@@ -184,8 +189,8 @@ print("  DMG: " .. string.format("%.2f", vanillaFire.DMG) .. " → " .. string.f
 print("  FIREDMG: " .. string.format("%.2f", vanillaFire.FIREDMG) .. " → " .. string.format("%.3f", turtleFire.FIREDMG) .. " (+20%)")
 print("  SPELLHASTE: " .. string.format("%.2f", vanillaFire.SPELLHASTE) .. " → " .. string.format("%.2f", turtleFire.SPELLHASTE) .. " (+10%)")
 
--- Create StatSet
-do
+-- Queue StatSet creation (delayed until OnEnable)
+table.insert(ItemsOfPower_PendingStatSets, function()
   local stats = turtleFire
 
   if not ItemsOfPower.SetByName["Turtle WoW - Mage - Fire"] then
@@ -195,7 +200,7 @@ do
   else
     print("StatSet already exists: Turtle WoW - Mage - Fire")
   end
-end
+end)
 
 -- ============================================================================
 -- FROST
@@ -267,8 +272,8 @@ print("  FROSTDMG: " .. string.format("%.2f", vanillaFrost.FROSTDMG) .. " → " 
 print("  SPELLCRIT: " .. string.format("%.2f", vanillaFrost.SPELLCRIT) .. " → " .. string.format("%.3f", turtleFrost.SPELLCRIT) .. " (-5% Shatter nerf)")
 print("  SPELLHASTE: " .. string.format("%.2f", vanillaFrost.SPELLHASTE) .. " → " .. string.format("%.2f", turtleFrost.SPELLHASTE) .. " (+10%)")
 
--- Create StatSet
-do
+-- Queue StatSet creation (delayed until OnEnable)
+table.insert(ItemsOfPower_PendingStatSets, function()
   local stats = turtleFrost
 
   if not ItemsOfPower.SetByName["Turtle WoW - Mage - Frost"] then
@@ -278,7 +283,7 @@ do
   else
     print("StatSet already exists: Turtle WoW - Mage - Frost")
   end
-end
+end)
 
 print("")
 print("All Turtle WoW Mage StatSets created!")

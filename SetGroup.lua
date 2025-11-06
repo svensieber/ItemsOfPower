@@ -24,11 +24,6 @@ end
 function Group.prototype:init(Name, Sets)
   Group.super.prototype.init(self)
 
-  -- Lazy initialization of db (in case Groups are created before OnEnable)
-  if not db then
-    db = ItemsOfPower:AcquireDBNamespace("Group")
-  end
-
   if not db.profile[Name] then
     db.profile[Name] = {
       Sets = Sets or { },

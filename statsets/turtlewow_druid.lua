@@ -24,6 +24,11 @@
   - tools/turtle_wow_adjustments.lua
 ]]
 
+-- Initialize pending StatSets queue
+if not ItemsOfPower_PendingStatSets then
+  ItemsOfPower_PendingStatSets = {}
+end
+
 -- ============================================================================
 -- BALANCE
 -- ============================================================================
@@ -93,8 +98,8 @@ print("  DMG: " .. string.format("%.2f", vanillaBalance.DMG) .. " → " .. strin
 print("  NATUREDMG: " .. string.format("%.2f", vanillaBalance.NATUREDMG) .. " → " .. string.format("%.3f", turtleBalance.NATUREDMG) .. " (+20%)")
 print("  ARCANEDMG: " .. string.format("%.2f", vanillaBalance.ARCANEDMG) .. " → " .. string.format("%.3f", turtleBalance.ARCANEDMG) .. " (+20%)")
 
--- Create StatSet
-do
+-- Queue StatSet creation (delayed until OnEnable)
+table.insert(ItemsOfPower_PendingStatSets, function()
   local stats = turtleBalance
 
   if not ItemsOfPower.SetByName["Turtle WoW - Druid - Balance"] then
@@ -104,7 +109,7 @@ do
   else
     print("StatSet already exists: Turtle WoW - Druid - Balance")
   end
-end
+end)
 
 -- ============================================================================
 -- FERAL DAMAGE (Cat)
@@ -177,8 +182,8 @@ print("  AGI: " .. string.format("%.2f", vanillaFeralDamage.AGI) .. " → " .. s
 print("  STR: " .. string.format("%.2f", vanillaFeralDamage.STR) .. " → " .. string.format("%.3f", turtleFeralDamage.STR) .. " (+10%)")
 print("  CRIT: " .. string.format("%.2f", vanillaFeralDamage.CRIT) .. " → " .. string.format("%.3f", turtleFeralDamage.CRIT) .. " (+10%)")
 
--- Create StatSet
-do
+-- Queue StatSet creation (delayed until OnEnable)
+table.insert(ItemsOfPower_PendingStatSets, function()
   local stats = turtleFeralDamage
 
   if not ItemsOfPower.SetByName["Turtle WoW - Druid - Feral Damage"] then
@@ -188,7 +193,7 @@ do
   else
     print("StatSet already exists: Turtle WoW - Druid - Feral Damage")
   end
-end
+end)
 
 -- ============================================================================
 -- FERAL TANK (Bear)
@@ -267,8 +272,8 @@ print("  DODGE: " .. string.format("%.2f", vanillaFeralTank.DODGE) .. " → " ..
 print("  AP: " .. string.format("%.2f", vanillaFeralTank.ATTACKPOWER) .. " → " .. string.format("%.3f", turtleFeralTank.ATTACKPOWER) .. " (+10%)")
 print("  AGI: " .. string.format("%.2f", vanillaFeralTank.AGI) .. " → " .. string.format("%.3f", turtleFeralTank.AGI) .. " (+10%)")
 
--- Create StatSet
-do
+-- Queue StatSet creation (delayed until OnEnable)
+table.insert(ItemsOfPower_PendingStatSets, function()
   local stats = turtleFeralTank
 
   if not ItemsOfPower.SetByName["Turtle WoW - Druid - Feral Tank"] then
@@ -278,7 +283,7 @@ do
   else
     print("StatSet already exists: Turtle WoW - Druid - Feral Tank")
   end
-end
+end)
 
 -- ============================================================================
 -- RESTORATION
@@ -338,8 +343,8 @@ print("  HEAL: " .. string.format("%.2f", vanillaRestoration.HEAL) .. " → " ..
 print("  SPI: " .. string.format("%.2f", vanillaRestoration.SPI) .. " → " .. string.format("%.3f", turtleRestoration.SPI) .. " (+20% Emerald Blessing)")
 print("  ARMOR: " .. string.format("%.3f", vanillaRestoration.ARMOR) .. " → " .. string.format("%.4f", turtleRestoration.ARMOR) .. " (+10% ToL form)")
 
--- Create StatSet
-do
+-- Queue StatSet creation (delayed until OnEnable)
+table.insert(ItemsOfPower_PendingStatSets, function()
   local stats = turtleRestoration
 
   if not ItemsOfPower.SetByName["Turtle WoW - Druid - Restoration"] then
@@ -349,7 +354,7 @@ do
   else
     print("StatSet already exists: Turtle WoW - Druid - Restoration")
   end
-end
+end)
 
 print("")
 print("All Turtle WoW Druid StatSets created!")

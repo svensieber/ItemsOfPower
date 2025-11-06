@@ -22,6 +22,11 @@
   - tools/turtle_wow_adjustments.lua
 ]]
 
+-- Initialize pending StatSets queue
+if not ItemsOfPower_PendingStatSets then
+  ItemsOfPower_PendingStatSets = {}
+end
+
 -- ============================================================================
 -- DISCIPLINE (HOLY DPS SUPPORT)
 -- ============================================================================
@@ -102,8 +107,8 @@ print("  SPELLTOHIT: NEW → " .. string.format("%.2f", turtleDiscipline.SPELLTO
 print("  SPELLCRIT: " .. string.format("%.2f", vanillaDiscipline.SPELLCRIT) .. " → " .. string.format("%.3f", turtleDiscipline.SPELLCRIT) .. " (+15% Searing Light)")
 print("  INT: " .. string.format("%.2f", vanillaDiscipline.INT) .. " → " .. string.format("%.2f", turtleDiscipline.INT) .. " (+10% Mental Strength)")
 
--- Create StatSet
-do
+-- Queue StatSet creation (delayed until OnEnable)
+table.insert(ItemsOfPower_PendingStatSets, function()
   local stats = turtleDiscipline
 
   if not ItemsOfPower.SetByName["Turtle WoW - Priest - Discipline"] then
@@ -113,7 +118,7 @@ do
   else
     print("StatSet already exists: Turtle WoW - Priest - Discipline")
   end
-end
+end)
 
 -- ============================================================================
 -- HOLY
@@ -176,8 +181,8 @@ print("  HEAL: " .. string.format("%.2f", vanillaHoly.HEAL) .. " → " .. string
 print("  SPI: " .. string.format("%.2f", vanillaHoly.SPI) .. " → " .. string.format("%.3f", turtleHoly.SPI) .. " (+10% SoR + Spiritual Guidance)")
 print("  DMG: NEW → " .. string.format("%.1f", turtleHoly.DMG) .. " (Inner Fire for hybrid)")
 
--- Create StatSet
-do
+-- Queue StatSet creation (delayed until OnEnable)
+table.insert(ItemsOfPower_PendingStatSets, function()
   local stats = turtleHoly
 
   if not ItemsOfPower.SetByName["Turtle WoW - Priest - Holy"] then
@@ -187,7 +192,7 @@ do
   else
     print("StatSet already exists: Turtle WoW - Priest - Holy")
   end
-end
+end)
 
 -- ============================================================================
 -- SHADOW
@@ -257,8 +262,8 @@ print("  SHADOWDMG: " .. string.format("%.2f", vanillaShadow.SHADOWDMG) .. " →
 print("  SPI: " .. string.format("%.2f", vanillaShadow.SPI) .. " → " .. string.format("%.2f", turtleShadow.SPI) .. " (+100% Improved Shadowform!)")
 print("  HEAL: NEW → " .. string.format("%.2f", turtleShadow.HEAL) .. " (Shadow Mend utility)")
 
--- Create StatSet
-do
+-- Queue StatSet creation (delayed until OnEnable)
+table.insert(ItemsOfPower_PendingStatSets, function()
   local stats = turtleShadow
 
   if not ItemsOfPower.SetByName["Turtle WoW - Priest - Shadow"] then
@@ -268,7 +273,7 @@ do
   else
     print("StatSet already exists: Turtle WoW - Priest - Shadow")
   end
-end
+end)
 
 print("")
 print("All Turtle WoW Priest StatSets created!")

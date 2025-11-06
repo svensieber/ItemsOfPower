@@ -1,0 +1,292 @@
+--[[
+  Turtle WoW Mage StatSets
+
+  Based on Vanilla ClassicHawsJon weights with Turtle WoW adjustments.
+
+  Changes from Vanilla:
+  - Spell Hit Cap: 9% → 8% (all specs: +12.5% Spell Hit value)
+  - Spell Haste: Baseline adjustments
+  - Arcane: Crit HIGHLY valuable (Arcane Potency +50/100% crit damage)
+  - Arcane: Spell Power HIGHLY valuable (Arcane Missiles 32.8%, Resonance Cascade)
+  - Arcane: Spirit HIGHLY valuable (Arcane Meditation tripled below 35% mana)
+  - Arcane: Intellect more valuable (Arcane Power instant death <10% mana)
+  - Arcane: Haste more valuable (Accelerated Arcana cooldown recovery)
+  - Fire: Crit HIGHLY valuable (Hot Streak procs, Master of Elements 45%)
+  - Fire: Spell Power more valuable (Fireball/Pyroblast scaling)
+  - Frost: Spell Power more valuable (Icicles 40%, Ice Barrier +15% damage)
+  - Frost: Crit slightly less valuable (Shatter nerfed but still strong)
+
+  References:
+  - docs/turtle-wow-mage-scaling-changes.md
+  - docs/vanilla-baseline-weights.md
+  - tools/turtle_wow_adjustments.lua
+]]
+
+-- Load adjustment utilities if not already loaded
+-- Note: This file is loaded in-game from the AddOns directory
+if not AdjustHitCap then
+  local path = "Interface\\AddOns\\ItemsOfPower\\tools\\turtle_wow_adjustments.lua"
+  dofile(path)
+end
+
+-- ============================================================================
+-- ARCANE
+-- ============================================================================
+
+-- Vanilla Baseline
+local vanillaArcane = {
+  INT = 0.46,
+  SPI = 0.59,
+  STA = 0.1,
+  AGI = 0.05,
+  DMG = 1.0,              -- Generic spell damage
+  ARCANEDMG = 0.88,       -- Arcane damage
+  FROSTDMG = 0.52,        -- Frost damage (hybrid)
+  FIREDMG = 0.064,        -- Fire damage (low)
+  SPELLTOHIT = 6.96,      -- Pre-multiplied
+  SPELLCRIT = 4.8,        -- Spell crit
+  SPELLHASTE = 4.7377,    -- Spell haste
+  SPELLPEN = 0.09,
+  MANA = 0.038,
+  MANAREG = 1.13,
+  HEALTH = 0.01,
+  HEALTHREG = 1.0,
+  ARMOR = 0.005,
+  DEFENSE = 0.075,
+  DODGE = 0.472,
+  PARRY = 0.472,
+  RESILIENCE = 0.2,
+  FIRERES = 0.24,
+  FROSTRES = 0.24,
+  ARCANERES = 0.24,
+  SHADOWRES = 0.24,
+  NATURERES = 0.24,
+}
+
+-- Turtle WoW Adjustments for Arcane
+local turtleArcane = {}
+for k, v in pairs(vanillaArcane) do
+  turtleArcane[k] = v
+end
+
+-- 1. Spell Hit Cap Adjustment: 9% → 8% (+12.5%)
+turtleArcane.SPELLTOHIT = AdjustSpellHitCap(vanillaArcane.SPELLTOHIT)  -- 6.96 → 7.83
+
+-- 2. Spell Haste Baseline Check
+turtleArcane.SPELLHASTE = EnsureMinimumHaste(vanillaArcane.SPELLHASTE, vanillaArcane.SPELLCRIT, "caster_dps")
+
+-- 3. Spell Crit HIGHLY valuable (Arcane Potency: +50/100% crit damage - CRITICAL)
+--    Conservative: +30% value
+turtleArcane.SPELLCRIT = vanillaArcane.SPELLCRIT * 1.3  -- 4.8 → 6.24
+
+-- 4. Spell Power HIGHLY valuable (Arcane Missiles 32.8%, Arcane Rupture 90%, Resonance Cascade)
+--    Conservative: +25% value
+turtleArcane.DMG = vanillaArcane.DMG * 1.25  -- 1.0 → 1.25
+
+-- 5. Arcane Damage more valuable (Arcane Missiles scaling, Arcane Rupture buff)
+--    Conservative: +30% value
+turtleArcane.ARCANEDMG = vanillaArcane.ARCANEDMG * 1.3  -- 0.88 → 1.144
+
+-- 6. Spirit HIGHLY valuable (Arcane Meditation TRIPLED below 35% mana: 20% → 60%)
+--    Conservative: +50% value (averaged over fight, execute phase is massive)
+turtleArcane.SPI = vanillaArcane.SPI * 1.5  -- 0.59 → 0.885
+
+-- 7. Intellect more valuable (Arcane Power: instant death <10% mana, need large pool)
+--    Conservative: +20% value
+turtleArcane.INT = vanillaArcane.INT * 1.2  -- 0.46 → 0.552
+
+-- 8. Haste more valuable (Accelerated Arcana: cooldown recovery + Arcane Missiles tick speed)
+--    Conservative: +15% value
+turtleArcane.SPELLHASTE = turtleArcane.SPELLHASTE * 1.15  -- 4.74 → 5.45
+
+print("Turtle WoW - Mage - Arcane:")
+print("  SPELLTOHIT: " .. string.format("%.2f", vanillaArcane.SPELLTOHIT) .. " → " .. string.format("%.2f", turtleArcane.SPELLTOHIT) .. " (+12.5%)")
+print("  SPELLCRIT: " .. string.format("%.2f", vanillaArcane.SPELLCRIT) .. " → " .. string.format("%.2f", turtleArcane.SPELLCRIT) .. " (+30% Arcane Potency!)")
+print("  DMG: " .. string.format("%.2f", vanillaArcane.DMG) .. " → " .. string.format("%.2f", turtleArcane.DMG) .. " (+25%)")
+print("  ARCANEDMG: " .. string.format("%.2f", vanillaArcane.ARCANEDMG) .. " → " .. string.format("%.3f", turtleArcane.ARCANEDMG) .. " (+30%)")
+print("  SPI: " .. string.format("%.2f", vanillaArcane.SPI) .. " → " .. string.format("%.3f", turtleArcane.SPI) .. " (+50% Arcane Meditation!)")
+print("  INT: " .. string.format("%.2f", vanillaArcane.INT) .. " → " .. string.format("%.3f", turtleArcane.INT) .. " (+20% Arcane Power)")
+print("  SPELLHASTE: " .. string.format("%.2f", vanillaArcane.SPELLHASTE) .. " → " .. string.format("%.2f", turtleArcane.SPELLHASTE) .. " (+15% Accelerated Arcana)")
+
+-- Create StatSet
+do
+  local stats = turtleArcane
+
+  if not ItemsOfPower.SetByName["Turtle WoW - Mage - Arcane"] then
+    local set = ItemsOfPower.SetTypes.StatSet:new("Turtle WoW - Mage - Arcane", stats)
+    ItemsOfPower:RegisterSet(set)
+    print("Created StatSet: Turtle WoW - Mage - Arcane")
+  else
+    print("StatSet already exists: Turtle WoW - Mage - Arcane")
+  end
+end
+
+-- ============================================================================
+-- FIRE
+-- ============================================================================
+
+-- Vanilla Baseline
+local vanillaFire = {
+  INT = 0.44,
+  SPI = 0.066,
+  STA = 0.1,
+  AGI = 0.05,
+  DMG = 1.0,              -- Generic spell damage
+  FIREDMG = 0.94,         -- Fire damage
+  ARCANEDMG = 0.168,      -- Arcane damage (low)
+  FROSTDMG = 0.32,        -- Frost damage (low)
+  SPELLTOHIT = 7.44,      -- Pre-multiplied
+  SPELLCRIT = 6.16,       -- Spell crit (HIGH in vanilla)
+  SPELLHASTE = 6.5846,    -- Spell haste
+  SPELLPEN = 0.09,
+  MANA = 0.036,
+  MANAREG = 0.9,
+  HEALTH = 0.01,
+  HEALTHREG = 1.0,
+  ARMOR = 0.005,
+  DEFENSE = 0.075,
+  DODGE = 0.472,
+  PARRY = 0.472,
+  RESILIENCE = 0.2,
+  FIRERES = 0.24,
+  FROSTRES = 0.24,
+  ARCANERES = 0.24,
+  SHADOWRES = 0.24,
+  NATURERES = 0.24,
+}
+
+-- Turtle WoW Adjustments for Fire
+local turtleFire = {}
+for k, v in pairs(vanillaFire) do
+  turtleFire[k] = v
+end
+
+-- 1. Spell Hit Cap Adjustment: 9% → 8% (+12.5%)
+turtleFire.SPELLTOHIT = AdjustSpellHitCap(vanillaFire.SPELLTOHIT)  -- 7.44 → 8.37
+
+-- 2. Spell Haste Baseline Check
+turtleFire.SPELLHASTE = EnsureMinimumHaste(vanillaFire.SPELLHASTE, vanillaFire.SPELLCRIT, "caster_dps")
+
+-- 3. Spell Crit HIGHLY valuable (Hot Streak procs, Master of Elements 15/30/45% mana, Ignite)
+--    Conservative: +25% value
+turtleFire.SPELLCRIT = vanillaFire.SPELLCRIT * 1.25  -- 6.16 → 7.70
+
+-- 4. Spell Power more valuable (Fireball/Pyroblast/Fire Blast scaling improved)
+--    Conservative: +15% value
+turtleFire.DMG = vanillaFire.DMG * 1.15  -- 1.0 → 1.15
+
+-- 5. Fire Damage more valuable (Hot Streak Pyroblast, Ignite scaling)
+--    Conservative: +20% value
+turtleFire.FIREDMG = vanillaFire.FIREDMG * 1.2  -- 0.94 → 1.128
+
+-- 6. Haste more valuable (More casts, more Hot Streak procs, faster Pyroblast at 5 stacks)
+--    Conservative: +10% value
+turtleFire.SPELLHASTE = turtleFire.SPELLHASTE * 1.1  -- 6.58 → 7.24
+
+print("")
+print("Turtle WoW - Mage - Fire:")
+print("  SPELLTOHIT: " .. string.format("%.2f", vanillaFire.SPELLTOHIT) .. " → " .. string.format("%.2f", turtleFire.SPELLTOHIT) .. " (+12.5%)")
+print("  SPELLCRIT: " .. string.format("%.2f", vanillaFire.SPELLCRIT) .. " → " .. string.format("%.2f", turtleFire.SPELLCRIT) .. " (+25% Hot Streak!)")
+print("  DMG: " .. string.format("%.2f", vanillaFire.DMG) .. " → " .. string.format("%.2f", turtleFire.DMG) .. " (+15%)")
+print("  FIREDMG: " .. string.format("%.2f", vanillaFire.FIREDMG) .. " → " .. string.format("%.3f", turtleFire.FIREDMG) .. " (+20%)")
+print("  SPELLHASTE: " .. string.format("%.2f", vanillaFire.SPELLHASTE) .. " → " .. string.format("%.2f", turtleFire.SPELLHASTE) .. " (+10%)")
+
+-- Create StatSet
+do
+  local stats = turtleFire
+
+  if not ItemsOfPower.SetByName["Turtle WoW - Mage - Fire"] then
+    local set = ItemsOfPower.SetTypes.StatSet:new("Turtle WoW - Mage - Fire", stats)
+    ItemsOfPower:RegisterSet(set)
+    print("Created StatSet: Turtle WoW - Mage - Fire")
+  else
+    print("StatSet already exists: Turtle WoW - Mage - Fire")
+  end
+end
+
+-- ============================================================================
+-- FROST
+-- ============================================================================
+
+-- Vanilla Baseline
+local vanillaFrost = {
+  INT = 0.37,
+  SPI = 0.06,
+  STA = 0.1,
+  AGI = 0.05,
+  DMG = 1.0,              -- Generic spell damage
+  FROSTDMG = 0.95,        -- Frost damage
+  ARCANEDMG = 0.13,       -- Arcane damage (low)
+  FIREDMG = 0.05,         -- Fire damage (very low)
+  SPELLTOHIT = 9.76,      -- Pre-multiplied (HIGHEST of all Mage specs)
+  SPELLCRIT = 4.64,       -- Spell crit
+  SPELLHASTE = 5.0589,    -- Spell haste
+  SPELLPEN = 0.07,
+  MANA = 0.032,
+  MANAREG = 0.8,
+  HEALTH = 0.01,
+  HEALTHREG = 1.0,
+  ARMOR = 0.005,
+  DEFENSE = 0.075,
+  DODGE = 0.472,
+  PARRY = 0.472,
+  RESILIENCE = 0.2,
+  FIRERES = 0.24,
+  FROSTRES = 0.24,
+  ARCANERES = 0.24,
+  SHADOWRES = 0.24,
+  NATURERES = 0.24,
+}
+
+-- Turtle WoW Adjustments for Frost
+local turtleFrost = {}
+for k, v in pairs(vanillaFrost) do
+  turtleFrost[k] = v
+end
+
+-- 1. Spell Hit Cap Adjustment: 9% → 8% (+12.5%)
+turtleFrost.SPELLTOHIT = AdjustSpellHitCap(vanillaFrost.SPELLTOHIT)  -- 9.76 → 10.98
+
+-- 2. Spell Haste Baseline Check
+turtleFrost.SPELLHASTE = EnsureMinimumHaste(vanillaFrost.SPELLHASTE, vanillaFrost.SPELLCRIT, "caster_dps")
+
+-- 3. Spell Power more valuable (Frostbolt, Icicles 40% per icicle, Ice Barrier +15% Frost damage)
+--    Conservative: +20% value
+turtleFrost.DMG = vanillaFrost.DMG * 1.2  -- 1.0 → 1.2
+
+-- 4. Frost Damage more valuable (Icicles, Ice Barrier buff)
+--    Conservative: +25% value
+turtleFrost.FROSTDMG = vanillaFrost.FROSTDMG * 1.25  -- 0.95 → 1.1875
+
+-- 5. Crit slightly less valuable (Shatter nerfed: 50% → 35% vs frozen, but Flash Freeze synergies)
+--    Conservative: Net -5% value (nerf offset by new synergies)
+turtleFrost.SPELLCRIT = vanillaFrost.SPELLCRIT * 0.95  -- 4.64 → 4.408
+
+-- 6. Haste more valuable (More Frostbolts, more Icicles procs via crits)
+--    Conservative: +10% value
+turtleFrost.SPELLHASTE = turtleFrost.SPELLHASTE * 1.1  -- 5.06 → 5.56
+
+print("")
+print("Turtle WoW - Mage - Frost:")
+print("  SPELLTOHIT: " .. string.format("%.2f", vanillaFrost.SPELLTOHIT) .. " → " .. string.format("%.2f", turtleFrost.SPELLTOHIT) .. " (+12.5%)")
+print("  DMG: " .. string.format("%.2f", vanillaFrost.DMG) .. " → " .. string.format("%.2f", turtleFrost.DMG) .. " (+20%)")
+print("  FROSTDMG: " .. string.format("%.2f", vanillaFrost.FROSTDMG) .. " → " .. string.format("%.4f", turtleFrost.FROSTDMG) .. " (+25% Icicles + Ice Barrier)")
+print("  SPELLCRIT: " .. string.format("%.2f", vanillaFrost.SPELLCRIT) .. " → " .. string.format("%.3f", turtleFrost.SPELLCRIT) .. " (-5% Shatter nerf)")
+print("  SPELLHASTE: " .. string.format("%.2f", vanillaFrost.SPELLHASTE) .. " → " .. string.format("%.2f", turtleFrost.SPELLHASTE) .. " (+10%)")
+
+-- Create StatSet
+do
+  local stats = turtleFrost
+
+  if not ItemsOfPower.SetByName["Turtle WoW - Mage - Frost"] then
+    local set = ItemsOfPower.SetTypes.StatSet:new("Turtle WoW - Mage - Frost", stats)
+    ItemsOfPower:RegisterSet(set)
+    print("Created StatSet: Turtle WoW - Mage - Frost")
+  else
+    print("StatSet already exists: Turtle WoW - Mage - Frost")
+  end
+end
+
+print("")
+print("All Turtle WoW Mage StatSets created!")
+print("Total: 3 specs")

@@ -2,7 +2,7 @@
 ## Title: ItemsOfPower |cff7fff7f -Ace2-|r
 ## Notes: Flexible itempower calculation based on multiple sets of stat values and formulas.
 ## Author: Roadblock for Vanilla, Credits Thexod
-## Version: 1.01
+## Version: 2.00
 
 ## OptionalDeps: Ace2, Babble-Class-2.2, DewdropLib, TabletLib, GratuityLib, Deformat, ItemBonusLib, FuBarPlugin-2.0
 ## X-Embeds: Ace2, Babble-Class-2.2, DewdropLib, TabletLib, GratuityLib, Deformat, ItemBonusLib, FuBarPlugin-2.0
@@ -44,6 +44,9 @@ SetGroup.lua
 ItemFormula.lua
 FullEquipmentFormula.lua
 BestItems.lua
+
+# Turtle WoW Utilities
+tools\turtle_wow_adjustments.lua
 
 # Turtle WoW StatSets
 statsets\turtlewow_warrior.lua

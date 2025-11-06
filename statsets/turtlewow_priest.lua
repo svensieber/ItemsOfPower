@@ -22,13 +22,6 @@
   - tools/turtle_wow_adjustments.lua
 ]]
 
--- Load adjustment utilities if not already loaded
--- Note: This file is loaded in-game from the AddOns directory
-if not AdjustHitCap then
-  local path = "Interface\\AddOns\\ItemsOfPower\\tools\\turtle_wow_adjustments.lua"
-  dofile(path)
-end
-
 -- ============================================================================
 -- DISCIPLINE (HOLY DPS SUPPORT)
 -- ============================================================================

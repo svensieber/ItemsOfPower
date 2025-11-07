@@ -26,12 +26,25 @@ if not ItemsOfPower_PendingStatSets then
   ItemsOfPower_PendingStatSets = {}
 end
 
+-- Display Multiplier: Scale all weights for better readability
+-- Increase this value to make differences between items more visible
+local DISPLAY_MULTIPLIER = 10
+
+-- Helper function to apply display multiplier to all stat weights
+local function ApplyMultiplier(statTable)
+  local result = {}
+  for k, v in pairs(statTable) do
+    result[k] = v * DISPLAY_MULTIPLIER
+  end
+  return result
+end
+
 -- ============================================================================
 -- HOLY
 -- ============================================================================
 
 -- Vanilla Baseline
-local vanillaHoly = {
+local vanillaHoly = ApplyMultiplier({
   INT = 1.0,
   SPI = 0.28,
   STA = 0.1,
@@ -54,7 +67,7 @@ local vanillaHoly = {
   ARCANERES = 0.24,
   SHADOWRES = 0.24,
   NATURERES = 0.24,
-}
+})
 
 -- Turtle WoW Adjustments for Holy
 local turtleHoly = {}
@@ -103,7 +116,7 @@ end)
 -- ============================================================================
 
 -- Vanilla Baseline
-local vanillaProtection = {
+local vanillaProtection = ApplyMultiplier({
   STR = 0.2,
   AGI = 0.6,
   STA = 1.0,
@@ -136,7 +149,7 @@ local vanillaProtection = {
   ARCANERES = 1.2,
   SHADOWRES = 1.2,
   NATURERES = 1.2,
-}
+})
 
 -- Turtle WoW Adjustments for Protection
 local turtleProtection = {}
@@ -196,7 +209,7 @@ end)
 -- ============================================================================
 
 -- Vanilla Baseline
-local vanillaRetribution = {
+local vanillaRetribution = ApplyMultiplier({
   STR = 1.0,
   AGI = 0.64,
   STA = 0.1,
@@ -227,7 +240,7 @@ local vanillaRetribution = {
   ARCANERES = 0.24,
   SHADOWRES = 0.24,
   NATURERES = 0.24,
-}
+})
 
 -- Turtle WoW Adjustments for Retribution
 local turtleRetribution = {}

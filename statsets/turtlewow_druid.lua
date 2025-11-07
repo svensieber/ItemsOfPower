@@ -29,12 +29,26 @@ if not ItemsOfPower_PendingStatSets then
   ItemsOfPower_PendingStatSets = {}
 end
 
+-- Display Multiplier: Scale all weights for better readability
+-- Increase this value to make differences between items more visible
+local DISPLAY_MULTIPLIER = 10
+
+-- Helper function to apply display multiplier to all stat weights
+local function ApplyMultiplier(statTable)
+  local result = {}
+  for k, v in pairs(statTable) do
+    result[k] = v * DISPLAY_MULTIPLIER
+  end
+  return result
+end
+
+
 -- ============================================================================
 -- BALANCE
 -- ============================================================================
 
 -- Vanilla Baseline
-local vanillaBalance = {
+local vanillaBalance = ApplyMultiplier({
   INT = 0.38,
   SPI = 0.34,
   STA = 0.1,
@@ -60,7 +74,7 @@ local vanillaBalance = {
   ARCANERES = 0.24,
   SHADOWRES = 0.24,
   NATURERES = 0.24,
-}
+})
 
 -- Turtle WoW Adjustments for Balance
 local turtleBalance = {}
@@ -116,7 +130,7 @@ end)
 -- ============================================================================
 
 -- Vanilla Baseline
-local vanillaFeralDamage = {
+local vanillaFeralDamage = ApplyMultiplier({
   STR = 1.48,
   AGI = 1.0,
   STA = 0.1,
@@ -143,7 +157,7 @@ local vanillaFeralDamage = {
   ARCANERES = 0.24,
   SHADOWRES = 0.24,
   NATURERES = 0.24,
-}
+})
 
 -- Turtle WoW Adjustments for Feral Damage
 local turtleFeralDamage = {}
@@ -200,7 +214,7 @@ end)
 -- ============================================================================
 
 -- Vanilla Baseline
-local vanillaFeralTank = {
+local vanillaFeralTank = ApplyMultiplier({
   STR = 0.2,
   AGI = 0.48,
   STA = 1.0,
@@ -227,7 +241,7 @@ local vanillaFeralTank = {
   ARCANERES = 1.2,
   SHADOWRES = 1.2,
   NATURERES = 1.2,
-}
+})
 
 -- Turtle WoW Adjustments for Feral Tank
 local turtleFeralTank = {}
@@ -290,7 +304,7 @@ end)
 -- ============================================================================
 
 -- Vanilla Baseline
-local vanillaRestoration = {
+local vanillaRestoration = ApplyMultiplier({
   INT = 1.0,
   SPI = 0.87,             -- High spirit value
   STA = 0.1,
@@ -312,7 +326,7 @@ local vanillaRestoration = {
   ARCANERES = 0.24,
   SHADOWRES = 0.24,
   NATURERES = 0.24,
-}
+})
 
 -- Turtle WoW Adjustments for Restoration
 local turtleRestoration = {}

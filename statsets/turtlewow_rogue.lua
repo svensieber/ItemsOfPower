@@ -24,12 +24,26 @@ if not ItemsOfPower_PendingStatSets then
   ItemsOfPower_PendingStatSets = {}
 end
 
+-- Display Multiplier: Scale all weights for better readability
+-- Increase this value to make differences between items more visible
+local DISPLAY_MULTIPLIER = 10
+
+-- Helper function to apply display multiplier to all stat weights
+local function ApplyMultiplier(statTable)
+  local result = {}
+  for k, v in pairs(statTable) do
+    result[k] = v * DISPLAY_MULTIPLIER
+  end
+  return result
+end
+
+
 -- ============================================================================
 -- ASSASSINATION
 -- ============================================================================
 
 -- Vanilla Baseline (identical for all 3 Rogue specs in Vanilla)
-local vanillaAssassination = {
+local vanillaAssassination = ApplyMultiplier({
   STR = 0.5,
   AGI = 1.0,
   STA = 0.1,
@@ -51,7 +65,7 @@ local vanillaAssassination = {
   ARCANERES = 0.24,
   SHADOWRES = 0.24,
   NATURERES = 0.24,
-}
+})
 
 -- Turtle WoW Adjustments for Assassination
 local turtleAssassination = {}
@@ -100,7 +114,7 @@ end)
 -- ============================================================================
 
 -- Vanilla Baseline
-local vanillaCombat = {
+local vanillaCombat = ApplyMultiplier({
   STR = 0.5,
   AGI = 1.0,
   STA = 0.1,
@@ -122,7 +136,7 @@ local vanillaCombat = {
   ARCANERES = 0.24,
   SHADOWRES = 0.24,
   NATURERES = 0.24,
-}
+})
 
 -- Turtle WoW Adjustments for Combat
 local turtleCombat = {}
@@ -175,7 +189,7 @@ end)
 -- ============================================================================
 
 -- Vanilla Baseline
-local vanillaSubtlety = {
+local vanillaSubtlety = ApplyMultiplier({
   STR = 0.5,
   AGI = 1.0,
   STA = 0.1,
@@ -197,7 +211,7 @@ local vanillaSubtlety = {
   ARCANERES = 0.24,
   SHADOWRES = 0.24,
   NATURERES = 0.24,
-}
+})
 
 -- Turtle WoW Adjustments for Subtlety
 local turtleSubtlety = {}

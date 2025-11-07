@@ -27,12 +27,25 @@ if not ItemsOfPower_PendingStatSets then
   ItemsOfPower_PendingStatSets = {}
 end
 
+-- Display Multiplier: Scale all weights for better readability
+-- Increase this value to make differences between items more visible
+local DISPLAY_MULTIPLIER = 10
+
+-- Helper function to apply display multiplier to all stat weights
+local function ApplyMultiplier(statTable)
+  local result = {}
+  for k, v in pairs(statTable) do
+    result[k] = v * DISPLAY_MULTIPLIER
+  end
+  return result
+end
+
 -- ============================================================================
 -- ARMS
 -- ============================================================================
 
 -- Vanilla Baseline
-local vanillaArms = {
+local vanillaArms = ApplyMultiplier({
   STR = 1.0,
   AGI = 0.69,
   STA = 0.1,
@@ -54,7 +67,7 @@ local vanillaArms = {
   ARCANERES = 0.24,
   SHADOWRES = 0.24,
   NATURERES = 0.24,
-}
+})
 
 -- Turtle WoW Adjustments for Arms
 local turtleArms = {}
@@ -109,7 +122,7 @@ end)
 -- ============================================================================
 
 -- Vanilla Baseline
-local vanillaFury = {
+local vanillaFury = ApplyMultiplier({
   STR = 1.0,
   AGI = 0.57,
   STA = 0.1,
@@ -131,7 +144,7 @@ local vanillaFury = {
   ARCANERES = 0.24,
   SHADOWRES = 0.24,
   NATURERES = 0.24,
-}
+})
 
 -- Turtle WoW Adjustments for Fury
 local turtleFury = {}
@@ -196,7 +209,7 @@ end)
 -- ============================================================================
 
 -- Vanilla Baseline
-local vanillaProtection = {
+local vanillaProtection = ApplyMultiplier({
   STR = 0.33,
   AGI = 0.59,
   STA = 1.0,
@@ -220,7 +233,7 @@ local vanillaProtection = {
   ARCANERES = 1.2,
   SHADOWRES = 1.2,
   NATURERES = 1.2,
-}
+})
 
 -- Turtle WoW Adjustments for Protection
 local turtleProtection = {}

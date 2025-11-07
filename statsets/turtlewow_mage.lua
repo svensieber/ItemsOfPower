@@ -27,12 +27,26 @@ if not ItemsOfPower_PendingStatSets then
   ItemsOfPower_PendingStatSets = {}
 end
 
+-- Display Multiplier: Scale all weights for better readability
+-- Increase this value to make differences between items more visible
+local DISPLAY_MULTIPLIER = 10
+
+-- Helper function to apply display multiplier to all stat weights
+local function ApplyMultiplier(statTable)
+  local result = {}
+  for k, v in pairs(statTable) do
+    result[k] = v * DISPLAY_MULTIPLIER
+  end
+  return result
+end
+
+
 -- ============================================================================
 -- ARCANE
 -- ============================================================================
 
 -- Vanilla Baseline
-local vanillaArcane = {
+local vanillaArcane = ApplyMultiplier({
   INT = 0.46,
   SPI = 0.59,
   STA = 0.1,
@@ -59,7 +73,7 @@ local vanillaArcane = {
   ARCANERES = 0.24,
   SHADOWRES = 0.24,
   NATURERES = 0.24,
-}
+})
 
 -- Turtle WoW Adjustments for Arcane
 local turtleArcane = {}
@@ -124,7 +138,7 @@ end)
 -- ============================================================================
 
 -- Vanilla Baseline
-local vanillaFire = {
+local vanillaFire = ApplyMultiplier({
   INT = 0.44,
   SPI = 0.066,
   STA = 0.1,
@@ -151,7 +165,7 @@ local vanillaFire = {
   ARCANERES = 0.24,
   SHADOWRES = 0.24,
   NATURERES = 0.24,
-}
+})
 
 -- Turtle WoW Adjustments for Fire
 local turtleFire = {}
@@ -207,7 +221,7 @@ end)
 -- ============================================================================
 
 -- Vanilla Baseline
-local vanillaFrost = {
+local vanillaFrost = ApplyMultiplier({
   INT = 0.37,
   SPI = 0.06,
   STA = 0.1,
@@ -234,7 +248,7 @@ local vanillaFrost = {
   ARCANERES = 0.24,
   SHADOWRES = 0.24,
   NATURERES = 0.24,
-}
+})
 
 -- Turtle WoW Adjustments for Frost
 local turtleFrost = {}

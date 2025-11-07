@@ -1253,12 +1253,21 @@ do
     self:ApplyItemModifications(BaseItem, CompareItem1.Enabled and CompareItem1, CompareItem2.Enabled and CompareItem2)
 
     local text, text2
+    local _, playerClass = UnitClass("player")
 
     for SetId, Set in pairs(SetById) do
       local SetPointsB, SetPoints1, SetPoints2
       if self.db.profile.DisplayInTooltip[Set.Name] then
+        local shouldDisplay = true
 
-        SetPointsB = round(Set:GetItemValue(BaseItem.ItemString), self.db.profile.Round[Set.Name])
+        if strfind(Set.Name, "Turtle WoW") then
+          if playerClass and not strfind(Set.Name, playerClass) then
+            shouldDisplay = false
+          end
+        end
+
+        if shouldDisplay then
+          SetPointsB = round(Set:GetItemValue(BaseItem.ItemString), self.db.profile.Round[Set.Name])
         if CompareItem1.Enabled then
           SetPoints1 = round(Set:GetItemValue(CompareItem1.ItemString), self.db.profile.Round[Set.Name])
         end
@@ -1282,6 +1291,7 @@ do
           else
             text =((text and(text ~= "") and(text .. "\n")) or "") .. colorName .. ": " .. line
           end
+        end
         end
       end
     end

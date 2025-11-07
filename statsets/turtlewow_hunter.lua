@@ -22,12 +22,25 @@ if not ItemsOfPower_PendingStatSets then
   ItemsOfPower_PendingStatSets = {}
 end
 
+-- Display Multiplier: Scale all weights for better readability
+-- Increase this value to make differences between items more visible
+local DISPLAY_MULTIPLIER = 10
+
+-- Helper function to apply display multiplier to all stat weights
+local function ApplyMultiplier(statTable)
+  local result = {}
+  for k, v in pairs(statTable) do
+    result[k] = v * DISPLAY_MULTIPLIER
+  end
+  return result
+end
+
 -- ============================================================================
 -- MARKSMANSHIP
 -- ============================================================================
 
 -- Vanilla Baseline
-local vanillaMM = {
+local vanillaMM = ApplyMultiplier({
   STR = 0.05,
   AGI = 1.0,
   STA = 0.1,
@@ -53,7 +66,7 @@ local vanillaMM = {
   ARCANERES = 0.24,
   SHADOWRES = 0.24,
   NATURERES = 0.24,
-}
+})
 
 -- Turtle WoW Adjustments for Marksmanship
 local turtleMM = {}
@@ -91,7 +104,7 @@ end)
 -- ============================================================================
 
 -- Vanilla Baseline
-local vanillaBM = {
+local vanillaBM = ApplyMultiplier({
   STR = 0.05,
   AGI = 1.0,
   STA = 0.1,
@@ -117,7 +130,7 @@ local vanillaBM = {
   ARCANERES = 0.24,
   SHADOWRES = 0.24,
   NATURERES = 0.24,
-}
+})
 
 -- Turtle WoW Adjustments for Beast Mastery
 local turtleBM = {}
@@ -173,7 +186,7 @@ end)
 -- ============================================================================
 
 -- Vanilla Baseline
-local vanillaSV = {
+local vanillaSV = ApplyMultiplier({
   STR = 0.05,
   AGI = 1.0,
   STA = 0.1,
@@ -199,7 +212,7 @@ local vanillaSV = {
   ARCANERES = 0.24,
   SHADOWRES = 0.24,
   NATURERES = 0.24,
-}
+})
 
 -- Turtle WoW Adjustments for Survival
 local turtleSV = {}

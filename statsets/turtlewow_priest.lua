@@ -27,12 +27,26 @@ if not ItemsOfPower_PendingStatSets then
   ItemsOfPower_PendingStatSets = {}
 end
 
+-- Display Multiplier: Scale all weights for better readability
+-- Increase this value to make differences between items more visible
+local DISPLAY_MULTIPLIER = 10
+
+-- Helper function to apply display multiplier to all stat weights
+local function ApplyMultiplier(statTable)
+  local result = {}
+  for k, v in pairs(statTable) do
+    result[k] = v * DISPLAY_MULTIPLIER
+  end
+  return result
+end
+
+
 -- ============================================================================
 -- DISCIPLINE (HOLY DPS SUPPORT)
 -- ============================================================================
 
 -- Vanilla Baseline
-local vanillaDiscipline = {
+local vanillaDiscipline = ApplyMultiplier({
   INT = 1.0,
   SPI = 0.48,
   STA = 0.1,
@@ -54,7 +68,7 @@ local vanillaDiscipline = {
   ARCANERES = 0.24,
   SHADOWRES = 0.24,
   NATURERES = 0.24,
-}
+})
 
 -- Turtle WoW Adjustments for Discipline
 local turtleDiscipline = {}
@@ -125,7 +139,7 @@ end)
 -- ============================================================================
 
 -- Vanilla Baseline
-local vanillaHoly = {
+local vanillaHoly = ApplyMultiplier({
   INT = 1.0,
   SPI = 0.73,
   STA = 0.1,
@@ -147,7 +161,7 @@ local vanillaHoly = {
   ARCANERES = 0.24,
   SHADOWRES = 0.24,
   NATURERES = 0.24,
-}
+})
 
 -- Turtle WoW Adjustments for Holy
 local turtleHoly = {}
@@ -199,7 +213,7 @@ end)
 -- ============================================================================
 
 -- Vanilla Baseline
-local vanillaShadow = {
+local vanillaShadow = ApplyMultiplier({
   INT = 0.19,
   SPI = 0.21,
   STA = 0.1,
@@ -224,7 +238,7 @@ local vanillaShadow = {
   ARCANERES = 0.24,
   SHADOWRES = 0.24,
   NATURERES = 0.24,
-}
+})
 
 -- Turtle WoW Adjustments for Shadow
 local turtleShadow = {}

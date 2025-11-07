@@ -26,12 +26,26 @@ if not ItemsOfPower_PendingStatSets then
   ItemsOfPower_PendingStatSets = {}
 end
 
+-- Display Multiplier: Scale all weights for better readability
+-- Increase this value to make differences between items more visible
+local DISPLAY_MULTIPLIER = 10
+
+-- Helper function to apply display multiplier to all stat weights
+local function ApplyMultiplier(statTable)
+  local result = {}
+  for k, v in pairs(statTable) do
+    result[k] = v * DISPLAY_MULTIPLIER
+  end
+  return result
+end
+
+
 -- ============================================================================
 -- AFFLICTION
 -- ============================================================================
 
 -- Vanilla Baseline
-local vanillaAffliction = {
+local vanillaAffliction = ApplyMultiplier({
   INT = 0.4,
   SPI = 0.1,
   STA = 0.1,
@@ -57,7 +71,7 @@ local vanillaAffliction = {
   ARCANERES = 0.24,
   SHADOWRES = 0.24,
   NATURERES = 0.24,
-}
+})
 
 -- Turtle WoW Adjustments for Affliction
 local turtleAffliction = {}
@@ -102,7 +116,7 @@ end)
 -- ============================================================================
 
 -- Vanilla Baseline
-local vanillaDemonology = {
+local vanillaDemonology = ApplyMultiplier({
   INT = 0.4,
   SPI = 0.5,              -- Higher than Affliction (mana regen)
   STA = 0.1,
@@ -128,7 +142,7 @@ local vanillaDemonology = {
   ARCANERES = 0.24,
   SHADOWRES = 0.24,
   NATURERES = 0.24,
-}
+})
 
 -- Turtle WoW Adjustments for Demonology
 local turtleDemonology = {}
@@ -187,7 +201,7 @@ end)
 -- ============================================================================
 
 -- Vanilla Baseline
-local vanillaDestruction = {
+local vanillaDestruction = ApplyMultiplier({
   INT = 0.34,
   SPI = 0.25,
   STA = 0.1,
@@ -213,7 +227,7 @@ local vanillaDestruction = {
   ARCANERES = 0.24,
   SHADOWRES = 0.24,
   NATURERES = 0.24,
-}
+})
 
 -- Turtle WoW Adjustments for Destruction
 local turtleDestruction = {}

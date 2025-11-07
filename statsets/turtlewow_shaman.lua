@@ -26,12 +26,26 @@ if not ItemsOfPower_PendingStatSets then
   ItemsOfPower_PendingStatSets = {}
 end
 
+-- Display Multiplier: Scale all weights for better readability
+-- Increase this value to make differences between items more visible
+local DISPLAY_MULTIPLIER = 10
+
+-- Helper function to apply display multiplier to all stat weights
+local function ApplyMultiplier(statTable)
+  local result = {}
+  for k, v in pairs(statTable) do
+    result[k] = v * DISPLAY_MULTIPLIER
+  end
+  return result
+end
+
+
 -- ============================================================================
 -- ELEMENTAL
 -- ============================================================================
 
 -- Vanilla Baseline
-local vanillaElemental = {
+local vanillaElemental = ApplyMultiplier({
   INT = 0.31,
   SPI = 0.09,
   STA = 0.1,
@@ -57,7 +71,7 @@ local vanillaElemental = {
   ARCANERES = 0.24,
   SHADOWRES = 0.24,
   NATURERES = 0.24,
-}
+})
 
 -- Turtle WoW Adjustments for Elemental
 local turtleElemental = {}
@@ -102,7 +116,7 @@ end)
 -- ============================================================================
 
 -- Vanilla Baseline
-local vanillaEnhancement = {
+local vanillaEnhancement = ApplyMultiplier({
   STR = 1.0,
   AGI = 0.87,
   STA = 0.1,
@@ -133,7 +147,7 @@ local vanillaEnhancement = {
   ARCANERES = 0.24,
   SHADOWRES = 0.24,
   NATURERES = 0.24,
-}
+})
 
 -- Turtle WoW Adjustments for Enhancement
 local turtleEnhancement = {}
@@ -197,7 +211,7 @@ end)
 -- ============================================================================
 
 -- Vanilla Baseline
-local vanillaRestoration = {
+local vanillaRestoration = ApplyMultiplier({
   INT = 1.0,
   SPI = 0.61,             -- Higher than other specs (mana regen)
   STA = 0.1,
@@ -221,7 +235,7 @@ local vanillaRestoration = {
   ARCANERES = 0.24,
   SHADOWRES = 0.24,
   NATURERES = 0.24,
-}
+})
 
 -- Turtle WoW Adjustments for Restoration
 local turtleRestoration = {}

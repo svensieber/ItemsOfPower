@@ -1261,7 +1261,7 @@ do
         local shouldDisplay = true
 
         if strfind(Set.Name, "Turtle WoW") then
-          if playerClass and not strfind(Set.Name, playerClass) then
+          if playerClass and not strfind(string.lower(Set.Name), string.lower(playerClass)) then
             shouldDisplay = false
           end
         end

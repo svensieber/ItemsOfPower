@@ -102,12 +102,15 @@ print("  SPELLCRIT: " .. string.format("%.2f", vanillaElemental.SPELLCRIT) .. " 
 table.insert(ItemsOfPower_PendingStatSets, function()
   local stats = turtleElemental
 
+  local set = ItemsOfPower.SetTypes.StatSet:new("Turtle WoW - Shaman - Elemental", stats)
+
+
+
   if not ItemsOfPower.SetByName["Turtle WoW - Shaman - Elemental"] then
-    local set = ItemsOfPower.SetTypes.StatSet:new("Turtle WoW - Shaman - Elemental", stats)
     ItemsOfPower:RegisterSet(set)
     print("Created StatSet: Turtle WoW - Shaman - Elemental")
   else
-    print("StatSet already exists: Turtle WoW - Shaman - Elemental")
+    print("Updated StatSet: Turtle WoW - Shaman - Elemental")
   end
 end)
 
@@ -197,12 +200,15 @@ print("  HASTE: " .. string.format("%.2f", vanillaEnhancement.HASTE) .. " → " 
 table.insert(ItemsOfPower_PendingStatSets, function()
   local stats = turtleEnhancement
 
+  local set = ItemsOfPower.SetTypes.StatSet:new("Turtle WoW - Shaman - Enhancement", stats)
+
+
+
   if not ItemsOfPower.SetByName["Turtle WoW - Shaman - Enhancement"] then
-    local set = ItemsOfPower.SetTypes.StatSet:new("Turtle WoW - Shaman - Enhancement", stats)
     ItemsOfPower:RegisterSet(set)
     print("Created StatSet: Turtle WoW - Shaman - Enhancement")
   else
-    print("StatSet already exists: Turtle WoW - Shaman - Enhancement")
+    print("Updated StatSet: Turtle WoW - Shaman - Enhancement")
   end
 end)
 
@@ -263,12 +269,15 @@ print("  SPI: " .. string.format("%.2f", vanillaRestoration.SPI) .. " → " .. s
 table.insert(ItemsOfPower_PendingStatSets, function()
   local stats = turtleRestoration
 
+  local set = ItemsOfPower.SetTypes.StatSet:new("Turtle WoW - Shaman - Restoration", stats)
+
+
+
   if not ItemsOfPower.SetByName["Turtle WoW - Shaman - Restoration"] then
-    local set = ItemsOfPower.SetTypes.StatSet:new("Turtle WoW - Shaman - Restoration", stats)
     ItemsOfPower:RegisterSet(set)
     print("Created StatSet: Turtle WoW - Shaman - Restoration")
   else
-    print("StatSet already exists: Turtle WoW - Shaman - Restoration")
+    print("Updated StatSet: Turtle WoW - Shaman - Restoration")
   end
 end)
 

@@ -89,13 +89,13 @@ print("  HASTE: " .. string.format("%.2f", vanillaMM.HASTE) .. " → " .. string
 -- Queue StatSet creation (delayed until OnEnable)
 table.insert(ItemsOfPower_PendingStatSets, function()
   local stats = turtleMM
+  local set = ItemsOfPower.SetTypes.StatSet:new("Turtle WoW - Hunter - Marksmanship", stats)
 
   if not ItemsOfPower.SetByName["Turtle WoW - Hunter - Marksmanship"] then
-    local set = ItemsOfPower.SetTypes.StatSet:new("Turtle WoW - Hunter - Marksmanship", stats)
     ItemsOfPower:RegisterSet(set)
     print("Created StatSet: Turtle WoW - Hunter - Marksmanship")
   else
-    print("StatSet already exists: Turtle WoW - Hunter - Marksmanship")
+    print("Updated StatSet: Turtle WoW - Hunter - Marksmanship")
   end
 end)
 
@@ -172,12 +172,15 @@ print("  STA: " .. string.format("%.2f", vanillaBM.STA) .. " → " .. string.for
 table.insert(ItemsOfPower_PendingStatSets, function()
   local stats = turtleBM
 
+  local set = ItemsOfPower.SetTypes.StatSet:new("Turtle WoW - Hunter - Beast Mastery", stats)
+
+
+
   if not ItemsOfPower.SetByName["Turtle WoW - Hunter - Beast Mastery"] then
-    local set = ItemsOfPower.SetTypes.StatSet:new("Turtle WoW - Hunter - Beast Mastery", stats)
     ItemsOfPower:RegisterSet(set)
     print("Created StatSet: Turtle WoW - Hunter - Beast Mastery")
   else
-    print("StatSet already exists: Turtle WoW - Hunter - Beast Mastery")
+    print("Updated StatSet: Turtle WoW - Hunter - Beast Mastery")
   end
 end)
 
@@ -239,12 +242,15 @@ print("  CRIT: " .. string.format("%.2f", vanillaSV.CRIT) .. " → " .. string.f
 table.insert(ItemsOfPower_PendingStatSets, function()
   local stats = turtleSV
 
+  local set = ItemsOfPower.SetTypes.StatSet:new("Turtle WoW - Hunter - Survival", stats)
+
+
+
   if not ItemsOfPower.SetByName["Turtle WoW - Hunter - Survival"] then
-    local set = ItemsOfPower.SetTypes.StatSet:new("Turtle WoW - Hunter - Survival", stats)
     ItemsOfPower:RegisterSet(set)
     print("Created StatSet: Turtle WoW - Hunter - Survival")
   else
-    print("StatSet already exists: Turtle WoW - Hunter - Survival")
+    print("Updated StatSet: Turtle WoW - Hunter - Survival")
   end
 end)
 

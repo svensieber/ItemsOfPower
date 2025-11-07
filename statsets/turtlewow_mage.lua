@@ -124,12 +124,15 @@ print("  SPELLHASTE: " .. string.format("%.2f", vanillaArcane.SPELLHASTE) .. " â
 table.insert(ItemsOfPower_PendingStatSets, function()
   local stats = turtleArcane
 
+  local set = ItemsOfPower.SetTypes.StatSet:new("Turtle WoW - Mage - Arcane", stats)
+
+
+
   if not ItemsOfPower.SetByName["Turtle WoW - Mage - Arcane"] then
-    local set = ItemsOfPower.SetTypes.StatSet:new("Turtle WoW - Mage - Arcane", stats)
     ItemsOfPower:RegisterSet(set)
     print("Created StatSet: Turtle WoW - Mage - Arcane")
   else
-    print("StatSet already exists: Turtle WoW - Mage - Arcane")
+    print("Updated StatSet: Turtle WoW - Mage - Arcane")
   end
 end)
 
@@ -207,12 +210,15 @@ print("  SPELLHASTE: " .. string.format("%.2f", vanillaFire.SPELLHASTE) .. " â†’
 table.insert(ItemsOfPower_PendingStatSets, function()
   local stats = turtleFire
 
+  local set = ItemsOfPower.SetTypes.StatSet:new("Turtle WoW - Mage - Fire", stats)
+
+
+
   if not ItemsOfPower.SetByName["Turtle WoW - Mage - Fire"] then
-    local set = ItemsOfPower.SetTypes.StatSet:new("Turtle WoW - Mage - Fire", stats)
     ItemsOfPower:RegisterSet(set)
     print("Created StatSet: Turtle WoW - Mage - Fire")
   else
-    print("StatSet already exists: Turtle WoW - Mage - Fire")
+    print("Updated StatSet: Turtle WoW - Mage - Fire")
   end
 end)
 
@@ -290,12 +296,15 @@ print("  SPELLHASTE: " .. string.format("%.2f", vanillaFrost.SPELLHASTE) .. " â†
 table.insert(ItemsOfPower_PendingStatSets, function()
   local stats = turtleFrost
 
+  local set = ItemsOfPower.SetTypes.StatSet:new("Turtle WoW - Mage - Frost", stats)
+
+
+
   if not ItemsOfPower.SetByName["Turtle WoW - Mage - Frost"] then
-    local set = ItemsOfPower.SetTypes.StatSet:new("Turtle WoW - Mage - Frost", stats)
     ItemsOfPower:RegisterSet(set)
     print("Created StatSet: Turtle WoW - Mage - Frost")
   else
-    print("StatSet already exists: Turtle WoW - Mage - Frost")
+    print("Updated StatSet: Turtle WoW - Mage - Frost")
   end
 end)
 

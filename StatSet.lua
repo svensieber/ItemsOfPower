@@ -81,6 +81,9 @@ function StatSet.prototype:init(Name, Stats)
     db.profile[Name] = {
       Stats = Stats or { },
     }
+  elseif Stats then
+    -- Update existing stats with new values (for Turtle WoW multiplier updates)
+    db.profile[Name].Stats = Stats
   end
 
   self.Name = Name

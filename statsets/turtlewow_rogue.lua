@@ -100,12 +100,15 @@ print("  CRIT: " .. string.format("%.2f", vanillaAssassination.CRIT) .. " → " 
 table.insert(ItemsOfPower_PendingStatSets, function()
   local stats = turtleAssassination
 
+  local set = ItemsOfPower.SetTypes.StatSet:new("Turtle WoW - Rogue - Assassination", stats)
+
+
+
   if not ItemsOfPower.SetByName["Turtle WoW - Rogue - Assassination"] then
-    local set = ItemsOfPower.SetTypes.StatSet:new("Turtle WoW - Rogue - Assassination", stats)
     ItemsOfPower:RegisterSet(set)
     print("Created StatSet: Turtle WoW - Rogue - Assassination")
   else
-    print("StatSet already exists: Turtle WoW - Rogue - Assassination")
+    print("Updated StatSet: Turtle WoW - Rogue - Assassination")
   end
 end)
 
@@ -175,12 +178,15 @@ print("  HASTE: " .. string.format("%.2f", vanillaCombat.HASTE) .. " → " .. st
 table.insert(ItemsOfPower_PendingStatSets, function()
   local stats = turtleCombat
 
+  local set = ItemsOfPower.SetTypes.StatSet:new("Turtle WoW - Rogue - Combat", stats)
+
+
+
   if not ItemsOfPower.SetByName["Turtle WoW - Rogue - Combat"] then
-    local set = ItemsOfPower.SetTypes.StatSet:new("Turtle WoW - Rogue - Combat", stats)
     ItemsOfPower:RegisterSet(set)
     print("Created StatSet: Turtle WoW - Rogue - Combat")
   else
-    print("StatSet already exists: Turtle WoW - Rogue - Combat")
+    print("Updated StatSet: Turtle WoW - Rogue - Combat")
   end
 end)
 
@@ -245,12 +251,15 @@ print("  HEALTH: " .. string.format("%.3f", vanillaSubtlety.HEALTH) .. " → " .
 table.insert(ItemsOfPower_PendingStatSets, function()
   local stats = turtleSubtlety
 
+  local set = ItemsOfPower.SetTypes.StatSet:new("Turtle WoW - Rogue - Subtlety", stats)
+
+
+
   if not ItemsOfPower.SetByName["Turtle WoW - Rogue - Subtlety"] then
-    local set = ItemsOfPower.SetTypes.StatSet:new("Turtle WoW - Rogue - Subtlety", stats)
     ItemsOfPower:RegisterSet(set)
     print("Created StatSet: Turtle WoW - Rogue - Subtlety")
   else
-    print("StatSet already exists: Turtle WoW - Rogue - Subtlety")
+    print("Updated StatSet: Turtle WoW - Rogue - Subtlety")
   end
 end)
 

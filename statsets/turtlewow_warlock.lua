@@ -102,12 +102,15 @@ print("  SPELLHASTE: " .. string.format("%.2f", vanillaAffliction.SPELLHASTE) ..
 table.insert(ItemsOfPower_PendingStatSets, function()
   local stats = turtleAffliction
 
+  local set = ItemsOfPower.SetTypes.StatSet:new("Turtle WoW - Warlock - Affliction", stats)
+
+
+
   if not ItemsOfPower.SetByName["Turtle WoW - Warlock - Affliction"] then
-    local set = ItemsOfPower.SetTypes.StatSet:new("Turtle WoW - Warlock - Affliction", stats)
     ItemsOfPower:RegisterSet(set)
     print("Created StatSet: Turtle WoW - Warlock - Affliction")
   else
-    print("StatSet already exists: Turtle WoW - Warlock - Affliction")
+    print("Updated StatSet: Turtle WoW - Warlock - Affliction")
   end
 end)
 
@@ -187,12 +190,15 @@ print("  SPELLCRIT: " .. string.format("%.2f", vanillaDemonology.SPELLCRIT) .. "
 table.insert(ItemsOfPower_PendingStatSets, function()
   local stats = turtleDemonology
 
+  local set = ItemsOfPower.SetTypes.StatSet:new("Turtle WoW - Warlock - Demonology", stats)
+
+
+
   if not ItemsOfPower.SetByName["Turtle WoW - Warlock - Demonology"] then
-    local set = ItemsOfPower.SetTypes.StatSet:new("Turtle WoW - Warlock - Demonology", stats)
     ItemsOfPower:RegisterSet(set)
     print("Created StatSet: Turtle WoW - Warlock - Demonology")
   else
-    print("StatSet already exists: Turtle WoW - Warlock - Demonology")
+    print("Updated StatSet: Turtle WoW - Warlock - Demonology")
   end
 end)
 
@@ -269,12 +275,15 @@ print("  FIREDMG: " .. string.format("%.2f", vanillaDestruction.FIREDMG) .. " â†
 table.insert(ItemsOfPower_PendingStatSets, function()
   local stats = turtleDestruction
 
+  local set = ItemsOfPower.SetTypes.StatSet:new("Turtle WoW - Warlock - Destruction", stats)
+
+
+
   if not ItemsOfPower.SetByName["Turtle WoW - Warlock - Destruction"] then
-    local set = ItemsOfPower.SetTypes.StatSet:new("Turtle WoW - Warlock - Destruction", stats)
     ItemsOfPower:RegisterSet(set)
     print("Created StatSet: Turtle WoW - Warlock - Destruction")
   else
-    print("StatSet already exists: Turtle WoW - Warlock - Destruction")
+    print("Updated StatSet: Turtle WoW - Warlock - Destruction")
   end
 end)
 

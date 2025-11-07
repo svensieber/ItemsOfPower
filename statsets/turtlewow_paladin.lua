@@ -102,12 +102,15 @@ print("  SPELLCRIT: " .. string.format("%.2f", vanillaHoly.SPELLCRIT) .. " → "
 table.insert(ItemsOfPower_PendingStatSets, function()
   local stats = turtleHoly
 
+  local set = ItemsOfPower.SetTypes.StatSet:new("Turtle WoW - Paladin - Holy", stats)
+
+
+
   if not ItemsOfPower.SetByName["Turtle WoW - Paladin - Holy"] then
-    local set = ItemsOfPower.SetTypes.StatSet:new("Turtle WoW - Paladin - Holy", stats)
     ItemsOfPower:RegisterSet(set)
     print("Created StatSet: Turtle WoW - Paladin - Holy")
   else
-    print("StatSet already exists: Turtle WoW - Paladin - Holy")
+    print("Updated StatSet: Turtle WoW - Paladin - Holy")
   end
 end)
 
@@ -195,12 +198,15 @@ print("  BLOCK: " .. string.format("%.2f", vanillaProtection.BLOCK) .. " → " .
 table.insert(ItemsOfPower_PendingStatSets, function()
   local stats = turtleProtection
 
+  local set = ItemsOfPower.SetTypes.StatSet:new("Turtle WoW - Paladin - Protection", stats)
+
+
+
   if not ItemsOfPower.SetByName["Turtle WoW - Paladin - Protection"] then
-    local set = ItemsOfPower.SetTypes.StatSet:new("Turtle WoW - Paladin - Protection", stats)
     ItemsOfPower:RegisterSet(set)
     print("Created StatSet: Turtle WoW - Paladin - Protection")
   else
-    print("StatSet already exists: Turtle WoW - Paladin - Protection")
+    print("Updated StatSet: Turtle WoW - Paladin - Protection")
   end
 end)
 
@@ -287,12 +293,15 @@ print("  CRIT: " .. string.format("%.2f", vanillaRetribution.CRIT) .. " → " ..
 table.insert(ItemsOfPower_PendingStatSets, function()
   local stats = turtleRetribution
 
+  local set = ItemsOfPower.SetTypes.StatSet:new("Turtle WoW - Paladin - Retribution", stats)
+
+
+
   if not ItemsOfPower.SetByName["Turtle WoW - Paladin - Retribution"] then
-    local set = ItemsOfPower.SetTypes.StatSet:new("Turtle WoW - Paladin - Retribution", stats)
     ItemsOfPower:RegisterSet(set)
     print("Created StatSet: Turtle WoW - Paladin - Retribution")
   else
-    print("StatSet already exists: Turtle WoW - Paladin - Retribution")
+    print("Updated StatSet: Turtle WoW - Paladin - Retribution")
   end
 end)
 

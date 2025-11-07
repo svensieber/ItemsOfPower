@@ -116,12 +116,15 @@ print("  ARCANEDMG: " .. string.format("%.2f", vanillaBalance.ARCANEDMG) .. " �
 table.insert(ItemsOfPower_PendingStatSets, function()
   local stats = turtleBalance
 
+  local set = ItemsOfPower.SetTypes.StatSet:new("Turtle WoW - Druid - Balance", stats)
+
+
+
   if not ItemsOfPower.SetByName["Turtle WoW - Druid - Balance"] then
-    local set = ItemsOfPower.SetTypes.StatSet:new("Turtle WoW - Druid - Balance", stats)
     ItemsOfPower:RegisterSet(set)
     print("Created StatSet: Turtle WoW - Druid - Balance")
   else
-    print("StatSet already exists: Turtle WoW - Druid - Balance")
+    print("Updated StatSet: Turtle WoW - Druid - Balance")
   end
 end)
 
@@ -200,12 +203,15 @@ print("  CRIT: " .. string.format("%.2f", vanillaFeralDamage.CRIT) .. " → " ..
 table.insert(ItemsOfPower_PendingStatSets, function()
   local stats = turtleFeralDamage
 
+  local set = ItemsOfPower.SetTypes.StatSet:new("Turtle WoW - Druid - Feral Damage", stats)
+
+
+
   if not ItemsOfPower.SetByName["Turtle WoW - Druid - Feral Damage"] then
-    local set = ItemsOfPower.SetTypes.StatSet:new("Turtle WoW - Druid - Feral Damage", stats)
     ItemsOfPower:RegisterSet(set)
     print("Created StatSet: Turtle WoW - Druid - Feral Damage")
   else
-    print("StatSet already exists: Turtle WoW - Druid - Feral Damage")
+    print("Updated StatSet: Turtle WoW - Druid - Feral Damage")
   end
 end)
 
@@ -290,12 +296,15 @@ print("  AGI: " .. string.format("%.2f", vanillaFeralTank.AGI) .. " → " .. str
 table.insert(ItemsOfPower_PendingStatSets, function()
   local stats = turtleFeralTank
 
+  local set = ItemsOfPower.SetTypes.StatSet:new("Turtle WoW - Druid - Feral Tank", stats)
+
+
+
   if not ItemsOfPower.SetByName["Turtle WoW - Druid - Feral Tank"] then
-    local set = ItemsOfPower.SetTypes.StatSet:new("Turtle WoW - Druid - Feral Tank", stats)
     ItemsOfPower:RegisterSet(set)
     print("Created StatSet: Turtle WoW - Druid - Feral Tank")
   else
-    print("StatSet already exists: Turtle WoW - Druid - Feral Tank")
+    print("Updated StatSet: Turtle WoW - Druid - Feral Tank")
   end
 end)
 
@@ -361,12 +370,15 @@ print("  ARMOR: " .. string.format("%.3f", vanillaRestoration.ARMOR) .. " → " 
 table.insert(ItemsOfPower_PendingStatSets, function()
   local stats = turtleRestoration
 
+  local set = ItemsOfPower.SetTypes.StatSet:new("Turtle WoW - Druid - Restoration", stats)
+
+
+
   if not ItemsOfPower.SetByName["Turtle WoW - Druid - Restoration"] then
-    local set = ItemsOfPower.SetTypes.StatSet:new("Turtle WoW - Druid - Restoration", stats)
     ItemsOfPower:RegisterSet(set)
     print("Created StatSet: Turtle WoW - Druid - Restoration")
   else
-    print("StatSet already exists: Turtle WoW - Druid - Restoration")
+    print("Updated StatSet: Turtle WoW - Druid - Restoration")
   end
 end)
 

@@ -108,12 +108,15 @@ print("  AGI: " .. string.format("%.2f", vanillaArms.AGI) .. " → " .. string.f
 table.insert(ItemsOfPower_PendingStatSets, function()
   local stats = turtleArms
 
+  local set = ItemsOfPower.SetTypes.StatSet:new("Turtle WoW - Warrior - Arms", stats)
+
+
+
   if not ItemsOfPower.SetByName["Turtle WoW - Warrior - Arms"] then
-    local set = ItemsOfPower.SetTypes.StatSet:new("Turtle WoW - Warrior - Arms", stats)
     ItemsOfPower:RegisterSet(set)
     print("Created StatSet: Turtle WoW - Warrior - Arms")
   else
-    print("StatSet already exists: Turtle WoW - Warrior - Arms")
+    print("Updated StatSet: Turtle WoW - Warrior - Arms")
   end
 end)
 
@@ -195,12 +198,15 @@ print("  STR: " .. string.format("%.2f", vanillaFury.STR) .. " → " .. string.f
 table.insert(ItemsOfPower_PendingStatSets, function()
   local stats = turtleFury
 
+  local set = ItemsOfPower.SetTypes.StatSet:new("Turtle WoW - Warrior - Fury", stats)
+
+
+
   if not ItemsOfPower.SetByName["Turtle WoW - Warrior - Fury"] then
-    local set = ItemsOfPower.SetTypes.StatSet:new("Turtle WoW - Warrior - Fury", stats)
     ItemsOfPower:RegisterSet(set)
     print("Created StatSet: Turtle WoW - Warrior - Fury")
   else
-    print("StatSet already exists: Turtle WoW - Warrior - Fury")
+    print("Updated StatSet: Turtle WoW - Warrior - Fury")
   end
 end)
 
@@ -288,12 +294,15 @@ print("  STR: " .. string.format("%.2f", vanillaProtection.STR) .. " → " .. st
 table.insert(ItemsOfPower_PendingStatSets, function()
   local stats = turtleProtection
 
+  local set = ItemsOfPower.SetTypes.StatSet:new("Turtle WoW - Warrior - Protection", stats)
+
+
+
   if not ItemsOfPower.SetByName["Turtle WoW - Warrior - Protection"] then
-    local set = ItemsOfPower.SetTypes.StatSet:new("Turtle WoW - Warrior - Protection", stats)
     ItemsOfPower:RegisterSet(set)
     print("Created StatSet: Turtle WoW - Warrior - Protection")
   else
-    print("StatSet already exists: Turtle WoW - Warrior - Protection")
+    print("Updated StatSet: Turtle WoW - Warrior - Protection")
   end
 end)
 

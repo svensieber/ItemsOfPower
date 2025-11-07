@@ -125,12 +125,15 @@ print("  INT: " .. string.format("%.2f", vanillaDiscipline.INT) .. " → " .. st
 table.insert(ItemsOfPower_PendingStatSets, function()
   local stats = turtleDiscipline
 
+  local set = ItemsOfPower.SetTypes.StatSet:new("Turtle WoW - Priest - Discipline", stats)
+
+
+
   if not ItemsOfPower.SetByName["Turtle WoW - Priest - Discipline"] then
-    local set = ItemsOfPower.SetTypes.StatSet:new("Turtle WoW - Priest - Discipline", stats)
     ItemsOfPower:RegisterSet(set)
     print("Created StatSet: Turtle WoW - Priest - Discipline")
   else
-    print("StatSet already exists: Turtle WoW - Priest - Discipline")
+    print("Updated StatSet: Turtle WoW - Priest - Discipline")
   end
 end)
 
@@ -199,12 +202,15 @@ print("  DMG: NEW → " .. string.format("%.1f", turtleHoly.DMG) .. " (Inner Fir
 table.insert(ItemsOfPower_PendingStatSets, function()
   local stats = turtleHoly
 
+  local set = ItemsOfPower.SetTypes.StatSet:new("Turtle WoW - Priest - Holy", stats)
+
+
+
   if not ItemsOfPower.SetByName["Turtle WoW - Priest - Holy"] then
-    local set = ItemsOfPower.SetTypes.StatSet:new("Turtle WoW - Priest - Holy", stats)
     ItemsOfPower:RegisterSet(set)
     print("Created StatSet: Turtle WoW - Priest - Holy")
   else
-    print("StatSet already exists: Turtle WoW - Priest - Holy")
+    print("Updated StatSet: Turtle WoW - Priest - Holy")
   end
 end)
 
@@ -280,12 +286,15 @@ print("  HEAL: NEW → " .. string.format("%.2f", turtleShadow.HEAL) .. " (Shado
 table.insert(ItemsOfPower_PendingStatSets, function()
   local stats = turtleShadow
 
+  local set = ItemsOfPower.SetTypes.StatSet:new("Turtle WoW - Priest - Shadow", stats)
+
+
+
   if not ItemsOfPower.SetByName["Turtle WoW - Priest - Shadow"] then
-    local set = ItemsOfPower.SetTypes.StatSet:new("Turtle WoW - Priest - Shadow", stats)
     ItemsOfPower:RegisterSet(set)
     print("Created StatSet: Turtle WoW - Priest - Shadow")
   else
-    print("StatSet already exists: Turtle WoW - Priest - Shadow")
+    print("Updated StatSet: Turtle WoW - Priest - Shadow")
   end
 end)
 

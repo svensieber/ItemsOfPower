@@ -52,9 +52,11 @@ local vanillaArms = ApplyMultiplier({
   SPI = 0.05,
   ATTACKPOWER = 0.45,
   TOHIT = 9.37931,        -- Pre-multiplied
+  EXPERTISE = 1.0,        -- Expertise Rating (from ClassicHawsJon: 2.34483 pre-multiplied)
   CRIT = 7.225,           -- Physical crit
   HASTE = 4.5771,         -- Physical haste
-  ARMORIGNORE = 4.125,
+  ARMORPEN = 2.75,        -- Armor Penetration (from ClassicHawsJon: 1.1 * 3.75 = 4.125, divided by 1.5 for base)
+  WEAPONDPS = 2.795,      -- Weapon DPS (from ClassicHawsJon: 5.31, divided by 1.9 for base)
   HEALTH = 0.01,
   HEALTHREG = 1.0,
   ARMOR = 0.005,
@@ -97,10 +99,20 @@ turtleArms.STR = vanillaArms.STR * 1.15  -- 1.0 → 1.15
 --    Conservative: +10% value
 turtleArms.AGI = vanillaArms.AGI * 1.1  -- 0.69 → 0.759
 
+-- 7. WEAPONDPS HIGHLY valuable (Rage Generation 90% gear-dependent - CRITICAL CHANGE)
+--    Conservative: +90% value
+turtleArms.WEAPONDPS = vanillaArms.WEAPONDPS * 1.9  -- 2.795 → 5.31
+
+-- 8. ARMORPEN more valuable (Armor Cap Removal 1.18.0 + Master of Arms Mace + Concussion Blow)
+--    Conservative: +50% value
+turtleArms.ARMORPEN = vanillaArms.ARMORPEN * 1.5  -- 2.75 → 4.125
+
 print("Turtle WoW - Warrior - Arms:")
 print("  TOHIT: " .. string.format("%.2f", vanillaArms.TOHIT) .. " → " .. string.format("%.2f", turtleArms.TOHIT) .. " (+12.5%)")
 print("  CRIT: " .. string.format("%.2f", vanillaArms.CRIT) .. " → " .. string.format("%.3f", turtleArms.CRIT) .. " (+30% Deep Wounds 2x!)")
 print("  AP: " .. string.format("%.2f", vanillaArms.ATTACKPOWER) .. " → " .. string.format("%.2f", turtleArms.ATTACKPOWER) .. " (+20% Rage gen 90% gear!)")
+print("  WEAPONDPS: " .. string.format("%.3f", vanillaArms.WEAPONDPS) .. " → " .. string.format("%.2f", turtleArms.WEAPONDPS) .. " (+90% Rage Gen CRITICAL!)")
+print("  ARMORPEN: " .. string.format("%.2f", vanillaArms.ARMORPEN) .. " → " .. string.format("%.3f", turtleArms.ARMORPEN) .. " (+50% Armor Cap Removed!)")
 print("  STR: " .. string.format("%.2f", vanillaArms.STR) .. " → " .. string.format("%.2f", turtleArms.STR) .. " (+15%)")
 print("  AGI: " .. string.format("%.2f", vanillaArms.AGI) .. " → " .. string.format("%.3f", turtleArms.AGI) .. " (+10%)")
 
@@ -132,9 +144,11 @@ local vanillaFury = ApplyMultiplier({
   SPI = 0.05,
   ATTACKPOWER = 0.54,
   TOHIT = 5.34621,        -- Pre-multiplied
+  EXPERTISE = 0.57,       -- Expertise Rating (from ClassicHawsJon)
   CRIT = 5.95,            -- Physical crit
   HASTE = 3.2923,         -- Physical haste
-  ARMORIGNORE = 1.7625,
+  ARMORPEN = 1.175,       -- Armor Penetration (from ClassicHawsJon: 0.47 * 3.75 = 1.7625, divided by 1.5 for base)
+  WEAPONDPS = 2.747,      -- Weapon DPS (from ClassicHawsJon: 5.22, divided by 1.9 for base)
   HEALTH = 0.01,
   HEALTHREG = 1.0,
   ARMOR = 0.005,
@@ -185,12 +199,22 @@ turtleFury.STR = vanillaFury.STR * 1.15  -- 1.0 → 1.15
 --    Conservative: +10% value
 turtleFury.AGI = vanillaFury.AGI * 1.1  -- 0.57 → 0.627
 
+-- 9. WEAPONDPS HIGHLY valuable (Rage Generation 90% gear-dependent - CRITICAL CHANGE)
+--    Conservative: +90% value
+turtleFury.WEAPONDPS = vanillaFury.WEAPONDPS * 1.9  -- 2.747 → 5.22
+
+-- 10. ARMORPEN more valuable (Armor Cap Removal 1.18.0)
+--     Conservative: +50% value
+turtleFury.ARMORPEN = vanillaFury.ARMORPEN * 1.5  -- 1.175 → 1.7625
+
 print("")
 print("Turtle WoW - Warrior - Fury:")
 print("  TOHIT: " .. string.format("%.2f", vanillaFury.TOHIT) .. " → " .. string.format("%.2f", turtleFury.TOHIT) .. " (+12.5%)")
 print("  HASTE: " .. string.format("%.2f", vanillaFury.HASTE) .. " → " .. string.format("%.2f", turtleFury.HASTE) .. " (+40% Unbridled Wrath 75%/150%!)")
 print("  CRIT: " .. string.format("%.2f", vanillaFury.CRIT) .. " → " .. string.format("%.3f", turtleFury.CRIT) .. " (+30% Enrage 15%!)")
 print("  AP: " .. string.format("%.2f", vanillaFury.ATTACKPOWER) .. " → " .. string.format("%.3f", turtleFury.ATTACKPOWER) .. " (+20% Rage gen!)")
+print("  WEAPONDPS: " .. string.format("%.3f", vanillaFury.WEAPONDPS) .. " → " .. string.format("%.2f", turtleFury.WEAPONDPS) .. " (+90% Rage Gen CRITICAL!)")
+print("  ARMORPEN: " .. string.format("%.3f", vanillaFury.ARMORPEN) .. " → " .. string.format("%.4f", turtleFury.ARMORPEN) .. " (+50% Armor Cap Removed!)")
 print("  STA: " .. string.format("%.2f", vanillaFury.STA) .. " → " .. string.format("%.3f", turtleFury.STA) .. " (+15% Blood Drinker healing!)")
 print("  STR: " .. string.format("%.2f", vanillaFury.STR) .. " → " .. string.format("%.2f", turtleFury.STR) .. " (+15%)")
 
@@ -222,9 +246,11 @@ local vanillaProtection = ApplyMultiplier({
   SPI = 0.05,
   ATTACKPOWER = 0.06,
   TOHIT = 6.28414,        -- Pre-multiplied
+  EXPERTISE = 0.67,       -- Expertise Rating (from ClassicHawsJon)
   CRIT = 2.38,
   HASTE = 1.6863,
-  ARMORIGNORE = 0.7125,
+  ARMORPEN = 0.475,       -- Armor Penetration (from ClassicHawsJon: 0.19 * 3.75 = 0.7125, divided by 1.5 for base)
+  WEAPONDPS = 1.647,      -- Weapon DPS (from ClassicHawsJon: 3.13, divided by 1.9 for base)
   HEALTH = 0.09,
   HEALTHREG = 2.0,
   ARMOR = 0.02,
@@ -281,11 +307,21 @@ turtleProtection.AGI = vanillaProtection.AGI * 1.1  -- 0.59 → 0.649
 --    Conservative: +10% value
 turtleProtection.STA = vanillaProtection.STA * 1.1  -- 1.0 → 1.1
 
+-- 10. WEAPONDPS HIGHLY valuable (Rage Generation 90% gear-dependent + Shield Slam - CRITICAL)
+--     Conservative: +90% value
+turtleProtection.WEAPONDPS = vanillaProtection.WEAPONDPS * 1.9  -- 1.647 → 3.13
+
+-- 11. ARMORPEN more valuable (Armor Cap Removal 1.18.0 + Concussion Blow 100% armor pen)
+--     Conservative: +50% value
+turtleProtection.ARMORPEN = vanillaProtection.ARMORPEN * 1.5  -- 0.475 → 0.7125
+
 print("")
 print("Turtle WoW - Warrior - Protection:")
 print("  TOHIT: " .. string.format("%.2f", vanillaProtection.TOHIT) .. " → " .. string.format("%.2f", turtleProtection.TOHIT) .. " (+12.5%)")
 print("  BLOCKVALUE: " .. string.format("%.2f", vanillaProtection.BLOCKVALUE) .. " → " .. string.format("%.3f", turtleProtection.BLOCKVALUE) .. " (+50% Shield Slam scaling!)")
 print("  AP: " .. string.format("%.2f", vanillaProtection.ATTACKPOWER) .. " → " .. string.format("%.3f", turtleProtection.ATTACKPOWER) .. " (+25% Shield Slam + Rage gen!)")
+print("  WEAPONDPS: " .. string.format("%.3f", vanillaProtection.WEAPONDPS) .. " → " .. string.format("%.2f", turtleProtection.WEAPONDPS) .. " (+90% Rage Gen CRITICAL!)")
+print("  ARMORPEN: " .. string.format("%.3f", vanillaProtection.ARMORPEN) .. " → " .. string.format("%.4f", turtleProtection.ARMORPEN) .. " (+50% Concussion Blow 100% ArPen!)")
 print("  ARMOR: " .. string.format("%.2f", vanillaProtection.ARMOR) .. " → " .. string.format("%.3f", turtleProtection.ARMOR) .. " (+30% CAP REMOVED!)")
 print("  CRIT: " .. string.format("%.2f", vanillaProtection.CRIT) .. " → " .. string.format("%.3f", turtleProtection.CRIT) .. " (+15%)")
 print("  STR: " .. string.format("%.2f", vanillaProtection.STR) .. " → " .. string.format("%.3f", turtleProtection.STR) .. " (+20% threat scaling)")

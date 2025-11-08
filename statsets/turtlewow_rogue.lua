@@ -50,9 +50,11 @@ local vanillaAssassination = ApplyMultiplier({
   SPI = 0.05,
   ATTACKPOWER = 0.45,
   TOHIT = 9.37931,        -- Pre-multiplied
+  EXPERTISE = 1.1,        -- Expertise Rating (from ClassicHawsJon)
   CRIT = 6.885,           -- 8.5 * 0.81
   HASTE = 7.227,          -- 8.03 * 0.9
-  ARMORIGNORE = 0.9,      -- 3.75 * 0.24
+  ARMORPEN = 0.621,       -- Armor Penetration (from ClassicHawsJon: 3.75 * 0.24 = 0.9, divided by 1.45 for base)
+  WEAPONDPS = 2.222,      -- Weapon DPS (from ClassicHawsJon: 3, divided by 1.35 for base)
   HEALTH = 0.01,
   HEALTHREG = 1.0,
   ARMOR = 0.005,
@@ -91,9 +93,19 @@ turtleAssassination.ATTACKPOWER = vanillaAssassination.ATTACKPOWER * 1.35  -- 0.
 --    Conservative: +10% value
 turtleAssassination.CRIT = vanillaAssassination.CRIT * 1.1  -- 6.885 → 7.57
 
+-- 5. WEAPONDPS more valuable (Deadly Throw 100% weapon damage, but many abilities shifted to AP)
+--    Conservative: +35% value
+turtleAssassination.WEAPONDPS = vanillaAssassination.WEAPONDPS * 1.35  -- 2.222 → 3
+
+-- 6. ARMORPEN more valuable (Expose Armor earlier access + Armor Cap Removal)
+--    Conservative: +45% value
+turtleAssassination.ARMORPEN = vanillaAssassination.ARMORPEN * 1.45  -- 0.621 → 0.9
+
 print("Turtle WoW - Rogue - Assassination:")
 print("  TOHIT: " .. string.format("%.2f", vanillaAssassination.TOHIT) .. " → " .. string.format("%.2f", turtleAssassination.TOHIT) .. " (+12.5%)")
 print("  AP: " .. string.format("%.2f", vanillaAssassination.ATTACKPOWER) .. " → " .. string.format("%.3f", turtleAssassination.ATTACKPOWER) .. " (+35%)")
+print("  WEAPONDPS: " .. string.format("%.3f", vanillaAssassination.WEAPONDPS) .. " → " .. string.format("%.2f", turtleAssassination.WEAPONDPS) .. " (+35%)")
+print("  ARMORPEN: " .. string.format("%.3f", vanillaAssassination.ARMORPEN) .. " → " .. string.format("%.2f", turtleAssassination.ARMORPEN) .. " (+45% Expose Armor + Cap Removal!)")
 print("  CRIT: " .. string.format("%.2f", vanillaAssassination.CRIT) .. " → " .. string.format("%.2f", turtleAssassination.CRIT) .. " (+10%)")
 
 -- Queue StatSet creation (delayed until OnEnable)
@@ -124,9 +136,11 @@ local vanillaCombat = ApplyMultiplier({
   SPI = 0.05,
   ATTACKPOWER = 0.45,
   TOHIT = 9.37931,
+  EXPERTISE = 1.1,        -- Expertise Rating (from ClassicHawsJon)
   CRIT = 6.885,
   HASTE = 7.227,
-  ARMORIGNORE = 0.9,
+  ARMORPEN = 0.621,       -- Armor Penetration (from ClassicHawsJon: 3.75 * 0.24 = 0.9, divided by 1.45 for base)
+  WEAPONDPS = 2.222,      -- Weapon DPS (from ClassicHawsJon: 3, divided by 1.35 for base)
   HEALTH = 0.01,
   HEALTHREG = 1.0,
   ARMOR = 0.005,
@@ -167,10 +181,20 @@ turtleCombat.CRIT = vanillaCombat.CRIT * 1.1  -- 6.885 → 7.57
 --    Conservative: +5% value
 turtleCombat.HASTE = turtleCombat.HASTE * 1.05  -- 7.227 → 7.59
 
+-- 6. WEAPONDPS more valuable (Deadly Throw, Surprise Attack, but many abilities shifted to AP)
+--    Conservative: +35% value
+turtleCombat.WEAPONDPS = vanillaCombat.WEAPONDPS * 1.35  -- 2.222 → 3
+
+-- 7. ARMORPEN more valuable (Expose Armor earlier access + Armor Cap Removal)
+--    Conservative: +45% value
+turtleCombat.ARMORPEN = vanillaCombat.ARMORPEN * 1.45  -- 0.621 → 0.9
+
 print("")
 print("Turtle WoW - Rogue - Combat:")
 print("  TOHIT: " .. string.format("%.2f", vanillaCombat.TOHIT) .. " → " .. string.format("%.2f", turtleCombat.TOHIT) .. " (+12.5%)")
-print("  AGI: " .. string.format("%.2f", vanillaCombat.AGI) .. " → " .. string.format("%.2f", turtleCombat.AGI) .. " (+25%)")
+print("  AGI: " .. string.format("%.2f", vanillaCombat.AGI) .. " → " .. string.format("%.2f", turtleCombat.AGI) .. " (+25% Blade Rush Energy!)")
+print("  WEAPONDPS: " .. string.format("%.3f", vanillaCombat.WEAPONDPS) .. " → " .. string.format("%.2f", turtleCombat.WEAPONDPS) .. " (+35%)")
+print("  ARMORPEN: " .. string.format("%.3f", vanillaCombat.ARMORPEN) .. " → " .. string.format("%.2f", turtleCombat.ARMORPEN) .. " (+45% Expose Armor + Cap Removal!)")
 print("  CRIT: " .. string.format("%.2f", vanillaCombat.CRIT) .. " → " .. string.format("%.2f", turtleCombat.CRIT) .. " (+10%)")
 print("  HASTE: " .. string.format("%.2f", vanillaCombat.HASTE) .. " → " .. string.format("%.2f", turtleCombat.HASTE) .. " (+5%)")
 
@@ -202,9 +226,11 @@ local vanillaSubtlety = ApplyMultiplier({
   SPI = 0.05,
   ATTACKPOWER = 0.45,
   TOHIT = 9.37931,
+  EXPERTISE = 1.1,        -- Expertise Rating (from ClassicHawsJon)
   CRIT = 6.885,
   HASTE = 7.227,
-  ARMORIGNORE = 0.9,
+  ARMORPEN = 0.621,       -- Armor Penetration (from ClassicHawsJon: 3.75 * 0.24 = 0.9, divided by 1.45 for base)
+  WEAPONDPS = 2.222,      -- Weapon DPS (from ClassicHawsJon: 3, divided by 1.35 for base)
   HEALTH = 0.01,
   HEALTHREG = 1.0,
   ARMOR = 0.005,
@@ -241,10 +267,20 @@ turtleSubtlety.ATTACKPOWER = vanillaSubtlety.ATTACKPOWER * 1.2  -- 0.45 → 0.54
 --    Conservative: +50% value
 turtleSubtlety.HEALTH = vanillaSubtlety.HEALTH * 1.5  -- 0.01 → 0.015
 
+-- 5. WEAPONDPS more valuable (Hemorrhage 110% weapon damage, but many abilities shifted to AP)
+--    Conservative: +35% value
+turtleSubtlety.WEAPONDPS = vanillaSubtlety.WEAPONDPS * 1.35  -- 2.222 → 3
+
+-- 6. ARMORPEN more valuable (Expose Armor earlier access + Armor Cap Removal)
+--    Conservative: +45% value
+turtleSubtlety.ARMORPEN = vanillaSubtlety.ARMORPEN * 1.45  -- 0.621 → 0.9
+
 print("")
 print("Turtle WoW - Rogue - Subtlety:")
 print("  TOHIT: " .. string.format("%.2f", vanillaSubtlety.TOHIT) .. " → " .. string.format("%.2f", turtleSubtlety.TOHIT) .. " (+12.5%)")
-print("  AP: " .. string.format("%.2f", vanillaSubtlety.ATTACKPOWER) .. " → " .. string.format("%.2f", turtleSubtlety.ATTACKPOWER) .. " (+20%)")
+print("  AP: " .. string.format("%.2f", vanillaSubtlety.ATTACKPOWER) .. " → " .. string.format("%.2f", turtleSubtlety.ATTACKPOWER) .. " (+20% Mark for Death!)")
+print("  WEAPONDPS: " .. string.format("%.3f", vanillaSubtlety.WEAPONDPS) .. " → " .. string.format("%.2f", turtleSubtlety.WEAPONDPS) .. " (+35% Hemorrhage!)")
+print("  ARMORPEN: " .. string.format("%.3f", vanillaSubtlety.ARMORPEN) .. " → " .. string.format("%.2f", turtleSubtlety.ARMORPEN) .. " (+45% Expose Armor + Cap Removal!)")
 print("  HEALTH: " .. string.format("%.3f", vanillaSubtlety.HEALTH) .. " → " .. string.format("%.3f", turtleSubtlety.HEALTH) .. " (+50%)")
 
 -- Queue StatSet creation (delayed until OnEnable)

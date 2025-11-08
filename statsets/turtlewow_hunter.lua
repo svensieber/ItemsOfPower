@@ -49,9 +49,12 @@ local vanillaMM = ApplyMultiplier({
   ATTACKPOWER = 0.55,
   RANGEDATTACKPOWER = 0.55,
   TOHIT = 9.37931,        -- Pre-multiplied
+  EXPERTISE = 0.05,       -- Expertise Rating (from ClassicHawsJon - very low for ranged)
   CRIT = 5.1,             -- 8.5 * 0.6
   HASTE = 3.212,          -- 8.03 * 0.4
-  ARMORIGNORE = 1.3875,   -- 3.75 * 0.37
+  ARMORPEN = 1.067,       -- Armor Penetration (3.75 * 0.37 = 1.3875, divided by 1.3 for base)
+  RANGEDWEAPONDPS = 2.167,  -- Ranged Weapon DPS (from ClassicHawsJon: 2.6, divided by 1.2 for base)
+  WEAPONDPS = 0.75,       -- Melee Weapon DPS (from ClassicHawsJon - low value)
   MANA = 0.085,
   MANAREG = 2.4,
   HEALTH = 0.01,
@@ -80,11 +83,19 @@ turtleMM.TOHIT = AdjustHitCap(vanillaMM.TOHIT)  -- 9.38 → 10.55
 -- 2. Haste Baseline Check (ensure minimum 65% of Crit for ranged DPS)
 turtleMM.HASTE = EnsureMinimumHaste(vanillaMM.HASTE, vanillaMM.CRIT, "ranged_dps")
 
--- 3. NO other changes for MM (devs happy with current state)
+-- 3. RANGEDWEAPONDPS more valuable (Steady Shot 100% weapon dmg main rotation)
+--    Conservative: +20% value
+turtleMM.RANGEDWEAPONDPS = vanillaMM.RANGEDWEAPONDPS * 1.2  -- 2.167 → 2.6
+
+-- 4. ARMORPEN more valuable (Armor Cap Removal 1.18.0)
+--    Conservative: +30% value
+turtleMM.ARMORPEN = vanillaMM.ARMORPEN * 1.3  -- 1.067 → 1.3875
 
 print("Turtle WoW - Hunter - Marksmanship:")
 print("  TOHIT: " .. string.format("%.2f", vanillaMM.TOHIT) .. " → " .. string.format("%.2f", turtleMM.TOHIT) .. " (+12.5%)")
 print("  HASTE: " .. string.format("%.2f", vanillaMM.HASTE) .. " → " .. string.format("%.2f", turtleMM.HASTE))
+print("  RANGEDWEAPONDPS: " .. string.format("%.3f", vanillaMM.RANGEDWEAPONDPS) .. " → " .. string.format("%.2f", turtleMM.RANGEDWEAPONDPS) .. " (+20% Steady Shot!)")
+print("  ARMORPEN: " .. string.format("%.3f", vanillaMM.ARMORPEN) .. " → " .. string.format("%.4f", turtleMM.ARMORPEN) .. " (+30%)")
 
 -- Queue StatSet creation (delayed until OnEnable)
 table.insert(ItemsOfPower_PendingStatSets, function()
@@ -113,9 +124,12 @@ local vanillaBM = ApplyMultiplier({
   ATTACKPOWER = 0.43,
   RANGEDATTACKPOWER = 0.43,
   TOHIT = 9.37931,
+  EXPERTISE = 0.05,       -- Expertise Rating (from ClassicHawsJon - very low for ranged)
   CRIT = 6.8,             -- 8.5 * 0.8
   HASTE = 4.015,          -- 8.03 * 0.5
-  ARMORIGNORE = 0.6375,   -- 3.75 * 0.17
+  ARMORPEN = 0.490,       -- Armor Penetration (3.75 * 0.17 = 0.6375, divided by 1.3 for base)
+  RANGEDWEAPONDPS = 2.087,  -- Ranged Weapon DPS (from ClassicHawsJon: 2.4, divided by 1.15 for base)
+  WEAPONDPS = 0.75,       -- Melee Weapon DPS (from ClassicHawsJon - low value)
   MANA = 0.075,
   MANAREG = 2.4,
   HEALTH = 0.01,
@@ -161,12 +175,22 @@ turtleBM.CRIT = vanillaBM.CRIT * 1.15  -- 6.8 → 7.82
 turtleBM.RANGEDATTACKPOWER = vanillaBM.RANGEDATTACKPOWER * 1.2  -- 0.43 → 0.516
 turtleBM.ATTACKPOWER = vanillaBM.ATTACKPOWER * 1.2
 
+-- 7. RANGEDWEAPONDPS more valuable (Baited Shot 125% weapon damage after pet crit)
+--    Conservative: +15% value
+turtleBM.RANGEDWEAPONDPS = vanillaBM.RANGEDWEAPONDPS * 1.15  -- 2.087 → 2.4
+
+-- 8. ARMORPEN more valuable (Armor Cap Removal 1.18.0)
+--    Conservative: +30% value
+turtleBM.ARMORPEN = vanillaBM.ARMORPEN * 1.3  -- 0.490 → 0.6375
+
 print("")
 print("Turtle WoW - Hunter - Beast Mastery:")
 print("  TOHIT: " .. string.format("%.2f", vanillaBM.TOHIT) .. " → " .. string.format("%.2f", turtleBM.TOHIT) .. " (+12.5%)")
 print("  CRIT: " .. string.format("%.2f", vanillaBM.CRIT) .. " → " .. string.format("%.2f", turtleBM.CRIT) .. " (+15%)")
 print("  RAP: " .. string.format("%.2f", vanillaBM.RANGEDATTACKPOWER) .. " → " .. string.format("%.3f", turtleBM.RANGEDATTACKPOWER) .. " (+20%)")
 print("  STA: " .. string.format("%.2f", vanillaBM.STA) .. " → " .. string.format("%.2f", turtleBM.STA) .. " (+10%)")
+print("  RANGEDWEAPONDPS: " .. string.format("%.3f", vanillaBM.RANGEDWEAPONDPS) .. " → " .. string.format("%.2f", turtleBM.RANGEDWEAPONDPS) .. " (+15% Baited Shot!)")
+print("  ARMORPEN: " .. string.format("%.3f", vanillaBM.ARMORPEN) .. " → " .. string.format("%.4f", turtleBM.ARMORPEN) .. " (+30%)")
 
 -- Queue StatSet creation (delayed until OnEnable)
 table.insert(ItemsOfPower_PendingStatSets, function()
@@ -198,9 +222,12 @@ local vanillaSV = ApplyMultiplier({
   ATTACKPOWER = 0.55,
   RANGEDATTACKPOWER = 0.55,
   TOHIT = 9.37931,
+  EXPERTISE = 0.05,       -- Expertise Rating (from ClassicHawsJon - very low for ranged)
   CRIT = 5.525,           -- 8.5 * 0.65
   HASTE = 3.212,          -- 8.03 * 0.4
-  ARMORIGNORE = 1.05,     -- 3.75 * 0.28
+  ARMORPEN = 0.808,       -- Armor Penetration (3.75 * 0.28 = 1.05, divided by 1.3 for base)
+  RANGEDWEAPONDPS = 2.4,  -- Ranged Weapon DPS (from ClassicHawsJon - low for melee spec)
+  WEAPONDPS = 0.714,      -- Melee Weapon DPS (from ClassicHawsJon: 1, divided by 1.4 for base)
   MANA = 0.075,
   MANAREG = 2.4,
   HEALTH = 0.01,
@@ -233,10 +260,20 @@ turtleSV.HASTE = EnsureMinimumHaste(vanillaSV.HASTE, vanillaSV.CRIT, "ranged_dps
 --    Conservative: +10% value
 turtleSV.CRIT = vanillaSV.CRIT * 1.1  -- 5.525 → 6.08
 
+-- 4. WEAPONDPS (Melee) HIGHLY valuable (Mongoose Bite 60% + Carve 70% + Wing Clip 35% + Dual Wield!)
+--    Conservative: +40% value
+turtleSV.WEAPONDPS = vanillaSV.WEAPONDPS * 1.4  -- 0.714 → 1.0
+
+-- 5. ARMORPEN more valuable (Armor Cap Removal 1.18.0)
+--    Conservative: +30% value
+turtleSV.ARMORPEN = vanillaSV.ARMORPEN * 1.3  -- 0.808 → 1.05
+
 print("")
 print("Turtle WoW - Hunter - Survival:")
 print("  TOHIT: " .. string.format("%.2f", vanillaSV.TOHIT) .. " → " .. string.format("%.2f", turtleSV.TOHIT) .. " (+12.5%)")
 print("  CRIT: " .. string.format("%.2f", vanillaSV.CRIT) .. " → " .. string.format("%.2f", turtleSV.CRIT) .. " (+10%)")
+print("  WEAPONDPS (Melee): " .. string.format("%.3f", vanillaSV.WEAPONDPS) .. " → " .. string.format("%.2f", turtleSV.WEAPONDPS) .. " (+40% Mongoose/Carve + Dual Wield!)")
+print("  ARMORPEN: " .. string.format("%.3f", vanillaSV.ARMORPEN) .. " → " .. string.format("%.2f", turtleSV.ARMORPEN) .. " (+30%)")
 
 -- Queue StatSet creation (delayed until OnEnable)
 table.insert(ItemsOfPower_PendingStatSets, function()

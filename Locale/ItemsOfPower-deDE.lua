@@ -90,10 +90,12 @@ L:RegisterTranslations("deDE", function() return {
 		["Tanking"] = "Tanken",
 		["Weapon Skill"] = "Waffenf\195\164higkeiten",
 		["Resistances"] = "Widerst\195\164nde",
+		["Weapon"] = "Waffe",
 		["Misc"] = "Verschiedenes",
 		["Attackpower in Feral Forms"] = "Angriffskraft in Feral-Formen",
 		["Crit Rating"] = "krit. Trefferwertung",
 		["Hit Rating"] = "Trefferwertung",
+		["Expertise Rating"] = "Waffenkundewertung",
 		["Haste Rating"] = "Tempowertung",
 		["Ranged Attackpower"] = "Distanzangriffskraft",
 		["Ranged Crit Rating"] = "krit. Distanztrefferwertung",
@@ -145,4 +147,10 @@ L:RegisterTranslations("deDE", function() return {
 	--BestItems.lua
 		["Scanned |cffffff78%d|r Items for Set |cffffff78%s|r, which fit into the |cffffff78%s|r slot:"] = "Es wurden |cffffff78%d|r Gegenst\195\164nde f\195\188r Set |cffffff78%s|r gescannt, die in den |cffffff78%s|r Slot passen:",
 		["Best Items"] = "Beste Gegenst\195\164nde",
+		["Armor Penetration"] = "R\195\188stungsdurchschlag",
+		["Weapon DPS"] = "Waffen-DPS",
+		["Ranged Weapon DPS"] = "Fernkampfwaffen-DPS",
+		["Weapon Speed"] = "Waffengeschwindigkeit",
+		["Weapon Min Damage"] = "Waffen-Minimalschaden",
+		["Weapon Max Damage"] = "Waffen-Maximalschaden",
 } end)

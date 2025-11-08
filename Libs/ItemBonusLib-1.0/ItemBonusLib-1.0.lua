@@ -528,6 +528,71 @@ do
   local ITEM_SET_BONUS = ITEM_SET_BONUS
   local ITEM_SET_BONUS_GRAY = ITEM_SET_BONUS_GRAY
 
+  function ItemBonusLib:ExtractWeaponStats(bonuses, link)
+    Gratuity:SetHyperlink(link)
+    local minDmg, maxDmg, speed, dps
+
+    -- Determine if this is a ranged weapon
+    local _, _, _, _, _, itemType, itemSubType = GetItemInfo(link)
+    local isRanged = (itemType == "Weapon" and (itemSubType == "Bows" or itemSubType == "Crossbows" or itemSubType == "Guns" or itemSubType == "Thrown" or itemSubType == "Wands"))
+
+    for i = 2, Gratuity:NumLines() do
+      local line = Gratuity:GetLine(i)
+
+      if not minDmg and not maxDmg then
+        minDmg, maxDmg = string.match(line, "^(%d+)%s*%-%s*(%d+)%s+Damage$")
+        if minDmg then
+          minDmg = tonumber(minDmg)
+          maxDmg = tonumber(maxDmg)
+        end
+      end
+
+      if not speed then
+        speed = string.match(line, "^Speed%s+([%d%.]+)$")
+        if speed then
+          speed = tonumber(speed)
+        end
+      end
+
+      if not dps then
+        dps = string.match(line, "%(([%d%.]+)%s+damage per second%)")
+        if dps then
+          dps = tonumber(dps)
+        end
+      end
+    end
+
+    if isRanged then
+      -- Ranged weapon stats
+      if dps then
+        bonuses.RANGEDWEAPONDPS = (bonuses.RANGEDWEAPONDPS or 0) + dps
+      end
+      if speed then
+        bonuses.RANGEDWEAPONSPEED = (bonuses.RANGEDWEAPONSPEED or 0) + speed
+      end
+      if minDmg then
+        bonuses.RANGEDWEAPONMINDMG = (bonuses.RANGEDWEAPONMINDMG or 0) + minDmg
+      end
+      if maxDmg then
+        bonuses.RANGEDWEAPONMAXDMG = (bonuses.RANGEDWEAPONMAXDMG or 0) + maxDmg
+      end
+    else
+      -- Melee weapon stats
+      if dps then
+        bonuses.WEAPONDPS = (bonuses.WEAPONDPS or 0) + dps
+      end
+      if speed then
+        bonuses.WEAPONSPEED = (bonuses.WEAPONSPEED or 0) + speed
+      end
+      if minDmg then
+        bonuses.WEAPONMINDMG = (bonuses.WEAPONMINDMG or 0) + minDmg
+      end
+      if maxDmg then
+        bonuses.WEAPONMAXDMG = (bonuses.WEAPONMAXDMG or 0) + maxDmg
+      end
+    end
+  end
+
   function ItemBonusLib:ScanItemLink(link)
     link = cleanItemLink(link)
     local info = items[link]
@@ -550,6 +615,7 @@ do
         end
         self:AddBonusInfo(info.bonuses, line)
       end
+      self:ExtractWeaponStats(info.bonuses, link)
       items[link] = info
     elseif info.set then
       Gratuity:SetHyperlink(link)
@@ -786,6 +852,8 @@ do
         RANGEDATTACKPOWER = "Ranged Attack Power",
         RANGEDCRIT = "Crit. Shots",
         TOHIT = "Chance to Hit",
+        EXPERTISE = "Expertise Rating",
+        ARMORPEN = "Armor Penetration",
 
         DMG = "Spell Damage",
         DMGUNDEAD = "Spell Damage against Undead",
@@ -809,6 +877,15 @@ do
         MANAREG = "Mana Regeneration",
         HEALTH = "Life Points",
         MANA = "Mana Points",
+
+        WEAPONDPS = "Weapon DPS",
+        RANGEDWEAPONDPS = "Ranged Weapon DPS",
+        WEAPONSPEED = "Weapon Speed",
+        WEAPONMINDMG = "Weapon Min Damage",
+        WEAPONMAXDMG = "Weapon Max Damage",
+        RANGEDWEAPONSPEED = "Ranged Weapon Speed",
+        RANGEDWEAPONMINDMG = "Ranged Weapon Min Damage",
+        RANGEDWEAPONMAXDMG = "Ranged Weapon Max Damage",
       },
 
 
@@ -874,7 +951,8 @@ do
         { pattern = "Increases the amount healed by your Judgement of Light by 20 and Flash of Light by 60.", effect = { "IMPFLASHOFLIGHT" }, value = { 60 } },
         { pattern = "Increases your spell penetration by (%d+)%.", effect = "SPELLPEN" },
         { pattern = "Increases attack power by (%d+)%.", effect = "ATTACKPOWER" },
-        { pattern = "Your attacks ignore (%d+) of the target's armor%.", effect = "ARMORIGNORE" },  -- ADDED LINE
+        { pattern = "Your attacks ignore (%d+) of the target's armor%.", effect = "ARMORPEN" },
+        { pattern = "Increases your expertise rating by (%d+)%.", effect = "EXPERTISE" },
       },
 
       PATTERNS_GENERIC_LOOKUP =

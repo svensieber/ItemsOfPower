@@ -127,9 +127,11 @@ local vanillaEnhancement = ApplyMultiplier({
   SPI = 0.05,
   ATTACKPOWER = 0.5,
   TOHIT = 6.28414,        -- Pre-multiplied
+  EXPERTISE = 1.5,        -- Expertise Rating (from ClassicHawsJon)
   CRIT = 8.33,            -- Physical crit
   HASTE = 5.1392,         -- Physical haste
-  ARMORIGNORE = 0.45,
+  ARMORPEN = 0.346,       -- Armor Penetration (3.75 * 0.12 = 0.45, divided by 1.3 for base)
+  WEAPONDPS = 2.308,      -- Weapon DPS (from ClassicHawsJon: 3, divided by 1.3 for base)
   DMG = 0.3,              -- Spell damage (hybrid value)
   NATUREDMG = 0.3,        -- Nature damage
   SPELLTOHIT = 1.784,     -- Spell hit (hybrid)
@@ -188,6 +190,14 @@ turtleEnhancement.SPELLCRIT = vanillaEnhancement.SPELLCRIT * 1.1  -- 2.61 → 2.
 --    Conservative: +5% value
 turtleEnhancement.HASTE = turtleEnhancement.HASTE * 1.05  -- 5.14 → 5.40
 
+-- 8. WEAPONDPS more valuable (Lightning Strike 80% weapon dmg + Windfury proc synergy)
+--    Conservative: +30% value
+turtleEnhancement.WEAPONDPS = vanillaEnhancement.WEAPONDPS * 1.3  -- 2.308 → 3.0
+
+-- 9. ARMORPEN more valuable (Armor Cap Removal 1.18.0)
+--    Conservative: +30% value
+turtleEnhancement.ARMORPEN = vanillaEnhancement.ARMORPEN * 1.3  -- 0.346 → 0.45
+
 print("")
 print("Turtle WoW - Shaman - Enhancement:")
 print("  TOHIT: " .. string.format("%.2f", vanillaEnhancement.TOHIT) .. " → " .. string.format("%.2f", turtleEnhancement.TOHIT) .. " (+12.5%)")
@@ -195,6 +205,8 @@ print("  AP: " .. string.format("%.2f", vanillaEnhancement.ATTACKPOWER) .. " →
 print("  ALL STATS: +5% (Ancestral Knowledge)")
 print("  CRIT: " .. string.format("%.2f", vanillaEnhancement.CRIT) .. " → " .. string.format("%.2f", turtleEnhancement.CRIT) .. " (+10%)")
 print("  HASTE: " .. string.format("%.2f", vanillaEnhancement.HASTE) .. " → " .. string.format("%.2f", turtleEnhancement.HASTE) .. " (+5%)")
+print("  WEAPONDPS: " .. string.format("%.3f", vanillaEnhancement.WEAPONDPS) .. " → " .. string.format("%.2f", turtleEnhancement.WEAPONDPS) .. " (+30% Lightning Strike + Windfury!)")
+print("  ARMORPEN: " .. string.format("%.3f", vanillaEnhancement.ARMORPEN) .. " → " .. string.format("%.2f", turtleEnhancement.ARMORPEN) .. " (+30% Armor Cap Removal!)")
 
 -- Queue StatSet creation (delayed until OnEnable)
 table.insert(ItemsOfPower_PendingStatSets, function()

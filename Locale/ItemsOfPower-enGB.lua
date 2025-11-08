@@ -82,10 +82,12 @@ L:RegisterTranslations("enUS", function() return {
         ["Tanking"] = true,
         ["Weapon Skill"] = true,
         ["Resistances"] = true,
+        ["Weapon"] = true,
         ["Misc"] = true,
         ["Attackpower in Feral Forms"] = true,
         ["Crit Rating"] = true,
         ["Hit Rating"] = true,
+        ["Expertise Rating"] = true,
         ["Haste Rating"] = true,
         ["Ranged Attackpower"] = true,
         ["Ranged Crit Rating"] = true,
@@ -140,5 +142,10 @@ L:RegisterTranslations("enUS", function() return {
     --BestItems.lua
         ["Scanned |cffffff78%d|r Items for Set |cffffff78%s|r, which fit into the |cffffff78%s|r slot:"] = true,
         ["Best Items"] = true,
-        ["Armor Penetration"] = true, -- Added the translation here
+        ["Armor Penetration"] = true,
+        ["Weapon DPS"] = true,
+        ["Ranged Weapon DPS"] = true,
+        ["Weapon Speed"] = true,
+        ["Weapon Min Damage"] = true,
+        ["Weapon Max Damage"] = true,
 } end)

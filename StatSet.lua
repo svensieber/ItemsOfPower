@@ -13,11 +13,12 @@ local db
 
 local ItemBonusLibStats = {
   { "STR", "AGI", "STA", "INT", "SPI", },
-  { "ATTACKPOWER", "ATTACKPOWERFERAL", "CRIT", "HASTE", "TOHIT", "RANGEDCRIT", "RANGEDATTACKPOWER", "ARMORIGNORE" },
+  { "ATTACKPOWER", "ATTACKPOWERFERAL", "CRIT", "HASTE", "TOHIT", "EXPERTISE", "RANGEDCRIT", "RANGEDATTACKPOWER", "ARMORPEN" },
   { "DMG", "ARCANEDMG", "FIREDMG", "FROSTDMG", "HOLYDMG", "NATUREDMG", "SHADOWDMG", "SPELLCRIT", "SPELLHASTE", "SPELLTOHIT", "SPELLPEN" },
   { "HEAL", "MANAREG", "CASTINGREG" },
   { "ARMOR", "DEFENSE", "RESILIENCE", "BLOCK", "BLOCKVALUE", "DODGE", "PARRY" },
   { "ARCANERES", "FIRERES", "NATURERES", "FROSTRES", "SHADOWRES" },
+  { "WEAPONDPS", "RANGEDWEAPONDPS", "WEAPONSPEED", "RANGEDWEAPONSPEED", "WEAPONMINDMG", "WEAPONMAXDMG", "RANGEDWEAPONMINDMG", "RANGEDWEAPONMAXDMG" },
   { "MANA", "HEALTH", "HEALTHREG", "VAMPIR", "FISHING", "MINING", "HERBALISM", "SKINNING" },
 }
 
@@ -28,6 +29,7 @@ local ItemBonusLibHeaders = {
   L["Healing"],
   L["Tanking"],
   L["Resistances"],
+  L["Weapon"],
   L["Misc"],
 }
 
@@ -36,9 +38,10 @@ local StatNames = {
   CRIT = L["Crit Rating"],
   HASTE = L["Haste Rating"],
   TOHIT = L["Hit Rating"],
+  EXPERTISE = L["Expertise Rating"],
   RANGEDCRIT = L["Ranged Crit Rating"],
   RANGEDATTACKPOWER = L["Ranged Attackpower"],
-  ARMORIGNORE = L["Armor Penetration"],
+  ARMORPEN = L["Armor Penetration"],
   DMG = L["Spelldamage"],
   ARCANEDMG = L["Arcane Spelldamage"],
   FIREDMG = L["Fire Spelldamage"],
@@ -58,6 +61,11 @@ local StatNames = {
   VAMPIR = L["Vampirism Rating"],
   RESILIENCE = L["Resilience Rating"],
   ARMOR = L["Base Armor"],
+  WEAPONDPS = L["Weapon DPS"],
+  RANGEDWEAPONDPS = L["Ranged Weapon DPS"],
+  WEAPONSPEED = L["Weapon Speed"],
+  WEAPONMINDMG = L["Weapon Min Damage"],
+  WEAPONMAXDMG = L["Weapon Max Damage"],
 }
 
 local StatDesc = {

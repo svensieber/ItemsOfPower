@@ -127,9 +127,11 @@ local vanillaProtection = ApplyMultiplier({
   SPI = 0.05,
   ATTACKPOWER = 0.06,
   TOHIT = 1.50069,        -- Pre-multiplied
+  EXPERTISE = 0.27,       -- Expertise Rating (from ClassicHawsJon)
   CRIT = 1.275,
   HASTE = 4.015,
-  ARMORIGNORE = 0.3375,
+  ARMORPEN = 0.069,       -- Armor Penetration (from ClassicHawsJon: 0.09, divided by 1.3 for base)
+  WEAPONDPS = 1.264,      -- Weapon DPS (from ClassicHawsJon: 1.77, divided by 1.4 for base)
   DMG = 0.44,             -- Spell damage
   HOLYDMG = 0.44,         -- Holy damage (same as generic)
   SPELLTOHIT = 6.24,      -- Spell hit (threat)
@@ -186,11 +188,21 @@ turtleProtection.STA = vanillaProtection.STA * 1.1  -- 1.0 → 1.1
 --    Conservative: +15% value
 turtleProtection.BLOCK = vanillaProtection.BLOCK * 1.15  -- 4.14 → 4.76
 
+-- 8. WEAPONDPS more valuable (Crusader Strike weapon damage + threat generation)
+--    Conservative: +40% value
+turtleProtection.WEAPONDPS = vanillaProtection.WEAPONDPS * 1.4  -- 1.264 → 1.77
+
+-- 9. ARMORPEN more valuable (Armor Cap Removal 1.18.0)
+--    Conservative: +30% value
+turtleProtection.ARMORPEN = vanillaProtection.ARMORPEN * 1.3  -- 0.069 → 0.09
+
 print("")
 print("Turtle WoW - Paladin - Protection:")
 print("  SPELLTOHIT: " .. string.format("%.2f", vanillaProtection.SPELLTOHIT) .. " → " .. string.format("%.2f", turtleProtection.SPELLTOHIT) .. " (+12.5%)")
 print("  DMG: " .. string.format("%.2f", vanillaProtection.DMG) .. " → " .. string.format("%.2f", turtleProtection.DMG) .. " (+25%)")
 print("  BLOCKVALUE: " .. string.format("%.2f", vanillaProtection.BLOCKVALUE) .. " → " .. string.format("%.3f", turtleProtection.BLOCKVALUE) .. " (+30%)")
+print("  WEAPONDPS: " .. string.format("%.3f", vanillaProtection.WEAPONDPS) .. " → " .. string.format("%.2f", turtleProtection.WEAPONDPS) .. " (+40% Crusader Strike!)")
+print("  ARMORPEN: " .. string.format("%.3f", vanillaProtection.ARMORPEN) .. " → " .. string.format("%.2f", turtleProtection.ARMORPEN) .. " (+30% Armor Cap Removed!)")
 print("  STA: " .. string.format("%.2f", vanillaProtection.STA) .. " → " .. string.format("%.2f", turtleProtection.STA) .. " (+10%)")
 print("  BLOCK: " .. string.format("%.2f", vanillaProtection.BLOCK) .. " → " .. string.format("%.2f", turtleProtection.BLOCK) .. " (+15%)")
 
@@ -223,9 +235,11 @@ local vanillaRetribution = ApplyMultiplier({
   SPI = 0.05,
   ATTACKPOWER = 0.41,
   TOHIT = 7.87862,        -- Pre-multiplied
+  EXPERTISE = 0.87,       -- Expertise Rating (from ClassicHawsJon)
   CRIT = 5.61,
   HASTE = 2.00750,
-  ARMORIGNORE = 0.3375,
+  ARMORPEN = 0.069,       -- Armor Penetration (from ClassicHawsJon: 0.09, divided by 1.3 for base)
+  WEAPONDPS = 3.375,      -- Weapon DPS (from ClassicHawsJon: 5.4, divided by 1.6 for base)
   DMG = 0.33,             -- Spell damage
   HOLYDMG = 0.33,         -- Holy damage
   SPELLTOHIT = 1.68,
@@ -281,10 +295,20 @@ turtleRetribution.HASTE = turtleRetribution.HASTE * 1.2  -- 2.01 → 2.41
 turtleRetribution.CRIT = vanillaRetribution.CRIT * 1.15  -- 5.61 → 6.45
 turtleRetribution.SPELLCRIT = vanillaRetribution.SPELLCRIT * 1.15  -- 0.96 → 1.10
 
+-- 8. WEAPONDPS HIGHLY valuable (Weapon Normalization Dec 2024 - speed matters less, raw DPS critical!)
+--    Conservative: +60% value
+turtleRetribution.WEAPONDPS = vanillaRetribution.WEAPONDPS * 1.6  -- 3.375 → 5.4
+
+-- 9. ARMORPEN more valuable (Armor Cap Removal 1.18.0)
+--    Conservative: +30% value
+turtleRetribution.ARMORPEN = vanillaRetribution.ARMORPEN * 1.3  -- 0.069 → 0.09
+
 print("")
 print("Turtle WoW - Paladin - Retribution:")
 print("  TOHIT: " .. string.format("%.2f", vanillaRetribution.TOHIT) .. " → " .. string.format("%.2f", turtleRetribution.TOHIT) .. " (+12.5%)")
 print("  DMG: " .. string.format("%.2f", vanillaRetribution.DMG) .. " → " .. string.format("%.3f", turtleRetribution.DMG) .. " (+40%)")
+print("  WEAPONDPS: " .. string.format("%.3f", vanillaRetribution.WEAPONDPS) .. " → " .. string.format("%.2f", turtleRetribution.WEAPONDPS) .. " (+60% NORMALIZATION CRITICAL!)")
+print("  ARMORPEN: " .. string.format("%.3f", vanillaRetribution.ARMORPEN) .. " → " .. string.format("%.2f", turtleRetribution.ARMORPEN) .. " (+30% Armor Cap Removed!)")
 print("  STR: " .. string.format("%.2f", vanillaRetribution.STR) .. " → " .. string.format("%.2f", turtleRetribution.STR) .. " (+15%)")
 print("  HASTE: " .. string.format("%.2f", vanillaRetribution.HASTE) .. " → " .. string.format("%.2f", turtleRetribution.HASTE) .. " (+20%)")
 print("  CRIT: " .. string.format("%.2f", vanillaRetribution.CRIT) .. " → " .. string.format("%.2f", turtleRetribution.CRIT) .. " (+15%)")

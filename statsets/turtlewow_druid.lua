@@ -142,9 +142,11 @@ local vanillaFeralDamage = ApplyMultiplier({
   ATTACKPOWER = 0.59,
   ATTACKPOWERFERAL = 0.59,
   TOHIT = 5.72138,        -- Pre-multiplied
+  EXPERTISE = 0.61,       -- Expertise Rating (from ClassicHawsJon)
   CRIT = 5.015,           -- Physical crit
   HASTE = 3.4529,         -- Physical haste
-  ARMORIGNORE = 1.5,
+  ARMORPEN = 1.154,       -- Armor Penetration (3.75 * 0.4 = 1.5, divided by 1.3 for base)
+  WEAPONDPS = 0.87,       -- Melee Weapon DPS (estimated baseline: 1.0, divided by 1.15 for base)
   HEAL = 0.025,           -- Minor healing (for hybrid)
   MANA = 0.009,
   MANAREG = 0.3,
@@ -191,6 +193,14 @@ turtleFeralDamage.STR = vanillaFeralDamage.STR * 1.1  -- 1.48 → 1.628
 --    Conservative: +10% value
 turtleFeralDamage.CRIT = vanillaFeralDamage.CRIT * 1.1  -- 5.015 → 5.517
 
+-- 7. WEAPONDPS more valuable (Claw/Shred weapon damage +5% in April 2025)
+--    Conservative: +15% value (AP dominates, but Claw/Shred use weapon damage)
+turtleFeralDamage.WEAPONDPS = vanillaFeralDamage.WEAPONDPS * 1.15  -- 0.87 → 1.0
+
+-- 8. ARMORPEN more valuable (Armor Cap Removal 1.18.0)
+--    Conservative: +30% value
+turtleFeralDamage.ARMORPEN = vanillaFeralDamage.ARMORPEN * 1.3  -- 1.154 → 1.5
+
 print("")
 print("Turtle WoW - Druid - Feral Damage:")
 print("  TOHIT: " .. string.format("%.2f", vanillaFeralDamage.TOHIT) .. " → " .. string.format("%.2f", turtleFeralDamage.TOHIT) .. " (+12.5%)")
@@ -198,6 +208,8 @@ print("  AP: " .. string.format("%.2f", vanillaFeralDamage.ATTACKPOWER) .. " →
 print("  AGI: " .. string.format("%.2f", vanillaFeralDamage.AGI) .. " → " .. string.format("%.2f", turtleFeralDamage.AGI) .. " (+10% MCP removed)")
 print("  STR: " .. string.format("%.2f", vanillaFeralDamage.STR) .. " → " .. string.format("%.3f", turtleFeralDamage.STR) .. " (+10%)")
 print("  CRIT: " .. string.format("%.2f", vanillaFeralDamage.CRIT) .. " → " .. string.format("%.3f", turtleFeralDamage.CRIT) .. " (+10%)")
+print("  WEAPONDPS: " .. string.format("%.2f", vanillaFeralDamage.WEAPONDPS) .. " → " .. string.format("%.2f", turtleFeralDamage.WEAPONDPS) .. " (+15% Claw/Shred)")
+print("  ARMORPEN: " .. string.format("%.3f", vanillaFeralDamage.ARMORPEN) .. " → " .. string.format("%.2f", turtleFeralDamage.ARMORPEN) .. " (+30%)")
 
 -- Queue StatSet creation (delayed until OnEnable)
 table.insert(ItemsOfPower_PendingStatSets, function()
@@ -229,9 +241,11 @@ local vanillaFeralTank = ApplyMultiplier({
   ATTACKPOWER = 0.34,
   ATTACKPOWERFERAL = 0.34,
   TOHIT = 1.50069,        -- Pre-multiplied
+  EXPERTISE = 0.18,       -- Expertise Rating (from ClassicHawsJon)
   CRIT = 1.275,
   HASTE = 2.4893,
-  ARMORIGNORE = 0.75,
+  ARMORPEN = 0.577,       -- Armor Penetration (3.75 * 0.2 = 0.75, divided by 1.3 for base)
+  WEAPONDPS = 0.52,       -- Melee Weapon DPS (estimated baseline: 0.6, divided by 1.15 for base)
   HEAL = 0.025,           -- Minor healing
   NATUREDMG = 0.025,      -- Minor spell damage
   MANA = 0.009,
@@ -283,6 +297,14 @@ turtleFeralTank.ATTACKPOWERFERAL = vanillaFeralTank.ATTACKPOWERFERAL * 1.1
 --    Conservative: +10% value
 turtleFeralTank.AGI = vanillaFeralTank.AGI * 1.1  -- 0.48 → 0.528
 
+-- 8. WEAPONDPS more valuable (Savage Bite 80% weapon damage, Maul weapon damage)
+--    Conservative: +15% value (lower priority than Cat, but still relevant)
+turtleFeralTank.WEAPONDPS = vanillaFeralTank.WEAPONDPS * 1.15  -- 0.52 → 0.6
+
+-- 9. ARMORPEN more valuable (Armor Cap Removal 1.18.0)
+--    Conservative: +30% value
+turtleFeralTank.ARMORPEN = vanillaFeralTank.ARMORPEN * 1.3  -- 0.577 → 0.75
+
 print("")
 print("Turtle WoW - Druid - Feral Tank:")
 print("  TOHIT: " .. string.format("%.2f", vanillaFeralTank.TOHIT) .. " → " .. string.format("%.2f", turtleFeralTank.TOHIT) .. " (+12.5%)")
@@ -291,6 +313,8 @@ print("  STA: " .. string.format("%.2f", vanillaFeralTank.STA) .. " → " .. str
 print("  DODGE: " .. string.format("%.2f", vanillaFeralTank.DODGE) .. " → " .. string.format("%.3f", turtleFeralTank.DODGE) .. " (+15% Ancient Brutality)")
 print("  AP: " .. string.format("%.2f", vanillaFeralTank.ATTACKPOWER) .. " → " .. string.format("%.3f", turtleFeralTank.ATTACKPOWER) .. " (+10%)")
 print("  AGI: " .. string.format("%.2f", vanillaFeralTank.AGI) .. " → " .. string.format("%.3f", turtleFeralTank.AGI) .. " (+10%)")
+print("  WEAPONDPS: " .. string.format("%.2f", vanillaFeralTank.WEAPONDPS) .. " → " .. string.format("%.2f", turtleFeralTank.WEAPONDPS) .. " (+15% Savage Bite/Maul)")
+print("  ARMORPEN: " .. string.format("%.3f", vanillaFeralTank.ARMORPEN) .. " → " .. string.format("%.2f", turtleFeralTank.ARMORPEN) .. " (+30%)")
 
 -- Queue StatSet creation (delayed until OnEnable)
 table.insert(ItemsOfPower_PendingStatSets, function()

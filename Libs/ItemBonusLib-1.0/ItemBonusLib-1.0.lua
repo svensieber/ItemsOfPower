@@ -540,24 +540,27 @@ do
       local line = Gratuity:GetLine(i)
 
       if not minDmg and not maxDmg then
-        minDmg, maxDmg = string.match(line, "^(%d+)%s*%-%s*(%d+)%s+Damage$")
-        if minDmg then
-          minDmg = tonumber(minDmg)
-          maxDmg = tonumber(maxDmg)
+        -- Lua 5.0 compatible: string.find returns start, end, captures
+        local _, _, min, max = string.find(line, "^(%d+)%s*%-%s*(%d+)%s+Damage$")
+        if min then
+          minDmg = tonumber(min)
+          maxDmg = tonumber(max)
         end
       end
 
       if not speed then
-        speed = string.match(line, "^Speed%s+([%d%.]+)$")
-        if speed then
-          speed = tonumber(speed)
+        -- Lua 5.0 compatible: string.find returns start, end, captures
+        local _, _, spd = string.find(line, "^Speed%s+([%d%.]+)$")
+        if spd then
+          speed = tonumber(spd)
         end
       end
 
       if not dps then
-        dps = string.match(line, "%(([%d%.]+)%s+damage per second%)")
-        if dps then
-          dps = tonumber(dps)
+        -- Lua 5.0 compatible: string.find returns start, end, captures
+        local _, _, dmgPerSec = string.find(line, "%(([%d%.]+)%s+damage per second%)")
+        if dmgPerSec then
+          dps = tonumber(dmgPerSec)
         end
       end
     end

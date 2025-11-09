@@ -83,10 +83,10 @@ turtleDiscipline.HOLYDMG = 0.9         -- Holy damage (same as generic)
 turtleDiscipline.SPELLTOHIT = 7.0      -- Spell hit (baseline for DPS spec)
 
 -- 2. Spell Hit Cap Adjustment: 9% → 8% (+12.5%) for DPS role
-turtleDiscipline.SPELLTOHIT = AdjustSpellHitCap(turtleDiscipline.SPELLTOHIT)  -- 7.0 → 7.88
+turtleDiscipline.SPELLTOHIT = turtleDiscipline.SPELLTOHIT * 1.125  -- 7.0 → 7.88
 
 -- 3. Spell Haste Baseline Check
-turtleDiscipline.SPELLHASTE = EnsureMinimumHaste(vanillaDiscipline.SPELLHASTE, vanillaDiscipline.SPELLCRIT, "healer")
+-- Haste baseline check removed (vanilla values are correct)
 
 -- 4. Spell Power HIGHLY valuable (Inner Fire +74, Smite +10%, Holy Fire 100%, Resurgent Shield, Enlighten)
 --    Conservative: +40% value for generic spell damage
@@ -173,7 +173,7 @@ for k, v in pairs(vanillaHoly) do
 end
 
 -- 1. Spell Haste Baseline Check
-turtleHoly.SPELLHASTE = EnsureMinimumHaste(vanillaHoly.SPELLHASTE, vanillaHoly.SPELLCRIT, "healer")
+-- Haste baseline check removed (vanilla values are correct)
 
 -- 2. Healing Power: COMPLEX calculation
 --    - Baseline: -15% for ranks above level 30
@@ -253,10 +253,10 @@ for k, v in pairs(vanillaShadow) do
 end
 
 -- 1. Spell Hit Cap Adjustment: 9% → 8% (+12.5%)
-turtleShadow.SPELLTOHIT = AdjustSpellHitCap(vanillaShadow.SPELLTOHIT)  -- 8.96 → 10.08
+turtleShadow.SPELLTOHIT = vanillaShadow.SPELLTOHIT * 1.125  -- 8.96 → 10.08
 
 -- 2. Spell Haste Baseline Check
-turtleShadow.SPELLHASTE = EnsureMinimumHaste(vanillaShadow.SPELLHASTE, vanillaShadow.SPELLCRIT, "caster_dps")
+-- Haste baseline check removed (vanilla values are correct)
 
 -- 3. Spell Power HIGHLY valuable (Inner Fire +74, Mind Flay 45% → 75%, Mind Blast 42.85% → 60%)
 --    Conservative: +30% value

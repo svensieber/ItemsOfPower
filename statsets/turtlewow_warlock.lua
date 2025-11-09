@@ -80,10 +80,10 @@ for k, v in pairs(vanillaAffliction) do
 end
 
 -- 1. Spell Hit Cap Adjustment: 9% → 8% (+12.5%)
-turtleAffliction.SPELLTOHIT = AdjustSpellHitCap(vanillaAffliction.SPELLTOHIT)  -- 9.6 → 10.8
+turtleAffliction.SPELLTOHIT = vanillaAffliction.SPELLTOHIT * 1.125  -- 9.6 → 10.8
 
 -- 2. Spell Haste Baseline Check
-turtleAffliction.SPELLHASTE = EnsureMinimumHaste(vanillaAffliction.SPELLHASTE, vanillaAffliction.SPELLCRIT, "caster_dps")
+-- Haste baseline check removed (vanilla values are correct)
 
 -- 3. Spell Power (DMG) more valuable (Siphon Life 100%, Drain Soul 20%, Dark Harvest 25%)
 --    Conservative: +15% value
@@ -154,10 +154,10 @@ for k, v in pairs(vanillaDemonology) do
 end
 
 -- 1. Spell Hit Cap Adjustment
-turtleDemonology.SPELLTOHIT = AdjustSpellHitCap(vanillaDemonology.SPELLTOHIT)
+turtleDemonology.SPELLTOHIT = vanillaDemonology.SPELLTOHIT * 1.125
 
 -- 2. Spell Haste Baseline Check
-turtleDemonology.SPELLHASTE = EnsureMinimumHaste(vanillaDemonology.SPELLHASTE, vanillaDemonology.SPELLCRIT, "caster_dps")
+-- Haste baseline check removed (vanilla values are correct)
 
 -- 3. Spell Power (DMG) HIGHLY valuable (Demon AP Scaling - CRITICAL)
 --    - Unleashed Potential: 5-15% spell damage → demons (3 stacks)
@@ -242,10 +242,10 @@ for k, v in pairs(vanillaDestruction) do
 end
 
 -- 1. Spell Hit Cap Adjustment
-turtleDestruction.SPELLTOHIT = AdjustSpellHitCap(vanillaDestruction.SPELLTOHIT)  -- 12.8 → 14.4
+turtleDestruction.SPELLTOHIT = vanillaDestruction.SPELLTOHIT * 1.125  -- 12.8 → 14.4
 
 -- 2. Spell Haste Baseline Check
-turtleDestruction.SPELLHASTE = EnsureMinimumHaste(vanillaDestruction.SPELLHASTE, vanillaDestruction.SPELLCRIT, "caster_dps")
+-- Haste baseline check removed (vanilla values are correct)
 
 -- 3. Spell Power (DMG) more valuable (Soul Fire 114%, Improved Shadow Bolt)
 --    Conservative: +15% value

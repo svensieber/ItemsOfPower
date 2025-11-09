@@ -76,10 +76,10 @@ for k, v in pairs(vanillaAssassination) do
 end
 
 -- 1. Hit Cap Adjustment: 9% → 8% (+12.5%)
-turtleAssassination.TOHIT = AdjustHitCap(vanillaAssassination.TOHIT)  -- 9.38 → 10.55
+turtleAssassination.TOHIT = vanillaAssassination.TOHIT * 1.125  -- 9.38 → 10.55
 
 -- 2. Haste Baseline Check
-turtleAssassination.HASTE = EnsureMinimumHaste(vanillaAssassination.HASTE, vanillaAssassination.CRIT, "melee_dps")
+-- Haste baseline check removed (vanilla values are correct)
 
 -- 3. Attack Power MORE valuable (Poison AP Scaling - CRITICAL)
 --    - Instant Poison: +5% AP per proc
@@ -162,10 +162,10 @@ for k, v in pairs(vanillaCombat) do
 end
 
 -- 1. Hit Cap Adjustment
-turtleCombat.TOHIT = AdjustHitCap(vanillaCombat.TOHIT)
+turtleCombat.TOHIT = vanillaCombat.TOHIT * 1.125
 
 -- 2. Haste Baseline Check
-turtleCombat.HASTE = EnsureMinimumHaste(vanillaCombat.HASTE, vanillaCombat.CRIT, "melee_dps")
+-- Haste baseline check removed (vanilla values are correct)
 
 -- 3. Agility MORE valuable (Blade Rush: Agility reduces energy tick time - CRITICAL)
 --    - Direct energy generation scaling
@@ -252,10 +252,10 @@ for k, v in pairs(vanillaSubtlety) do
 end
 
 -- 1. Hit Cap Adjustment
-turtleSubtlety.TOHIT = AdjustHitCap(vanillaSubtlety.TOHIT)
+turtleSubtlety.TOHIT = vanillaSubtlety.TOHIT * 1.125
 
 -- 2. Haste Baseline Check
-turtleSubtlety.HASTE = EnsureMinimumHaste(vanillaSubtlety.HASTE, vanillaSubtlety.CRIT, "melee_dps")
+-- Haste baseline check removed (vanilla values are correct)
 
 -- 3. Attack Power more valuable (Mark for Death, Shadow of Death)
 --    - Mark for Death: Party gains 30% AP as AP, 18% as spell power

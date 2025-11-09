@@ -78,10 +78,10 @@ for k, v in pairs(vanillaMM) do
 end
 
 -- 1. Hit Cap Adjustment: 9% → 8% (+12.5%)
-turtleMM.TOHIT = AdjustHitCap(vanillaMM.TOHIT)  -- 9.38 → 10.55
+turtleMM.TOHIT = vanillaMM.TOHIT * 1.125  -- 9.38 → 10.55
 
 -- 2. Haste Baseline Check (ensure minimum 65% of Crit for ranged DPS)
-turtleMM.HASTE = EnsureMinimumHaste(vanillaMM.HASTE, vanillaMM.CRIT, "ranged_dps")
+-- Haste baseline check removed (vanilla values are correct)
 
 -- 3. RANGEDWEAPONDPS more valuable (Steady Shot 100% weapon dmg main rotation)
 --    Conservative: +20% value
@@ -153,10 +153,10 @@ for k, v in pairs(vanillaBM) do
 end
 
 -- 1. Hit Cap Adjustment
-turtleBM.TOHIT = AdjustHitCap(vanillaBM.TOHIT)
+turtleBM.TOHIT = vanillaBM.TOHIT * 1.125
 
 -- 2. Haste Baseline Check
-turtleBM.HASTE = EnsureMinimumHaste(vanillaBM.HASTE, vanillaBM.CRIT, "ranged_dps")
+-- Haste baseline check removed (vanilla values are correct)
 
 -- 3. Stamina more valuable (pet gets 30% via Endurance Training)
 --    Conservative: +10% value
@@ -251,10 +251,10 @@ for k, v in pairs(vanillaSV) do
 end
 
 -- 1. Hit Cap Adjustment
-turtleSV.TOHIT = AdjustHitCap(vanillaSV.TOHIT)
+turtleSV.TOHIT = vanillaSV.TOHIT * 1.125
 
 -- 2. Haste Baseline Check
-turtleSV.HASTE = EnsureMinimumHaste(vanillaSV.HASTE, vanillaSV.CRIT, "ranged_dps")
+-- Haste baseline check removed (vanilla values are correct)
 
 -- 3. Crit more valuable (Lacerate procs after crit)
 --    Conservative: +10% value

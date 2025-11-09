@@ -82,10 +82,10 @@ for k, v in pairs(vanillaArcane) do
 end
 
 -- 1. Spell Hit Cap Adjustment: 9% → 8% (+12.5%)
-turtleArcane.SPELLTOHIT = AdjustSpellHitCap(vanillaArcane.SPELLTOHIT)  -- 6.96 → 7.83
+turtleArcane.SPELLTOHIT = vanillaArcane.SPELLTOHIT * 1.125  -- 6.96 → 7.83
 
 -- 2. Spell Haste Baseline Check
-turtleArcane.SPELLHASTE = EnsureMinimumHaste(vanillaArcane.SPELLHASTE, vanillaArcane.SPELLCRIT, "caster_dps")
+-- Haste baseline check removed (vanilla values are correct)
 
 -- 3. Spell Crit HIGHLY valuable (Arcane Potency: +50/100% crit damage - CRITICAL)
 --    Conservative: +30% value
@@ -177,10 +177,10 @@ for k, v in pairs(vanillaFire) do
 end
 
 -- 1. Spell Hit Cap Adjustment: 9% → 8% (+12.5%)
-turtleFire.SPELLTOHIT = AdjustSpellHitCap(vanillaFire.SPELLTOHIT)  -- 7.44 → 8.37
+turtleFire.SPELLTOHIT = vanillaFire.SPELLTOHIT * 1.125  -- 7.44 → 8.37
 
 -- 2. Spell Haste Baseline Check
-turtleFire.SPELLHASTE = EnsureMinimumHaste(vanillaFire.SPELLHASTE, vanillaFire.SPELLCRIT, "caster_dps")
+-- Haste baseline check removed (vanilla values are correct)
 
 -- 3. Spell Crit HIGHLY valuable (Hot Streak procs, Master of Elements 15/30/45% mana, Ignite)
 --    Conservative: +25% value
@@ -263,10 +263,10 @@ for k, v in pairs(vanillaFrost) do
 end
 
 -- 1. Spell Hit Cap Adjustment: 9% → 8% (+12.5%)
-turtleFrost.SPELLTOHIT = AdjustSpellHitCap(vanillaFrost.SPELLTOHIT)  -- 9.76 → 10.98
+turtleFrost.SPELLTOHIT = vanillaFrost.SPELLTOHIT * 1.125  -- 9.76 → 10.98
 
 -- 2. Spell Haste Baseline Check
-turtleFrost.SPELLHASTE = EnsureMinimumHaste(vanillaFrost.SPELLHASTE, vanillaFrost.SPELLCRIT, "caster_dps")
+-- Haste baseline check removed (vanilla values are correct)
 
 -- 3. Spell Power more valuable (Frostbolt, Icicles 40% per icicle, Ice Barrier +15% Frost damage)
 --    Conservative: +20% value

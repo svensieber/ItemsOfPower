@@ -83,10 +83,10 @@ for k, v in pairs(vanillaBalance) do
 end
 
 -- 1. Spell Hit Cap Adjustment: 9% → 8% (+12.5%)
-turtleBalance.SPELLTOHIT = AdjustSpellHitCap(vanillaBalance.SPELLTOHIT)  -- 9.68 → 10.89
+turtleBalance.SPELLTOHIT = vanillaBalance.SPELLTOHIT * 1.125  -- 9.68 → 10.89
 
 -- 2. Spell Haste Baseline Check
-turtleBalance.SPELLHASTE = EnsureMinimumHaste(vanillaBalance.SPELLHASTE, vanillaBalance.SPELLCRIT, "caster_dps")
+-- Haste baseline check removed (vanilla values are correct)
 
 -- 3. Spell Crit EXTREMELY valuable (Eclipse: Damage = 10% + 60% of crit % - CRITICAL)
 --    At 30% crit = 28% damage bonus, at 40% crit = 34% damage bonus
@@ -171,10 +171,10 @@ for k, v in pairs(vanillaFeralDamage) do
 end
 
 -- 1. Hit Cap Adjustment (Physical)
-turtleFeralDamage.TOHIT = AdjustHitCap(vanillaFeralDamage.TOHIT)  -- 5.72 → 6.44
+turtleFeralDamage.TOHIT = vanillaFeralDamage.TOHIT * 1.125  -- 5.72 → 6.44
 
 -- 2. Haste Baseline Check
-turtleFeralDamage.HASTE = EnsureMinimumHaste(vanillaFeralDamage.HASTE, vanillaFeralDamage.CRIT, "melee_dps")
+-- Haste baseline check removed (vanilla values are correct)
 
 -- 3. Attack Power more valuable (Ferocious Bite: 0.5% per energy point - better scaling)
 --    Conservative: +20% value
@@ -270,10 +270,10 @@ for k, v in pairs(vanillaFeralTank) do
 end
 
 -- 1. Hit Cap Adjustment (Physical)
-turtleFeralTank.TOHIT = AdjustHitCap(vanillaFeralTank.TOHIT)  -- 1.50 → 1.69
+turtleFeralTank.TOHIT = vanillaFeralTank.TOHIT * 1.125  -- 1.50 → 1.69
 
 -- 2. Haste Baseline Check
-turtleFeralTank.HASTE = EnsureMinimumHaste(vanillaFeralTank.HASTE, vanillaFeralTank.CRIT, "tank")
+-- Haste baseline check removed (vanilla values are correct)
 
 -- 3. Armor HIGHLY valuable (cap removed! Continues beyond 75% with diminishing returns - CRITICAL)
 --    Conservative: +30% value (massive change from vanilla hard cap)
@@ -368,7 +368,7 @@ for k, v in pairs(vanillaRestoration) do
 end
 
 -- 1. Spell Haste Baseline Check
-turtleRestoration.SPELLHASTE = EnsureMinimumHaste(vanillaRestoration.SPELLHASTE, vanillaRestoration.SPELLCRIT, "healer")
+-- Haste baseline check removed (vanilla values are correct)
 
 -- 2. Healing Power HIGHLY valuable (Tree of Life Aura + Gift of Nature - DOUBLE MULTIPLICATIVE)
 --    - Tree of Life Aura (1.17.0): Changed from flat heal to healing power % multiplier

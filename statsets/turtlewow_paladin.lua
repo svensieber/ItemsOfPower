@@ -79,7 +79,7 @@ end
 turtleHoly.DMG = 0.3  -- Spell power for Holy Strike, Daybreak
 
 -- 1. Spell Haste Baseline Check
-turtleHoly.SPELLHASTE = EnsureMinimumHaste(vanillaHoly.SPELLHASTE, vanillaHoly.SPELLCRIT, "healer")
+-- Haste baseline check removed (vanilla values are correct)
 
 -- 2. Healing Power slightly more valuable (Blessed Strikes healing scaling +25% healing power)
 --    Conservative: +10% value
@@ -163,13 +163,13 @@ for k, v in pairs(vanillaProtection) do
 end
 
 -- 1. Hit Cap Adjustment (Physical)
-turtleProtection.TOHIT = AdjustHitCap(vanillaProtection.TOHIT)  -- 1.50 → 1.69
+turtleProtection.TOHIT = vanillaProtection.TOHIT * 1.125  -- 1.50 → 1.69
 
 -- 2. Spell Hit Cap Adjustment
-turtleProtection.SPELLTOHIT = AdjustSpellHitCap(vanillaProtection.SPELLTOHIT)  -- 6.24 → 7.02
+turtleProtection.SPELLTOHIT = vanillaProtection.SPELLTOHIT * 1.125  -- 6.24 → 7.02
 
 -- 3. Haste Baseline Check
-turtleProtection.HASTE = EnsureMinimumHaste(vanillaProtection.HASTE, vanillaProtection.CRIT, "tank")
+-- Haste baseline check removed (vanilla values are correct)
 
 -- 4. Spell Power more valuable (Consecration 0.119, Holy Shield 15% threat scaling)
 --    Conservative: +25% value
@@ -269,13 +269,13 @@ for k, v in pairs(vanillaRetribution) do
 end
 
 -- 1. Hit Cap Adjustment
-turtleRetribution.TOHIT = AdjustHitCap(vanillaRetribution.TOHIT)  -- 7.88 → 8.86
+turtleRetribution.TOHIT = vanillaRetribution.TOHIT * 1.125  -- 7.88 → 8.86
 
 -- 2. Spell Hit Cap Adjustment (hybrid spec)
-turtleRetribution.SPELLTOHIT = AdjustSpellHitCap(vanillaRetribution.SPELLTOHIT)  -- 1.68 → 1.89
+turtleRetribution.SPELLTOHIT = vanillaRetribution.SPELLTOHIT * 1.125  -- 1.68 → 1.89
 
 -- 3. Haste Baseline Check
-turtleRetribution.HASTE = EnsureMinimumHaste(vanillaRetribution.HASTE, vanillaRetribution.CRIT, "melee_dps")
+-- Haste baseline check removed (vanilla values are correct)
 
 -- 4. Spell Power HIGHLY valuable (Seal of Righteousness: 12.8% × weapon speed for 2H, Crusader Strike, Holy Strike)
 --    Conservative: +40% value

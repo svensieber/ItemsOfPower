@@ -80,10 +80,10 @@ for k, v in pairs(vanillaElemental) do
 end
 
 -- 1. Spell Hit Cap Adjustment: 9% → 8% (+12.5%)
-turtleElemental.SPELLTOHIT = AdjustSpellHitCap(vanillaElemental.SPELLTOHIT)  -- 7.2 → 8.1
+turtleElemental.SPELLTOHIT = vanillaElemental.SPELLTOHIT * 1.125  -- 7.2 → 8.1
 
 -- 2. Spell Haste Baseline Check
-turtleElemental.SPELLHASTE = EnsureMinimumHaste(vanillaElemental.SPELLHASTE, vanillaElemental.SPELLCRIT, "caster_dps")
+-- Haste baseline check removed (vanilla values are correct)
 
 -- 3. Spell Power more valuable (Molten Blast 57.14%, Earthquake 60%)
 --    Conservative: +15% value
@@ -161,13 +161,13 @@ for k, v in pairs(vanillaEnhancement) do
 end
 
 -- 1. Hit Cap Adjustment (Physical)
-turtleEnhancement.TOHIT = AdjustHitCap(vanillaEnhancement.TOHIT)  -- 6.28 → 7.07
+turtleEnhancement.TOHIT = vanillaEnhancement.TOHIT * 1.125  -- 6.28 → 7.07
 
 -- 2. Spell Hit Cap Adjustment (Hybrid)
-turtleEnhancement.SPELLTOHIT = AdjustSpellHitCap(vanillaEnhancement.SPELLTOHIT)  -- 1.78 → 2.01
+turtleEnhancement.SPELLTOHIT = vanillaEnhancement.SPELLTOHIT * 1.125  -- 1.78 → 2.01
 
 -- 3. Haste Baseline Check
-turtleEnhancement.HASTE = EnsureMinimumHaste(vanillaEnhancement.HASTE, vanillaEnhancement.CRIT, "melee_dps")
+-- Haste baseline check removed (vanilla values are correct)
 
 -- 4. Attack Power more valuable (Shock AP scaling: 10% Earth/Frost, 8.5% + 6% Flame Shock)
 --    Conservative: +20% value
@@ -262,7 +262,7 @@ for k, v in pairs(vanillaRestoration) do
 end
 
 -- 1. Spell Haste Baseline Check
-turtleRestoration.SPELLHASTE = EnsureMinimumHaste(vanillaRestoration.SPELLHASTE, vanillaRestoration.SPELLCRIT, "healer")
+-- Haste baseline check removed (vanilla values are correct)
 
 -- 2. Healing Power LESS valuable (Chain Heal nerf: 71.42% → 61.42% coefficient - CRITICAL)
 --    Conservative: -10% value

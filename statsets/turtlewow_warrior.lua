@@ -78,10 +78,10 @@ for k, v in pairs(vanillaArms) do
 end
 
 -- 1. Hit Cap Adjustment (Physical): 9% → 8% (+12.5%)
-turtleArms.TOHIT = AdjustHitCap(vanillaArms.TOHIT)  -- 9.38 → 10.55
+turtleArms.TOHIT = vanillaArms.TOHIT * 1.125  -- 9.38 → 10.55
 
 -- 2. Haste Baseline Check
-turtleArms.HASTE = EnsureMinimumHaste(vanillaArms.HASTE, vanillaArms.CRIT, "melee_dps")
+-- Haste baseline check removed (vanilla values are correct)
 
 -- 3. Critical Strike HIGHLY valuable (Deep Wounds 2x speed, Master of Arms Axe +5%, Enrage, Rage gen)
 --    Conservative: +30% value
@@ -170,10 +170,10 @@ for k, v in pairs(vanillaFury) do
 end
 
 -- 1. Hit Cap Adjustment (Physical): 9% → 8% (+12.5%)
-turtleFury.TOHIT = AdjustHitCap(vanillaFury.TOHIT)  -- 5.35 → 6.01
+turtleFury.TOHIT = vanillaFury.TOHIT * 1.125  -- 5.35 → 6.01
 
 -- 2. Haste Baseline Check
-turtleFury.HASTE = EnsureMinimumHaste(vanillaFury.HASTE, vanillaFury.CRIT, "melee_dps")
+-- Haste baseline check removed (vanilla values are correct)
 
 -- 3. Haste HIGHLY valuable (Unbridled Wrath 75% / 150% for 2H, Blood Drinker all attacks, No Enrage cap)
 --    Conservative: +40% value (massive change)
@@ -274,10 +274,10 @@ for k, v in pairs(vanillaProtection) do
 end
 
 -- 1. Hit Cap Adjustment (Physical): 9% → 8% (+12.5%)
-turtleProtection.TOHIT = AdjustHitCap(vanillaProtection.TOHIT)  -- 6.28 → 7.07
+turtleProtection.TOHIT = vanillaProtection.TOHIT * 1.125  -- 6.28 → 7.07
 
 -- 2. Haste Baseline Check
-turtleProtection.HASTE = EnsureMinimumHaste(vanillaProtection.HASTE, vanillaProtection.CRIT, "tank")
+-- Haste baseline check removed (vanilla values are correct)
 
 -- 3. Block Value HIGHLY valuable (Shield Slam scales with Block Value + Attack Power - CRITICAL)
 --    Conservative: +50% value (becomes primary threat stat)

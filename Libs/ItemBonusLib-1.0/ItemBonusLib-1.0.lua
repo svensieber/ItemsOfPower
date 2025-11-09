@@ -533,14 +533,21 @@ do
     local minDmg, maxDmg, speed, dps
     local isRanged = false
 
+    -- DEBUG: Print all tooltip lines
+    DEFAULT_CHAT_FRAME:AddMessage("=== ExtractWeaponStats Debug ===")
+    DEFAULT_CHAT_FRAME:AddMessage("Item: " .. tostring(link))
+    DEFAULT_CHAT_FRAME:AddMessage("Total lines: " .. Gratuity:NumLines())
+
     -- Determine if this is a ranged weapon by checking tooltip for weapon type
     -- GetItemInfo() doesn't work for custom Turtle WoW items, so we use tooltip parsing
     for i = 2, Gratuity:NumLines() do
       local line = Gratuity:GetLine(i)
+      DEFAULT_CHAT_FRAME:AddMessage("Line " .. i .. ": [" .. tostring(line) .. "]")
 
       -- Check for ranged weapon types in tooltip
       if line and (strfind(line, "Bow") or strfind(line, "Crossbow") or strfind(line, "Gun") or strfind(line, "Thrown") or strfind(line, "Wand")) then
         isRanged = true
+        DEFAULT_CHAT_FRAME:AddMessage("  -> Detected RANGED weapon!")
       end
     end
 
@@ -554,6 +561,7 @@ do
         if min then
           minDmg = tonumber(min)
           maxDmg = tonumber(max)
+          DEFAULT_CHAT_FRAME:AddMessage("  -> Damage: " .. minDmg .. " - " .. maxDmg)
         end
       end
 
@@ -563,6 +571,7 @@ do
         local _, _, spd = string.find(line, "Speed%s+([%d%.]+)")
         if spd then
           speed = tonumber(spd)
+          DEFAULT_CHAT_FRAME:AddMessage("  -> Speed: " .. speed .. " (from: " .. spd .. ")")
         end
       end
 
@@ -572,9 +581,12 @@ do
         local _, _, dmgPerSec = string.find(line, "%(([%d%.]+)%s+damage per seconds?%)")
         if dmgPerSec then
           dps = tonumber(dmgPerSec)
+          DEFAULT_CHAT_FRAME:AddMessage("  -> DPS: " .. dps .. " (from: " .. dmgPerSec .. ")")
         end
       end
     end
+
+    DEFAULT_CHAT_FRAME:AddMessage("Final: isRanged=" .. tostring(isRanged) .. ", DPS=" .. tostring(dps) .. ", Speed=" .. tostring(speed) .. ", MinDmg=" .. tostring(minDmg) .. ", MaxDmg=" .. tostring(maxDmg))
 
     if isRanged then
       -- Ranged weapon stats

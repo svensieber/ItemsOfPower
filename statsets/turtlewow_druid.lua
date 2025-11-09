@@ -215,15 +215,15 @@ print("  ARMORPEN: " .. string.format("%.3f", vanillaFeralDamage.ARMORPEN) .. " 
 table.insert(ItemsOfPower_PendingStatSets, function()
   local stats = turtleFeralDamage
 
-__local_set_=_ItemsOfPower.SetTypes.StatSet:new("TurtleWoW_Druid_Feral_Damage",_stats)
+local set = ItemsOfPower.SetTypes.StatSet:new("TurtleWoW_Druid_Feral_Damage", stats)
 
 
 
-__if_not_ItemsOfPower.SetByName["TurtleWoW_Druid_Feral_Damage"]_then
+if not ItemsOfPower.SetByName["TurtleWoW_Druid_Feral_Damage"] then
     ItemsOfPower:RegisterSet(set)
-    print("Created StatSet: TurtleWoW_Druid_Feral Damage")
+    print("Created StatSet: TurtleWoW_Druid_Feral_Damage")
   else
-    print("Updated StatSet: TurtleWoW_Druid_Feral Damage")
+    print("Updated StatSet: TurtleWoW_Druid_Feral_Damage")
   end
 end)
 
@@ -320,15 +320,15 @@ print("  ARMORPEN: " .. string.format("%.3f", vanillaFeralTank.ARMORPEN) .. " â†
 table.insert(ItemsOfPower_PendingStatSets, function()
   local stats = turtleFeralTank
 
-__local_set_=_ItemsOfPower.SetTypes.StatSet:new("TurtleWoW_Druid_Feral_Tank",_stats)
+local set = ItemsOfPower.SetTypes.StatSet:new("TurtleWoW_Druid_Feral_Tank", stats)
 
 
 
-__if_not_ItemsOfPower.SetByName["TurtleWoW_Druid_Feral_Tank"]_then
+if not ItemsOfPower.SetByName["TurtleWoW_Druid_Feral_Tank"] then
     ItemsOfPower:RegisterSet(set)
-    print("Created StatSet: TurtleWoW_Druid_Feral Tank")
+    print("Created StatSet: TurtleWoW_Druid_Feral_Tank")
   else
-    print("Updated StatSet: TurtleWoW_Druid_Feral Tank")
+    print("Updated StatSet: TurtleWoW_Druid_Feral_Tank")
   end
 end)
 

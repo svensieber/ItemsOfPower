@@ -196,15 +196,15 @@ print("  ARMORPEN: " .. string.format("%.3f", vanillaBM.ARMORPEN) .. " → " .. 
 table.insert(ItemsOfPower_PendingStatSets, function()
   local stats = turtleBM
 
-__local_set_=_ItemsOfPower.SetTypes.StatSet:new("TurtleWoW_Hunter_Beast_Mastery",_stats)
+local set = ItemsOfPower.SetTypes.StatSet:new("TurtleWoW_Hunter_Beast_Mastery", stats)
 
 
 
-__if_not_ItemsOfPower.SetByName["TurtleWoW_Hunter_Beast_Mastery"]_then
+if not ItemsOfPower.SetByName["TurtleWoW_Hunter_Beast_Mastery"] then
     ItemsOfPower:RegisterSet(set)
-    print("Created StatSet: TurtleWoW_Hunter_Beast Mastery")
+    print("Created StatSet: TurtleWoW_Hunter_Beast_Mastery")
   else
-    print("Updated StatSet: TurtleWoW_Hunter_Beast Mastery")
+    print("Updated StatSet: TurtleWoW_Hunter_Beast_Mastery")
   end
 end)
 

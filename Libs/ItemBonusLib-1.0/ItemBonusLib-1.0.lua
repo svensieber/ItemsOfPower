@@ -259,7 +259,7 @@ function ItemBonusLib:OnInitialize()
           self:Print(SHOW_INFO)
           for bonus in pairs(bonuses) do
             local type, value = GetFriendlyBonus(bonus, bonuses)
-            self:Print("%s : %d", self:GetBonusFriendlyName(type), value)
+            self:Print("%s : %.1f", self:GetBonusFriendlyName(type), value)
           end
         end
       },
@@ -273,11 +273,11 @@ function ItemBonusLib:OnInitialize()
           for bonus, detail in pairs(details) do
             local s = { }
             for slot, value in pairs(detail) do
-              table.insert(s, string.format("%s : %d", slot, value))
+              table.insert(s, string.format("%s : %.1f", slot, value))
             end
             local type, value = GetFriendlyBonus(bonus, bonuses)
             if type ~= bonus then
-              value = string.format("%s (%s : %d)", tostring(bonuses[bonus]), self:GetBonusFriendlyName(type), value)
+              value = string.format("%s (%s : %.1f)", tostring(bonuses[bonus]), self:GetBonusFriendlyName(type), value)
             else
               value = tostring(bonuses[bonus])
             end
@@ -296,7 +296,7 @@ function ItemBonusLib:OnInitialize()
           local info = self:ScanItemLink(link)
           self:Print(ITEM_INFO, link)
           for bonus, value in pairs(info.bonuses) do
-            self:Print("%s : %d", self:GetBonusFriendlyName(bonus), value)
+            self:Print("%s : %.1f", self:GetBonusFriendlyName(bonus), value)
           end
           if info.set then
             self:Print(ITEM_SET, info.set)
@@ -305,7 +305,7 @@ function ItemBonusLib:OnInitialize()
               local has_bonus = number <= set.count and "*" or " "
               self:Print(SET_BONUS, has_bonus, number)
               for bonus, value in pairs(bonuses) do
-                self:Print("    %s : %d", self:GetBonusFriendlyName(bonus), value)
+                self:Print("    %s : %.1f", self:GetBonusFriendlyName(bonus), value)
               end
             end
           end
@@ -322,7 +322,7 @@ function ItemBonusLib:OnInitialize()
           self:Print(SLOT_INFO, slot)
           for bonus, detail in pairs(details) do
             if detail[slot] then
-              self:Print("%s : %d", self:GetBonusFriendlyName(bonus), detail[slot])
+              self:Print("%s : %.1f", self:GetBonusFriendlyName(bonus), detail[slot])
             end
           end
         end
@@ -351,7 +351,7 @@ function ItemBonusLib:OnInitialize()
           self:Print(string.format(INSPECT_INFO, n))
           for bonus in pairs(b) do
             local type, value = GetFriendlyBonus(bonus, b, level)
-            self:Print("%s : %d", self:GetBonusFriendlyName(type), value)
+            self:Print("%s : %.1f", self:GetBonusFriendlyName(type), value)
           end
         end
       },
@@ -544,8 +544,8 @@ do
       local line = Gratuity:GetLine(i)
       DEFAULT_CHAT_FRAME:AddMessage("Line " .. i .. ": [" .. tostring(line) .. "]")
 
-      -- Check for ranged weapon types in tooltip
-      if line and (strfind(line, "Bow") or strfind(line, "Crossbow") or strfind(line, "Gun") or strfind(line, "Thrown") or strfind(line, "Wand")) then
+      -- Check for "Ranged" in tooltip (Turtle WoW custom items show "Ranged" without subtype)
+      if line and strfind(line, "Ranged") then
         isRanged = true
         DEFAULT_CHAT_FRAME:AddMessage("  -> Detected RANGED weapon!")
       end
@@ -584,6 +584,14 @@ do
           DEFAULT_CHAT_FRAME:AddMessage("  -> DPS: " .. dps .. " (from: " .. dmgPerSec .. ")")
         end
       end
+    end
+
+    -- Calculate Speed if not found in tooltip but we have DPS and Damage
+    -- Formula: Speed = Average Damage / DPS
+    if not speed and dps and minDmg and maxDmg and dps > 0 then
+      local avgDmg = (minDmg + maxDmg) / 2
+      speed = avgDmg / dps
+      DEFAULT_CHAT_FRAME:AddMessage("  -> Calculated Speed: " .. speed .. " (from avgDmg=" .. avgDmg .. " / DPS=" .. dps .. ")")
     end
 
     DEFAULT_CHAT_FRAME:AddMessage("Final: isRanged=" .. tostring(isRanged) .. ", DPS=" .. tostring(dps) .. ", Speed=" .. tostring(speed) .. ", MinDmg=" .. tostring(minDmg) .. ", MaxDmg=" .. tostring(maxDmg))

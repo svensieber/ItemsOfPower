@@ -93,7 +93,7 @@ turtleHoly.DMG = turtleHoly.DMG * 1.15  -- 0.3 → 0.345
 --    Conservative: +15% value
 turtleHoly.SPELLCRIT = vanillaHoly.SPELLCRIT * 1.15  -- 3.68 → 4.23
 
-print("Turtle WoW - Paladin - Holy:")
+print("TurtleWoW_Paladin_Holy:")
 print("  HEAL: " .. string.format("%.2f", vanillaHoly.HEAL) .. " → " .. string.format("%.3f", turtleHoly.HEAL) .. " (+10%)")
 print("  DMG: NEW → " .. string.format("%.3f", turtleHoly.DMG) .. " (Holy Strike, Daybreak)")
 print("  SPELLCRIT: " .. string.format("%.2f", vanillaHoly.SPELLCRIT) .. " → " .. string.format("%.2f", turtleHoly.SPELLCRIT) .. " (+15%)")
@@ -102,15 +102,15 @@ print("  SPELLCRIT: " .. string.format("%.2f", vanillaHoly.SPELLCRIT) .. " → "
 table.insert(ItemsOfPower_PendingStatSets, function()
   local stats = turtleHoly
 
-  local set = ItemsOfPower.SetTypes.StatSet:new("Turtle WoW - Paladin - Holy", stats)
+  local set = ItemsOfPower.SetTypes.StatSet:new("TurtleWoW_Paladin_Holy", stats)
 
 
 
-  if not ItemsOfPower.SetByName["Turtle WoW - Paladin - Holy"] then
+  if not ItemsOfPower.SetByName["TurtleWoW_Paladin_Holy"] then
     ItemsOfPower:RegisterSet(set)
-    print("Created StatSet: Turtle WoW - Paladin - Holy")
+    print("Created StatSet: TurtleWoW_Paladin_Holy")
   else
-    print("Updated StatSet: Turtle WoW - Paladin - Holy")
+    print("Updated StatSet: TurtleWoW_Paladin_Holy")
   end
 end)
 
@@ -197,7 +197,7 @@ turtleProtection.WEAPONDPS = vanillaProtection.WEAPONDPS * 1.4  -- 1.264 → 1.7
 turtleProtection.ARMORPEN = vanillaProtection.ARMORPEN * 1.3  -- 0.069 → 0.09
 
 print("")
-print("Turtle WoW - Paladin - Protection:")
+print("TurtleWoW_Paladin_Protection:")
 print("  SPELLTOHIT: " .. string.format("%.2f", vanillaProtection.SPELLTOHIT) .. " → " .. string.format("%.2f", turtleProtection.SPELLTOHIT) .. " (+12.5%)")
 print("  DMG: " .. string.format("%.2f", vanillaProtection.DMG) .. " → " .. string.format("%.2f", turtleProtection.DMG) .. " (+25%)")
 print("  BLOCKVALUE: " .. string.format("%.2f", vanillaProtection.BLOCKVALUE) .. " → " .. string.format("%.3f", turtleProtection.BLOCKVALUE) .. " (+30%)")
@@ -210,15 +210,15 @@ print("  BLOCK: " .. string.format("%.2f", vanillaProtection.BLOCK) .. " → " .
 table.insert(ItemsOfPower_PendingStatSets, function()
   local stats = turtleProtection
 
-  local set = ItemsOfPower.SetTypes.StatSet:new("Turtle WoW - Paladin - Protection", stats)
+  local set = ItemsOfPower.SetTypes.StatSet:new("TurtleWoW_Paladin_Protection", stats)
 
 
 
-  if not ItemsOfPower.SetByName["Turtle WoW - Paladin - Protection"] then
+  if not ItemsOfPower.SetByName["TurtleWoW_Paladin_Protection"] then
     ItemsOfPower:RegisterSet(set)
-    print("Created StatSet: Turtle WoW - Paladin - Protection")
+    print("Created StatSet: TurtleWoW_Paladin_Protection")
   else
-    print("Updated StatSet: Turtle WoW - Paladin - Protection")
+    print("Updated StatSet: TurtleWoW_Paladin_Protection")
   end
 end)
 
@@ -304,7 +304,7 @@ turtleRetribution.WEAPONDPS = vanillaRetribution.WEAPONDPS * 1.6  -- 3.375 → 5
 turtleRetribution.ARMORPEN = vanillaRetribution.ARMORPEN * 1.3  -- 0.069 → 0.09
 
 print("")
-print("Turtle WoW - Paladin - Retribution:")
+print("TurtleWoW_Paladin_Retribution:")
 print("  TOHIT: " .. string.format("%.2f", vanillaRetribution.TOHIT) .. " → " .. string.format("%.2f", turtleRetribution.TOHIT) .. " (+12.5%)")
 print("  DMG: " .. string.format("%.2f", vanillaRetribution.DMG) .. " → " .. string.format("%.3f", turtleRetribution.DMG) .. " (+40%)")
 print("  WEAPONDPS: " .. string.format("%.3f", vanillaRetribution.WEAPONDPS) .. " → " .. string.format("%.2f", turtleRetribution.WEAPONDPS) .. " (+60% NORMALIZATION CRITICAL!)")
@@ -317,15 +317,15 @@ print("  CRIT: " .. string.format("%.2f", vanillaRetribution.CRIT) .. " → " ..
 table.insert(ItemsOfPower_PendingStatSets, function()
   local stats = turtleRetribution
 
-  local set = ItemsOfPower.SetTypes.StatSet:new("Turtle WoW - Paladin - Retribution", stats)
+  local set = ItemsOfPower.SetTypes.StatSet:new("TurtleWoW_Paladin_Retribution", stats)
 
 
 
-  if not ItemsOfPower.SetByName["Turtle WoW - Paladin - Retribution"] then
+  if not ItemsOfPower.SetByName["TurtleWoW_Paladin_Retribution"] then
     ItemsOfPower:RegisterSet(set)
-    print("Created StatSet: Turtle WoW - Paladin - Retribution")
+    print("Created StatSet: TurtleWoW_Paladin_Retribution")
   else
-    print("Updated StatSet: Turtle WoW - Paladin - Retribution")
+    print("Updated StatSet: TurtleWoW_Paladin_Retribution")
   end
 end)
 

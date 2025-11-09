@@ -111,7 +111,7 @@ turtleArcane.INT = vanillaArcane.INT * 1.2  -- 0.46 → 0.552
 --    Conservative: +15% value
 turtleArcane.SPELLHASTE = turtleArcane.SPELLHASTE * 1.15  -- 4.74 → 5.45
 
-print("Turtle WoW - Mage - Arcane:")
+print("TurtleWoW_Mage_Arcane:")
 print("  SPELLTOHIT: " .. string.format("%.2f", vanillaArcane.SPELLTOHIT) .. " → " .. string.format("%.2f", turtleArcane.SPELLTOHIT) .. " (+12.5%)")
 print("  SPELLCRIT: " .. string.format("%.2f", vanillaArcane.SPELLCRIT) .. " → " .. string.format("%.2f", turtleArcane.SPELLCRIT) .. " (+30% Arcane Potency!)")
 print("  DMG: " .. string.format("%.2f", vanillaArcane.DMG) .. " → " .. string.format("%.2f", turtleArcane.DMG) .. " (+25%)")
@@ -124,15 +124,15 @@ print("  SPELLHASTE: " .. string.format("%.2f", vanillaArcane.SPELLHASTE) .. " �
 table.insert(ItemsOfPower_PendingStatSets, function()
   local stats = turtleArcane
 
-  local set = ItemsOfPower.SetTypes.StatSet:new("Turtle WoW - Mage - Arcane", stats)
+  local set = ItemsOfPower.SetTypes.StatSet:new("TurtleWoW_Mage_Arcane", stats)
 
 
 
-  if not ItemsOfPower.SetByName["Turtle WoW - Mage - Arcane"] then
+  if not ItemsOfPower.SetByName["TurtleWoW_Mage_Arcane"] then
     ItemsOfPower:RegisterSet(set)
-    print("Created StatSet: Turtle WoW - Mage - Arcane")
+    print("Created StatSet: TurtleWoW_Mage_Arcane")
   else
-    print("Updated StatSet: Turtle WoW - Mage - Arcane")
+    print("Updated StatSet: TurtleWoW_Mage_Arcane")
   end
 end)
 
@@ -199,7 +199,7 @@ turtleFire.FIREDMG = vanillaFire.FIREDMG * 1.2  -- 0.94 → 1.128
 turtleFire.SPELLHASTE = turtleFire.SPELLHASTE * 1.1  -- 6.58 → 7.24
 
 print("")
-print("Turtle WoW - Mage - Fire:")
+print("TurtleWoW_Mage_Fire:")
 print("  SPELLTOHIT: " .. string.format("%.2f", vanillaFire.SPELLTOHIT) .. " → " .. string.format("%.2f", turtleFire.SPELLTOHIT) .. " (+12.5%)")
 print("  SPELLCRIT: " .. string.format("%.2f", vanillaFire.SPELLCRIT) .. " → " .. string.format("%.2f", turtleFire.SPELLCRIT) .. " (+25% Hot Streak!)")
 print("  DMG: " .. string.format("%.2f", vanillaFire.DMG) .. " → " .. string.format("%.2f", turtleFire.DMG) .. " (+15%)")
@@ -210,15 +210,15 @@ print("  SPELLHASTE: " .. string.format("%.2f", vanillaFire.SPELLHASTE) .. " →
 table.insert(ItemsOfPower_PendingStatSets, function()
   local stats = turtleFire
 
-  local set = ItemsOfPower.SetTypes.StatSet:new("Turtle WoW - Mage - Fire", stats)
+  local set = ItemsOfPower.SetTypes.StatSet:new("TurtleWoW_Mage_Fire", stats)
 
 
 
-  if not ItemsOfPower.SetByName["Turtle WoW - Mage - Fire"] then
+  if not ItemsOfPower.SetByName["TurtleWoW_Mage_Fire"] then
     ItemsOfPower:RegisterSet(set)
-    print("Created StatSet: Turtle WoW - Mage - Fire")
+    print("Created StatSet: TurtleWoW_Mage_Fire")
   else
-    print("Updated StatSet: Turtle WoW - Mage - Fire")
+    print("Updated StatSet: TurtleWoW_Mage_Fire")
   end
 end)
 
@@ -285,7 +285,7 @@ turtleFrost.SPELLCRIT = vanillaFrost.SPELLCRIT * 0.95  -- 4.64 → 4.408
 turtleFrost.SPELLHASTE = turtleFrost.SPELLHASTE * 1.1  -- 5.06 → 5.56
 
 print("")
-print("Turtle WoW - Mage - Frost:")
+print("TurtleWoW_Mage_Frost:")
 print("  SPELLTOHIT: " .. string.format("%.2f", vanillaFrost.SPELLTOHIT) .. " → " .. string.format("%.2f", turtleFrost.SPELLTOHIT) .. " (+12.5%)")
 print("  DMG: " .. string.format("%.2f", vanillaFrost.DMG) .. " → " .. string.format("%.2f", turtleFrost.DMG) .. " (+20%)")
 print("  FROSTDMG: " .. string.format("%.2f", vanillaFrost.FROSTDMG) .. " → " .. string.format("%.4f", turtleFrost.FROSTDMG) .. " (+25% Icicles + Ice Barrier)")
@@ -296,15 +296,15 @@ print("  SPELLHASTE: " .. string.format("%.2f", vanillaFrost.SPELLHASTE) .. " �
 table.insert(ItemsOfPower_PendingStatSets, function()
   local stats = turtleFrost
 
-  local set = ItemsOfPower.SetTypes.StatSet:new("Turtle WoW - Mage - Frost", stats)
+  local set = ItemsOfPower.SetTypes.StatSet:new("TurtleWoW_Mage_Frost", stats)
 
 
 
-  if not ItemsOfPower.SetByName["Turtle WoW - Mage - Frost"] then
+  if not ItemsOfPower.SetByName["TurtleWoW_Mage_Frost"] then
     ItemsOfPower:RegisterSet(set)
-    print("Created StatSet: Turtle WoW - Mage - Frost")
+    print("Created StatSet: TurtleWoW_Mage_Frost")
   else
-    print("Updated StatSet: Turtle WoW - Mage - Frost")
+    print("Updated StatSet: TurtleWoW_Mage_Frost")
   end
 end)
 

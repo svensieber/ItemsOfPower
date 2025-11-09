@@ -54,7 +54,7 @@ local vanillaMM = ApplyMultiplier({
   HASTE = 3.212,          -- 8.03 * 0.4
   ARMORPEN = 1.067,       -- Armor Penetration (3.75 * 0.37 = 1.3875, divided by 1.3 for base)
   RANGEDWEAPONDPS = 2.167,  -- Ranged Weapon DPS (from ClassicHawsJon: 2.6, divided by 1.2 for base)
-  WEAPONDPS = 0.75,       -- Melee Weapon DPS (from ClassicHawsJon - low value)
+  -- WEAPONDPS not included - melee weapon is only a stat stick for ranged specs
   MANA = 0.085,
   MANAREG = 2.4,
   HEALTH = 0.01,
@@ -91,7 +91,7 @@ turtleMM.RANGEDWEAPONDPS = vanillaMM.RANGEDWEAPONDPS * 1.2  -- 2.167 → 2.6
 --    Conservative: +30% value
 turtleMM.ARMORPEN = vanillaMM.ARMORPEN * 1.3  -- 1.067 → 1.3875
 
-print("Turtle WoW - Hunter - Marksmanship:")
+print("TurtleWoW_Hunter_Marksmanship:")
 print("  TOHIT: " .. string.format("%.2f", vanillaMM.TOHIT) .. " → " .. string.format("%.2f", turtleMM.TOHIT) .. " (+12.5%)")
 print("  HASTE: " .. string.format("%.2f", vanillaMM.HASTE) .. " → " .. string.format("%.2f", turtleMM.HASTE))
 print("  RANGEDWEAPONDPS: " .. string.format("%.3f", vanillaMM.RANGEDWEAPONDPS) .. " → " .. string.format("%.2f", turtleMM.RANGEDWEAPONDPS) .. " (+20% Steady Shot!)")
@@ -100,13 +100,13 @@ print("  ARMORPEN: " .. string.format("%.3f", vanillaMM.ARMORPEN) .. " → " .. 
 -- Queue StatSet creation (delayed until OnEnable)
 table.insert(ItemsOfPower_PendingStatSets, function()
   local stats = turtleMM
-  local set = ItemsOfPower.SetTypes.StatSet:new("Turtle WoW - Hunter - Marksmanship", stats)
+  local set = ItemsOfPower.SetTypes.StatSet:new("TurtleWoW_Hunter_Marksmanship", stats)
 
-  if not ItemsOfPower.SetByName["Turtle WoW - Hunter - Marksmanship"] then
+  if not ItemsOfPower.SetByName["TurtleWoW_Hunter_Marksmanship"] then
     ItemsOfPower:RegisterSet(set)
-    print("Created StatSet: Turtle WoW - Hunter - Marksmanship")
+    print("Created StatSet: TurtleWoW_Hunter_Marksmanship")
   else
-    print("Updated StatSet: Turtle WoW - Hunter - Marksmanship")
+    print("Updated StatSet: TurtleWoW_Hunter_Marksmanship")
   end
 end)
 
@@ -129,7 +129,7 @@ local vanillaBM = ApplyMultiplier({
   HASTE = 4.015,          -- 8.03 * 0.5
   ARMORPEN = 0.490,       -- Armor Penetration (3.75 * 0.17 = 0.6375, divided by 1.3 for base)
   RANGEDWEAPONDPS = 2.087,  -- Ranged Weapon DPS (from ClassicHawsJon: 2.4, divided by 1.15 for base)
-  WEAPONDPS = 0.75,       -- Melee Weapon DPS (from ClassicHawsJon - low value)
+  -- WEAPONDPS not included - melee weapon is only a stat stick for ranged specs
   MANA = 0.075,
   MANAREG = 2.4,
   HEALTH = 0.01,
@@ -184,7 +184,7 @@ turtleBM.RANGEDWEAPONDPS = vanillaBM.RANGEDWEAPONDPS * 1.15  -- 2.087 → 2.4
 turtleBM.ARMORPEN = vanillaBM.ARMORPEN * 1.3  -- 0.490 → 0.6375
 
 print("")
-print("Turtle WoW - Hunter - Beast Mastery:")
+print("TurtleWoW_Hunter_Beast_Mastery:")
 print("  TOHIT: " .. string.format("%.2f", vanillaBM.TOHIT) .. " → " .. string.format("%.2f", turtleBM.TOHIT) .. " (+12.5%)")
 print("  CRIT: " .. string.format("%.2f", vanillaBM.CRIT) .. " → " .. string.format("%.2f", turtleBM.CRIT) .. " (+15%)")
 print("  RAP: " .. string.format("%.2f", vanillaBM.RANGEDATTACKPOWER) .. " → " .. string.format("%.3f", turtleBM.RANGEDATTACKPOWER) .. " (+20%)")
@@ -196,15 +196,15 @@ print("  ARMORPEN: " .. string.format("%.3f", vanillaBM.ARMORPEN) .. " → " .. 
 table.insert(ItemsOfPower_PendingStatSets, function()
   local stats = turtleBM
 
-  local set = ItemsOfPower.SetTypes.StatSet:new("Turtle WoW - Hunter - Beast Mastery", stats)
+__local_set_=_ItemsOfPower.SetTypes.StatSet:new("TurtleWoW_Hunter_Beast_Mastery",_stats)
 
 
 
-  if not ItemsOfPower.SetByName["Turtle WoW - Hunter - Beast Mastery"] then
+__if_not_ItemsOfPower.SetByName["TurtleWoW_Hunter_Beast_Mastery"]_then
     ItemsOfPower:RegisterSet(set)
-    print("Created StatSet: Turtle WoW - Hunter - Beast Mastery")
+    print("Created StatSet: TurtleWoW_Hunter_Beast Mastery")
   else
-    print("Updated StatSet: Turtle WoW - Hunter - Beast Mastery")
+    print("Updated StatSet: TurtleWoW_Hunter_Beast Mastery")
   end
 end)
 
@@ -269,7 +269,7 @@ turtleSV.WEAPONDPS = vanillaSV.WEAPONDPS * 1.4  -- 0.714 → 1.0
 turtleSV.ARMORPEN = vanillaSV.ARMORPEN * 1.3  -- 0.808 → 1.05
 
 print("")
-print("Turtle WoW - Hunter - Survival:")
+print("TurtleWoW_Hunter_Survival:")
 print("  TOHIT: " .. string.format("%.2f", vanillaSV.TOHIT) .. " → " .. string.format("%.2f", turtleSV.TOHIT) .. " (+12.5%)")
 print("  CRIT: " .. string.format("%.2f", vanillaSV.CRIT) .. " → " .. string.format("%.2f", turtleSV.CRIT) .. " (+10%)")
 print("  WEAPONDPS (Melee): " .. string.format("%.3f", vanillaSV.WEAPONDPS) .. " → " .. string.format("%.2f", turtleSV.WEAPONDPS) .. " (+40% Mongoose/Carve + Dual Wield!)")
@@ -279,15 +279,15 @@ print("  ARMORPEN: " .. string.format("%.3f", vanillaSV.ARMORPEN) .. " → " .. 
 table.insert(ItemsOfPower_PendingStatSets, function()
   local stats = turtleSV
 
-  local set = ItemsOfPower.SetTypes.StatSet:new("Turtle WoW - Hunter - Survival", stats)
+  local set = ItemsOfPower.SetTypes.StatSet:new("TurtleWoW_Hunter_Survival", stats)
 
 
 
-  if not ItemsOfPower.SetByName["Turtle WoW - Hunter - Survival"] then
+  if not ItemsOfPower.SetByName["TurtleWoW_Hunter_Survival"] then
     ItemsOfPower:RegisterSet(set)
-    print("Created StatSet: Turtle WoW - Hunter - Survival")
+    print("Created StatSet: TurtleWoW_Hunter_Survival")
   else
-    print("Updated StatSet: Turtle WoW - Hunter - Survival")
+    print("Updated StatSet: TurtleWoW_Hunter_Survival")
   end
 end)
 

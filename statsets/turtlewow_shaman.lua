@@ -93,7 +93,7 @@ turtleElemental.DMG = vanillaElemental.DMG * 1.15  -- 1.0 → 1.15
 --    Conservative: +15% value
 turtleElemental.SPELLCRIT = vanillaElemental.SPELLCRIT * 1.15  -- 8.4 → 9.66
 
-print("Turtle WoW - Shaman - Elemental:")
+print("TurtleWoW_Shaman_Elemental:")
 print("  SPELLTOHIT: " .. string.format("%.2f", vanillaElemental.SPELLTOHIT) .. " → " .. string.format("%.2f", turtleElemental.SPELLTOHIT) .. " (+12.5%)")
 print("  DMG: " .. string.format("%.2f", vanillaElemental.DMG) .. " → " .. string.format("%.2f", turtleElemental.DMG) .. " (+15%)")
 print("  SPELLCRIT: " .. string.format("%.2f", vanillaElemental.SPELLCRIT) .. " → " .. string.format("%.2f", turtleElemental.SPELLCRIT) .. " (+15%)")
@@ -102,15 +102,15 @@ print("  SPELLCRIT: " .. string.format("%.2f", vanillaElemental.SPELLCRIT) .. " 
 table.insert(ItemsOfPower_PendingStatSets, function()
   local stats = turtleElemental
 
-  local set = ItemsOfPower.SetTypes.StatSet:new("Turtle WoW - Shaman - Elemental", stats)
+  local set = ItemsOfPower.SetTypes.StatSet:new("TurtleWoW_Shaman_Elemental", stats)
 
 
 
-  if not ItemsOfPower.SetByName["Turtle WoW - Shaman - Elemental"] then
+  if not ItemsOfPower.SetByName["TurtleWoW_Shaman_Elemental"] then
     ItemsOfPower:RegisterSet(set)
-    print("Created StatSet: Turtle WoW - Shaman - Elemental")
+    print("Created StatSet: TurtleWoW_Shaman_Elemental")
   else
-    print("Updated StatSet: Turtle WoW - Shaman - Elemental")
+    print("Updated StatSet: TurtleWoW_Shaman_Elemental")
   end
 end)
 
@@ -199,7 +199,7 @@ turtleEnhancement.WEAPONDPS = vanillaEnhancement.WEAPONDPS * 1.3  -- 2.308 → 3
 turtleEnhancement.ARMORPEN = vanillaEnhancement.ARMORPEN * 1.3  -- 0.346 → 0.45
 
 print("")
-print("Turtle WoW - Shaman - Enhancement:")
+print("TurtleWoW_Shaman_Enhancement:")
 print("  TOHIT: " .. string.format("%.2f", vanillaEnhancement.TOHIT) .. " → " .. string.format("%.2f", turtleEnhancement.TOHIT) .. " (+12.5%)")
 print("  AP: " .. string.format("%.2f", vanillaEnhancement.ATTACKPOWER) .. " → " .. string.format("%.2f", turtleEnhancement.ATTACKPOWER) .. " (+20%)")
 print("  ALL STATS: +5% (Ancestral Knowledge)")
@@ -212,15 +212,15 @@ print("  ARMORPEN: " .. string.format("%.3f", vanillaEnhancement.ARMORPEN) .. " 
 table.insert(ItemsOfPower_PendingStatSets, function()
   local stats = turtleEnhancement
 
-  local set = ItemsOfPower.SetTypes.StatSet:new("Turtle WoW - Shaman - Enhancement", stats)
+  local set = ItemsOfPower.SetTypes.StatSet:new("TurtleWoW_Shaman_Enhancement", stats)
 
 
 
-  if not ItemsOfPower.SetByName["Turtle WoW - Shaman - Enhancement"] then
+  if not ItemsOfPower.SetByName["TurtleWoW_Shaman_Enhancement"] then
     ItemsOfPower:RegisterSet(set)
-    print("Created StatSet: Turtle WoW - Shaman - Enhancement")
+    print("Created StatSet: TurtleWoW_Shaman_Enhancement")
   else
-    print("Updated StatSet: Turtle WoW - Shaman - Enhancement")
+    print("Updated StatSet: TurtleWoW_Shaman_Enhancement")
   end
 end)
 
@@ -273,7 +273,7 @@ turtleRestoration.HEAL = vanillaRestoration.HEAL * 0.9  -- 0.9 → 0.81
 turtleRestoration.SPI = vanillaRestoration.SPI * 1.5  -- 0.61 → 0.915
 
 print("")
-print("Turtle WoW - Shaman - Restoration:")
+print("TurtleWoW_Shaman_Restoration:")
 print("  HEAL: " .. string.format("%.2f", vanillaRestoration.HEAL) .. " → " .. string.format("%.2f", turtleRestoration.HEAL) .. " (-10%)")
 print("  SPI: " .. string.format("%.2f", vanillaRestoration.SPI) .. " → " .. string.format("%.3f", turtleRestoration.SPI) .. " (+50%)")
 
@@ -281,15 +281,15 @@ print("  SPI: " .. string.format("%.2f", vanillaRestoration.SPI) .. " → " .. s
 table.insert(ItemsOfPower_PendingStatSets, function()
   local stats = turtleRestoration
 
-  local set = ItemsOfPower.SetTypes.StatSet:new("Turtle WoW - Shaman - Restoration", stats)
+  local set = ItemsOfPower.SetTypes.StatSet:new("TurtleWoW_Shaman_Restoration", stats)
 
 
 
-  if not ItemsOfPower.SetByName["Turtle WoW - Shaman - Restoration"] then
+  if not ItemsOfPower.SetByName["TurtleWoW_Shaman_Restoration"] then
     ItemsOfPower:RegisterSet(set)
-    print("Created StatSet: Turtle WoW - Shaman - Restoration")
+    print("Created StatSet: TurtleWoW_Shaman_Restoration")
   else
-    print("Updated StatSet: Turtle WoW - Shaman - Restoration")
+    print("Updated StatSet: TurtleWoW_Shaman_Restoration")
   end
 end)
 

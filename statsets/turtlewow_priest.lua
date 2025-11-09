@@ -112,7 +112,7 @@ turtleDiscipline.INT = vanillaDiscipline.INT * 1.1  -- 1.0 → 1.1
 --    Conservative: +10% value
 turtleDiscipline.SPELLHASTE = turtleDiscipline.SPELLHASTE * 1.1  -- 4.58 → 5.04
 
-print("Turtle WoW - Priest - Discipline:")
+print("TurtleWoW_Priest_Discipline:")
 print("  NEW ROLE: Holy DPS Support (complete rework!)")
 print("  DMG: NEW → " .. string.format("%.2f", turtleDiscipline.DMG) .. " (Inner Fire +74, Smite, Holy Fire)")
 print("  HOLYDMG: NEW → " .. string.format("%.3f", turtleDiscipline.HOLYDMG) .. " (+45%)")
@@ -125,15 +125,15 @@ print("  INT: " .. string.format("%.2f", vanillaDiscipline.INT) .. " → " .. st
 table.insert(ItemsOfPower_PendingStatSets, function()
   local stats = turtleDiscipline
 
-  local set = ItemsOfPower.SetTypes.StatSet:new("Turtle WoW - Priest - Discipline", stats)
+  local set = ItemsOfPower.SetTypes.StatSet:new("TurtleWoW_Priest_Discipline", stats)
 
 
 
-  if not ItemsOfPower.SetByName["Turtle WoW - Priest - Discipline"] then
+  if not ItemsOfPower.SetByName["TurtleWoW_Priest_Discipline"] then
     ItemsOfPower:RegisterSet(set)
-    print("Created StatSet: Turtle WoW - Priest - Discipline")
+    print("Created StatSet: TurtleWoW_Priest_Discipline")
   else
-    print("Updated StatSet: Turtle WoW - Priest - Discipline")
+    print("Updated StatSet: TurtleWoW_Priest_Discipline")
   end
 end)
 
@@ -193,7 +193,7 @@ turtleHoly.SPI = vanillaHoly.SPI * 1.1  -- 0.73 → 0.803
 turtleHoly.DMG = 0.1  -- Minor spell damage for hybrid Smite usage
 
 print("")
-print("Turtle WoW - Priest - Holy:")
+print("TurtleWoW_Priest_Holy:")
 print("  HEAL: " .. string.format("%.2f", vanillaHoly.HEAL) .. " → " .. string.format("%.3f", turtleHoly.HEAL) .. " (+10% net: -15% base + 30% talents)")
 print("  SPI: " .. string.format("%.2f", vanillaHoly.SPI) .. " → " .. string.format("%.3f", turtleHoly.SPI) .. " (+10% SoR + Spiritual Guidance)")
 print("  DMG: NEW → " .. string.format("%.1f", turtleHoly.DMG) .. " (Inner Fire for hybrid)")
@@ -202,15 +202,15 @@ print("  DMG: NEW → " .. string.format("%.1f", turtleHoly.DMG) .. " (Inner Fir
 table.insert(ItemsOfPower_PendingStatSets, function()
   local stats = turtleHoly
 
-  local set = ItemsOfPower.SetTypes.StatSet:new("Turtle WoW - Priest - Holy", stats)
+  local set = ItemsOfPower.SetTypes.StatSet:new("TurtleWoW_Priest_Holy", stats)
 
 
 
-  if not ItemsOfPower.SetByName["Turtle WoW - Priest - Holy"] then
+  if not ItemsOfPower.SetByName["TurtleWoW_Priest_Holy"] then
     ItemsOfPower:RegisterSet(set)
-    print("Created StatSet: Turtle WoW - Priest - Holy")
+    print("Created StatSet: TurtleWoW_Priest_Holy")
   else
-    print("Updated StatSet: Turtle WoW - Priest - Holy")
+    print("Updated StatSet: TurtleWoW_Priest_Holy")
   end
 end)
 
@@ -275,7 +275,7 @@ turtleShadow.SPI = vanillaShadow.SPI * 2.0  -- 0.21 → 0.42
 turtleShadow.HEAL = 0.15  -- Minor healing power for Shadow Mend utility
 
 print("")
-print("Turtle WoW - Priest - Shadow:")
+print("TurtleWoW_Priest_Shadow:")
 print("  SPELLTOHIT: " .. string.format("%.2f", vanillaShadow.SPELLTOHIT) .. " → " .. string.format("%.2f", turtleShadow.SPELLTOHIT) .. " (+12.5%)")
 print("  DMG: " .. string.format("%.2f", vanillaShadow.DMG) .. " → " .. string.format("%.2f", turtleShadow.DMG) .. " (+30%)")
 print("  SHADOWDMG: " .. string.format("%.2f", vanillaShadow.SHADOWDMG) .. " → " .. string.format("%.2f", turtleShadow.SHADOWDMG) .. " (+35% Mind Flay 75%!)")
@@ -286,15 +286,15 @@ print("  HEAL: NEW → " .. string.format("%.2f", turtleShadow.HEAL) .. " (Shado
 table.insert(ItemsOfPower_PendingStatSets, function()
   local stats = turtleShadow
 
-  local set = ItemsOfPower.SetTypes.StatSet:new("Turtle WoW - Priest - Shadow", stats)
+  local set = ItemsOfPower.SetTypes.StatSet:new("TurtleWoW_Priest_Shadow", stats)
 
 
 
-  if not ItemsOfPower.SetByName["Turtle WoW - Priest - Shadow"] then
+  if not ItemsOfPower.SetByName["TurtleWoW_Priest_Shadow"] then
     ItemsOfPower:RegisterSet(set)
-    print("Created StatSet: Turtle WoW - Priest - Shadow")
+    print("Created StatSet: TurtleWoW_Priest_Shadow")
   else
-    print("Updated StatSet: Turtle WoW - Priest - Shadow")
+    print("Updated StatSet: TurtleWoW_Priest_Shadow")
   end
 end)
 

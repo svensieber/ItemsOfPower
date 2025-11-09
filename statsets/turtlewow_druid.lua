@@ -105,7 +105,7 @@ turtleBalance.NATUREDMG = vanillaBalance.NATUREDMG * 1.2  -- 0.43 → 0.516
 --    Conservative: +20% value (Arcane Eclipse benefits)
 turtleBalance.ARCANEDMG = vanillaBalance.ARCANEDMG * 1.2  -- 0.64 → 0.768
 
-print("Turtle WoW - Druid - Balance:")
+print("TurtleWoW_Druid_Balance:")
 print("  SPELLTOHIT: " .. string.format("%.2f", vanillaBalance.SPELLTOHIT) .. " → " .. string.format("%.2f", turtleBalance.SPELLTOHIT) .. " (+12.5%)")
 print("  SPELLCRIT: " .. string.format("%.2f", vanillaBalance.SPELLCRIT) .. " → " .. string.format("%.2f", turtleBalance.SPELLCRIT) .. " (+50% Eclipse scaling!)")
 print("  DMG: " .. string.format("%.2f", vanillaBalance.DMG) .. " → " .. string.format("%.2f", turtleBalance.DMG) .. " (+15%)")
@@ -116,15 +116,15 @@ print("  ARCANEDMG: " .. string.format("%.2f", vanillaBalance.ARCANEDMG) .. " �
 table.insert(ItemsOfPower_PendingStatSets, function()
   local stats = turtleBalance
 
-  local set = ItemsOfPower.SetTypes.StatSet:new("Turtle WoW - Druid - Balance", stats)
+  local set = ItemsOfPower.SetTypes.StatSet:new("TurtleWoW_Druid_Balance", stats)
 
 
 
-  if not ItemsOfPower.SetByName["Turtle WoW - Druid - Balance"] then
+  if not ItemsOfPower.SetByName["TurtleWoW_Druid_Balance"] then
     ItemsOfPower:RegisterSet(set)
-    print("Created StatSet: Turtle WoW - Druid - Balance")
+    print("Created StatSet: TurtleWoW_Druid_Balance")
   else
-    print("Updated StatSet: Turtle WoW - Druid - Balance")
+    print("Updated StatSet: TurtleWoW_Druid_Balance")
   end
 end)
 
@@ -202,7 +202,7 @@ turtleFeralDamage.WEAPONDPS = vanillaFeralDamage.WEAPONDPS * 1.15  -- 0.87 → 1
 turtleFeralDamage.ARMORPEN = vanillaFeralDamage.ARMORPEN * 1.3  -- 1.154 → 1.5
 
 print("")
-print("Turtle WoW - Druid - Feral Damage:")
+print("TurtleWoW_Druid_Feral_Damage:")
 print("  TOHIT: " .. string.format("%.2f", vanillaFeralDamage.TOHIT) .. " → " .. string.format("%.2f", turtleFeralDamage.TOHIT) .. " (+12.5%)")
 print("  AP: " .. string.format("%.2f", vanillaFeralDamage.ATTACKPOWER) .. " → " .. string.format("%.3f", turtleFeralDamage.ATTACKPOWER) .. " (+20% Ferocious Bite)")
 print("  AGI: " .. string.format("%.2f", vanillaFeralDamage.AGI) .. " → " .. string.format("%.2f", turtleFeralDamage.AGI) .. " (+10% MCP removed)")
@@ -215,15 +215,15 @@ print("  ARMORPEN: " .. string.format("%.3f", vanillaFeralDamage.ARMORPEN) .. " 
 table.insert(ItemsOfPower_PendingStatSets, function()
   local stats = turtleFeralDamage
 
-  local set = ItemsOfPower.SetTypes.StatSet:new("Turtle WoW - Druid - Feral Damage", stats)
+__local_set_=_ItemsOfPower.SetTypes.StatSet:new("TurtleWoW_Druid_Feral_Damage",_stats)
 
 
 
-  if not ItemsOfPower.SetByName["Turtle WoW - Druid - Feral Damage"] then
+__if_not_ItemsOfPower.SetByName["TurtleWoW_Druid_Feral_Damage"]_then
     ItemsOfPower:RegisterSet(set)
-    print("Created StatSet: Turtle WoW - Druid - Feral Damage")
+    print("Created StatSet: TurtleWoW_Druid_Feral Damage")
   else
-    print("Updated StatSet: Turtle WoW - Druid - Feral Damage")
+    print("Updated StatSet: TurtleWoW_Druid_Feral Damage")
   end
 end)
 
@@ -306,7 +306,7 @@ turtleFeralTank.WEAPONDPS = vanillaFeralTank.WEAPONDPS * 1.15  -- 0.52 → 0.6
 turtleFeralTank.ARMORPEN = vanillaFeralTank.ARMORPEN * 1.3  -- 0.577 → 0.75
 
 print("")
-print("Turtle WoW - Druid - Feral Tank:")
+print("TurtleWoW_Druid_Feral_Tank:")
 print("  TOHIT: " .. string.format("%.2f", vanillaFeralTank.TOHIT) .. " → " .. string.format("%.2f", turtleFeralTank.TOHIT) .. " (+12.5%)")
 print("  ARMOR: " .. string.format("%.2f", vanillaFeralTank.ARMOR) .. " → " .. string.format("%.2f", turtleFeralTank.ARMOR) .. " (+30% CAP REMOVED!)")
 print("  STA: " .. string.format("%.2f", vanillaFeralTank.STA) .. " → " .. string.format("%.2f", turtleFeralTank.STA) .. " (+15% Frenzied Regen)")
@@ -320,15 +320,15 @@ print("  ARMORPEN: " .. string.format("%.3f", vanillaFeralTank.ARMORPEN) .. " �
 table.insert(ItemsOfPower_PendingStatSets, function()
   local stats = turtleFeralTank
 
-  local set = ItemsOfPower.SetTypes.StatSet:new("Turtle WoW - Druid - Feral Tank", stats)
+__local_set_=_ItemsOfPower.SetTypes.StatSet:new("TurtleWoW_Druid_Feral_Tank",_stats)
 
 
 
-  if not ItemsOfPower.SetByName["Turtle WoW - Druid - Feral Tank"] then
+__if_not_ItemsOfPower.SetByName["TurtleWoW_Druid_Feral_Tank"]_then
     ItemsOfPower:RegisterSet(set)
-    print("Created StatSet: Turtle WoW - Druid - Feral Tank")
+    print("Created StatSet: TurtleWoW_Druid_Feral Tank")
   else
-    print("Updated StatSet: Turtle WoW - Druid - Feral Tank")
+    print("Updated StatSet: TurtleWoW_Druid_Feral Tank")
   end
 end)
 
@@ -385,7 +385,7 @@ turtleRestoration.SPI = vanillaRestoration.SPI * 1.2  -- 0.87 → 1.044
 turtleRestoration.ARMOR = vanillaRestoration.ARMOR * 1.1  -- 0.005 → 0.0055
 
 print("")
-print("Turtle WoW - Druid - Restoration:")
+print("TurtleWoW_Druid_Restoration:")
 print("  HEAL: " .. string.format("%.2f", vanillaRestoration.HEAL) .. " → " .. string.format("%.3f", turtleRestoration.HEAL) .. " (+50% ToL + Gift of Nature!)")
 print("  SPI: " .. string.format("%.2f", vanillaRestoration.SPI) .. " → " .. string.format("%.3f", turtleRestoration.SPI) .. " (+20% Emerald Blessing)")
 print("  ARMOR: " .. string.format("%.3f", vanillaRestoration.ARMOR) .. " → " .. string.format("%.4f", turtleRestoration.ARMOR) .. " (+10% ToL form)")
@@ -394,15 +394,15 @@ print("  ARMOR: " .. string.format("%.3f", vanillaRestoration.ARMOR) .. " → " 
 table.insert(ItemsOfPower_PendingStatSets, function()
   local stats = turtleRestoration
 
-  local set = ItemsOfPower.SetTypes.StatSet:new("Turtle WoW - Druid - Restoration", stats)
+  local set = ItemsOfPower.SetTypes.StatSet:new("TurtleWoW_Druid_Restoration", stats)
 
 
 
-  if not ItemsOfPower.SetByName["Turtle WoW - Druid - Restoration"] then
+  if not ItemsOfPower.SetByName["TurtleWoW_Druid_Restoration"] then
     ItemsOfPower:RegisterSet(set)
-    print("Created StatSet: Turtle WoW - Druid - Restoration")
+    print("Created StatSet: TurtleWoW_Druid_Restoration")
   else
-    print("Updated StatSet: Turtle WoW - Druid - Restoration")
+    print("Updated StatSet: TurtleWoW_Druid_Restoration")
   end
 end)
 

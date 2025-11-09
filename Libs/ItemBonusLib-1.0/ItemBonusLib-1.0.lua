@@ -531,10 +531,18 @@ do
   function ItemBonusLib:ExtractWeaponStats(bonuses, link)
     Gratuity:SetHyperlink(link)
     local minDmg, maxDmg, speed, dps
+    local isRanged = false
 
-    -- Determine if this is a ranged weapon
-    local _, _, _, _, _, itemType, itemSubType = GetItemInfo(link)
-    local isRanged = (itemType == "Weapon" and (itemSubType == "Bows" or itemSubType == "Crossbows" or itemSubType == "Guns" or itemSubType == "Thrown" or itemSubType == "Wands"))
+    -- Determine if this is a ranged weapon by checking tooltip for weapon type
+    -- GetItemInfo() doesn't work for custom Turtle WoW items, so we use tooltip parsing
+    for i = 2, Gratuity:NumLines() do
+      local line = Gratuity:GetLine(i)
+
+      -- Check for ranged weapon types in tooltip
+      if line and (strfind(line, "Bow") or strfind(line, "Crossbow") or strfind(line, "Gun") or strfind(line, "Thrown") or strfind(line, "Wand")) then
+        isRanged = true
+      end
+    end
 
     for i = 2, Gratuity:NumLines() do
       local line = Gratuity:GetLine(i)

@@ -549,7 +549,8 @@ do
 
       if not minDmg and not maxDmg then
         -- Lua 5.0 compatible: string.find returns start, end, captures
-        local _, _, min, max = string.find(line, "^(%d+)%s*%-%s*(%d+)%s+Damage$")
+        -- Pattern matches "9 - 18 Damage" (with optional pipe and more text after)
+        local _, _, min, max = string.find(line, "(%d+)%s*%-%s*(%d+)%s+Damage")
         if min then
           minDmg = tonumber(min)
           maxDmg = tonumber(max)
@@ -558,7 +559,8 @@ do
 
       if not speed then
         -- Lua 5.0 compatible: string.find returns start, end, captures
-        local _, _, spd = string.find(line, "^Speed%s+([%d%.]+)$")
+        -- Pattern matches "Speed 2.50" (anywhere in line, e.g., after pipe)
+        local _, _, spd = string.find(line, "Speed%s+([%d%.]+)")
         if spd then
           speed = tonumber(spd)
         end
@@ -566,7 +568,8 @@ do
 
       if not dps then
         -- Lua 5.0 compatible: string.find returns start, end, captures
-        local _, _, dmgPerSec = string.find(line, "%(([%d%.]+)%s+damage per second%)")
+        -- Pattern matches "(5.4 damage per second)" or "(5.4 damage per seconds)" (plural)
+        local _, _, dmgPerSec = string.find(line, "%(([%d%.]+)%s+damage per seconds?%)")
         if dmgPerSec then
           dps = tonumber(dmgPerSec)
         end

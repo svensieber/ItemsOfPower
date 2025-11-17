@@ -105,12 +105,6 @@ turtleBalance.NATUREDMG = vanillaBalance.NATUREDMG * 1.2  -- 0.43 → 0.516
 --    Conservative: +20% value (Arcane Eclipse benefits)
 turtleBalance.ARCANEDMG = vanillaBalance.ARCANEDMG * 1.2  -- 0.64 → 0.768
 
-print("TurtleWoW_Druid_Balance:")
-print("  SPELLTOHIT: " .. string.format("%.2f", vanillaBalance.SPELLTOHIT) .. " → " .. string.format("%.2f", turtleBalance.SPELLTOHIT) .. " (+12.5%)")
-print("  SPELLCRIT: " .. string.format("%.2f", vanillaBalance.SPELLCRIT) .. " → " .. string.format("%.2f", turtleBalance.SPELLCRIT) .. " (+50% Eclipse scaling!)")
-print("  DMG: " .. string.format("%.2f", vanillaBalance.DMG) .. " → " .. string.format("%.2f", turtleBalance.DMG) .. " (+15%)")
-print("  NATUREDMG: " .. string.format("%.2f", vanillaBalance.NATUREDMG) .. " → " .. string.format("%.3f", turtleBalance.NATUREDMG) .. " (+20%)")
-print("  ARCANEDMG: " .. string.format("%.2f", vanillaBalance.ARCANEDMG) .. " → " .. string.format("%.3f", turtleBalance.ARCANEDMG) .. " (+20%)")
 
 -- Queue StatSet creation (delayed until OnEnable)
 table.insert(ItemsOfPower_PendingStatSets, function()
@@ -122,9 +116,7 @@ table.insert(ItemsOfPower_PendingStatSets, function()
 
   if not ItemsOfPower.SetByName["TurtleWoW_Druid_Balance"] then
     ItemsOfPower:RegisterSet(set)
-    print("Created StatSet: TurtleWoW_Druid_Balance")
   else
-    print("Updated StatSet: TurtleWoW_Druid_Balance")
   end
 end)
 
@@ -201,15 +193,6 @@ turtleFeralDamage.WEAPONDPS = vanillaFeralDamage.WEAPONDPS * 1.15  -- 0.87 → 1
 --    Conservative: +30% value
 turtleFeralDamage.ARMORPEN = vanillaFeralDamage.ARMORPEN * 1.3  -- 1.154 → 1.5
 
-print("")
-print("TurtleWoW_Druid_Feral_Damage:")
-print("  TOHIT: " .. string.format("%.2f", vanillaFeralDamage.TOHIT) .. " → " .. string.format("%.2f", turtleFeralDamage.TOHIT) .. " (+12.5%)")
-print("  AP: " .. string.format("%.2f", vanillaFeralDamage.ATTACKPOWER) .. " → " .. string.format("%.3f", turtleFeralDamage.ATTACKPOWER) .. " (+20% Ferocious Bite)")
-print("  AGI: " .. string.format("%.2f", vanillaFeralDamage.AGI) .. " → " .. string.format("%.2f", turtleFeralDamage.AGI) .. " (+10% MCP removed)")
-print("  STR: " .. string.format("%.2f", vanillaFeralDamage.STR) .. " → " .. string.format("%.3f", turtleFeralDamage.STR) .. " (+10%)")
-print("  CRIT: " .. string.format("%.2f", vanillaFeralDamage.CRIT) .. " → " .. string.format("%.3f", turtleFeralDamage.CRIT) .. " (+10%)")
-print("  WEAPONDPS: " .. string.format("%.2f", vanillaFeralDamage.WEAPONDPS) .. " → " .. string.format("%.2f", turtleFeralDamage.WEAPONDPS) .. " (+15% Claw/Shred)")
-print("  ARMORPEN: " .. string.format("%.3f", vanillaFeralDamage.ARMORPEN) .. " → " .. string.format("%.2f", turtleFeralDamage.ARMORPEN) .. " (+30%)")
 
 -- Queue StatSet creation (delayed until OnEnable)
 table.insert(ItemsOfPower_PendingStatSets, function()
@@ -221,9 +204,7 @@ local set = ItemsOfPower.SetTypes.StatSet:new("TurtleWoW_Druid_Feral_Damage", st
 
 if not ItemsOfPower.SetByName["TurtleWoW_Druid_Feral_Damage"] then
     ItemsOfPower:RegisterSet(set)
-    print("Created StatSet: TurtleWoW_Druid_Feral_Damage")
   else
-    print("Updated StatSet: TurtleWoW_Druid_Feral_Damage")
   end
 end)
 
@@ -305,16 +286,6 @@ turtleFeralTank.WEAPONDPS = vanillaFeralTank.WEAPONDPS * 1.15  -- 0.52 → 0.6
 --    Conservative: +30% value
 turtleFeralTank.ARMORPEN = vanillaFeralTank.ARMORPEN * 1.3  -- 0.577 → 0.75
 
-print("")
-print("TurtleWoW_Druid_Feral_Tank:")
-print("  TOHIT: " .. string.format("%.2f", vanillaFeralTank.TOHIT) .. " → " .. string.format("%.2f", turtleFeralTank.TOHIT) .. " (+12.5%)")
-print("  ARMOR: " .. string.format("%.2f", vanillaFeralTank.ARMOR) .. " → " .. string.format("%.2f", turtleFeralTank.ARMOR) .. " (+30% CAP REMOVED!)")
-print("  STA: " .. string.format("%.2f", vanillaFeralTank.STA) .. " → " .. string.format("%.2f", turtleFeralTank.STA) .. " (+15% Frenzied Regen)")
-print("  DODGE: " .. string.format("%.2f", vanillaFeralTank.DODGE) .. " → " .. string.format("%.3f", turtleFeralTank.DODGE) .. " (+15% Ancient Brutality)")
-print("  AP: " .. string.format("%.2f", vanillaFeralTank.ATTACKPOWER) .. " → " .. string.format("%.3f", turtleFeralTank.ATTACKPOWER) .. " (+10%)")
-print("  AGI: " .. string.format("%.2f", vanillaFeralTank.AGI) .. " → " .. string.format("%.3f", turtleFeralTank.AGI) .. " (+10%)")
-print("  WEAPONDPS: " .. string.format("%.2f", vanillaFeralTank.WEAPONDPS) .. " → " .. string.format("%.2f", turtleFeralTank.WEAPONDPS) .. " (+15% Savage Bite/Maul)")
-print("  ARMORPEN: " .. string.format("%.3f", vanillaFeralTank.ARMORPEN) .. " → " .. string.format("%.2f", turtleFeralTank.ARMORPEN) .. " (+30%)")
 
 -- Queue StatSet creation (delayed until OnEnable)
 table.insert(ItemsOfPower_PendingStatSets, function()
@@ -326,9 +297,7 @@ local set = ItemsOfPower.SetTypes.StatSet:new("TurtleWoW_Druid_Feral_Tank", stat
 
 if not ItemsOfPower.SetByName["TurtleWoW_Druid_Feral_Tank"] then
     ItemsOfPower:RegisterSet(set)
-    print("Created StatSet: TurtleWoW_Druid_Feral_Tank")
   else
-    print("Updated StatSet: TurtleWoW_Druid_Feral_Tank")
   end
 end)
 
@@ -384,11 +353,6 @@ turtleRestoration.SPI = vanillaRestoration.SPI * 1.2  -- 0.87 → 1.044
 --    Conservative: +10% value (situational, only in Tree of Life form)
 turtleRestoration.ARMOR = vanillaRestoration.ARMOR * 1.1  -- 0.005 → 0.0055
 
-print("")
-print("TurtleWoW_Druid_Restoration:")
-print("  HEAL: " .. string.format("%.2f", vanillaRestoration.HEAL) .. " → " .. string.format("%.3f", turtleRestoration.HEAL) .. " (+50% ToL + Gift of Nature!)")
-print("  SPI: " .. string.format("%.2f", vanillaRestoration.SPI) .. " → " .. string.format("%.3f", turtleRestoration.SPI) .. " (+20% Emerald Blessing)")
-print("  ARMOR: " .. string.format("%.3f", vanillaRestoration.ARMOR) .. " → " .. string.format("%.4f", turtleRestoration.ARMOR) .. " (+10% ToL form)")
 
 -- Queue StatSet creation (delayed until OnEnable)
 table.insert(ItemsOfPower_PendingStatSets, function()
@@ -400,12 +364,7 @@ table.insert(ItemsOfPower_PendingStatSets, function()
 
   if not ItemsOfPower.SetByName["TurtleWoW_Druid_Restoration"] then
     ItemsOfPower:RegisterSet(set)
-    print("Created StatSet: TurtleWoW_Druid_Restoration")
   else
-    print("Updated StatSet: TurtleWoW_Druid_Restoration")
   end
 end)
 
-print("")
-print("All Turtle WoW Druid StatSets created!")
-print("Total: 4 specs")

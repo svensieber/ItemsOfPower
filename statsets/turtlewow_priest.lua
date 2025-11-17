@@ -112,14 +112,6 @@ turtleDiscipline.INT = vanillaDiscipline.INT * 1.1  -- 1.0 → 1.1
 --    Conservative: +10% value
 turtleDiscipline.SPELLHASTE = turtleDiscipline.SPELLHASTE * 1.1  -- 4.58 → 5.04
 
-print("TurtleWoW_Priest_Discipline:")
-print("  NEW ROLE: Holy DPS Support (complete rework!)")
-print("  DMG: NEW → " .. string.format("%.2f", turtleDiscipline.DMG) .. " (Inner Fire +74, Smite, Holy Fire)")
-print("  HOLYDMG: NEW → " .. string.format("%.3f", turtleDiscipline.HOLYDMG) .. " (+45%)")
-print("  HEAL: " .. string.format("%.2f", vanillaDiscipline.HEAL) .. " → " .. string.format("%.2f", turtleDiscipline.HEAL) .. " (+100% PW:Shield 35% coeff!)")
-print("  SPELLTOHIT: NEW → " .. string.format("%.2f", turtleDiscipline.SPELLTOHIT) .. " (DPS spec)")
-print("  SPELLCRIT: " .. string.format("%.2f", vanillaDiscipline.SPELLCRIT) .. " → " .. string.format("%.3f", turtleDiscipline.SPELLCRIT) .. " (+15% Searing Light)")
-print("  INT: " .. string.format("%.2f", vanillaDiscipline.INT) .. " → " .. string.format("%.2f", turtleDiscipline.INT) .. " (+10% Mental Strength)")
 
 -- Queue StatSet creation (delayed until OnEnable)
 table.insert(ItemsOfPower_PendingStatSets, function()
@@ -131,9 +123,7 @@ table.insert(ItemsOfPower_PendingStatSets, function()
 
   if not ItemsOfPower.SetByName["TurtleWoW_Priest_Discipline"] then
     ItemsOfPower:RegisterSet(set)
-    print("Created StatSet: TurtleWoW_Priest_Discipline")
   else
-    print("Updated StatSet: TurtleWoW_Priest_Discipline")
   end
 end)
 
@@ -192,11 +182,6 @@ turtleHoly.SPI = vanillaHoly.SPI * 1.1  -- 0.73 → 0.803
 --    Conservative: Low value since Holy focuses on healing
 turtleHoly.DMG = 0.1  -- Minor spell damage for hybrid Smite usage
 
-print("")
-print("TurtleWoW_Priest_Holy:")
-print("  HEAL: " .. string.format("%.2f", vanillaHoly.HEAL) .. " → " .. string.format("%.3f", turtleHoly.HEAL) .. " (+10% net: -15% base + 30% talents)")
-print("  SPI: " .. string.format("%.2f", vanillaHoly.SPI) .. " → " .. string.format("%.3f", turtleHoly.SPI) .. " (+10% SoR + Spiritual Guidance)")
-print("  DMG: NEW → " .. string.format("%.1f", turtleHoly.DMG) .. " (Inner Fire for hybrid)")
 
 -- Queue StatSet creation (delayed until OnEnable)
 table.insert(ItemsOfPower_PendingStatSets, function()
@@ -208,9 +193,7 @@ table.insert(ItemsOfPower_PendingStatSets, function()
 
   if not ItemsOfPower.SetByName["TurtleWoW_Priest_Holy"] then
     ItemsOfPower:RegisterSet(set)
-    print("Created StatSet: TurtleWoW_Priest_Holy")
   else
-    print("Updated StatSet: TurtleWoW_Priest_Holy")
   end
 end)
 
@@ -274,13 +257,6 @@ turtleShadow.SPI = vanillaShadow.SPI * 2.0  -- 0.21 → 0.42
 --    Conservative: Low value since Shadow focuses on DPS
 turtleShadow.HEAL = 0.15  -- Minor healing power for Shadow Mend utility
 
-print("")
-print("TurtleWoW_Priest_Shadow:")
-print("  SPELLTOHIT: " .. string.format("%.2f", vanillaShadow.SPELLTOHIT) .. " → " .. string.format("%.2f", turtleShadow.SPELLTOHIT) .. " (+12.5%)")
-print("  DMG: " .. string.format("%.2f", vanillaShadow.DMG) .. " → " .. string.format("%.2f", turtleShadow.DMG) .. " (+30%)")
-print("  SHADOWDMG: " .. string.format("%.2f", vanillaShadow.SHADOWDMG) .. " → " .. string.format("%.2f", turtleShadow.SHADOWDMG) .. " (+35% Mind Flay 75%!)")
-print("  SPI: " .. string.format("%.2f", vanillaShadow.SPI) .. " → " .. string.format("%.2f", turtleShadow.SPI) .. " (+100% Improved Shadowform!)")
-print("  HEAL: NEW → " .. string.format("%.2f", turtleShadow.HEAL) .. " (Shadow Mend utility)")
 
 -- Queue StatSet creation (delayed until OnEnable)
 table.insert(ItemsOfPower_PendingStatSets, function()
@@ -292,12 +268,7 @@ table.insert(ItemsOfPower_PendingStatSets, function()
 
   if not ItemsOfPower.SetByName["TurtleWoW_Priest_Shadow"] then
     ItemsOfPower:RegisterSet(set)
-    print("Created StatSet: TurtleWoW_Priest_Shadow")
   else
-    print("Updated StatSet: TurtleWoW_Priest_Shadow")
   end
 end)
 
-print("")
-print("All Turtle WoW Priest StatSets created!")
-print("Total: 3 specs")

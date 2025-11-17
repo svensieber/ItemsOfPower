@@ -45,9 +45,7 @@ do
   if not ItemsOfPower.SetByName["Vanilla - Druid - Balance"] then
     local set = ItemsOfPower.SetTypes.StatSet:new("Vanilla - Druid - Balance", stats)
     ItemsOfPower:RegisterSet(set)
-    print("Created StatSet: Vanilla - Druid - Balance")
   else
-    print("StatSet already exists: Vanilla - Druid - Balance")
   end
 end
 
@@ -85,9 +83,7 @@ do
   if not ItemsOfPower.SetByName["Vanilla - Druid - Feral Damage"] then
     local set = ItemsOfPower.SetTypes.StatSet:new("Vanilla - Druid - Feral Damage", stats)
     ItemsOfPower:RegisterSet(set)
-    print("Created StatSet: Vanilla - Druid - Feral Damage")
   else
-    print("StatSet already exists: Vanilla - Druid - Feral Damage")
   end
 end
 
@@ -125,9 +121,7 @@ do
   if not ItemsOfPower.SetByName["Vanilla - Druid - Feral Tank"] then
     local set = ItemsOfPower.SetTypes.StatSet:new("Vanilla - Druid - Feral Tank", stats)
     ItemsOfPower:RegisterSet(set)
-    print("Created StatSet: Vanilla - Druid - Feral Tank")
   else
-    print("StatSet already exists: Vanilla - Druid - Feral Tank")
   end
 end
 
@@ -160,9 +154,7 @@ do
   if not ItemsOfPower.SetByName["Vanilla - Druid - Restoration"] then
     local set = ItemsOfPower.SetTypes.StatSet:new("Vanilla - Druid - Restoration", stats)
     ItemsOfPower:RegisterSet(set)
-    print("Created StatSet: Vanilla - Druid - Restoration")
   else
-    print("StatSet already exists: Vanilla - Druid - Restoration")
   end
 end
 
@@ -199,9 +191,7 @@ do
   if not ItemsOfPower.SetByName["Vanilla - Hunter - Beast Mastery"] then
     local set = ItemsOfPower.SetTypes.StatSet:new("Vanilla - Hunter - Beast Mastery", stats)
     ItemsOfPower:RegisterSet(set)
-    print("Created StatSet: Vanilla - Hunter - Beast Mastery")
   else
-    print("StatSet already exists: Vanilla - Hunter - Beast Mastery")
   end
 end
 
@@ -238,9 +228,7 @@ do
   if not ItemsOfPower.SetByName["Vanilla - Hunter - Marksmanship"] then
     local set = ItemsOfPower.SetTypes.StatSet:new("Vanilla - Hunter - Marksmanship", stats)
     ItemsOfPower:RegisterSet(set)
-    print("Created StatSet: Vanilla - Hunter - Marksmanship")
   else
-    print("StatSet already exists: Vanilla - Hunter - Marksmanship")
   end
 end
 
@@ -277,9 +265,7 @@ do
   if not ItemsOfPower.SetByName["Vanilla - Hunter - Survival"] then
     local set = ItemsOfPower.SetTypes.StatSet:new("Vanilla - Hunter - Survival", stats)
     ItemsOfPower:RegisterSet(set)
-    print("Created StatSet: Vanilla - Hunter - Survival")
   else
-    print("StatSet already exists: Vanilla - Hunter - Survival")
   end
 end
 
@@ -317,9 +303,7 @@ do
   if not ItemsOfPower.SetByName["Vanilla - Mage - Arcane"] then
     local set = ItemsOfPower.SetTypes.StatSet:new("Vanilla - Mage - Arcane", stats)
     ItemsOfPower:RegisterSet(set)
-    print("Created StatSet: Vanilla - Mage - Arcane")
   else
-    print("StatSet already exists: Vanilla - Mage - Arcane")
   end
 end
 
@@ -357,9 +341,7 @@ do
   if not ItemsOfPower.SetByName["Vanilla - Mage - Fire"] then
     local set = ItemsOfPower.SetTypes.StatSet:new("Vanilla - Mage - Fire", stats)
     ItemsOfPower:RegisterSet(set)
-    print("Created StatSet: Vanilla - Mage - Fire")
   else
-    print("StatSet already exists: Vanilla - Mage - Fire")
   end
 end
 
@@ -397,9 +379,7 @@ do
   if not ItemsOfPower.SetByName["Vanilla - Mage - Frost"] then
     local set = ItemsOfPower.SetTypes.StatSet:new("Vanilla - Mage - Frost", stats)
     ItemsOfPower:RegisterSet(set)
-    print("Created StatSet: Vanilla - Mage - Frost")
   else
-    print("StatSet already exists: Vanilla - Mage - Frost")
   end
 end
 
@@ -433,9 +413,7 @@ do
   if not ItemsOfPower.SetByName["Vanilla - Paladin - Holy"] then
     local set = ItemsOfPower.SetTypes.StatSet:new("Vanilla - Paladin - Holy", stats)
     ItemsOfPower:RegisterSet(set)
-    print("Created StatSet: Vanilla - Paladin - Holy")
   else
-    print("StatSet already exists: Vanilla - Paladin - Holy")
   end
 end
 
@@ -479,9 +457,7 @@ do
   if not ItemsOfPower.SetByName["Vanilla - Paladin - Protection"] then
     local set = ItemsOfPower.SetTypes.StatSet:new("Vanilla - Paladin - Protection", stats)
     ItemsOfPower:RegisterSet(set)
-    print("Created StatSet: Vanilla - Paladin - Protection")
   else
-    print("StatSet already exists: Vanilla - Paladin - Protection")
   end
 end
 
@@ -523,9 +499,7 @@ do
   if not ItemsOfPower.SetByName["Vanilla - Paladin - Retribution"] then
     local set = ItemsOfPower.SetTypes.StatSet:new("Vanilla - Paladin - Retribution", stats)
     ItemsOfPower:RegisterSet(set)
-    print("Created StatSet: Vanilla - Paladin - Retribution")
   else
-    print("StatSet already exists: Vanilla - Paladin - Retribution")
   end
 end
 
@@ -558,9 +532,7 @@ do
   if not ItemsOfPower.SetByName["Vanilla - Priest - Discipline"] then
     local set = ItemsOfPower.SetTypes.StatSet:new("Vanilla - Priest - Discipline", stats)
     ItemsOfPower:RegisterSet(set)
-    print("Created StatSet: Vanilla - Priest - Discipline")
   else
-    print("StatSet already exists: Vanilla - Priest - Discipline")
   end
 end
 
@@ -593,9 +565,7 @@ do
   if not ItemsOfPower.SetByName["Vanilla - Priest - Holy"] then
     local set = ItemsOfPower.SetTypes.StatSet:new("Vanilla - Priest - Holy", stats)
     ItemsOfPower:RegisterSet(set)
-    print("Created StatSet: Vanilla - Priest - Holy")
   else
-    print("StatSet already exists: Vanilla - Priest - Holy")
   end
 end
 
@@ -631,9 +601,7 @@ do
   if not ItemsOfPower.SetByName["Vanilla - Priest - Shadow"] then
     local set = ItemsOfPower.SetTypes.StatSet:new("Vanilla - Priest - Shadow", stats)
     ItemsOfPower:RegisterSet(set)
-    print("Created StatSet: Vanilla - Priest - Shadow")
   else
-    print("StatSet already exists: Vanilla - Priest - Shadow")
   end
 end
 
@@ -666,9 +634,7 @@ do
   if not ItemsOfPower.SetByName["Vanilla - Rogue - Assassination"] then
     local set = ItemsOfPower.SetTypes.StatSet:new("Vanilla - Rogue - Assassination", stats)
     ItemsOfPower:RegisterSet(set)
-    print("Created StatSet: Vanilla - Rogue - Assassination")
   else
-    print("StatSet already exists: Vanilla - Rogue - Assassination")
   end
 end
 
@@ -701,9 +667,7 @@ do
   if not ItemsOfPower.SetByName["Vanilla - Rogue - Combat"] then
     local set = ItemsOfPower.SetTypes.StatSet:new("Vanilla - Rogue - Combat", stats)
     ItemsOfPower:RegisterSet(set)
-    print("Created StatSet: Vanilla - Rogue - Combat")
   else
-    print("StatSet already exists: Vanilla - Rogue - Combat")
   end
 end
 
@@ -736,9 +700,7 @@ do
   if not ItemsOfPower.SetByName["Vanilla - Rogue - Subtlety"] then
     local set = ItemsOfPower.SetTypes.StatSet:new("Vanilla - Rogue - Subtlety", stats)
     ItemsOfPower:RegisterSet(set)
-    print("Created StatSet: Vanilla - Rogue - Subtlety")
   else
-    print("StatSet already exists: Vanilla - Rogue - Subtlety")
   end
 end
 
@@ -775,9 +737,7 @@ do
   if not ItemsOfPower.SetByName["Vanilla - Shaman - Elemental"] then
     local set = ItemsOfPower.SetTypes.StatSet:new("Vanilla - Shaman - Elemental", stats)
     ItemsOfPower:RegisterSet(set)
-    print("Created StatSet: Vanilla - Shaman - Elemental")
   else
-    print("StatSet already exists: Vanilla - Shaman - Elemental")
   end
 end
 
@@ -819,9 +779,7 @@ do
   if not ItemsOfPower.SetByName["Vanilla - Shaman - Enhancement"] then
     local set = ItemsOfPower.SetTypes.StatSet:new("Vanilla - Shaman - Enhancement", stats)
     ItemsOfPower:RegisterSet(set)
-    print("Created StatSet: Vanilla - Shaman - Enhancement")
   else
-    print("StatSet already exists: Vanilla - Shaman - Enhancement")
   end
 end
 
@@ -855,9 +813,7 @@ do
   if not ItemsOfPower.SetByName["Vanilla - Shaman - Restoration"] then
     local set = ItemsOfPower.SetTypes.StatSet:new("Vanilla - Shaman - Restoration", stats)
     ItemsOfPower:RegisterSet(set)
-    print("Created StatSet: Vanilla - Shaman - Restoration")
   else
-    print("StatSet already exists: Vanilla - Shaman - Restoration")
   end
 end
 
@@ -894,9 +850,7 @@ do
   if not ItemsOfPower.SetByName["Vanilla - Warlock - Affliction"] then
     local set = ItemsOfPower.SetTypes.StatSet:new("Vanilla - Warlock - Affliction", stats)
     ItemsOfPower:RegisterSet(set)
-    print("Created StatSet: Vanilla - Warlock - Affliction")
   else
-    print("StatSet already exists: Vanilla - Warlock - Affliction")
   end
 end
 
@@ -933,9 +887,7 @@ do
   if not ItemsOfPower.SetByName["Vanilla - Warlock - Demonology"] then
     local set = ItemsOfPower.SetTypes.StatSet:new("Vanilla - Warlock - Demonology", stats)
     ItemsOfPower:RegisterSet(set)
-    print("Created StatSet: Vanilla - Warlock - Demonology")
   else
-    print("StatSet already exists: Vanilla - Warlock - Demonology")
   end
 end
 
@@ -972,9 +924,7 @@ do
   if not ItemsOfPower.SetByName["Vanilla - Warlock - Destruction"] then
     local set = ItemsOfPower.SetTypes.StatSet:new("Vanilla - Warlock - Destruction", stats)
     ItemsOfPower:RegisterSet(set)
-    print("Created StatSet: Vanilla - Warlock - Destruction")
   else
-    print("StatSet already exists: Vanilla - Warlock - Destruction")
   end
 end
 
@@ -1007,9 +957,7 @@ do
   if not ItemsOfPower.SetByName["Vanilla - Warrior - Arms"] then
     local set = ItemsOfPower.SetTypes.StatSet:new("Vanilla - Warrior - Arms", stats)
     ItemsOfPower:RegisterSet(set)
-    print("Created StatSet: Vanilla - Warrior - Arms")
   else
-    print("StatSet already exists: Vanilla - Warrior - Arms")
   end
 end
 
@@ -1042,9 +990,7 @@ do
   if not ItemsOfPower.SetByName["Vanilla - Warrior - Fury"] then
     local set = ItemsOfPower.SetTypes.StatSet:new("Vanilla - Warrior - Fury", stats)
     ItemsOfPower:RegisterSet(set)
-    print("Created StatSet: Vanilla - Warrior - Fury")
   else
-    print("StatSet already exists: Vanilla - Warrior - Fury")
   end
 end
 
@@ -1079,12 +1025,8 @@ do
   if not ItemsOfPower.SetByName["Vanilla - Warrior - Protection"] then
     local set = ItemsOfPower.SetTypes.StatSet:new("Vanilla - Warrior - Protection", stats)
     ItemsOfPower:RegisterSet(set)
-    print("Created StatSet: Vanilla - Warrior - Protection")
   else
-    print("StatSet already exists: Vanilla - Warrior - Protection")
   end
 end
 
 
-print("All Vanilla Baseline StatSets loaded!")
-print("Total: 28 specs created")

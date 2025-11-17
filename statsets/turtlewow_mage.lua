@@ -111,15 +111,6 @@ turtleArcane.INT = vanillaArcane.INT * 1.2  -- 0.46 → 0.552
 --    Conservative: +15% value
 turtleArcane.SPELLHASTE = turtleArcane.SPELLHASTE * 1.15  -- 4.74 → 5.45
 
-print("TurtleWoW_Mage_Arcane:")
-print("  SPELLTOHIT: " .. string.format("%.2f", vanillaArcane.SPELLTOHIT) .. " → " .. string.format("%.2f", turtleArcane.SPELLTOHIT) .. " (+12.5%)")
-print("  SPELLCRIT: " .. string.format("%.2f", vanillaArcane.SPELLCRIT) .. " → " .. string.format("%.2f", turtleArcane.SPELLCRIT) .. " (+30% Arcane Potency!)")
-print("  DMG: " .. string.format("%.2f", vanillaArcane.DMG) .. " → " .. string.format("%.2f", turtleArcane.DMG) .. " (+25%)")
-print("  ARCANEDMG: " .. string.format("%.2f", vanillaArcane.ARCANEDMG) .. " → " .. string.format("%.3f", turtleArcane.ARCANEDMG) .. " (+30%)")
-print("  SPI: " .. string.format("%.2f", vanillaArcane.SPI) .. " → " .. string.format("%.3f", turtleArcane.SPI) .. " (+50% Arcane Meditation!)")
-print("  INT: " .. string.format("%.2f", vanillaArcane.INT) .. " → " .. string.format("%.3f", turtleArcane.INT) .. " (+20% Arcane Power)")
-print("  SPELLHASTE: " .. string.format("%.2f", vanillaArcane.SPELLHASTE) .. " → " .. string.format("%.2f", turtleArcane.SPELLHASTE) .. " (+15% Accelerated Arcana)")
-
 -- Queue StatSet creation (delayed until OnEnable)
 table.insert(ItemsOfPower_PendingStatSets, function()
   local stats = turtleArcane
@@ -130,9 +121,6 @@ table.insert(ItemsOfPower_PendingStatSets, function()
 
   if not ItemsOfPower.SetByName["TurtleWoW_Mage_Arcane"] then
     ItemsOfPower:RegisterSet(set)
-    print("Created StatSet: TurtleWoW_Mage_Arcane")
-  else
-    print("Updated StatSet: TurtleWoW_Mage_Arcane")
   end
 end)
 
@@ -198,14 +186,6 @@ turtleFire.FIREDMG = vanillaFire.FIREDMG * 1.2  -- 0.94 → 1.128
 --    Conservative: +10% value
 turtleFire.SPELLHASTE = turtleFire.SPELLHASTE * 1.1  -- 6.58 → 7.24
 
-print("")
-print("TurtleWoW_Mage_Fire:")
-print("  SPELLTOHIT: " .. string.format("%.2f", vanillaFire.SPELLTOHIT) .. " → " .. string.format("%.2f", turtleFire.SPELLTOHIT) .. " (+12.5%)")
-print("  SPELLCRIT: " .. string.format("%.2f", vanillaFire.SPELLCRIT) .. " → " .. string.format("%.2f", turtleFire.SPELLCRIT) .. " (+25% Hot Streak!)")
-print("  DMG: " .. string.format("%.2f", vanillaFire.DMG) .. " → " .. string.format("%.2f", turtleFire.DMG) .. " (+15%)")
-print("  FIREDMG: " .. string.format("%.2f", vanillaFire.FIREDMG) .. " → " .. string.format("%.3f", turtleFire.FIREDMG) .. " (+20%)")
-print("  SPELLHASTE: " .. string.format("%.2f", vanillaFire.SPELLHASTE) .. " → " .. string.format("%.2f", turtleFire.SPELLHASTE) .. " (+10%)")
-
 -- Queue StatSet creation (delayed until OnEnable)
 table.insert(ItemsOfPower_PendingStatSets, function()
   local stats = turtleFire
@@ -216,9 +196,6 @@ table.insert(ItemsOfPower_PendingStatSets, function()
 
   if not ItemsOfPower.SetByName["TurtleWoW_Mage_Fire"] then
     ItemsOfPower:RegisterSet(set)
-    print("Created StatSet: TurtleWoW_Mage_Fire")
-  else
-    print("Updated StatSet: TurtleWoW_Mage_Fire")
   end
 end)
 
@@ -284,14 +261,6 @@ turtleFrost.SPELLCRIT = vanillaFrost.SPELLCRIT * 0.95  -- 4.64 → 4.408
 --    Conservative: +10% value
 turtleFrost.SPELLHASTE = turtleFrost.SPELLHASTE * 1.1  -- 5.06 → 5.56
 
-print("")
-print("TurtleWoW_Mage_Frost:")
-print("  SPELLTOHIT: " .. string.format("%.2f", vanillaFrost.SPELLTOHIT) .. " → " .. string.format("%.2f", turtleFrost.SPELLTOHIT) .. " (+12.5%)")
-print("  DMG: " .. string.format("%.2f", vanillaFrost.DMG) .. " → " .. string.format("%.2f", turtleFrost.DMG) .. " (+20%)")
-print("  FROSTDMG: " .. string.format("%.2f", vanillaFrost.FROSTDMG) .. " → " .. string.format("%.4f", turtleFrost.FROSTDMG) .. " (+25% Icicles + Ice Barrier)")
-print("  SPELLCRIT: " .. string.format("%.2f", vanillaFrost.SPELLCRIT) .. " → " .. string.format("%.3f", turtleFrost.SPELLCRIT) .. " (-5% Shatter nerf)")
-print("  SPELLHASTE: " .. string.format("%.2f", vanillaFrost.SPELLHASTE) .. " → " .. string.format("%.2f", turtleFrost.SPELLHASTE) .. " (+10%)")
-
 -- Queue StatSet creation (delayed until OnEnable)
 table.insert(ItemsOfPower_PendingStatSets, function()
   local stats = turtleFrost
@@ -302,12 +271,5 @@ table.insert(ItemsOfPower_PendingStatSets, function()
 
   if not ItemsOfPower.SetByName["TurtleWoW_Mage_Frost"] then
     ItemsOfPower:RegisterSet(set)
-    print("Created StatSet: TurtleWoW_Mage_Frost")
-  else
-    print("Updated StatSet: TurtleWoW_Mage_Frost")
   end
 end)
-
-print("")
-print("All Turtle WoW Mage StatSets created!")
-print("Total: 3 specs")

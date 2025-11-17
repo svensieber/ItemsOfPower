@@ -91,12 +91,6 @@ turtleMM.RANGEDWEAPONDPS = vanillaMM.RANGEDWEAPONDPS * 1.2  -- 2.167 → 2.6
 --    Conservative: +30% value
 turtleMM.ARMORPEN = vanillaMM.ARMORPEN * 1.3  -- 1.067 → 1.3875
 
-print("TurtleWoW_Hunter_Marksmanship:")
-print("  TOHIT: " .. string.format("%.2f", vanillaMM.TOHIT) .. " → " .. string.format("%.2f", turtleMM.TOHIT) .. " (+12.5%)")
-print("  HASTE: " .. string.format("%.2f", vanillaMM.HASTE) .. " → " .. string.format("%.2f", turtleMM.HASTE))
-print("  RANGEDWEAPONDPS: " .. string.format("%.3f", vanillaMM.RANGEDWEAPONDPS) .. " → " .. string.format("%.2f", turtleMM.RANGEDWEAPONDPS) .. " (+20% Steady Shot!)")
-print("  ARMORPEN: " .. string.format("%.3f", vanillaMM.ARMORPEN) .. " → " .. string.format("%.4f", turtleMM.ARMORPEN) .. " (+30%)")
-
 -- Queue StatSet creation (delayed until OnEnable)
 table.insert(ItemsOfPower_PendingStatSets, function()
   local stats = turtleMM
@@ -104,9 +98,6 @@ table.insert(ItemsOfPower_PendingStatSets, function()
 
   if not ItemsOfPower.SetByName["TurtleWoW_Hunter_Marksmanship"] then
     ItemsOfPower:RegisterSet(set)
-    print("Created StatSet: TurtleWoW_Hunter_Marksmanship")
-  else
-    print("Updated StatSet: TurtleWoW_Hunter_Marksmanship")
   end
 end)
 
@@ -183,15 +174,6 @@ turtleBM.RANGEDWEAPONDPS = vanillaBM.RANGEDWEAPONDPS * 1.15  -- 2.087 → 2.4
 --    Conservative: +30% value
 turtleBM.ARMORPEN = vanillaBM.ARMORPEN * 1.3  -- 0.490 → 0.6375
 
-print("")
-print("TurtleWoW_Hunter_Beast_Mastery:")
-print("  TOHIT: " .. string.format("%.2f", vanillaBM.TOHIT) .. " → " .. string.format("%.2f", turtleBM.TOHIT) .. " (+12.5%)")
-print("  CRIT: " .. string.format("%.2f", vanillaBM.CRIT) .. " → " .. string.format("%.2f", turtleBM.CRIT) .. " (+15%)")
-print("  RAP: " .. string.format("%.2f", vanillaBM.RANGEDATTACKPOWER) .. " → " .. string.format("%.3f", turtleBM.RANGEDATTACKPOWER) .. " (+20%)")
-print("  STA: " .. string.format("%.2f", vanillaBM.STA) .. " → " .. string.format("%.2f", turtleBM.STA) .. " (+10%)")
-print("  RANGEDWEAPONDPS: " .. string.format("%.3f", vanillaBM.RANGEDWEAPONDPS) .. " → " .. string.format("%.2f", turtleBM.RANGEDWEAPONDPS) .. " (+15% Baited Shot!)")
-print("  ARMORPEN: " .. string.format("%.3f", vanillaBM.ARMORPEN) .. " → " .. string.format("%.4f", turtleBM.ARMORPEN) .. " (+30%)")
-
 -- Queue StatSet creation (delayed until OnEnable)
 table.insert(ItemsOfPower_PendingStatSets, function()
   local stats = turtleBM
@@ -202,9 +184,6 @@ local set = ItemsOfPower.SetTypes.StatSet:new("TurtleWoW_Hunter_Beast_Mastery", 
 
 if not ItemsOfPower.SetByName["TurtleWoW_Hunter_Beast_Mastery"] then
     ItemsOfPower:RegisterSet(set)
-    print("Created StatSet: TurtleWoW_Hunter_Beast_Mastery")
-  else
-    print("Updated StatSet: TurtleWoW_Hunter_Beast_Mastery")
   end
 end)
 
@@ -268,13 +247,6 @@ turtleSV.WEAPONDPS = vanillaSV.WEAPONDPS * 1.4  -- 0.714 → 1.0
 --    Conservative: +30% value
 turtleSV.ARMORPEN = vanillaSV.ARMORPEN * 1.3  -- 0.808 → 1.05
 
-print("")
-print("TurtleWoW_Hunter_Survival:")
-print("  TOHIT: " .. string.format("%.2f", vanillaSV.TOHIT) .. " → " .. string.format("%.2f", turtleSV.TOHIT) .. " (+12.5%)")
-print("  CRIT: " .. string.format("%.2f", vanillaSV.CRIT) .. " → " .. string.format("%.2f", turtleSV.CRIT) .. " (+10%)")
-print("  WEAPONDPS (Melee): " .. string.format("%.3f", vanillaSV.WEAPONDPS) .. " → " .. string.format("%.2f", turtleSV.WEAPONDPS) .. " (+40% Mongoose/Carve + Dual Wield!)")
-print("  ARMORPEN: " .. string.format("%.3f", vanillaSV.ARMORPEN) .. " → " .. string.format("%.2f", turtleSV.ARMORPEN) .. " (+30%)")
-
 -- Queue StatSet creation (delayed until OnEnable)
 table.insert(ItemsOfPower_PendingStatSets, function()
   local stats = turtleSV
@@ -285,12 +257,5 @@ table.insert(ItemsOfPower_PendingStatSets, function()
 
   if not ItemsOfPower.SetByName["TurtleWoW_Hunter_Survival"] then
     ItemsOfPower:RegisterSet(set)
-    print("Created StatSet: TurtleWoW_Hunter_Survival")
-  else
-    print("Updated StatSet: TurtleWoW_Hunter_Survival")
   end
 end)
-
-print("")
-print("All Turtle WoW Hunter StatSets created!")
-print("Total: 3 specs")

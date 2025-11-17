@@ -107,14 +107,6 @@ turtleArms.WEAPONDPS = vanillaArms.WEAPONDPS * 1.9  -- 2.795 → 5.31
 --    Conservative: +50% value
 turtleArms.ARMORPEN = vanillaArms.ARMORPEN * 1.5  -- 2.75 → 4.125
 
-print("TurtleWoW_Warrior_Arms:")
-print("  TOHIT: " .. string.format("%.2f", vanillaArms.TOHIT) .. " → " .. string.format("%.2f", turtleArms.TOHIT) .. " (+12.5%)")
-print("  CRIT: " .. string.format("%.2f", vanillaArms.CRIT) .. " → " .. string.format("%.3f", turtleArms.CRIT) .. " (+30% Deep Wounds 2x!)")
-print("  AP: " .. string.format("%.2f", vanillaArms.ATTACKPOWER) .. " → " .. string.format("%.2f", turtleArms.ATTACKPOWER) .. " (+20% Rage gen 90% gear!)")
-print("  WEAPONDPS: " .. string.format("%.3f", vanillaArms.WEAPONDPS) .. " → " .. string.format("%.2f", turtleArms.WEAPONDPS) .. " (+90% Rage Gen CRITICAL!)")
-print("  ARMORPEN: " .. string.format("%.2f", vanillaArms.ARMORPEN) .. " → " .. string.format("%.3f", turtleArms.ARMORPEN) .. " (+50% Armor Cap Removed!)")
-print("  STR: " .. string.format("%.2f", vanillaArms.STR) .. " → " .. string.format("%.2f", turtleArms.STR) .. " (+15%)")
-print("  AGI: " .. string.format("%.2f", vanillaArms.AGI) .. " → " .. string.format("%.3f", turtleArms.AGI) .. " (+10%)")
 
 -- Queue StatSet creation (delayed until OnEnable)
 table.insert(ItemsOfPower_PendingStatSets, function()
@@ -126,9 +118,7 @@ table.insert(ItemsOfPower_PendingStatSets, function()
 
   if not ItemsOfPower.SetByName["TurtleWoW_Warrior_Arms"] then
     ItemsOfPower:RegisterSet(set)
-    print("Created StatSet: TurtleWoW_Warrior_Arms")
   else
-    print("Updated StatSet: TurtleWoW_Warrior_Arms")
   end
 end)
 
@@ -207,16 +197,6 @@ turtleFury.WEAPONDPS = vanillaFury.WEAPONDPS * 1.9  -- 2.747 → 5.22
 --     Conservative: +50% value
 turtleFury.ARMORPEN = vanillaFury.ARMORPEN * 1.5  -- 1.175 → 1.7625
 
-print("")
-print("TurtleWoW_Warrior_Fury:")
-print("  TOHIT: " .. string.format("%.2f", vanillaFury.TOHIT) .. " → " .. string.format("%.2f", turtleFury.TOHIT) .. " (+12.5%)")
-print("  HASTE: " .. string.format("%.2f", vanillaFury.HASTE) .. " → " .. string.format("%.2f", turtleFury.HASTE) .. " (+40% Unbridled Wrath 75%/150%!)")
-print("  CRIT: " .. string.format("%.2f", vanillaFury.CRIT) .. " → " .. string.format("%.3f", turtleFury.CRIT) .. " (+30% Enrage 15%!)")
-print("  AP: " .. string.format("%.2f", vanillaFury.ATTACKPOWER) .. " → " .. string.format("%.3f", turtleFury.ATTACKPOWER) .. " (+20% Rage gen!)")
-print("  WEAPONDPS: " .. string.format("%.3f", vanillaFury.WEAPONDPS) .. " → " .. string.format("%.2f", turtleFury.WEAPONDPS) .. " (+90% Rage Gen CRITICAL!)")
-print("  ARMORPEN: " .. string.format("%.3f", vanillaFury.ARMORPEN) .. " → " .. string.format("%.4f", turtleFury.ARMORPEN) .. " (+50% Armor Cap Removed!)")
-print("  STA: " .. string.format("%.2f", vanillaFury.STA) .. " → " .. string.format("%.3f", turtleFury.STA) .. " (+15% Blood Drinker healing!)")
-print("  STR: " .. string.format("%.2f", vanillaFury.STR) .. " → " .. string.format("%.2f", turtleFury.STR) .. " (+15%)")
 
 -- Queue StatSet creation (delayed until OnEnable)
 table.insert(ItemsOfPower_PendingStatSets, function()
@@ -228,9 +208,7 @@ table.insert(ItemsOfPower_PendingStatSets, function()
 
   if not ItemsOfPower.SetByName["TurtleWoW_Warrior_Fury"] then
     ItemsOfPower:RegisterSet(set)
-    print("Created StatSet: TurtleWoW_Warrior_Fury")
   else
-    print("Updated StatSet: TurtleWoW_Warrior_Fury")
   end
 end)
 
@@ -315,16 +293,6 @@ turtleProtection.WEAPONDPS = vanillaProtection.WEAPONDPS * 1.9  -- 1.647 → 3.1
 --     Conservative: +50% value
 turtleProtection.ARMORPEN = vanillaProtection.ARMORPEN * 1.5  -- 0.475 → 0.7125
 
-print("")
-print("TurtleWoW_Warrior_Protection:")
-print("  TOHIT: " .. string.format("%.2f", vanillaProtection.TOHIT) .. " → " .. string.format("%.2f", turtleProtection.TOHIT) .. " (+12.5%)")
-print("  BLOCKVALUE: " .. string.format("%.2f", vanillaProtection.BLOCKVALUE) .. " → " .. string.format("%.3f", turtleProtection.BLOCKVALUE) .. " (+50% Shield Slam scaling!)")
-print("  AP: " .. string.format("%.2f", vanillaProtection.ATTACKPOWER) .. " → " .. string.format("%.3f", turtleProtection.ATTACKPOWER) .. " (+25% Shield Slam + Rage gen!)")
-print("  WEAPONDPS: " .. string.format("%.3f", vanillaProtection.WEAPONDPS) .. " → " .. string.format("%.2f", turtleProtection.WEAPONDPS) .. " (+90% Rage Gen CRITICAL!)")
-print("  ARMORPEN: " .. string.format("%.3f", vanillaProtection.ARMORPEN) .. " → " .. string.format("%.4f", turtleProtection.ARMORPEN) .. " (+50% Concussion Blow 100% ArPen!)")
-print("  ARMOR: " .. string.format("%.2f", vanillaProtection.ARMOR) .. " → " .. string.format("%.3f", turtleProtection.ARMOR) .. " (+30% CAP REMOVED!)")
-print("  CRIT: " .. string.format("%.2f", vanillaProtection.CRIT) .. " → " .. string.format("%.3f", turtleProtection.CRIT) .. " (+15%)")
-print("  STR: " .. string.format("%.2f", vanillaProtection.STR) .. " → " .. string.format("%.3f", turtleProtection.STR) .. " (+20% threat scaling)")
 
 -- Queue StatSet creation (delayed until OnEnable)
 table.insert(ItemsOfPower_PendingStatSets, function()
@@ -336,12 +304,7 @@ table.insert(ItemsOfPower_PendingStatSets, function()
 
   if not ItemsOfPower.SetByName["TurtleWoW_Warrior_Protection"] then
     ItemsOfPower:RegisterSet(set)
-    print("Created StatSet: TurtleWoW_Warrior_Protection")
   else
-    print("Updated StatSet: TurtleWoW_Warrior_Protection")
   end
 end)
 
-print("")
-print("All Turtle WoW Warrior StatSets created!")
-print("Total: 3 specs")

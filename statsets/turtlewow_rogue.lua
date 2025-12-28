@@ -5,13 +5,33 @@
 
   Changes from Vanilla:
   - Hit Cap: 9% → 8% (all specs: +12.5% Hit Rating value)
-  - Haste: Baseline adjustments
   - Assassination: Attack Power HIGHLY valuable (Poison AP Scaling)
   - Assassination: Crit more valuable (Relentless Strikes)
   - Combat: Agility more valuable (Blade Rush energy regen)
   - Combat: Crit more valuable (Close Quarters Combat)
   - Subtlety: Attack Power more valuable (Mark for Death, Shadow of Death)
   - Subtlety: Health more valuable (Cloaked in Shadows)
+
+  Turtle WoW Hotfixes & Patches:
+  - Poison AP Scaling (Dec 2024): Instant 5%, Deadly/Corrosive 2%/tick (8% total)
+  - Envenom: 30% increased poison effectiveness (April 2025, was 25%)
+  - Relentless Strikes: +5% finisher damage per stack, max 5 (25%)
+  - Deadly Throw (April 2025): Reworked to 100% weapon damage, ranged interrupt
+  - Blade Rush (1.18.0): Agility reduces energy tick time
+  - Blade Flurry (1.18.0): Now baseline toggle, -30% energy regen, -20% damage
+  - Shadow of Death (1.18.0): 50-250% AP capacity based on combo points
+  - Mark for Death: Party gains 30% of rogue AP as AP, 18% as spell power
+  - Savage Strikes: +13/25% offhand weapon damage (April 2025) - already in WEAPONDPS multipliers
+  - Throwing Weapon Spec: 50/100% offhand poison apply (April 2025) - utility only, no stat weight
+  - All Finishers: -5 energy cost (Dec 2024) - QoL, no stat weight
+
+  LIMITATIONS (Complex mechanics that cannot be fully modeled with static weights):
+  - Envenom: "Ramps up the damage of your poisons by 15% per combo point" is dynamic
+  - Relentless Strikes: Proc-based energy refund depends on finisher frequency
+  - Mark for Death: Party utility (30% AP as AP, 18% as spell power) benefits raid
+  - Blade Rush: Agility → energy tick reduction is a complex formula
+  - Shadow of Death: 250% AP at 5 CP is situational burst
+  These mechanics make Rogue stat weights more approximate than other classes.
 
   References:
   - docs/turtle-wow-rogue-scaling-changes.md
@@ -83,19 +103,19 @@ turtleAssassination.TOHIT = vanillaAssassination.TOHIT * 1.125  -- 9.38 → 10.5
 
 -- 3. Attack Power MORE valuable (Poison AP Scaling - CRITICAL)
 --    - Instant Poison: +5% AP per proc
---    - Deadly/Corrosive: +8% AP per stack (40% for 5 stacks)
---    - Envenom: +30% effectiveness multiplier
+--    - Deadly/Corrosive: +2%/tick (8% total for 4 ticks)
+--    - Envenom: +30% effectiveness multiplier (April 2025, was 25%)
 --    - Noxious Assault: 35% AP direct damage
---    Conservative: +35% value
-turtleAssassination.ATTACKPOWER = vanillaAssassination.ATTACKPOWER * 1.35  -- 0.45 → 0.608
+--    +60% value
+turtleAssassination.ATTACKPOWER = vanillaAssassination.ATTACKPOWER * 1.6  -- 0.45 → 0.72
 
 -- 4. Crit more valuable (Relentless Strikes: +5% finisher damage per stack, max 25%)
 --    Conservative: +10% value
 turtleAssassination.CRIT = vanillaAssassination.CRIT * 1.1  -- 6.885 → 7.57
 
--- 5. WEAPONDPS more valuable (Deadly Throw 100% weapon damage, but many abilities shifted to AP)
---    Conservative: +35% value
-turtleAssassination.WEAPONDPS = vanillaAssassination.WEAPONDPS * 1.35  -- 2.222 → 3
+-- 5. WEAPONDPS more valuable (Deadly Throw 100% weapon damage April 2025, Noxious Assault)
+--    +55% value
+turtleAssassination.WEAPONDPS = vanillaAssassination.WEAPONDPS * 1.55  -- 2.222 → 3.44
 
 -- 6. ARMORPEN more valuable (Expose Armor earlier access + Armor Cap Removal)
 --    Conservative: +45% value
@@ -159,23 +179,22 @@ turtleCombat.TOHIT = vanillaCombat.TOHIT * 1.125
 -- 2. Haste Baseline Check
 -- Haste baseline check removed (vanilla values are correct)
 
--- 3. Agility MORE valuable (Blade Rush: Agility reduces energy tick time - CRITICAL)
+-- 3. Agility MORE valuable (Blade Rush 1.18.0: Agility reduces energy tick time - CRITICAL)
 --    - Direct energy generation scaling
 --    - +2/5% attack speed
---    Conservative: +25% value
-turtleCombat.AGI = vanillaCombat.AGI * 1.25  -- 1.0 → 1.25
+--    +40% value
+turtleCombat.AGI = vanillaCombat.AGI * 1.4  -- 1.0 → 1.4
 
 -- 4. Crit more valuable (Close Quarters Combat: +2/5% crit for daggers/fist/maces)
 --    Conservative: +10% value
 turtleCombat.CRIT = vanillaCombat.CRIT * 1.1  -- 6.885 → 7.57
 
--- 5. Haste slightly more valuable (Blade Rush: +2/5% attack speed)
---    Conservative: +5% value
-turtleCombat.HASTE = turtleCombat.HASTE * 1.05  -- 7.227 → 7.59
+-- 5. Haste: No documented bonus - using vanilla baseline
+--    (Removed ×1.05 multiplier - no documentation for this bonus)
 
--- 6. WEAPONDPS more valuable (Deadly Throw, Surprise Attack, but many abilities shifted to AP)
---    Conservative: +35% value
-turtleCombat.WEAPONDPS = vanillaCombat.WEAPONDPS * 1.35  -- 2.222 → 3
+-- 6. WEAPONDPS more valuable (Savage Strikes +13/25% offhand April 2025, Surprise Attack)
+--    +50% value
+turtleCombat.WEAPONDPS = vanillaCombat.WEAPONDPS * 1.5  -- 2.222 → 3.33
 
 -- 7. ARMORPEN more valuable (Expose Armor earlier access + Armor Cap Removal)
 --    Conservative: +45% value
@@ -239,11 +258,11 @@ turtleSubtlety.TOHIT = vanillaSubtlety.TOHIT * 1.125
 -- 2. Haste Baseline Check
 -- Haste baseline check removed (vanilla values are correct)
 
--- 3. Attack Power more valuable (Mark for Death, Shadow of Death)
+-- 3. Attack Power more valuable (Mark for Death, Shadow of Death 1.18.0)
 --    - Mark for Death: Party gains 30% AP as AP, 18% as spell power
---    - Shadow of Death: 250% AP capacity at 5 CP
---    Conservative: +20% value
-turtleSubtlety.ATTACKPOWER = vanillaSubtlety.ATTACKPOWER * 1.2  -- 0.45 → 0.54
+--    - Shadow of Death: 50-250% AP capacity based on combo points
+--    +35% value
+turtleSubtlety.ATTACKPOWER = vanillaSubtlety.ATTACKPOWER * 1.35  -- 0.45 → 0.608
 
 -- 4. Health more valuable (Cloaked in Shadows: Shield = 6/12% max health)
 --    Conservative: +50% value

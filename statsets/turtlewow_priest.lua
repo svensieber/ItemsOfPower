@@ -10,10 +10,14 @@
   - Discipline: COMPLETE REWORK into Holy DPS support spec
   - Discipline: Spell Power HIGHLY valuable (Smite, Holy Fire, Resurgent Shield)
   - Discipline: Crit more valuable (Searing Light instant Smite procs)
+  - Smite (1.17.2): Coefficient increased ~+5%
+  - Chastise: 65% SP, grants 13/17/20% haste buff (April 2025)
   - Holy: Healing baseline -15%, but Spiritual Healing +30% compensates
   - Holy: Spirit more valuable (Spirit of Redemption +5%, Spiritual Guidance)
   - Shadow: Spell Power HIGHLY valuable (Mind Flay 75%, Mind Blast 60%)
   - Shadow: Spirit HIGHLY valuable (Improved Shadowform 15% regen while casting)
+  - Mind Flay: Coefficient 45%→75% (1.17.2)
+  - Pain Spike: 43% SP coefficient (April 2025)
   - Power Word: Shield: 10% → 35% coefficient (+250%)
 
   References:
@@ -89,12 +93,12 @@ turtleDiscipline.SPELLTOHIT = turtleDiscipline.SPELLTOHIT * 1.125  -- 7.0 → 7.
 -- Haste baseline check removed (vanilla values are correct)
 
 -- 4. Spell Power HIGHLY valuable (Inner Fire +74, Smite +10%, Holy Fire 100%, Resurgent Shield, Enlighten)
---    Conservative: +40% value for generic spell damage
-turtleDiscipline.DMG = turtleDiscipline.DMG * 1.4  -- 0.9 → 1.26
+--    Conservative: +50% value for generic spell damage (Smite ~+5% coefficient buff 1.17.2)
+turtleDiscipline.DMG = turtleDiscipline.DMG * 1.5  -- 0.9 → 1.35
 
--- 5. Holy Damage more valuable (Smite/Holy Fire primary rotation)
---    Conservative: +45% value
-turtleDiscipline.HOLYDMG = turtleDiscipline.HOLYDMG * 1.45  -- 0.9 → 1.305
+-- 5. Holy Damage more valuable (Smite/Holy Fire primary rotation, Chastise 65% SP)
+--    Conservative: +65% value (Chastise 65% SP + Smite buff = combined Holy DPS increase)
+turtleDiscipline.HOLYDMG = turtleDiscipline.HOLYDMG * 1.65  -- 0.9 → 1.485
 
 -- 6. Healing Power: Power Word: Shield 10% → 35% coefficient (+250%)
 --    Conservative: +100% value (still hybrid with shielding)
@@ -108,10 +112,13 @@ turtleDiscipline.SPELLCRIT = vanillaDiscipline.SPELLCRIT * 1.15  -- 2.56 → 2.9
 --    Conservative: +10% value
 turtleDiscipline.INT = vanillaDiscipline.INT * 1.1  -- 1.0 → 1.1
 
--- 9. Haste more valuable (Mental Strength: +1-3% casting speed)
---    Conservative: +10% value
-turtleDiscipline.SPELLHASTE = turtleDiscipline.SPELLHASTE * 1.1  -- 4.58 → 5.04
+-- 9. Haste more valuable (Mental Strength: +1-3% casting speed, Chastise 13/17/20% haste buff April 2025)
+--    Conservative: +25% value
+turtleDiscipline.SPELLHASTE = turtleDiscipline.SPELLHASTE * 1.25  -- 4.58 → 5.72
 
+-- 10. Add CASTINGREG support (Meditation items in 1.16.0, medium-high value for Discipline)
+--     Discipline is mana-hungry DPS/healer hybrid
+turtleDiscipline.CASTINGREG = 8.0  -- Medium-high value for Discipline mana efficiency
 
 -- Queue StatSet creation (delayed until OnEnable)
 table.insert(ItemsOfPower_PendingStatSets, function()
@@ -181,7 +188,10 @@ turtleHoly.SPI = vanillaHoly.SPI * 1.1  -- 0.73 → 0.803
 -- 4. Add minor Spell Damage for hybrid play (Inner Fire +74 spell damage)
 --    Conservative: Low value since Holy focuses on healing
 turtleHoly.DMG = 0.1  -- Minor spell damage for hybrid Smite usage
+turtleHoly.HOLYDMG = 0.15  -- Holy damage for Smite/Holy Fire hybrid usage
 
+-- 5. Add CASTINGREG support (Meditation items in 1.16.0, HIGH value for Holy healers)
+turtleHoly.CASTINGREG = 15.0  -- High value for Holy Priest mana sustain
 
 -- Queue StatSet creation (delayed until OnEnable)
 table.insert(ItemsOfPower_PendingStatSets, function()
@@ -241,13 +251,13 @@ turtleShadow.SPELLTOHIT = vanillaShadow.SPELLTOHIT * 1.125  -- 8.96 → 10.08
 -- 2. Spell Haste Baseline Check
 -- Haste baseline check removed (vanilla values are correct)
 
--- 3. Spell Power HIGHLY valuable (Inner Fire +74, Mind Flay 45% → 75%, Mind Blast 42.85% → 60%)
---    Conservative: +30% value
-turtleShadow.DMG = vanillaShadow.DMG * 1.3  -- 1.0 → 1.3
+-- 3. Spell Power HIGHLY valuable (Inner Fire +74, Mind Flay 45% → 75%, Mind Blast 42.85% → 60%, Pain Spike 43% April 2025)
+--    Conservative: +40% value
+turtleShadow.DMG = vanillaShadow.DMG * 1.4  -- 1.0 → 1.4
 
--- 4. Shadow Damage more valuable (Mind Flay primary filler, Mind Blast)
---    Conservative: +35% value (Mind Flay is main spell)
-turtleShadow.SHADOWDMG = vanillaShadow.SHADOWDMG * 1.35  -- 1.0 → 1.35
+-- 4. Shadow Damage more valuable (Mind Flay 75% primary filler, Mind Blast, Pain Spike 43%)
+--    Conservative: +45% value (Mind Flay is main spell, Pain Spike April 2025)
+turtleShadow.SHADOWDMG = vanillaShadow.SHADOWDMG * 1.45  -- 1.0 → 1.45
 
 -- 5. Spirit HIGHLY valuable (Improved Shadowform: 15% mana regen continues while casting - CRITICAL)
 --    Conservative: +100% value (massive change from vanilla)
@@ -257,6 +267,9 @@ turtleShadow.SPI = vanillaShadow.SPI * 2.0  -- 0.21 → 0.42
 --    Conservative: Low value since Shadow focuses on DPS
 turtleShadow.HEAL = 0.15  -- Minor healing power for Shadow Mend utility
 
+-- 7. Add CASTINGREG support (Meditation items in 1.16.0, medium value for Shadow)
+--    Shadow already has Improved Shadowform for regen, but CASTINGREG stacks
+turtleShadow.CASTINGREG = 5.0  -- Medium value for Shadow mana efficiency
 
 -- Queue StatSet creation (delayed until OnEnable)
 table.insert(ItemsOfPower_PendingStatSets, function()

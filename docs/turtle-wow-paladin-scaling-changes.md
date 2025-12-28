@@ -241,7 +241,7 @@ This document tracks all Paladin-specific changes from Turtle WoW that affect st
 ### October 21, 2024
 
 #### Protection
-- **Bulwark of the Righteous:** Cooldown increased from 3 minutes to 5 minutes, damage reduction reduced from 40% to 30%
+- **Shield of the Righteous:** Cooldown increased from 3 minutes to 5 minutes, damage reduction reduced from 40% to 30%
 - **Sacred Duty:** Removed from the game (was Stamina increase talent)
 - **Impact:** Tank cooldown less available, damage reduction slightly weaker, talent point freed up
 
@@ -250,7 +250,7 @@ This document tracks all Paladin-specific changes from Turtle WoW that affect st
 ### November 1, 2024
 
 #### Retribution
-- **Crusader Strike:** Weapon damage component reduced by 10%
+- **Crusader Strike:** Weapon damage component reduced by 10% for all ranks
 - **Righteous Strikes:** Holy Strike damage increase reduced to 5/10/15/20/25%
 - **Impact:** Retribution single-target damage reduced, affects physical attack power value
 

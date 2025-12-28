@@ -339,8 +339,24 @@ This document tracks all Warlock-specific changes from Turtle WoW that affect st
 - **Cooldown:** 3 minutes
 
 #### Voidwalker Sacrifice (NEW Scaling)
-- **Change:** Added spellpower scaling to Voidwalker's Sacrifice ability
+- **Spell Power Coefficients by Rank:** 100/105/110/115/120%
 - **Impact:** Voidwalker sacrifice shield now scales with spell damage
+
+#### Succubus Lash of Pain (NEW Scaling)
+- **Spell Power Coefficients by Rank:** 40/45/50/55/60%
+- **Impact:** Lash of Pain now scales with warlock spell damage
+
+#### Felguard Legion Strike (NEW Scaling)
+- **Spell Power Coefficient:** 60%
+- **Impact:** Legion Strike now scales with warlock spell damage
+
+#### Felguard Felstorm (NEW Scaling)
+- **Spell Power Coefficient:** 25%
+- **Impact:** Felstorm additional damage now scales with warlock spell damage
+
+#### Infernal Immolation Aura (NEW Scaling)
+- **Spell Power Coefficient:** 25%
+- **Impact:** Infernal's Immolation Aura now scales with warlock spell damage
 
 ### April 1, 2025 (MAJOR CHANGES)
 

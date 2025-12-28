@@ -15,6 +15,20 @@
   - Restoration: Healing Power LESS valuable (Chain Heal nerf)
   - Restoration: Spirit HIGHLY valuable (Improved Water Shield)
 
+  Turtle WoW Hotfixes & 1.18.0 Changes:
+  - Fire Totems (1.18.0): Now inherit shaman's spell crit and spell hit
+  - Elemental Fury (1.18.0): +5/10% Fire/Nature damage, +50/100% crit damage
+  - Molten Blast (1.18.0): 57.14% SP, refreshes Flame Shock
+  - Earthquake (1.18.0): 60% SP, new AoE capstone
+  - Windfury Weapon (Nov 2024): 20% proc, 0.5s ICD, can proc from Lightning Strike
+  - Flurry (Dec 2024): 8/11/14/17/20% attack speed (buffed from 7-15%)
+  - Ancestral Knowledge (Dec 2024): 1-5% TOTAL stats (from gear)
+  - Lightning Strike (Dec 2024): Now procs Windfury, mana cost increased
+  - Stormstrike (Dec 2024): Mana cost increased
+  - Shock AP Scaling: Flame 14.5%, Earth/Frost 10%
+  - Chain Heal (1.18.0): SP coefficient 71.42%→61.42% = 0.86× (NERF)
+  - Improved Water Shield (Dec 2024): Changed to 3/6/9 mp5 + % per charge
+
   References:
   - docs/turtle-wow-shaman-scaling-changes.md
   - docs/vanilla-baseline-weights.md
@@ -79,8 +93,9 @@ for k, v in pairs(vanillaElemental) do
   turtleElemental[k] = v
 end
 
--- 1. Spell Hit Cap Adjustment: 9% → 8% (+12.5%)
-turtleElemental.SPELLTOHIT = vanillaElemental.SPELLTOHIT * 1.125  -- 7.2 → 8.1
+-- 1. Spell Hit Cap Adjustment: 9% → 8% (+12.5%), Fire Totems inherit hit (1.18.0)
+--    1.125 base * 1.2 for Fire Totem inheritance = 1.2 total
+turtleElemental.SPELLTOHIT = vanillaElemental.SPELLTOHIT * 1.2  -- 7.2 → 8.64
 
 -- 2. Spell Haste Baseline Check
 -- Haste baseline check removed (vanilla values are correct)
@@ -90,9 +105,12 @@ turtleElemental.SPELLTOHIT = vanillaElemental.SPELLTOHIT * 1.125  -- 7.2 → 8.1
 turtleElemental.DMG = vanillaElemental.DMG * 1.15  -- 1.0 → 1.15
 
 -- 4. Crit HIGHLY valuable (Elemental Fury: +50/100% crit damage, Fire totems inherit crit)
---    Conservative: +15% value
-turtleElemental.SPELLCRIT = vanillaElemental.SPELLCRIT * 1.15  -- 8.4 → 9.66
+--    ×1.3 for Elemental Fury +50/100% crit damage + Fire Totem crit inheritance
+turtleElemental.SPELLCRIT = vanillaElemental.SPELLCRIT * 1.3  -- 8.4 → 10.92
 
+-- 5. Add CASTINGREG support (Meditation items in 1.16.0, medium-high value for Elemental)
+--    Elemental is mana-hungry spec
+turtleElemental.CASTINGREG = 7.0  -- Medium-high value for Elemental mana efficiency
 
 -- Queue StatSet creation (delayed until OnEnable)
 table.insert(ItemsOfPower_PendingStatSets, function()
@@ -154,41 +172,39 @@ for k, v in pairs(vanillaEnhancement) do
   turtleEnhancement[k] = v
 end
 
--- 1. Hit Cap Adjustment (Physical)
-turtleEnhancement.TOHIT = vanillaEnhancement.TOHIT * 1.125  -- 6.28 → 7.07
+-- 1. Hit Cap Adjustment (Physical): Windfury 20% proc means more hits = hit cap more important
+--    ×1.15 for hit cap + Windfury synergy
+turtleEnhancement.TOHIT = vanillaEnhancement.TOHIT * 1.15  -- 6.28 → 7.22
 
 -- 2. Spell Hit Cap Adjustment (Hybrid)
 turtleEnhancement.SPELLTOHIT = vanillaEnhancement.SPELLTOHIT * 1.125  -- 1.78 → 2.01
 
--- 3. Haste Baseline Check
--- Haste baseline check removed (vanilla values are correct)
+-- 3. Haste HIGHLY valuable (Flurry 8/11/14/17/20%, Windfury 20% proc + 0.5s ICD synergy)
+--    ×1.25 for Flurry buff + Windfury synergy
+turtleEnhancement.HASTE = vanillaEnhancement.HASTE * 1.25  -- 5.14 → 6.42
 
--- 4. Attack Power more valuable (Shock AP scaling: 10% Earth/Frost, 8.5% + 6% Flame Shock)
---    Conservative: +20% value
-turtleEnhancement.ATTACKPOWER = vanillaEnhancement.ATTACKPOWER * 1.2  -- 0.5 → 0.6
+-- 4. Attack Power HIGHLY valuable (Flame Shock 14.5% AP, Earth/Frost Shock 10% AP, Lightning Strike)
+--    ×1.5 for Shock AP scaling + Lightning Strike shield scaling
+turtleEnhancement.ATTACKPOWER = vanillaEnhancement.ATTACKPOWER * 1.5  -- 0.5 → 0.75
 
 -- 5. ALL STATS more valuable (Ancestral Knowledge: 1-5% total stats - CRITICAL!)
 --    Conservative: +5% value (matches max rank)
 turtleEnhancement.STR = vanillaEnhancement.STR * 1.05  -- 1.0 → 1.05
 turtleEnhancement.AGI = vanillaEnhancement.AGI * 1.05  -- 0.87 → 0.91
 turtleEnhancement.STA = vanillaEnhancement.STA * 1.05  -- 0.1 → 0.105
-turtleEnhancement.INT = vanillaEnhancement.INT * 1.05  -- 0.34 → 0.357
+turtleEnhancement.INT = vanillaEnhancement.INT * 1.0   -- 0.34 → 0.34 (Stormstrike/Lightning Strike mana cost increased)
 turtleEnhancement.SPI = vanillaEnhancement.SPI * 1.05  -- 0.05 → 0.0525
 
 -- 6. Crit more valuable (Element's Grace: +2-10% instant spell crit for shocks)
---    Conservative: +10% value
+--    Physical crit unchanged, Spell crit ×1.2 for Element's Grace
 turtleEnhancement.CRIT = vanillaEnhancement.CRIT * 1.1  -- 8.33 → 9.16
-turtleEnhancement.SPELLCRIT = vanillaEnhancement.SPELLCRIT * 1.1  -- 2.61 → 2.87
+turtleEnhancement.SPELLCRIT = vanillaEnhancement.SPELLCRIT * 1.2  -- 2.61 → 3.13
 
--- 7. Haste slightly more valuable (Flurry buffed, Bloodlust buffed)
---    Conservative: +5% value
-turtleEnhancement.HASTE = turtleEnhancement.HASTE * 1.05  -- 5.14 → 5.40
+-- 7. WEAPONDPS HIGHLY valuable (Lightning Strike 60% Phys + 20% Nature weapon dmg, procs Windfury)
+--    ×1.45 for Lightning Strike + Windfury proc synergy
+turtleEnhancement.WEAPONDPS = vanillaEnhancement.WEAPONDPS * 1.45  -- 2.308 → 3.35
 
--- 8. WEAPONDPS more valuable (Lightning Strike 80% weapon dmg + Windfury proc synergy)
---    Conservative: +30% value
-turtleEnhancement.WEAPONDPS = vanillaEnhancement.WEAPONDPS * 1.3  -- 2.308 → 3.0
-
--- 9. ARMORPEN more valuable (Armor Cap Removal 1.18.0)
+-- 8. ARMORPEN more valuable (Armor Cap Removal 1.18.0)
 --    Conservative: +30% value
 turtleEnhancement.ARMORPEN = vanillaEnhancement.ARMORPEN * 1.3  -- 0.346 → 0.45
 
@@ -248,13 +264,20 @@ end
 -- Haste baseline check removed (vanilla values are correct)
 
 -- 2. Healing Power LESS valuable (Chain Heal nerf: 71.42% → 61.42% coefficient - CRITICAL)
---    Conservative: -10% value
-turtleRestoration.HEAL = vanillaRestoration.HEAL * 0.9  -- 0.9 → 0.81
+--    ×0.86 precisely calculated: 61.42/71.42 = 0.86
+turtleRestoration.HEAL = vanillaRestoration.HEAL * 0.86  -- 0.9 → 0.774
 
--- 3. Spirit HIGHLY valuable (Improved Water Shield: +15% mana regen while casting - CRITICAL!)
---    Conservative: +50% value
-turtleRestoration.SPI = vanillaRestoration.SPI * 1.5  -- 0.61 → 0.915
+-- 3. Spirit less valuable (Improved Water Shield changed to mp5 system - less Spirit-dependent)
+--    ×1.2 instead of previous 1.5 - mp5 system is more direct mana regen
+turtleRestoration.SPI = vanillaRestoration.SPI * 1.2  -- 0.61 → 0.732
 
+-- 4. MANAREG more valuable (Water Shield mp5 system more valuable)
+--    ×1.15 for direct mp5 scaling with Improved Water Shield
+turtleRestoration.MANAREG = vanillaRestoration.MANAREG * 1.15  -- 1.33 → 1.53
+
+-- 5. Add CASTINGREG support (Meditation items in 1.16.0, HIGH value for Restoration)
+--    Resto healers benefit greatly from combat mana regen
+turtleRestoration.CASTINGREG = 14.0  -- High value for Restoration mana sustain
 
 -- Queue StatSet creation (delayed until OnEnable)
 table.insert(ItemsOfPower_PendingStatSets, function()

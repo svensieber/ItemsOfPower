@@ -454,6 +454,19 @@ This document tracks all Warrior-specific changes from Turtle WoW that affect st
 
 ---
 
+### April 1, 2025
+
+#### Concussion Blow (Buff)
+- **Stun Duration:** 2 seconds → 3 seconds
+- **Impact:** Longer crowd control window improves tactical flexibility for Protection and Arms
+
+#### Improved Pummel (Complete Rework)
+- **Previous Effect:** 25/50% chance to daze for 4 seconds, extends spell-school lockout by 1/2 seconds
+- **New Effect:** 50/100% chance to apply 50% movement speed slow for 4 seconds, extends spell-school lockout by 1/2 seconds
+- **Impact:** More reliable slow application, guaranteed control utility at rank 2 (100% proc)
+
+---
+
 ## Version 1.18.0 - Scars of the Past
 
 ### August 2025 Revision
@@ -788,7 +801,7 @@ All information compiled from official Turtle WoW changelogs:
 - `turtle-wow-changelogs/1.17.2-2024.11.01-changes.html` (Warrior hotfixes)
 - `turtle-wow-changelogs/1.17.2-2024.11.20-changes.html` (no Warrior changes)
 - `turtle-wow-changelogs/1.17.2-2024.12.20-changes.html` (MAJOR Warrior update - lines 467-562)
-- `turtle-wow-changelogs/1.17.2-2025.04.01-changes.html` (Warrior utility changes only)
+- `turtle-wow-changelogs/1.17.2-2025.04.01-changes.html` (Concussion Blow buff, Improved Pummel rework)
 - `turtle-wow-changelogs/1.18.0-warrior-changes.html` (complete file including August 2025 revision)
 
 **Last Updated:** Based on changelogs through Patch 1.18.0 (Scars of the Past) including August 2025 revision, and all hotfixes through April 2025

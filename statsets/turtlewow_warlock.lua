@@ -6,14 +6,25 @@
   Changes from Vanilla:
   - Spell Hit Cap: 9% → 8% (all specs: +12.5% Spell Hit value)
   - Spell Haste: Baseline adjustments
-  - Affliction: Spell Power more valuable (Siphon Life 100%, Dark Harvest)
-  - Affliction: Haste more valuable (Rapid Deterioration DoT tick speed)
-  - Demonology: Spell Power HIGHLY valuable (Demon AP Scaling 20-60%)
-  - Demonology: Intellect more valuable (Fel Intellect 30% transfer)
-  - Demonology: Stamina more valuable (Fel Stamina 50% transfer)
-  - Demonology: Crit more valuable (Unleashed Potential stacks)
-  - Destruction: Crit HIGHLY valuable (Improved Shadow Bolt proc on crit)
-  - Destruction: Shadow Damage more valuable (Improved Shadow Bolt +20%)
+
+  Affliction Talents:
+  - Siphon Life: SP coefficient 50%→100% (April 2025)
+  - Dark Harvest: 25% SP, accelerates DoTs by 30% while channeling
+  - Rapid Deterioration: Haste affects DoT tick speed at 50/100% efficiency
+  - Soul Siphon: +2/4/6% damage per Affliction effect (max 4 = 24%)
+
+  Demonology Talents:
+  - Demonic Precision: 30/60/90% hit and crit transfer to demons
+  - Fel Intellect: 10/20/30% of total Int → demons (Dec 2024)
+  - Fel Stamina: 10-50% of total Sta → demons (Dec 2024)
+  - Demon AP Scaling (Aug 2025): 20-60% spell damage as demon AP
+  - Unleashed Potential: 5-15% spell damage → demons on crits (3 stacks, 20s)
+  - Imp Firebolt: 10-40% SP coefficient by rank
+
+  Destruction Talents:
+  - Improved Shadow Bolt (Dec 2024): +20% Shadow damage, 20-100% proc on CRIT
+  - Improved Soul Fire: +10% Fire damage for 30s, 100% proc on cast
+  - Soul Fire: Coefficient 125%→114% (1.18.0)
 
   References:
   - docs/turtle-wow-warlock-scaling-changes.md
@@ -85,14 +96,17 @@ turtleAffliction.SPELLTOHIT = vanillaAffliction.SPELLTOHIT * 1.125  -- 9.6 → 1
 -- 2. Spell Haste Baseline Check
 -- Haste baseline check removed (vanilla values are correct)
 
--- 3. Spell Power (DMG) more valuable (Siphon Life 100%, Drain Soul 20%, Dark Harvest 25%)
---    Conservative: +15% value
-turtleAffliction.DMG = vanillaAffliction.DMG * 1.15  -- 1.0 → 1.15
+-- 3. Spell Power (DMG) HIGHLY valuable (Siphon Life 50%→100% April 2025, Dark Harvest 25%)
+--    +50% value (Siphon Life coefficient doubled is massive)
+turtleAffliction.DMG = vanillaAffliction.DMG * 1.5  -- 1.0 → 1.5
 
 -- 4. Haste more valuable (Rapid Deterioration: Haste affects DoT tick speed at 50/100%)
---    Conservative: +10% value
-turtleAffliction.SPELLHASTE = turtleAffliction.SPELLHASTE * 1.1  -- 6.26 → 6.89
+--    +30% value (DoT haste scaling is significant)
+turtleAffliction.SPELLHASTE = turtleAffliction.SPELLHASTE * 1.3  -- 6.26 → 8.14
 
+-- 5. Add CASTINGREG support (Meditation items in 1.16.0, medium value for Affliction)
+--    Affliction has Life Tap sustain, but CASTINGREG still valuable
+turtleAffliction.CASTINGREG = 5.0  -- Medium value for Affliction mana efficiency
 
 -- Queue StatSet creation (delayed until OnEnable)
 table.insert(ItemsOfPower_PendingStatSets, function()
@@ -147,31 +161,34 @@ for k, v in pairs(vanillaDemonology) do
   turtleDemonology[k] = v
 end
 
--- 1. Spell Hit Cap Adjustment
-turtleDemonology.SPELLTOHIT = vanillaDemonology.SPELLTOHIT * 1.125
+-- 1. Spell Hit Cap Adjustment + Demonic Precision (30/60/90% hit transfer to demons)
+--    +30% value (base 12.5% hit cap + demon hit transfer)
+turtleDemonology.SPELLTOHIT = vanillaDemonology.SPELLTOHIT * 1.3
 
 -- 2. Spell Haste Baseline Check
 -- Haste baseline check removed (vanilla values are correct)
 
 -- 3. Spell Power (DMG) HIGHLY valuable (Demon AP Scaling - CRITICAL)
+--    - Demon AP Scaling (Aug 2025): 20-60% spell damage as demon AP
 --    - Unleashed Potential: 5-15% spell damage → demons (3 stacks)
---    - Demon AP: 20-60% spell damage as demon AP (August 2025)
 --    - Imp Firebolt: 10-40% spell power coefficient
---    Conservative: +40% value
-turtleDemonology.DMG = vanillaDemonology.DMG * 1.4  -- 1.0 → 1.4
+--    +55% value
+turtleDemonology.DMG = vanillaDemonology.DMG * 1.55  -- 1.0 → 1.55
 
--- 4. Intellect more valuable (Fel Intellect: 10-30% total → demons)
---    Conservative: +30% value
-turtleDemonology.INT = vanillaDemonology.INT * 1.3  -- 0.4 → 0.52
+-- 4. Intellect more valuable (Fel Intellect: 10/20/30% total Int → demons Dec 2024)
+--    +40% value
+turtleDemonology.INT = vanillaDemonology.INT * 1.4  -- 0.4 → 0.56
 
--- 5. Stamina more valuable (Fel Stamina: 10-50% total → demons)
---    Conservative: +50% value
-turtleDemonology.STA = vanillaDemonology.STA * 1.5  -- 0.1 → 0.15
+-- 5. Stamina more valuable (Fel Stamina: 10-50% total Sta → demons Dec 2024)
+--    +60% value
+turtleDemonology.STA = vanillaDemonology.STA * 1.6  -- 0.1 → 0.16
 
--- 6. Crit more valuable (Demonic Precision 30-90% transfer, Unleashed Potential stacks on crit)
---    Conservative: +20% value
-turtleDemonology.SPELLCRIT = vanillaDemonology.SPELLCRIT * 1.2  -- 5.28 → 6.34
+-- 6. Crit more valuable (Demonic Precision 30-90% crit transfer, Unleashed Potential stacks on crit)
+--    +35% value
+turtleDemonology.SPELLCRIT = vanillaDemonology.SPELLCRIT * 1.35  -- 5.28 → 7.13
 
+-- 7. Add CASTINGREG support (Meditation items in 1.16.0, medium value for Demonology)
+turtleDemonology.CASTINGREG = 5.0  -- Medium value for Demonology mana efficiency
 
 -- Queue StatSet creation (delayed until OnEnable)
 table.insert(ItemsOfPower_PendingStatSets, function()
@@ -236,18 +253,21 @@ turtleDestruction.SPELLTOHIT = vanillaDestruction.SPELLTOHIT * 1.125  -- 12.8 �
 --    Conservative: +15% value
 turtleDestruction.DMG = vanillaDestruction.DMG * 1.15  -- 1.0 → 1.15
 
--- 4. Crit HIGHLY valuable (Improved Shadow Bolt: 20-100% proc on crit - CRITICAL)
---    Conservative: +20% value
-turtleDestruction.SPELLCRIT = vanillaDestruction.SPELLCRIT * 1.2  -- 6.96 → 8.35
+-- 4. Crit HIGHLY valuable (Improved Shadow Bolt Dec 2024: 20-100% proc on crit - CRITICAL)
+--    +35% value
+turtleDestruction.SPELLCRIT = vanillaDestruction.SPELLCRIT * 1.35  -- 6.96 → 9.40
 
 -- 5. Shadow Damage more valuable (Improved Shadow Bolt: +20% Shadow damage debuff)
---    Conservative: +20% value
+--    +20% value
 turtleDestruction.SHADOWDMG = vanillaDestruction.SHADOWDMG * 1.2  -- 0.95 → 1.14
 
--- 6. Fire Damage slightly more valuable (Improved Soul Fire: +10% Fire damage)
---    Conservative: +10% value
-turtleDestruction.FIREDMG = vanillaDestruction.FIREDMG * 1.1  -- 0.23 → 0.253
+-- 6. Fire Damage more valuable (Improved Soul Fire: +10% Fire damage for 30s)
+--    +20% value
+turtleDestruction.FIREDMG = vanillaDestruction.FIREDMG * 1.2  -- 0.23 → 0.276
 
+-- 7. Add CASTINGREG support (Meditation items in 1.16.0, low-medium value for Destruction)
+--    Destruction has Life Tap + Improved Soul Fire regen
+turtleDestruction.CASTINGREG = 4.0  -- Low-medium value for Destruction mana efficiency
 
 -- Queue StatSet creation (delayed until OnEnable)
 table.insert(ItemsOfPower_PendingStatSets, function()

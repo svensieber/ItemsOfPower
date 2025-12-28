@@ -7,13 +7,22 @@
   - Hit Cap: 9% → 8% (all specs: +12.5% Hit Rating value)
   - Holy: Spell Power more valuable (Holy Strike, Daybreak, Holy Shock)
   - Holy: Crit more valuable (Daybreak procs)
-  - Protection: Spell Power more valuable (Consecration 0.119, Holy Shield threat)
+  - Protection: Spell Power NERFED (Holy Shield SP coefficient 33%→15% in 1.18.0)
   - Protection: Block Value more valuable (Righteous Strikes boost)
   - Protection: Stamina more valuable (Righteous Defense mitigation)
-  - Retribution: Spell Power HIGHLY valuable (Seal of Righteousness buff)
+  - Retribution: Spell Power slightly valuable (Seal of Righteousness 2H: 12.8%→12.5%)
   - Retribution: Strength more valuable (Holy Strike buff)
   - Retribution: Haste more valuable (Zeal multiplicative)
   - Retribution: Crit more valuable (Vengeance stacks)
+
+  Hotfixes and Patch Changes:
+  - Shield of the Righteous (Oct 2024): CD 3→5 min (Uptime 60%→36%), DR 40%→30%
+  - Holy Shield (1.18.0): SP coefficient 33%→15%
+  - Reckoning (April 2025): Proc rate DOUBLED 5%→10%
+  - Crusader Strike: -10% weapon damage (Nov 2024)
+  - Weapon Normalization (Dec 2024): Speed matters less, raw DPS critical
+  - Seal of Righteousness 2H: 12.8%→12.5% (1.18.0)
+  - Daybreak (1.18.0): Reworked to 43% SP delayed heal
 
   References:
   - docs/turtle-wow-paladin-scaling-changes.md
@@ -41,6 +50,7 @@ end
 
 -- ============================================================================
 -- HOLY
+-- Daybreak (1.18.0): Reworked to 43% SP delayed heal
 -- ============================================================================
 
 -- Vanilla Baseline
@@ -93,6 +103,9 @@ turtleHoly.DMG = turtleHoly.DMG * 1.15  -- 0.3 → 0.345
 --    Conservative: +15% value
 turtleHoly.SPELLCRIT = vanillaHoly.SPELLCRIT * 1.15  -- 3.68 → 4.23
 
+-- 5. Add CASTINGREG support (Meditation items in 1.16.0, HIGH value for Holy healers)
+turtleHoly.CASTINGREG = 15.0  -- High value for Holy Paladin mana sustain
+
 
 -- Queue StatSet creation (delayed until OnEnable)
 table.insert(ItemsOfPower_PendingStatSets, function()
@@ -110,6 +123,9 @@ end)
 
 -- ============================================================================
 -- PROTECTION
+-- Shield of the Righteous (Oct 2024): CD 3→5 min (Uptime 60%→36%), DR 40%→30%
+-- Holy Shield (1.18.0): SP coefficient 33%→15%
+-- Reckoning (April 2025): Proc rate DOUBLED 5%→10%
 -- ============================================================================
 
 -- Vanilla Baseline
@@ -165,22 +181,25 @@ turtleProtection.SPELLTOHIT = vanillaProtection.SPELLTOHIT * 1.125  -- 6.24 → 
 -- 3. Haste Baseline Check
 -- Haste baseline check removed (vanilla values are correct)
 
--- 4. Spell Power more valuable (Consecration 0.119, Holy Shield 15% threat scaling)
---    Conservative: +25% value
-turtleProtection.DMG = vanillaProtection.DMG * 1.25  -- 0.44 → 0.55
-turtleProtection.HOLYDMG = vanillaProtection.HOLYDMG * 1.25  -- 0.44 → 0.55
+-- 4. Spell Power MAJOR NERF (Holy Shield 33%→15% SP, Shield of the Righteous CD 3→5 min, DR 40%→30%)
+--    Combined nerfs severely reduce spell damage value for Protection
+turtleProtection.DMG = vanillaProtection.DMG * 0.5  -- 0.44 → 0.22
+turtleProtection.HOLYDMG = vanillaProtection.HOLYDMG * 0.5  -- 0.44 → 0.22
 
--- 5. Block Value HIGHLY valuable (Righteous Strikes: +2-10% blocked damage per Zeal stack)
---    Conservative: +30% value
-turtleProtection.BLOCKVALUE = vanillaProtection.BLOCKVALUE * 1.3  -- 0.15 → 0.195
+-- 5. Block Value HIGHLY valuable (Righteous Strikes BV scaling)
+--    Shield of the Righteous DR-nerf (40%→30%) reduces effectiveness slightly
+turtleProtection.BLOCKVALUE = vanillaProtection.BLOCKVALUE * 1.45  -- 0.15 → 0.2175
 
 -- 6. Stamina more valuable (Righteous Defense: -3-10% damage taken)
 --    Conservative: +10% value
 turtleProtection.STA = vanillaProtection.STA * 1.1  -- 1.0 → 1.1
 
--- 7. Block Chance more valuable (Reckoning proc rate doubled: 10-50%)
---    Conservative: +15% value
-turtleProtection.BLOCK = vanillaProtection.BLOCK * 1.15  -- 4.14 → 4.76
+-- 7. Block Chance HIGHLY valuable (Reckoning proc rate DOUBLED: 5%→10%)
+--    But Shield of the Righteous uptime 60%→36% (CD 3→5 min) reduces net gain
+turtleProtection.BLOCK = vanillaProtection.BLOCK * 1.95  -- 4.14 → 8.07
+
+-- 10. Add CASTINGREG support (Meditation items in 1.16.0, medium value for Prot)
+turtleProtection.CASTINGREG = 6.0  -- Medium value for Protection mana
 
 -- 8. WEAPONDPS more valuable (Crusader Strike weapon damage + threat generation)
 --    Conservative: +40% value
@@ -207,6 +226,9 @@ end)
 
 -- ============================================================================
 -- RETRIBUTION
+-- Crusader Strike: -10% weapon damage (Nov 2024)
+-- Weapon Normalization (Dec 2024): Speed matters less, raw DPS critical
+-- Seal of Righteousness 2H: 12.8%→12.5% (1.18.0)
 -- ============================================================================
 
 -- Vanilla Baseline
@@ -260,10 +282,10 @@ turtleRetribution.SPELLTOHIT = vanillaRetribution.SPELLTOHIT * 1.125  -- 1.68 �
 -- 3. Haste Baseline Check
 -- Haste baseline check removed (vanilla values are correct)
 
--- 4. Spell Power HIGHLY valuable (Seal of Righteousness: 12.8% × weapon speed for 2H, Crusader Strike, Holy Strike)
---    Conservative: +40% value
-turtleRetribution.DMG = vanillaRetribution.DMG * 1.4  -- 0.33 → 0.462
-turtleRetribution.HOLYDMG = vanillaRetribution.HOLYDMG * 1.4  -- 0.33 → 0.462
+-- 4. Spell Power slightly nerfed (Seal of Righteousness 2H: 12.8%→12.5% in 1.18.0)
+--    Conservative: +15% value (reduced from +20%)
+turtleRetribution.DMG = vanillaRetribution.DMG * 1.15  -- 0.33 → 0.38
+turtleRetribution.HOLYDMG = vanillaRetribution.HOLYDMG * 1.15  -- 0.33 → 0.38
 
 -- 5. Strength more valuable (Holy Strike: +4-20% Strength buff for 20 seconds)
 --    Conservative: +15% value
@@ -278,13 +300,16 @@ turtleRetribution.HASTE = turtleRetribution.HASTE * 1.2  -- 2.01 → 2.41
 turtleRetribution.CRIT = vanillaRetribution.CRIT * 1.15  -- 5.61 → 6.45
 turtleRetribution.SPELLCRIT = vanillaRetribution.SPELLCRIT * 1.15  -- 0.96 → 1.10
 
--- 8. WEAPONDPS HIGHLY valuable (Weapon Normalization Dec 2024 - speed matters less, raw DPS critical!)
---    Conservative: +60% value
-turtleRetribution.WEAPONDPS = vanillaRetribution.WEAPONDPS * 1.6  -- 3.375 → 5.4
+-- 8. WEAPONDPS valuable (Crusader Strike -10% weapon damage Nov 2024, balanced with Weapon Normalization)
+--    Net effect: +45% value (reduced from +60%)
+turtleRetribution.WEAPONDPS = vanillaRetribution.WEAPONDPS * 1.45  -- 3.375 → 4.89
 
 -- 9. ARMORPEN more valuable (Armor Cap Removal 1.18.0)
 --    Conservative: +30% value
 turtleRetribution.ARMORPEN = vanillaRetribution.ARMORPEN * 1.3  -- 0.069 → 0.09
+
+-- 10. Add CASTINGREG support (Meditation items in 1.16.0, low-medium value for Ret)
+turtleRetribution.CASTINGREG = 4.0  -- Low-medium value for Retribution mana
 
 
 -- Queue StatSet creation (delayed until OnEnable)

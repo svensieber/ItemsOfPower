@@ -6,15 +6,24 @@
   Changes from Vanilla:
   - Spell Hit Cap: 9% → 8% (all specs: +12.5% Spell Hit value)
   - Spell Haste: Baseline adjustments
-  - Arcane: Crit HIGHLY valuable (Arcane Potency +50/100% crit damage)
-  - Arcane: Spell Power HIGHLY valuable (Arcane Missiles 32.8%, Resonance Cascade)
-  - Arcane: Spirit HIGHLY valuable (Arcane Meditation tripled below 35% mana)
-  - Arcane: Intellect more valuable (Arcane Power instant death <10% mana)
-  - Arcane: Haste more valuable (Accelerated Arcana cooldown recovery)
-  - Fire: Crit HIGHLY valuable (Hot Streak procs, Master of Elements 45%)
-  - Fire: Spell Power more valuable (Fireball/Pyroblast scaling)
-  - Frost: Spell Power more valuable (Icicles 40%, Ice Barrier +15% damage)
-  - Frost: Crit slightly less valuable (Shatter nerfed but still strong)
+
+  Arcane:
+  - Arcane Power (1.17.2): +30% haste, drains 1% mana/sec, death <10% mana
+  - Arcane Potency: +50/100% crit damage (1.16.1→1.17.2)
+  - Arcane Meditation: TRIPLED below 35% mana (20%→60% regen while casting)
+  - Accelerated Arcana: Haste scales cooldown recovery + AM tick speed
+  - Resonance Cascade: 4-20% chance to duplicate for 50% damage, chains 4x
+  - Arcane Missiles: 32.8% coefficient, Arcane Rupture: 90% coefficient
+
+  Fire:
+  - Hot Streak (1.17.2): Fireball/Fire Blast crits reduce Pyroblast by 1s/stack (5 max)
+  - Master of Elements: 15/30/45% mana refund on crit
+  - Ignite (1.18.0): Duration 4s, threat split among mages
+
+  Frost:
+  - Icicles (1.17.2): New rotational ability, 40% SP per icicle, roots caster
+  - Ice Barrier: +15% Frost damage while active (1.17.2)
+  - Shatter nerfed: 50% → 35% vs frozen, but Flash Freeze synergies
 
   References:
   - docs/turtle-wow-mage-scaling-changes.md
@@ -88,28 +97,32 @@ turtleArcane.SPELLTOHIT = vanillaArcane.SPELLTOHIT * 1.125  -- 6.96 → 7.83
 -- Haste baseline check removed (vanilla values are correct)
 
 -- 3. Spell Crit HIGHLY valuable (Arcane Potency: +50/100% crit damage - CRITICAL)
---    Conservative: +30% value
-turtleArcane.SPELLCRIT = vanillaArcane.SPELLCRIT * 1.3  -- 4.8 → 6.24
+--    +75% value for doubled crit damage
+turtleArcane.SPELLCRIT = vanillaArcane.SPELLCRIT * 1.75  -- 4.8 → 8.4
 
 -- 4. Spell Power HIGHLY valuable (Arcane Missiles 32.8%, Arcane Rupture 90%, Resonance Cascade)
---    Conservative: +25% value
-turtleArcane.DMG = vanillaArcane.DMG * 1.25  -- 1.0 → 1.25
+--    +35% value for multiplicative cascade stacking
+turtleArcane.DMG = vanillaArcane.DMG * 1.35  -- 1.0 → 1.35
 
 -- 5. Arcane Damage more valuable (Arcane Missiles scaling, Arcane Rupture buff)
 --    Conservative: +30% value
 turtleArcane.ARCANEDMG = vanillaArcane.ARCANEDMG * 1.3  -- 0.88 → 1.144
 
 -- 6. Spirit HIGHLY valuable (Arcane Meditation TRIPLED below 35% mana: 20% → 60%)
---    Conservative: +50% value (averaged over fight, execute phase is massive)
-turtleArcane.SPI = vanillaArcane.SPI * 1.5  -- 0.59 → 0.885
+--    +150% value (averaged over fight, execute phase is massive)
+turtleArcane.SPI = vanillaArcane.SPI * 2.5  -- 0.59 → 1.475
 
 -- 7. Intellect more valuable (Arcane Power: instant death <10% mana, need large pool)
---    Conservative: +20% value
-turtleArcane.INT = vanillaArcane.INT * 1.2  -- 0.46 → 0.552
+--    +50% value for survival requirement
+turtleArcane.INT = vanillaArcane.INT * 1.5  -- 0.46 → 0.69
 
 -- 8. Haste more valuable (Accelerated Arcana: cooldown recovery + Arcane Missiles tick speed)
---    Conservative: +15% value
-turtleArcane.SPELLHASTE = turtleArcane.SPELLHASTE * 1.15  -- 4.74 → 5.45
+--    +40% value for dual scaling (CD recovery + tick speed)
+turtleArcane.SPELLHASTE = turtleArcane.SPELLHASTE * 1.4  -- 4.74 → 6.63
+
+-- 9. Add CASTINGREG support (Meditation items in 1.16.0, medium-high value for Arcane)
+--    Arcane Meditation synergy, mana-hungry spec
+turtleArcane.CASTINGREG = 8.0  -- Medium-high value for Arcane mana efficiency
 
 -- Queue StatSet creation (delayed until OnEnable)
 table.insert(ItemsOfPower_PendingStatSets, function()
@@ -170,9 +183,9 @@ turtleFire.SPELLTOHIT = vanillaFire.SPELLTOHIT * 1.125  -- 7.44 → 8.37
 -- 2. Spell Haste Baseline Check
 -- Haste baseline check removed (vanilla values are correct)
 
--- 3. Spell Crit HIGHLY valuable (Hot Streak procs, Master of Elements 15/30/45% mana, Ignite)
---    Conservative: +25% value
-turtleFire.SPELLCRIT = vanillaFire.SPELLCRIT * 1.25  -- 6.16 → 7.70
+-- 3. Spell Crit HIGHLY valuable (Hot Streak procs, Master of Elements 45% mana refund, Ignite)
+--    +50% value for Hot Streak stack reduction + mana refund
+turtleFire.SPELLCRIT = vanillaFire.SPELLCRIT * 1.5  -- 6.16 → 9.24
 
 -- 4. Spell Power more valuable (Fireball/Pyroblast/Fire Blast scaling improved)
 --    Conservative: +15% value
@@ -185,6 +198,9 @@ turtleFire.FIREDMG = vanillaFire.FIREDMG * 1.2  -- 0.94 → 1.128
 -- 6. Haste more valuable (More casts, more Hot Streak procs, faster Pyroblast at 5 stacks)
 --    Conservative: +10% value
 turtleFire.SPELLHASTE = turtleFire.SPELLHASTE * 1.1  -- 6.58 → 7.24
+
+-- 7. Add CASTINGREG support (Meditation items in 1.16.0, medium value for Fire)
+turtleFire.CASTINGREG = 5.0  -- Medium value for Fire mana efficiency
 
 -- Queue StatSet creation (delayed until OnEnable)
 table.insert(ItemsOfPower_PendingStatSets, function()
@@ -246,12 +262,12 @@ turtleFrost.SPELLTOHIT = vanillaFrost.SPELLTOHIT * 1.125  -- 9.76 → 10.98
 -- Haste baseline check removed (vanilla values are correct)
 
 -- 3. Spell Power more valuable (Frostbolt, Icicles 40% per icicle, Ice Barrier +15% Frost damage)
---    Conservative: +20% value
-turtleFrost.DMG = vanillaFrost.DMG * 1.2  -- 1.0 → 1.2
+--    +35% value for Icicles + Ice Barrier damage bonus
+turtleFrost.DMG = vanillaFrost.DMG * 1.35  -- 1.0 → 1.35
 
--- 4. Frost Damage more valuable (Icicles, Ice Barrier buff)
---    Conservative: +25% value
-turtleFrost.FROSTDMG = vanillaFrost.FROSTDMG * 1.25  -- 0.95 → 1.1875
+-- 4. Frost Damage more valuable (Icicles, Ice Barrier +15% Frost damage while active)
+--    +40% value for Ice Barrier uptime damage bonus
+turtleFrost.FROSTDMG = vanillaFrost.FROSTDMG * 1.4  -- 0.95 → 1.33
 
 -- 5. Crit slightly less valuable (Shatter nerfed: 50% → 35% vs frozen, but Flash Freeze synergies)
 --    Conservative: Net -5% value (nerf offset by new synergies)
@@ -260,6 +276,9 @@ turtleFrost.SPELLCRIT = vanillaFrost.SPELLCRIT * 0.95  -- 4.64 → 4.408
 -- 6. Haste more valuable (More Frostbolts, more Icicles procs via crits)
 --    Conservative: +10% value
 turtleFrost.SPELLHASTE = turtleFrost.SPELLHASTE * 1.1  -- 5.06 → 5.56
+
+-- 7. Add CASTINGREG support (Meditation items in 1.16.0, medium value for Frost)
+turtleFrost.CASTINGREG = 5.0  -- Medium value for Frost mana efficiency
 
 -- Queue StatSet creation (delayed until OnEnable)
 table.insert(ItemsOfPower_PendingStatSets, function()

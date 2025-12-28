@@ -497,6 +497,11 @@ This document tracks all Priest-specific changes from Turtle WoW that affect sta
 
 **Developer Note:** Discipline overperformed in PvE and PvP, these changes address this
 
+#### Smite (Nerf)
+- **Base Damage:** Reduced by 10% (reverts 1.17.2 buff)
+- **Reason:** Return to original Vanilla base values
+- **Impact:** Discipline DPS baseline reduced, compensated by other mechanics
+
 #### Resurgent Shield
 - **Nerf:** Reduced spell damage bonus (specific values not documented)
 - **Impact:** Lower DPS benefit from shield breaking

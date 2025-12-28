@@ -5,18 +5,28 @@
 
   Changes from Vanilla:
   - Hit Cap: 9% → 8% (all specs: +12.5% Hit Rating value)
-  - Haste: Baseline adjustments
-  - Balance: Crit EXTREMELY valuable (Eclipse: 10% + 60% of crit %)
-  - Balance: Spell Power more valuable (Wrath +5%, Hurricane improved)
-  - Feral Cat: Attack Power more valuable (Ferocious Bite 0.5% per energy)
-  - Feral Cat: Agility more valuable (MCP removed, relative stat value up)
-  - Feral Cat: Rip duration scaling (10-18s = +50% damage at 5 CP)
-  - Feral Bear: Armor HIGHLY valuable (cap removed, continues beyond 75%)
-  - Feral Bear: Stamina more valuable (Frenzied Regeneration scaling)
-  - Feral Bear: Dodge more valuable (Ancient Brutality rage generation)
-  - Restoration: Healing Power HIGHLY valuable (Tree of Life + Gift of Nature)
-  - Restoration: Spirit more valuable (Emerald Blessing 5% combat regen)
-  - Restoration: Armor more valuable (Tree of Life +180% from items)
+  - Armor Cap (1.18.0): Removed, diminishing returns beyond 75%
+
+  Balance Changes:
+  - Eclipse (1.18.0): Crit scaling changed - damage bonus = 10% + (60% × crit %)
+    At 35% crit = 31% bonus, NOT 120% like before
+
+  Feral Cat Changes:
+  - Tiger's Fury: Now generates 10 Energy every 3s (1.18.0)
+  - Rip Duration: Scales 10-18s with combo points (1.18.0)
+  - Ferocious Bite: Energy conversion now 0.5% damage per point (1.18.0)
+  - Claw/Shred (April 2025): Only +5% damage, not +15%
+
+  Feral Bear Changes:
+  - Swipe AP (Oct/Dec 2024): 8%→6%→4% = 50% nerf to AP scaling
+  - Ancient Brutality: Generates rage on dodge (1.17.2)
+  - Feral Adrenaline: Reduces GCD in forms (1.17.2)
+
+  Restoration Changes:
+  - Tree of Life Aura (1.17.0): Changed to healing power % multiplier
+  - Gift of Nature (1.18.0): Now multiplicative with healing power
+  - Emerald Blessing: 5% combat mana regen for raid
+  - Tree of Life: +180% armor from items (1.18.0)
 
   References:
   - docs/turtle-wow-druid-scaling-changes.md
@@ -88,10 +98,13 @@ turtleBalance.SPELLTOHIT = vanillaBalance.SPELLTOHIT * 1.125  -- 9.68 → 10.89
 -- 2. Spell Haste Baseline Check
 -- Haste baseline check removed (vanilla values are correct)
 
--- 3. Spell Crit EXTREMELY valuable (Eclipse: Damage = 10% + 60% of crit % - CRITICAL)
---    At 30% crit = 28% damage bonus, at 40% crit = 34% damage bonus
---    Conservative: +50% value (massive multiplicative scaling)
-turtleBalance.SPELLCRIT = vanillaBalance.SPELLCRIT * 1.5  -- 4.96 → 7.44
+-- 3. Spell Crit more valuable (Eclipse 1.18.0: Damage = 10% + 60% of crit %)
+--    At 35% crit = 31% damage bonus (NOT 120% like pre-1.18.0)
+--    Conservative: +65% value (Eclipse still adds, but formula changed)
+turtleBalance.SPELLCRIT = vanillaBalance.SPELLCRIT * 1.65  -- 4.96 → 8.18
+
+-- 7. Add CASTINGREG support (Meditation items in 1.16.0, moderate value for casters)
+turtleBalance.CASTINGREG = 5.0  -- Medium value for Balance mana efficiency
 
 -- 4. Spell Power more valuable (Wrath +5%, Hurricane improved, Eclipse amplifies)
 --    Conservative: +15% value
@@ -168,10 +181,10 @@ turtleFeralDamage.TOHIT = vanillaFeralDamage.TOHIT * 1.125  -- 5.72 → 6.44
 -- 2. Haste Baseline Check
 -- Haste baseline check removed (vanilla values are correct)
 
--- 3. Attack Power more valuable (Ferocious Bite: 0.5% per energy point - better scaling)
---    Conservative: +20% value
-turtleFeralDamage.ATTACKPOWER = vanillaFeralDamage.ATTACKPOWER * 1.2  -- 0.59 → 0.708
-turtleFeralDamage.ATTACKPOWERFERAL = vanillaFeralDamage.ATTACKPOWERFERAL * 1.2
+-- 3. Attack Power more valuable (Ferocious Bite 0.5%/energy, Rip +50% at 5CP)
+--    Conservative: +35% value
+turtleFeralDamage.ATTACKPOWER = vanillaFeralDamage.ATTACKPOWER * 1.35  -- 0.59 → 0.797
+turtleFeralDamage.ATTACKPOWERFERAL = vanillaFeralDamage.ATTACKPOWERFERAL * 1.35
 
 -- 4. Agility more valuable (MCP removed, relative stat value up + AP/Crit/Dodge)
 --    Conservative: +10% value
@@ -185,9 +198,9 @@ turtleFeralDamage.STR = vanillaFeralDamage.STR * 1.1  -- 1.48 → 1.628
 --    Conservative: +10% value
 turtleFeralDamage.CRIT = vanillaFeralDamage.CRIT * 1.1  -- 5.015 → 5.517
 
--- 7. WEAPONDPS more valuable (Claw/Shred weapon damage +5% in April 2025)
---    Conservative: +15% value (AP dominates, but Claw/Shred use weapon damage)
-turtleFeralDamage.WEAPONDPS = vanillaFeralDamage.WEAPONDPS * 1.15  -- 0.87 → 1.0
+-- 7. WEAPONDPS slightly more valuable (Claw/Shred only +5% in April 2025, not +15%)
+--    Conservative: +8% value (reduced from +15%, AP dominates)
+turtleFeralDamage.WEAPONDPS = vanillaFeralDamage.WEAPONDPS * 1.08  -- 0.87 → 0.94
 
 -- 8. ARMORPEN more valuable (Armor Cap Removal 1.18.0)
 --    Conservative: +30% value
@@ -256,27 +269,34 @@ turtleFeralTank.TOHIT = vanillaFeralTank.TOHIT * 1.125  -- 1.50 → 1.69
 -- 2. Haste Baseline Check
 -- Haste baseline check removed (vanilla values are correct)
 
--- 3. Armor HIGHLY valuable (cap removed! Continues beyond 75% with diminishing returns - CRITICAL)
---    Conservative: +30% value (massive change from vanilla hard cap)
-turtleFeralTank.ARMOR = vanillaFeralTank.ARMOR * 1.3  -- 0.1 → 0.13
+-- 3. Armor HIGHLY valuable (cap removed! Continues beyond 75% + Thick Hide)
+--    Conservative: +40% value (massive change from vanilla hard cap)
+turtleFeralTank.ARMOR = vanillaFeralTank.ARMOR * 1.4  -- 0.1 → 0.14
 
 -- 4. Stamina more valuable (Frenzied Regeneration: 6/7/8% of stamina per rage point)
 --    Conservative: +15% value
 turtleFeralTank.STA = vanillaFeralTank.STA * 1.15  -- 1.0 → 1.15
 
--- 5. Dodge more valuable (Ancient Brutality: generates rage on dodge, Feral Swiftness bonus)
---    Conservative: +15% value
-turtleFeralTank.DODGE = vanillaFeralTank.DODGE * 1.15  -- 3.5872 → 4.125
+-- 5. Dodge HIGHLY valuable (Ancient Brutality: rage on dodge, Feral Swiftness +4%)
+--    Conservative: +30% value
+turtleFeralTank.DODGE = vanillaFeralTank.DODGE * 1.3  -- 3.5872 → 4.66
 
--- 6. Attack Power more valuable (Threat generation: Swipe/Maul/Savage Bite)
---    Note: Swipe nerfed 8% → 4% AP, but still scales
---    Conservative: +10% value
-turtleFeralTank.ATTACKPOWER = vanillaFeralTank.ATTACKPOWER * 1.1  -- 0.34 → 0.374
-turtleFeralTank.ATTACKPOWERFERAL = vanillaFeralTank.ATTACKPOWERFERAL * 1.1
+-- 6. Attack Power REDUCED (Swipe nerfed 8%→4% = 50% AP value reduction for main AoE!)
+--    Conservative: -10% value (Swipe nerf dominates, Maul/Savage Bite still scale)
+turtleFeralTank.ATTACKPOWER = vanillaFeralTank.ATTACKPOWER * 0.9  -- 0.34 → 0.306
+turtleFeralTank.ATTACKPOWERFERAL = vanillaFeralTank.ATTACKPOWERFERAL * 0.9
 
 -- 7. Agility more valuable (Dodge scaling + AP)
 --    Conservative: +10% value
 turtleFeralTank.AGI = vanillaFeralTank.AGI * 1.1  -- 0.48 → 0.528
+
+-- 7a. Haste now valuable (Feral Adrenaline: reduces GCD, more attacks = more threat)
+--     Conservative: +10% value
+turtleFeralTank.HASTE = turtleFeralTank.HASTE * 1.1  -- 2.49 → 2.74
+
+-- 7b. Hit more valuable (Threat consistency critical after Swipe nerfs)
+--     Conservative: +20% value
+turtleFeralTank.TOHIT = turtleFeralTank.TOHIT * 1.2  -- 1.50 → 1.80
 
 -- 8. WEAPONDPS more valuable (Savage Bite 80% weapon damage, Maul weapon damage)
 --    Conservative: +15% value (lower priority than Cat, but still relevant)
@@ -350,8 +370,15 @@ turtleRestoration.HEAL = vanillaRestoration.HEAL * 1.5  -- 1.21 → 1.815
 turtleRestoration.SPI = vanillaRestoration.SPI * 1.2  -- 0.87 → 1.044
 
 -- 4. Armor more valuable (Tree of Life: +180% armor from items in 1.18.0)
---    Conservative: +10% value (situational, only in Tree of Life form)
-turtleRestoration.ARMOR = vanillaRestoration.ARMOR * 1.1  -- 0.005 → 0.0055
+--    MAJOR: +80% value (Tree of Life multiplies armor by 2.8x, massive scaling)
+turtleRestoration.ARMOR = vanillaRestoration.ARMOR * 1.8  -- 0.005 → 0.009
+
+-- 5. Add CASTINGREG support (Meditation items in 1.16.0, HIGH value for healers)
+--    Sustained healing requires mana regen during combat
+turtleRestoration.CASTINGREG = 17.0  -- High value for Resto mana sustain
+
+-- 6. Add SPELLHASTE for faster healing (not in vanilla baseline)
+turtleRestoration.SPELLHASTE = vanillaRestoration.SPELLHASTE * 1.1  -- Slight boost for HoT tick speed
 
 
 -- Queue StatSet creation (delayed until OnEnable)

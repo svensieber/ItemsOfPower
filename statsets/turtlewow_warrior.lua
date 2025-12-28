@@ -5,16 +5,29 @@
 
   Changes from Vanilla:
   - Hit Cap: 9% → 8% (all specs: +12.5% Hit Rating value)
-  - Haste: Baseline adjustments
-  - Rage Generation: CRITICAL CHANGE - 90% gear-dependent (AP/Crit/Hit), 10% weapon speed
-  - Arms: Crit HIGHLY valuable (Deep Wounds 2x speed, Master of Arms, Enrage)
-  - Arms: Attack Power more valuable (Rage gen, Rend 5% AP, Execute)
-  - Fury: Haste HIGHLY valuable (Unbridled Wrath 75%/150% 2H, Blood Drinker)
-  - Fury: Crit HIGHLY valuable (Enrage 15% damage, Flurry, Rage gen)
-  - Fury: Stamina more valuable (Blood Drinker 1-2% max HP healing)
-  - Protection: Block Value HIGHLY valuable (Shield Slam scales BV + AP)
-  - Protection: Attack Power more valuable (Shield Slam, Rend, Rage gen)
-  - Protection: Armor more valuable (75% cap removed)
+  - Rage Generation (1.17.2): 90% gear-dependent (AP/Crit/Hit/WeaponDPS), 10% weapon speed
+  - Armor Cap (1.18.0): Removed, diminishing returns beyond 75%
+
+  Arms Changes:
+  - Deep Wounds (1.17.2): 1.5s ticks (2× speed), 6s duration, Boss armor NOW applies
+  - Slam (Dec 2024): 2.5s cast, continues swing timer, replaces Decisive Strike
+  - Execute (1.18.0): CD removed, Precision Cut +45% base damage
+  - Boundless Anger: +10/20/30 max rage (100→130)
+  - Master of Arms Mace (Dec 2024): ArPen nerf 600→360 @ level 60
+
+  Fury Changes:
+  - Enrage (Nov 2024): Damage bonus 25%→15%, duration 12s→8s, no swing cap
+  - Blood Drinker (1.18.0): ALL attacks heal 1-2% max HP (not just crits)
+  - Bloodthirst (Dec 2024): No self-damage, 35% AP scaling, +10% movement speed
+  - Unbridled Wrath: 15-75% proc, DOUBLED for 2H (150%)
+  - Flurry (1.18.0): Also reduces Slam cast time
+
+  Protection Changes:
+  - Shield Slam (1.17.2): Scales with AP + Block Value, moved to row 5
+  - Improved Shield Slam (Oct 2024): CD 4.5s, +70% block for 5s after use
+  - Concussion Blow (Dec 2024): CD 45s→20s, 100% armor pen, 2s stun
+  - Reprisal: Revenge +50% damage, 100% rage refund on success
+  - Shield Specialization: +1-5 rage per block
 
   References:
   - docs/turtle-wow-warrior-scaling-changes.md
@@ -45,6 +58,8 @@ end
 -- ============================================================================
 
 -- Vanilla Baseline
+-- NOTE: EXPERTISE was removed - it's a Cataclysm stat that doesn't exist in Vanilla/Turtle WoW.
+-- Weapon Skill is handled differently in Vanilla (linear scaling in Turtle WoW since patch 1.17.2).
 local vanillaArms = ApplyMultiplier({
   STR = 1.0,
   AGI = 0.69,
@@ -52,7 +67,6 @@ local vanillaArms = ApplyMultiplier({
   SPI = 0.05,
   ATTACKPOWER = 0.45,
   TOHIT = 9.37931,        -- Pre-multiplied
-  EXPERTISE = 1.0,        -- Expertise Rating (from ClassicHawsJon: 2.34483 pre-multiplied)
   CRIT = 7.225,           -- Physical crit
   HASTE = 4.5771,         -- Physical haste
   ARMORPEN = 2.75,        -- Armor Penetration (from ClassicHawsJon: 1.1 * 3.75 = 4.125, divided by 1.5 for base)
@@ -83,13 +97,17 @@ turtleArms.TOHIT = vanillaArms.TOHIT * 1.125  -- 9.38 → 10.55
 -- 2. Haste Baseline Check
 -- Haste baseline check removed (vanilla values are correct)
 
--- 3. Critical Strike HIGHLY valuable (Deep Wounds 2x speed, Master of Arms Axe +5%, Enrage, Rage gen)
---    Conservative: +30% value
-turtleArms.CRIT = vanillaArms.CRIT * 1.3  -- 7.225 → 9.393
+-- 3. Critical Strike more valuable (Deep Wounds 2x speed, but Boss armor NOW mitigates)
+--    Net effect: +40% vs non-bosses, but reduced vs bosses → Conservative: +40% value
+turtleArms.CRIT = vanillaArms.CRIT * 1.4  -- 7.225 → 10.115
 
--- 4. Attack Power more valuable (Rage generation 90% gear-dependent - CRITICAL, Rend 5% AP, Execute)
---    Conservative: +20% value
-turtleArms.ATTACKPOWER = vanillaArms.ATTACKPOWER * 1.2  -- 0.45 → 0.54
+-- 4. Attack Power more valuable (Rage gen 90% gear, Rend 5% AP/tick, Execute AP scaling)
+--    Conservative: +35% value
+turtleArms.ATTACKPOWER = vanillaArms.ATTACKPOWER * 1.35  -- 0.45 → 0.608
+
+-- 4a. Haste now valuable (Unbridled Wrath procs, Slam rotation, but Slam 2.5s cast limits)
+--     Conservative: +15% value
+turtleArms.HASTE = turtleArms.HASTE * 1.15  -- 4.58 → 5.26
 
 -- 5. Strength: Converts to AP, also affected by rage generation changes
 --    Conservative: +15% value (AP + rage benefits)
@@ -103,9 +121,9 @@ turtleArms.AGI = vanillaArms.AGI * 1.1  -- 0.69 → 0.759
 --    Conservative: +90% value
 turtleArms.WEAPONDPS = vanillaArms.WEAPONDPS * 1.9  -- 2.795 → 5.31
 
--- 8. ARMORPEN more valuable (Armor Cap Removal 1.18.0 + Master of Arms Mace + Concussion Blow)
---    Conservative: +50% value
-turtleArms.ARMORPEN = vanillaArms.ARMORPEN * 1.5  -- 2.75 → 4.125
+-- 8. ARMORPEN more valuable (Armor Cap Removal good, but Master of Arms Mace nerfed 600→360)
+--    Conservative: +35% value (reduced from +50% due to Mace nerf)
+turtleArms.ARMORPEN = vanillaArms.ARMORPEN * 1.35  -- 2.75 → 3.7125
 
 
 -- Queue StatSet creation (delayed until OnEnable)
@@ -127,6 +145,7 @@ end)
 -- ============================================================================
 
 -- Vanilla Baseline
+-- NOTE: EXPERTISE was removed - it's a Cataclysm stat that doesn't exist in Vanilla/Turtle WoW.
 local vanillaFury = ApplyMultiplier({
   STR = 1.0,
   AGI = 0.57,
@@ -134,7 +153,6 @@ local vanillaFury = ApplyMultiplier({
   SPI = 0.05,
   ATTACKPOWER = 0.54,
   TOHIT = 5.34621,        -- Pre-multiplied
-  EXPERTISE = 0.57,       -- Expertise Rating (from ClassicHawsJon)
   CRIT = 5.95,            -- Physical crit
   HASTE = 3.2923,         -- Physical haste
   ARMORPEN = 1.175,       -- Armor Penetration (from ClassicHawsJon: 0.47 * 3.75 = 1.7625, divided by 1.5 for base)
@@ -165,21 +183,21 @@ turtleFury.TOHIT = vanillaFury.TOHIT * 1.125  -- 5.35 → 6.01
 -- 2. Haste Baseline Check
 -- Haste baseline check removed (vanilla values are correct)
 
--- 3. Haste HIGHLY valuable (Unbridled Wrath 75% / 150% for 2H, Blood Drinker all attacks, No Enrage cap)
---    Conservative: +40% value (massive change)
-turtleFury.HASTE = turtleFury.HASTE * 1.4  -- 3.29 → 4.61
+-- 3. Haste HIGHLY valuable (Unbridled Wrath 75%/150% 2H, Blood Drinker per-attack heal, Flurry reduces Slam)
+--    Conservative: +50% value (massive synergies)
+turtleFury.HASTE = turtleFury.HASTE * 1.5  -- 3.29 → 4.94
 
--- 4. Critical Strike HIGHLY valuable (Enrage 15% damage, Flurry trigger, Rage generation)
+-- 4. Critical Strike still valuable (Enrage nerfed 25%→15%, but Flurry+Slam synergy compensates)
+--    Conservative: +20% value (reduced from +30% due to Enrage nerf)
+turtleFury.CRIT = vanillaFury.CRIT * 1.2  -- 5.95 → 7.14
+
+-- 5. Attack Power more valuable (Bloodthirst 35% AP up from 30%, Rage gen 90% gear)
 --    Conservative: +30% value
-turtleFury.CRIT = vanillaFury.CRIT * 1.3  -- 5.95 → 7.735
+turtleFury.ATTACKPOWER = vanillaFury.ATTACKPOWER * 1.3  -- 0.54 → 0.702
 
--- 5. Attack Power more valuable (Rage generation 90% gear-dependent - CRITICAL, Bloodthirst 35% AP)
---    Conservative: +20% value
-turtleFury.ATTACKPOWER = vanillaFury.ATTACKPOWER * 1.2  -- 0.54 → 0.648
-
--- 6. Stamina more valuable (Blood Drinker: 1-2% max HP healing per attack during Enrage/Death Wish/Recklessness)
---    Conservative: +15% value
-turtleFury.STA = vanillaFury.STA * 1.15  -- 0.1 → 0.115
+-- 6. Stamina HIGHLY valuable (Blood Drinker 1.18.0: ALL attacks heal 1-2% max HP during Enrage)
+--    Conservative: +35% value (massive sustain scaling)
+turtleFury.STA = vanillaFury.STA * 1.35  -- 0.1 → 0.135
 
 -- 7. Strength: Converts to AP, also affected by rage generation
 --    Conservative: +15% value
@@ -194,8 +212,8 @@ turtleFury.AGI = vanillaFury.AGI * 1.1  -- 0.57 → 0.627
 turtleFury.WEAPONDPS = vanillaFury.WEAPONDPS * 1.9  -- 2.747 → 5.22
 
 -- 10. ARMORPEN more valuable (Armor Cap Removal 1.18.0)
---     Conservative: +50% value
-turtleFury.ARMORPEN = vanillaFury.ARMORPEN * 1.5  -- 1.175 → 1.7625
+--     Conservative: +35% value
+turtleFury.ARMORPEN = vanillaFury.ARMORPEN * 1.35  -- 1.175 → 1.586
 
 
 -- Queue StatSet creation (delayed until OnEnable)
@@ -217,6 +235,7 @@ end)
 -- ============================================================================
 
 -- Vanilla Baseline
+-- NOTE: EXPERTISE was removed - it's a Cataclysm stat that doesn't exist in Vanilla/Turtle WoW.
 local vanillaProtection = ApplyMultiplier({
   STR = 0.33,
   AGI = 0.59,
@@ -224,7 +243,6 @@ local vanillaProtection = ApplyMultiplier({
   SPI = 0.05,
   ATTACKPOWER = 0.06,
   TOHIT = 6.28414,        -- Pre-multiplied
-  EXPERTISE = 0.67,       -- Expertise Rating (from ClassicHawsJon)
   CRIT = 2.38,
   HASTE = 1.6863,
   ARMORPEN = 0.475,       -- Armor Penetration (from ClassicHawsJon: 0.19 * 3.75 = 0.7125, divided by 1.5 for base)
@@ -257,21 +275,21 @@ turtleProtection.TOHIT = vanillaProtection.TOHIT * 1.125  -- 6.28 → 7.07
 -- 2. Haste Baseline Check
 -- Haste baseline check removed (vanilla values are correct)
 
--- 3. Block Value HIGHLY valuable (Shield Slam scales with Block Value + Attack Power - CRITICAL)
---    Conservative: +50% value (becomes primary threat stat)
-turtleProtection.BLOCKVALUE = vanillaProtection.BLOCKVALUE * 1.5  -- 0.35 → 0.525
+-- 3. Block Value HIGHLY valuable (Shield Slam scales BV + AP, Improved Shield Slam 4.5s CD)
+--    Conservative: +70% value (becomes primary threat stat)
+turtleProtection.BLOCKVALUE = vanillaProtection.BLOCKVALUE * 1.7  -- 0.35 → 0.595
 
--- 4. Attack Power more valuable (Shield Slam scaling, Rend 5% AP, Rage generation 90% gear)
---    Conservative: +25% value (threat generation)
-turtleProtection.ATTACKPOWER = vanillaProtection.ATTACKPOWER * 1.25  -- 0.06 → 0.075
+-- 4. Attack Power HIGHLY valuable (Shield Slam AP, Rend 5% AP, Reprisal Revenge +50%)
+--    Conservative: +45% value (threat generation)
+turtleProtection.ATTACKPOWER = vanillaProtection.ATTACKPOWER * 1.45  -- 0.06 → 0.087
 
--- 5. Armor more valuable (75% cap removed! Continues with diminishing returns beyond 75%)
---    Conservative: +30% value
-turtleProtection.ARMOR = vanillaProtection.ARMOR * 1.3  -- 0.02 → 0.026
+-- 5. Armor more valuable (75% cap removed + Toughness +15% shield absorption)
+--    Conservative: +35% value
+turtleProtection.ARMOR = vanillaProtection.ARMOR * 1.35  -- 0.02 → 0.027
 
--- 6. Critical Strike more valuable (Rage generation, Threat spikes)
---    Conservative: +15% value
-turtleProtection.CRIT = vanillaProtection.CRIT * 1.15  -- 2.38 → 2.737
+-- 6. Critical Strike more valuable (Shield Specialization rage on block, threat spikes)
+--    Conservative: +25% value
+turtleProtection.CRIT = vanillaProtection.CRIT * 1.25  -- 2.38 → 2.975
 
 -- 7. Strength: Converts to AP, benefits from Shield Slam
 --    Conservative: +20% value (threat scaling)
@@ -281,17 +299,17 @@ turtleProtection.STR = vanillaProtection.STR * 1.2  -- 0.33 → 0.396
 --    Conservative: +10% value
 turtleProtection.AGI = vanillaProtection.AGI * 1.1  -- 0.59 → 0.649
 
--- 9. Stamina: Blood Craze healing, survivability
---    Conservative: +10% value
-turtleProtection.STA = vanillaProtection.STA * 1.1  -- 1.0 → 1.1
+-- 9. Stamina: Blood Craze healing 2/4/6% HP (up from 1/2/3%), survivability
+--    Conservative: +20% value
+turtleProtection.STA = vanillaProtection.STA * 1.2  -- 1.0 → 1.2
 
 -- 10. WEAPONDPS HIGHLY valuable (Rage Generation 90% gear-dependent + Shield Slam - CRITICAL)
 --     Conservative: +90% value
 turtleProtection.WEAPONDPS = vanillaProtection.WEAPONDPS * 1.9  -- 1.647 → 3.13
 
--- 11. ARMORPEN more valuable (Armor Cap Removal 1.18.0 + Concussion Blow 100% armor pen)
---     Conservative: +50% value
-turtleProtection.ARMORPEN = vanillaProtection.ARMORPEN * 1.5  -- 0.475 → 0.7125
+-- 11. ARMORPEN HIGHLY valuable (Armor Cap Removal + Concussion Blow 100% armor pen, 20s CD)
+--     Conservative: +60% value
+turtleProtection.ARMORPEN = vanillaProtection.ARMORPEN * 1.6  -- 0.475 → 0.76
 
 
 -- Queue StatSet creation (delayed until OnEnable)

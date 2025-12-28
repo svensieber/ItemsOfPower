@@ -8,8 +8,25 @@
   - Haste: Baseline adjustments
   - Beast Mastery: Stamina/Armor more valuable (pet scaling)
   - Beast Mastery: Crit more valuable (Kill Command, Baited Shot)
-  - Marksmanship: Minimal changes (devs happy with current state)
-  - Survival: Crit slightly more valuable (Lacerate procs)
+  - Marksmanship: Ranged Crit more valuable (Piercing Shots bleed)
+  - Survival: MAJOR REWORK - Now primarily melee spec with Dual Wield
+
+  Beast Mastery Turtle WoW Changes:
+  - Spirit Bond (2pt): 25% RAP → pet Melee AP, 15% RAP → pet Spell Power
+  - Bestial Precision (2pt): +4/8% phys hit, +9/18% spell hit, +5/10 weapon skill → pet
+  - Endurance Training: +30% STA → pet
+  - Kill Command + Baited Shot (1.18.0): Pet crit-focused rotation
+
+  Marksmanship Turtle WoW Changes:
+  - Piercing Shots: Crit applies bleed for 15/30% damage (1.17.2)
+  - Trueshot Aura: Now 55 + 5% of recipient's AP (1.17.2)
+
+  Survival Turtle WoW Changes (MAJOR REWORK - Melee Spec):
+  - Mongoose Bite Dual Wield (1.18.0): Strikes with BOTH weapons
+  - Savage Strikes: +13/25% offhand weapon damage (April 2025) - included in WEAPONDPS
+  - Lightning Reflexes: 100% Agi → Melee AP at rank 5
+  - Lacerate: 35% AP + bleed for 20% damage (1.18.0)
+  - Untamed Trapper: Fire traps scale with melee AP (1.17.2)
 
   References:
   - docs/turtle-wow-hunter-scaling-changes.md
@@ -91,6 +108,10 @@ turtleMM.RANGEDWEAPONDPS = vanillaMM.RANGEDWEAPONDPS * 1.2  -- 2.167 → 2.6
 --    Conservative: +30% value
 turtleMM.ARMORPEN = vanillaMM.ARMORPEN * 1.3  -- 1.067 → 1.3875
 
+-- 5. RANGEDCRIT more valuable (Piercing Shots: crit applies bleed for 15/30% damage)
+--    Increased from ×1.15 to ×1.25
+turtleMM.RANGEDCRIT = vanillaMM.CRIT * 1.25  -- Use CRIT as base, apply ×1.25
+
 -- Queue StatSet creation (delayed until OnEnable)
 table.insert(ItemsOfPower_PendingStatSets, function()
   local stats = turtleMM
@@ -143,28 +164,32 @@ for k, v in pairs(vanillaBM) do
   turtleBM[k] = v
 end
 
--- 1. Hit Cap Adjustment
-turtleBM.TOHIT = vanillaBM.TOHIT * 1.125
+-- 1. Hit Cap Adjustment: Bestial Precision +4/8% phys hit → pet
+--    Increased from ×1.125 to ×1.2 (pet hit stacking)
+turtleBM.TOHIT = vanillaBM.TOHIT * 1.2
 
--- 2. Haste Baseline Check
--- Haste baseline check removed (vanilla values are correct)
+-- 2. SPELLTOHIT: Bestial Precision +9/18% spell hit → pet
+--    Pet Lightning Breath/Fire Breath benefit from spell hit transfer
+--    NOTE: Fixed value (not multiplier) because vanilla BM has no SPELLTOHIT baseline
+--    Value 2.0 = ~18% of TOHIT value, reflecting pet-only benefit (not hunter attacks)
+turtleBM.SPELLTOHIT = 2.0 * DISPLAY_MULTIPLIER
 
--- 3. Stamina more valuable (pet gets 30% via Endurance Training)
---    Conservative: +10% value
-turtleBM.STA = vanillaBM.STA * 1.1  -- 0.1 → 0.11
+-- 3. Stamina HIGHLY valuable (Endurance Training: +30% STA → pet)
+--    Pet survival = raid DPS. Increased from ×1.1 to ×1.35
+turtleBM.STA = vanillaBM.STA * 1.35
 
 -- 4. Armor more valuable (pet gets 36% via Thick Hide)
 --    Conservative: +20% value
 turtleBM.ARMOR = vanillaBM.ARMOR * 1.2  -- 0.005 → 0.006
 
 -- 5. Crit more valuable (Kill Command, Baited Shot triggers)
---    Conservative: +15% value
+--    Pet crit-focused rotation (1.18.0). Conservative: +15% value
 turtleBM.CRIT = vanillaBM.CRIT * 1.15  -- 6.8 → 7.82
 
--- 6. Ranged AP more valuable (pet gets 12-25% as Melee AP + 7-15% as Spell Power via Spirit Bond)
---    Conservative: +20% value
-turtleBM.RANGEDATTACKPOWER = vanillaBM.RANGEDATTACKPOWER * 1.2  -- 0.43 → 0.516
-turtleBM.ATTACKPOWER = vanillaBM.ATTACKPOWER * 1.2
+-- 6. Ranged AP HIGHLY valuable (Spirit Bond: 25% RAP → pet Melee AP, 15% RAP → pet Spell Power)
+--    Effective: 1 RAP = 1.4 pet AP value. Increased from ×1.2 to ×1.5
+turtleBM.RANGEDATTACKPOWER = vanillaBM.RANGEDATTACKPOWER * 1.5
+turtleBM.ATTACKPOWER = vanillaBM.ATTACKPOWER * 1.5
 
 -- 7. RANGEDWEAPONDPS more valuable (Baited Shot 125% weapon damage after pet crit)
 --    Conservative: +15% value
@@ -223,14 +248,15 @@ local vanillaSV = ApplyMultiplier({
   NATURERES = 0.24,
 })
 
--- Turtle WoW Adjustments for Survival
+-- Turtle WoW Adjustments for Survival (MAJOR REWORK - Melee Spec)
 local turtleSV = {}
 for k, v in pairs(vanillaSV) do
   turtleSV[k] = v
 end
 
--- 1. Hit Cap Adjustment
-turtleSV.TOHIT = vanillaSV.TOHIT * 1.125
+-- 1. Hit Cap Adjustment: Dual Wield requires more hit (9% cap remains but more attacks)
+--    Increased from ×1.125 to ×1.25
+turtleSV.TOHIT = vanillaSV.TOHIT * 1.25
 
 -- 2. Haste Baseline Check
 -- Haste baseline check removed (vanilla values are correct)
@@ -239,13 +265,28 @@ turtleSV.TOHIT = vanillaSV.TOHIT * 1.125
 --    Conservative: +10% value
 turtleSV.CRIT = vanillaSV.CRIT * 1.1  -- 5.525 → 6.08
 
--- 4. WEAPONDPS (Melee) HIGHLY valuable (Mongoose Bite 60% + Carve 70% + Wing Clip 35% + Dual Wield!)
---    Conservative: +40% value
-turtleSV.WEAPONDPS = vanillaSV.WEAPONDPS * 1.4  -- 0.714 → 1.0
+-- 4. WEAPONDPS (Melee) EXTREMELY valuable (Mongoose Bite Dual Wield strikes BOTH weapons!)
+--    Savage Strikes: +13/25% offhand weapon damage (April 2025) included
+--    MAJOR: +120% value (increased from ×1.7 to ×2.2)
+turtleSV.WEAPONDPS = vanillaSV.WEAPONDPS * 2.2  -- 0.714 → 1.57
 
--- 5. ARMORPEN more valuable (Armor Cap Removal 1.18.0)
+-- 5. RANGEDWEAPONDPS also valuable (Mongoose Bite uses ranged weapon in melee)
+--    Conservative: +15% value
+turtleSV.RANGEDWEAPONDPS = vanillaSV.RANGEDWEAPONDPS * 1.15  -- 2.4 → 2.76
+
+-- 6. Agility EXTREMELY valuable (Lightning Reflexes: 100% Agi → Melee AP at rank 5)
+--    Example: 300 Agi = 330 Agi + 330 Melee AP with full talent
+--    MAJOR: +45% value (increased from ×1.25 to ×1.45)
+turtleSV.AGI = vanillaSV.AGI * 1.45  -- 1.0 → 1.45
+
+-- 7. ARMORPEN more valuable (Armor Cap Removal 1.18.0)
 --    Conservative: +30% value
 turtleSV.ARMORPEN = vanillaSV.ARMORPEN * 1.3  -- 0.808 → 1.05
+
+-- 8. ATTACKPOWER HIGHLY valuable (Lacerate 35% AP + bleed, Untamed Trapper, Vicious Strikes)
+--    New multiplier: ×1.45
+turtleSV.ATTACKPOWER = vanillaSV.ATTACKPOWER * 1.45
+turtleSV.RANGEDATTACKPOWER = vanillaSV.RANGEDATTACKPOWER * 1.45
 
 -- Queue StatSet creation (delayed until OnEnable)
 table.insert(ItemsOfPower_PendingStatSets, function()

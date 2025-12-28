@@ -1263,6 +1263,9 @@ do
         if strfind(Set.Name, "TurtleWoW") then
           if playerClass and not strfind(string.lower(Set.Name), string.lower(playerClass)) then
             shouldDisplay = false
+          else
+            -- DEBUG: Show why set was NOT filtered
+            DEFAULT_CHAT_FRAME:AddMessage("IPW DEBUG: " .. Set.Name .. " shown (playerClass=" .. tostring(playerClass) .. ")")
           end
         end
 

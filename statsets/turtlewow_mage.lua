@@ -8,20 +8,24 @@
   - Spell Haste: Baseline adjustments
 
   Arcane:
-  - Arcane Power (1.17.2): +30% haste, drains 1% mana/sec, death <10% mana
+  - Arcane Power (April 2025): +30% haste (nerfed from 35%), 1% mana drain (from 2%), death <10% mana
   - Arcane Potency: +50/100% crit damage (1.16.1→1.17.2)
   - Arcane Meditation: TRIPLED below 35% mana (20%→60% regen while casting)
   - Accelerated Arcana: Haste scales cooldown recovery + AM tick speed
   - Resonance Cascade: 4-20% chance to duplicate for 50% damage, chains 4x
-  - Arcane Missiles: 32.8% coefficient, Arcane Rupture: 90% coefficient
+  - Arcane Missiles: 32.8% coefficient, Arcane Rupture: 90% coefficient (Dec 2024)
+  - Arcane Rupture (1.18.0): AM buff reduced 25%→20%
 
   Fire:
-  - Hot Streak (1.17.2): Fireball/Fire Blast crits reduce Pyroblast by 1s/stack (5 max)
-  - Master of Elements: 15/30/45% mana refund on crit
+  - Hot Streak (1.18.0): 50/100% proc, 1s/stack Pyroblast reduction (5 max)
+  - Master of Elements (1.18.0): 15/30/45% mana refund on crit
   - Ignite (1.18.0): Duration 4s, threat split among mages
+  - Fireball (April 2025): Mana cost -28% (410→295 at rank 12)
+  - Fire Vulnerability (Aug 2025): Improved Scorch renamed, Fire Blast can apply
 
   Frost:
   - Icicles (1.17.2): New rotational ability, 40% SP per icicle, roots caster
+  - Icicles (Dec 2024): GCD 1.5s → 1s
   - Ice Barrier: +15% Frost damage while active (1.17.2)
   - Shatter nerfed: 50% → 35% vs frozen, but Flash Freeze synergies
 
@@ -105,12 +109,12 @@ turtleArcane.SPELLCRIT = vanillaArcane.SPELLCRIT * 1.75  -- 4.8 → 8.4
 turtleArcane.DMG = vanillaArcane.DMG * 1.35  -- 1.0 → 1.35
 
 -- 5. Arcane Damage more valuable (Arcane Missiles scaling, Arcane Rupture buff)
---    Conservative: +30% value
-turtleArcane.ARCANEDMG = vanillaArcane.ARCANEDMG * 1.3  -- 0.88 → 1.144
+--    1.18.0 nerf: AM buff reduced 25%→20%, conservative: +25% value
+turtleArcane.ARCANEDMG = vanillaArcane.ARCANEDMG * 1.25  -- 0.88 → 1.1
 
--- 6. Spirit HIGHLY valuable (Arcane Meditation TRIPLED below 35% mana: 20% → 60%)
---    +150% value (averaged over fight, execute phase is massive)
-turtleArcane.SPI = vanillaArcane.SPI * 2.5  -- 0.59 → 1.475
+-- 6. Spirit more valuable (Arcane Meditation TRIPLED below 35% mana: 20% → 60%)
+--    +80% value (execute phase only, not whole fight)
+turtleArcane.SPI = vanillaArcane.SPI * 1.8  -- 0.59 → 1.06
 
 -- 7. Intellect more valuable (Arcane Power: instant death <10% mana, need large pool)
 --    +50% value for survival requirement
@@ -199,8 +203,9 @@ turtleFire.FIREDMG = vanillaFire.FIREDMG * 1.2  -- 0.94 → 1.128
 --    Conservative: +10% value
 turtleFire.SPELLHASTE = turtleFire.SPELLHASTE * 1.1  -- 6.58 → 7.24
 
--- 7. Add CASTINGREG support (Meditation items in 1.16.0, medium value for Fire)
-turtleFire.CASTINGREG = 5.0  -- Medium value for Fire mana efficiency
+-- 7. Add CASTINGREG support (Meditation items in 1.16.0, low value for Fire)
+--    April 2025: Fireball mana cost -28%, Master of Elements 45% refund on crit
+turtleFire.CASTINGREG = 3.5  -- Low value for Fire (mana buffs in April 2025)
 
 -- Queue StatSet creation (delayed until OnEnable)
 table.insert(ItemsOfPower_PendingStatSets, function()
@@ -269,9 +274,9 @@ turtleFrost.DMG = vanillaFrost.DMG * 1.35  -- 1.0 → 1.35
 --    +40% value for Ice Barrier uptime damage bonus
 turtleFrost.FROSTDMG = vanillaFrost.FROSTDMG * 1.4  -- 0.95 → 1.33
 
--- 5. Crit slightly less valuable (Shatter nerfed: 50% → 35% vs frozen, but Flash Freeze synergies)
---    Conservative: Net -5% value (nerf offset by new synergies)
-turtleFrost.SPELLCRIT = vanillaFrost.SPELLCRIT * 0.95  -- 4.64 → 4.408
+-- 5. Crit unchanged (Shatter nerfed vs frozen, but raid bosses are freeze-immune anyway)
+--    Flash Freeze + Ice Barrier synergies offset the PvP nerf
+-- turtleFrost.SPELLCRIT unchanged from vanilla (4.64)
 
 -- 6. Haste more valuable (More Frostbolts, more Icicles procs via crits)
 --    Conservative: +10% value

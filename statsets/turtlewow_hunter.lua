@@ -16,6 +16,8 @@
   - Bestial Precision (2pt): +4/8% phys hit, +9/18% spell hit, +5/10 weapon skill → pet
   - Endurance Training: +30% STA → pet
   - Kill Command + Baited Shot (1.18.0): Pet crit-focused rotation
+  - Bestial Wrath: REMOVED in 1.18.0
+  - Bestial Swiftness: REMOVED in 1.18.0
 
   Marksmanship Turtle WoW Changes:
   - Piercing Shots: Crit applies bleed for 15/30% damage (1.17.2)
@@ -23,10 +25,12 @@
 
   Survival Turtle WoW Changes (MAJOR REWORK - Melee Spec):
   - Mongoose Bite Dual Wield (1.18.0): Strikes with BOTH weapons
-  - Savage Strikes: +13/25% offhand weapon damage (April 2025) - included in WEAPONDPS
+  - Savage Strikes: +13/25% offhand weapon damage (April 2025)
+  - Vicious Strikes: +5/10% weapon damage (Aug 2025, nerfed from +10/20%)
   - Lightning Reflexes: 100% Agi → Melee AP at rank 5
   - Lacerate: 35% AP + bleed for 20% damage (1.18.0)
   - Untamed Trapper: Fire traps scale with melee AP (1.17.2)
+  - Rapid Strikes: REMOVED in 1.18.0 (effect moved to baseline Rapid Fire)
 
   References:
   - docs/turtle-wow-hunter-scaling-changes.md
@@ -61,12 +65,12 @@ local vanillaMM = ApplyMultiplier({
   STR = 0.05,
   AGI = 1.0,
   STA = 0.1,
-  INT = 0.9,
+  INT = 0.35,  -- Cast-intensive spec (Steady/Aimed/Multi) needs larger mana buffer
   SPI = 0.05,
   ATTACKPOWER = 0.55,
   RANGEDATTACKPOWER = 0.55,
   TOHIT = 9.37931,        -- Pre-multiplied
-  EXPERTISE = 0.05,       -- Expertise Rating (from ClassicHawsJon - very low for ranged)
+  EXPERTISE = 0.05,       -- Expertise Rating (very low for ranged)
   CRIT = 5.1,             -- 8.5 * 0.6
   HASTE = 3.212,          -- 8.03 * 0.4
   ARMORPEN = 1.067,       -- Armor Penetration (3.75 * 0.37 = 1.3875, divided by 1.3 for base)
@@ -131,12 +135,12 @@ local vanillaBM = ApplyMultiplier({
   STR = 0.05,
   AGI = 1.0,
   STA = 0.1,
-  INT = 0.8,
+  INT = 0.25,  -- Pet-focused spec, hunter mana demand lower
   SPI = 0.05,
   ATTACKPOWER = 0.43,
   RANGEDATTACKPOWER = 0.43,
   TOHIT = 9.37931,
-  EXPERTISE = 0.05,       -- Expertise Rating (from ClassicHawsJon - very low for ranged)
+  EXPERTISE = 0.05,       -- Expertise Rating (very low for ranged)
   CRIT = 6.8,             -- 8.5 * 0.8
   HASTE = 4.015,          -- 8.03 * 0.5
   ARMORPEN = 0.490,       -- Armor Penetration (3.75 * 0.17 = 0.6375, divided by 1.3 for base)
@@ -218,15 +222,15 @@ end)
 
 -- Vanilla Baseline
 local vanillaSV = ApplyMultiplier({
-  STR = 0.05,
+  STR = 0.30,  -- Lower than AP: AGI gives 2 AP via Lightning Reflexes, STR only 1
   AGI = 1.0,
   STA = 0.1,
-  INT = 0.8,
+  INT = 0.20,  -- Reduced from 0.8: Melee spec, minimal mana needs
   SPI = 0.05,
   ATTACKPOWER = 0.55,
   RANGEDATTACKPOWER = 0.55,
   TOHIT = 9.37931,
-  EXPERTISE = 0.05,       -- Expertise Rating (from ClassicHawsJon - very low for ranged)
+  EXPERTISE = 0.80,       -- Expertise Rating (high for melee spec)
   CRIT = 5.525,           -- 8.5 * 0.65
   HASTE = 3.212,          -- 8.03 * 0.4
   ARMORPEN = 0.808,       -- Armor Penetration (3.75 * 0.28 = 1.05, divided by 1.3 for base)
@@ -266,9 +270,10 @@ turtleSV.TOHIT = vanillaSV.TOHIT * 1.25
 turtleSV.CRIT = vanillaSV.CRIT * 1.1  -- 5.525 → 6.08
 
 -- 4. WEAPONDPS (Melee) EXTREMELY valuable (Mongoose Bite Dual Wield strikes BOTH weapons!)
---    Savage Strikes: +13/25% offhand weapon damage (April 2025) included
---    MAJOR: +120% value (increased from ×1.7 to ×2.2)
-turtleSV.WEAPONDPS = vanillaSV.WEAPONDPS * 2.2  -- 0.714 → 1.57
+--    Savage Strikes: +13/25% offhand weapon damage (April 2025)
+--    Vicious Strikes: +5/10% weapon damage (Aug 2025, nerfed from +10/20%)
+--    MAJOR: +100% value (reduced from ×2.2 to ×2.0 due to Aug 2025 nerf)
+turtleSV.WEAPONDPS = vanillaSV.WEAPONDPS * 2.0  -- 0.714 → 1.43
 
 -- 5. RANGEDWEAPONDPS also valuable (Mongoose Bite uses ranged weapon in melee)
 --    Conservative: +15% value

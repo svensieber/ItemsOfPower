@@ -15,12 +15,14 @@
   - Tiger's Fury: Now generates 10 Energy every 3s (1.18.0)
   - Rip Duration: Scales 10-18s with combo points (1.18.0)
   - Ferocious Bite: Energy conversion now 0.5% damage per point (1.18.0)
+  - Ancient Brutality (1.18.0): Energy from Bleed ticks 5/10 → 3/5 (nerf)
+  - Open Wounds (1.18.0): Rip +5/10/15%, Claw +10/20/30% per Bleed (reworked)
   - Claw/Shred (April 2025): Only +5% damage, not +15%
 
   Feral Bear Changes:
   - Swipe AP (Oct/Dec 2024): 8%→6%→4% = 50% nerf to AP scaling
   - Ancient Brutality: Generates rage on dodge (1.17.2)
-  - Feral Adrenaline: Reduces GCD in forms (1.17.2)
+  - Feral Adrenaline: REMOVED in 1.18.0 (no longer reduces GCD)
 
   Restoration Changes:
   - Tree of Life Aura (1.17.0): Changed to healing power % multiplier
@@ -98,9 +100,9 @@ turtleBalance.SPELLTOHIT = vanillaBalance.SPELLTOHIT * 1.125  -- 9.68 → 10.89
 -- 2. Spell Haste Baseline Check
 -- Haste baseline check removed (vanilla values are correct)
 
--- 3. Spell Crit more valuable (Eclipse 1.18.0: Damage = 10% + 60% of crit %)
---    At 35% crit = 31% damage bonus (NOT 120% like pre-1.18.0)
---    Conservative: +65% value (Eclipse still adds, but formula changed)
+-- 3. Spell Crit EXTREMELY valuable (Eclipse 1.18.0: Damage = 10% + 60% of crit %)
+--    At 35% crit = 31% permanent damage bonus (vs old 25% proc-based buff)
+--    Crit now scales the Eclipse bonus itself, making it multiplicative
 turtleBalance.SPELLCRIT = vanillaBalance.SPELLCRIT * 1.65  -- 4.96 → 8.18
 
 -- 7. Add CASTINGREG support (Meditation items in 1.16.0, moderate value for casters)
@@ -290,9 +292,8 @@ turtleFeralTank.ATTACKPOWERFERAL = vanillaFeralTank.ATTACKPOWERFERAL * 0.9
 --    Conservative: +10% value
 turtleFeralTank.AGI = vanillaFeralTank.AGI * 1.1  -- 0.48 → 0.528
 
--- 7a. Haste now valuable (Feral Adrenaline: reduces GCD, more attacks = more threat)
---     Conservative: +10% value
-turtleFeralTank.HASTE = turtleFeralTank.HASTE * 1.1  -- 2.49 → 2.74
+-- 7a. Haste: Feral Adrenaline was REMOVED in 1.18.0, no special haste bonus
+--     Using vanilla baseline (no multiplier)
 
 -- 7b. Hit more valuable (Threat consistency critical after Swipe nerfs)
 --     Conservative: +20% value

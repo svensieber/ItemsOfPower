@@ -6,25 +6,32 @@
   Changes from Vanilla:
   - Spell Hit Cap: 9% → 8% (all specs: +12.5% Spell Hit value)
   - Spell Haste: Baseline adjustments
+  - Affliction: Spell Power HIGHLY valuable (Siphon Life 100%, DoT haste scaling)
+  - Demonology: Stats transfer to demons (INT, STA, Hit, Crit, Spell Damage)
+  - Destruction: Crit HIGHLY valuable (Improved Shadow Bolt proc on crit)
 
-  Affliction Talents:
-  - Siphon Life: SP coefficient 50%→100% (April 2025)
-  - Dark Harvest: 25% SP, accelerates DoTs by 30% while channeling
-  - Rapid Deterioration: Haste affects DoT tick speed at 50/100% efficiency
-  - Soul Siphon: +2/4/6% damage per Affliction effect (max 4 = 24%)
-
-  Demonology Talents:
-  - Demonic Precision: 30/60/90% hit and crit transfer to demons
-  - Fel Intellect: 10/20/30% of total Int → demons (Dec 2024)
-  - Fel Stamina: 10-50% of total Sta → demons (Dec 2024)
-  - Demon AP Scaling (Aug 2025): 20-60% spell damage as demon AP
-  - Unleashed Potential: 5-15% spell damage → demons on crits (3 stacks, 20s)
-  - Imp Firebolt: 10-40% SP coefficient by rank
-
-  Destruction Talents:
+  Turtle WoW Hotfixes & Patches:
+  - Soul Fire (1.17.2): Coefficient 100%→125%, CD 60s→30s
+  - Drain Soul (Nov 2024): Coefficient 16.67%→20%, even damage per tick
+  - Dark Harvest (Nov 2024): Coefficient 20%→25%
   - Improved Shadow Bolt (Dec 2024): +20% Shadow damage, 20-100% proc on CRIT
-  - Improved Soul Fire: +10% Fire damage for 30s, 100% proc on cast
-  - Soul Fire: Coefficient 125%→114% (1.18.0)
+  - Improved Soul Fire (Dec 2024): +8% Fire damage, 100% proc on cast
+  - Fel Intellect (Dec 2024): 10/20/30% of total Int → demons
+  - Fel Stamina (Dec 2024): 10-50% of total Sta → demons
+  - Demonic Precision (Dec 2024): 30/60/90% hit AND crit transfer to demons
+  - Unleashed Potential (Dec 2024): 5-15% spell damage → demons on crits (3 stacks)
+  - Soul Siphon (Dec 2024): +2/4/6% damage per Affliction effect (max 4 = 24%)
+  - Siphon Life (April 2025): Coefficient 50%→100%
+  - Dark Harvest (April 2025): DoT acceleration 20%→30%
+  - Imp Firebolt (April 2025): 10-40% SP coefficient by rank
+  - Improved Soul Fire (1.18.0): +8%→+10% Fire damage
+  - Soul Fire (1.18.0): Coefficient 125%→114%
+  - Rain of Fire (1.18.0): Tick speed 2s→1s (same total damage)
+  - Spellstone (1.18.0): Reworked to active dispel + magic shield
+  - Drain Soul (1.18.0): Mana cost reworked (initial + per second)
+  - Demon AP Scaling (Aug 2025): Voidwalker 20%, Succubus 40%, Felhunter 30%,
+    Infernal 60%, Felguard 60%, Doomguard 30% of spell damage as demon AP
+  - Voidstone (Aug 2025): New stone, -10% spell threat for 30 minutes
 
   References:
   - docs/turtle-wow-warlock-scaling-changes.md
@@ -53,6 +60,10 @@ end
 
 -- ============================================================================
 -- AFFLICTION
+-- Siphon Life (April 2025): Coefficient 50%→100%
+-- Dark Harvest (Nov 2024): 25% SP, (April 2025): 30% DoT haste
+-- Rapid Deterioration: Haste affects DoT tick speed at 50/100% efficiency
+-- Soul Siphon (Dec 2024): +2/4/6% per Affliction effect (max 4 = 24%)
 -- ============================================================================
 
 -- Vanilla Baseline
@@ -124,6 +135,12 @@ end)
 
 -- ============================================================================
 -- DEMONOLOGY
+-- Fel Intellect (Dec 2024): 10/20/30% total Int → demons
+-- Fel Stamina (Dec 2024): 10-50% total Sta → demons
+-- Demonic Precision (Dec 2024): 30/60/90% hit AND crit transfer to demons
+-- Unleashed Potential (Dec 2024): 5-15% spell damage → demons (3 stacks)
+-- Imp Firebolt (April 2025): 10-40% SP coefficient by rank
+-- Demon AP Scaling (Aug 2025): 20-60% spell damage as demon AP
 -- ============================================================================
 
 -- Vanilla Baseline
@@ -206,6 +223,11 @@ end)
 
 -- ============================================================================
 -- DESTRUCTION
+-- Soul Fire (1.17.2): Coefficient 100%→125%, CD 60s→30s
+-- Improved Shadow Bolt (Dec 2024): +20% Shadow damage, 20-100% proc on CRIT
+-- Improved Soul Fire (Dec 2024): +8% Fire damage, 100% proc on cast
+-- Improved Soul Fire (1.18.0): +8%→+10% Fire damage
+-- Soul Fire (1.18.0): Coefficient 125%→114%
 -- ============================================================================
 
 -- Vanilla Baseline

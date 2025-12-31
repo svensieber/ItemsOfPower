@@ -7,21 +7,30 @@
   - Hit Cap: 9% → 8% (all specs: +12.5% Hit Rating value)
   - Holy: Spell Power more valuable (Holy Strike, Daybreak, Holy Shock)
   - Holy: Crit more valuable (Daybreak procs)
-  - Protection: Spell Power NERFED (Holy Shield SP coefficient 33%→15% in 1.18.0)
-  - Protection: Block Value more valuable (Righteous Strikes boost)
+  - Holy: Illumination nerfed 100%→60% (1.17.2) - Spirit/mp5 more valuable
+  - Protection: Spell Power NERFED (Holy Shield SP coefficient 33%→15%)
+  - Protection: Block Value more valuable (Righteous Strikes rework Nov 2024)
+  - Protection: Block Chance NERFED (Redoubt halved Nov 2024)
   - Protection: Stamina more valuable (Righteous Defense mitigation)
-  - Retribution: Spell Power slightly valuable (Seal of Righteousness 2H: 12.8%→12.5%)
+  - Retribution: Spell Power BUFFED (Seal of Righteousness 2H: +27% net after April 2025)
+  - Retribution: Judgement of Righteousness uses melee hit/crit (April 2025)
   - Retribution: Strength more valuable (Holy Strike buff)
   - Retribution: Haste more valuable (Zeal multiplicative)
   - Retribution: Crit more valuable (Vengeance stacks)
 
   Hotfixes and Patch Changes:
-  - Shield of the Righteous (Oct 2024): CD 3→5 min (Uptime 60%→36%), DR 40%→30%
-  - Holy Shield (1.18.0): SP coefficient 33%→15%
-  - Reckoning (April 2025): Proc rate DOUBLED 5%→10%
-  - Crusader Strike: -10% weapon damage (Nov 2024)
+  - Shield of the Righteous (Oct 2024): CD 3→5 min, DR 40%→30%
+  - Sacred Duty (Oct 2024): REMOVED from game
+  - Crusader Strike (Nov 2024): -10% weapon damage
+  - Redoubt (Nov 2024): Block chance 6/12/18/24/30%→3/6/9/12/15% (HALVED)
+  - Righteous Strikes (Nov 2024): Zeal now boosts block VALUE not block chance
+  - Holy Shield (Dec 2024): Block 50%→45%, SP 33%→15%, threat 45%→30%
   - Weapon Normalization (Dec 2024): Speed matters less, raw DPS critical
-  - Seal of Righteousness 2H: 12.8%→12.5% (1.18.0)
+  - Seal of Righteousness (April 2025): 2H 0.098→0.128 (+31% buff!)
+  - Judgement of Righteousness (April 2025): Now uses melee hit/crit
+  - Reckoning (April 2025): Proc rate DOUBLED (5-25%→10-50%)
+  - Crusader Strike (1.18.0): SP coefficient 33%→20%
+  - Seal of Righteousness (1.18.0): 2H 0.128→0.125 (minor nerf)
   - Daybreak (1.18.0): Reworked to 43% SP delayed heal
 
   References:
@@ -103,7 +112,15 @@ turtleHoly.DMG = turtleHoly.DMG * 1.15  -- 0.3 → 0.345
 --    Conservative: +15% value
 turtleHoly.SPELLCRIT = vanillaHoly.SPELLCRIT * 1.15  -- 3.68 → 4.23
 
--- 5. Add CASTINGREG support (Meditation items in 1.16.0, HIGH value for Holy healers)
+-- 5. Spirit more valuable (Illumination nerf shifts mana sustain toward Spirit/mp5)
+--    Conservative: +30% value
+turtleHoly.SPI = vanillaHoly.SPI * 1.3  -- 0.28 → 0.36
+
+-- 6. Add Hit for Judgements and Holy Strike uptime (hybrid healing style)
+turtleHoly.SPELLTOHIT = 2.0 * DISPLAY_MULTIPLIER  -- Low but not zero
+turtleHoly.TOHIT = 1.5 * DISPLAY_MULTIPLIER       -- Melee hit for Holy Strike
+
+-- 7. Add CASTINGREG support (Meditation items in 1.16.0, HIGH value for Holy healers)
 turtleHoly.CASTINGREG = 15.0  -- High value for Holy Paladin mana sustain
 
 
@@ -123,9 +140,11 @@ end)
 
 -- ============================================================================
 -- PROTECTION
--- Shield of the Righteous (Oct 2024): CD 3→5 min (Uptime 60%→36%), DR 40%→30%
--- Holy Shield (1.18.0): SP coefficient 33%→15%
--- Reckoning (April 2025): Proc rate DOUBLED 5%→10%
+-- Shield of the Righteous (Oct 2024): CD 3→5 min, DR 40%→30%
+-- Redoubt (Nov 2024): Block chance HALVED
+-- Righteous Strikes (Nov 2024): Reworked from block chance to block value
+-- Holy Shield (Dec 2024): Block 50%→45%, SP 33%→15%
+-- Reckoning (April 2025): Proc rate DOUBLED (5-25%→10-50%)
 -- ============================================================================
 
 -- Vanilla Baseline
@@ -194,9 +213,9 @@ turtleProtection.BLOCKVALUE = vanillaProtection.BLOCKVALUE * 1.45  -- 0.15 → 0
 --    Conservative: +10% value
 turtleProtection.STA = vanillaProtection.STA * 1.1  -- 1.0 → 1.1
 
--- 7. Block Chance HIGHLY valuable (Reckoning proc rate DOUBLED: 5%→10%)
---    But Shield of the Righteous uptime 60%→36% (CD 3→5 min) reduces net gain
-turtleProtection.BLOCK = vanillaProtection.BLOCK * 1.95  -- 4.14 → 8.07
+-- 7. Block Chance: Reckoning DOUBLED but Redoubt HALVED, Righteous Strikes shifted to BV
+--    Net effect: Slightly more valuable due to Reckoning, but gains offset by Redoubt nerf
+turtleProtection.BLOCK = vanillaProtection.BLOCK * 1.1  -- 4.14 → 4.55
 
 -- 10. Add CASTINGREG support (Meditation items in 1.16.0, medium value for Prot)
 turtleProtection.CASTINGREG = 6.0  -- Medium value for Protection mana
@@ -226,9 +245,12 @@ end)
 
 -- ============================================================================
 -- RETRIBUTION
--- Crusader Strike: -10% weapon damage (Nov 2024)
+-- Crusader Strike (Nov 2024): -10% weapon damage
 -- Weapon Normalization (Dec 2024): Speed matters less, raw DPS critical
--- Seal of Righteousness 2H: 12.8%→12.5% (1.18.0)
+-- Seal of Righteousness (April 2025): 2H 0.098→0.128 (+31% buff!)
+-- Judgement of Righteousness (April 2025): Now uses melee hit/crit
+-- Crusader Strike (1.18.0): SP coefficient 33%→20%
+-- Seal of Righteousness (1.18.0): 2H 0.128→0.125 (net +27% vs Dec 2024)
 -- ============================================================================
 
 -- Vanilla Baseline
@@ -282,10 +304,11 @@ turtleRetribution.SPELLTOHIT = vanillaRetribution.SPELLTOHIT * 1.125  -- 1.68 �
 -- 3. Haste Baseline Check
 -- Haste baseline check removed (vanilla values are correct)
 
--- 4. Spell Power slightly nerfed (Seal of Righteousness 2H: 12.8%→12.5% in 1.18.0)
---    Conservative: +15% value (reduced from +20%)
-turtleRetribution.DMG = vanillaRetribution.DMG * 1.15  -- 0.33 → 0.38
-turtleRetribution.HOLYDMG = vanillaRetribution.HOLYDMG * 1.15  -- 0.33 → 0.38
+-- 4. Spell Power BUFFED (Seal of Righteousness April 2025: +31%, then 1.18.0: -2.4% = net +27%)
+--    Crusader Strike SP nerfed (33%→20%) but SoR buff outweighs it for 2H
+--    Conservative: +35% value
+turtleRetribution.DMG = vanillaRetribution.DMG * 1.35  -- 0.33 → 0.45
+turtleRetribution.HOLYDMG = vanillaRetribution.HOLYDMG * 1.35  -- 0.33 → 0.45
 
 -- 5. Strength more valuable (Holy Strike: +4-20% Strength buff for 20 seconds)
 --    Conservative: +15% value

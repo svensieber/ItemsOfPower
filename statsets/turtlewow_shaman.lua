@@ -26,8 +26,13 @@
   - Lightning Strike (Dec 2024): Now procs Windfury, mana cost increased
   - Stormstrike (Dec 2024): Mana cost increased
   - Shock AP Scaling: Flame 14.5%, Earth/Frost 10%
+  - Lightning Strike (April 2025): +5% spell power to Nature portion
   - Chain Heal (1.18.0): SP coefficient 71.42%→61.42% = 0.86× (NERF)
+  - Rockbiter Weapon (1.18.0): 30%→35% threat
   - Improved Water Shield (Dec 2024): Changed to 3/6/9 mp5 + % per charge
+  - Calming Winds (Aug 2025): 5/10/15%→8/16/25% threat reduction
+  - Improved Fire Totems (Aug 2025): +5/10 yards Searing Totem range
+  - Ancestral Swiftness (Aug 2025): Damage spells 25% reduced effectiveness
 
   References:
   - docs/turtle-wow-shaman-scaling-changes.md
@@ -56,6 +61,10 @@ end
 
 -- ============================================================================
 -- ELEMENTAL
+-- Fire Totems (1.18.0): Inherit spell crit and spell hit
+-- Elemental Fury (1.18.0): +5/10% Fire/Nature damage, +50/100% crit damage
+-- Molten Blast (1.18.0): 57.14% SP, refreshes Flame Shock
+-- Earthquake (1.18.0): 60% SP, new AoE capstone
 -- ============================================================================
 
 -- Vanilla Baseline
@@ -104,11 +113,15 @@ turtleElemental.SPELLTOHIT = vanillaElemental.SPELLTOHIT * 1.2  -- 7.2 → 8.64
 --    Conservative: +15% value
 turtleElemental.DMG = vanillaElemental.DMG * 1.15  -- 1.0 → 1.15
 
--- 4. Crit HIGHLY valuable (Elemental Fury: +50/100% crit damage, Fire totems inherit crit)
+-- 4. FIREDMG added (Fire Totems inherit crit/hit 1.18.0, Molten Blast 57.14%, Elemental Fury +10%)
+--    Fire damage now significant in Elemental rotation
+turtleElemental.FIREDMG = 0.75 * DISPLAY_MULTIPLIER  -- New stat for 1.18.0 Fire scaling
+
+-- 5. Crit HIGHLY valuable (Elemental Fury: +50/100% crit damage, Fire totems inherit crit)
 --    ×1.3 for Elemental Fury +50/100% crit damage + Fire Totem crit inheritance
 turtleElemental.SPELLCRIT = vanillaElemental.SPELLCRIT * 1.3  -- 8.4 → 10.92
 
--- 5. Add CASTINGREG support (Meditation items in 1.16.0, medium-high value for Elemental)
+-- 6. Add CASTINGREG support (Meditation items in 1.16.0, medium-high value for Elemental)
 --    Elemental is mana-hungry spec
 turtleElemental.CASTINGREG = 7.0  -- Medium-high value for Elemental mana efficiency
 
@@ -128,6 +141,12 @@ end)
 
 -- ============================================================================
 -- ENHANCEMENT
+-- Windfury Weapon (Nov 2024): 20% proc, 0.5s ICD
+-- Flurry (Dec 2024): 8/11/14/17/20% attack speed (buffed from 7-15%)
+-- Ancestral Knowledge (Dec 2024): 1-5% TOTAL stats (from gear)
+-- Lightning Strike (Dec 2024): Now procs Windfury, mana cost increased
+-- Shock AP Scaling: Flame 14.5%, Earth/Frost 10%
+-- Lightning Strike (April 2025): +5% spell power to Nature portion
 -- ============================================================================
 
 -- Vanilla Baseline
@@ -208,6 +227,10 @@ turtleEnhancement.WEAPONDPS = vanillaEnhancement.WEAPONDPS * 1.45  -- 2.308 → 
 --    Conservative: +30% value
 turtleEnhancement.ARMORPEN = vanillaEnhancement.ARMORPEN * 1.3  -- 0.346 → 0.45
 
+-- 9. NATUREDMG more valuable (Lightning Strike: +5% spell power scaling April 2025)
+--    Conservative: +15% value
+turtleEnhancement.NATUREDMG = vanillaEnhancement.NATUREDMG * 1.15  -- 0.3 → 0.345
+
 
 -- Queue StatSet creation (delayed until OnEnable)
 table.insert(ItemsOfPower_PendingStatSets, function()
@@ -225,6 +248,8 @@ end)
 
 -- ============================================================================
 -- RESTORATION
+-- Chain Heal (1.18.0): SP coefficient 71.42%→61.42% = 0.86× (NERF)
+-- Improved Water Shield (Dec 2024): Changed to 3/6/9 mp5 + % per charge
 -- ============================================================================
 
 -- Vanilla Baseline

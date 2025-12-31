@@ -14,16 +14,21 @@
 
   Turtle WoW Hotfixes & Patches:
   - Poison AP Scaling (Dec 2024): Instant 5%, Deadly/Corrosive 2%/tick (8% total)
-  - Envenom: 30% increased poison effectiveness (April 2025, was 25%)
-  - Relentless Strikes: +5% finisher damage per stack, max 5 (25%)
+  - Relentless Strikes (Dec 2024): +5% finisher damage per stack, max 5 (25%)
+  - Surprise Attack (Dec 2024): Reworked from 120% weapon damage to 25% AP
+  - Vile Poisons (April 2025): 7/14/20%→10/20/30% poison damage
+  - Envenom (April 2025): 25%→30% increased poison effectiveness
   - Deadly Throw (April 2025): Reworked to 100% weapon damage, ranged interrupt
-  - Blade Rush (1.18.0): Agility reduces energy tick time
+  - Hemorrhage (April 2025): 100%→110% weapon damage
+  - Swift Strikes (1.18.0): REMOVED
+  - Blade Rush (1.18.0): +2/5% attack speed, Agility reduces energy tick time
   - Blade Flurry (1.18.0): Now baseline toggle, -30% energy regen, -20% damage
+  - Corrosive Poison (1.18.0): AP scaling reduced by 5%
+  - Hemorrhage (1.18.0): Energy cost 45→40
+  - Dust of Disappearance (1.18.0): REMOVED
+  - Honor Among Thieves (1.18.0): Own crits trigger, CD 2s→1.5s
   - Shadow of Death (1.18.0): 50-250% AP capacity based on combo points
-  - Mark for Death: Party gains 30% of rogue AP as AP, 18% as spell power
-  - Savage Strikes: +13/25% offhand weapon damage (April 2025) - already in WEAPONDPS multipliers
-  - Throwing Weapon Spec: 50/100% offhand poison apply (April 2025) - utility only, no stat weight
-  - All Finishers: -5 energy cost (Dec 2024) - QoL, no stat weight
+  - Mark for Death (1.18.0): Party gains 30% rogue AP as AP, 18% as spell power
 
   LIMITATIONS (Complex mechanics that cannot be fully modeled with static weights):
   - Envenom: "Ramps up the damage of your poisons by 15% per combo point" is dynamic
@@ -60,6 +65,10 @@ end
 
 -- ============================================================================
 -- ASSASSINATION
+-- Poison AP Scaling (Dec 2024): Instant 5%, Deadly/Corrosive 8% per stack
+-- Vile Poisons (April 2025): 10/20/30% poison damage
+-- Envenom (April 2025): 30% effectiveness
+-- Corrosive Poison (1.18.0): -5% AP scaling
 -- ============================================================================
 
 -- Vanilla Baseline (identical for all 3 Rogue specs in Vanilla)
@@ -138,6 +147,9 @@ end)
 
 -- ============================================================================
 -- COMBAT
+-- Surprise Attack (Dec 2024): Reworked to 25% AP (was 120% weapon damage)
+-- Swift Strikes (1.18.0): REMOVED
+-- Blade Rush (1.18.0): +2/5% attack speed, Agility reduces energy tick time
 -- ============================================================================
 
 -- Vanilla Baseline
@@ -185,14 +197,17 @@ turtleCombat.TOHIT = vanillaCombat.TOHIT * 1.125
 --    +40% value
 turtleCombat.AGI = vanillaCombat.AGI * 1.4  -- 1.0 → 1.4
 
--- 4. Crit more valuable (Close Quarters Combat: +2/5% crit for daggers/fist/maces)
+-- 4. Attack Power more valuable (Surprise Attack now 25% AP, Poisons scale with AP)
+--    Lower than Assassination (which focuses on poison stacking)
+turtleCombat.ATTACKPOWER = vanillaCombat.ATTACKPOWER * 1.25  -- 0.45 → 0.56
+
+-- 5. Crit more valuable (Close Quarters Combat: +2/5% crit for daggers/fist/maces)
 --    Conservative: +10% value
 turtleCombat.CRIT = vanillaCombat.CRIT * 1.1  -- 6.885 → 7.57
 
--- 5. Haste: No documented bonus - using vanilla baseline
---    (Removed ×1.05 multiplier - no documentation for this bonus)
+-- 6. Haste: No documented bonus - using vanilla baseline
 
--- 6. WEAPONDPS more valuable (Savage Strikes +13/25% offhand April 2025, Surprise Attack)
+-- 7. WEAPONDPS more valuable (Deadly Throw 100% weapon damage, Surprise Attack)
 --    +50% value
 turtleCombat.WEAPONDPS = vanillaCombat.WEAPONDPS * 1.5  -- 2.222 → 3.33
 
@@ -217,6 +232,12 @@ end)
 
 -- ============================================================================
 -- SUBTLETY
+-- Hemorrhage (April 2025): 100%→110% weapon damage
+-- Hemorrhage (1.18.0): Energy cost 45→40
+-- Dust of Disappearance (1.18.0): REMOVED
+-- Honor Among Thieves (1.18.0): Own crits trigger, CD 2s→1.5s
+-- Shadow of Death (1.18.0): 50-250% AP capacity
+-- Mark for Death (1.18.0): 30% AP→party AP, 18%→spell power
 -- ============================================================================
 
 -- Vanilla Baseline
@@ -264,11 +285,15 @@ turtleSubtlety.TOHIT = vanillaSubtlety.TOHIT * 1.125
 --    +35% value
 turtleSubtlety.ATTACKPOWER = vanillaSubtlety.ATTACKPOWER * 1.35  -- 0.45 → 0.608
 
--- 4. Health more valuable (Cloaked in Shadows: Shield = 6/12% max health)
+-- 4. Crit more valuable (Relentless Strikes triggers from crits, Honor Among Thieves energy)
+--    Conservative: +10% value
+turtleSubtlety.CRIT = vanillaSubtlety.CRIT * 1.1  -- 6.885 → 7.57
+
+-- 5. Health more valuable (Cloaked in Shadows: Shield = 6/12% max health)
 --    Conservative: +50% value
 turtleSubtlety.HEALTH = vanillaSubtlety.HEALTH * 1.5  -- 0.01 → 0.015
 
--- 5. WEAPONDPS more valuable (Hemorrhage 110% weapon damage, but many abilities shifted to AP)
+-- 6. WEAPONDPS more valuable (Hemorrhage 110% weapon damage, but many abilities shifted to AP)
 --    Conservative: +35% value
 turtleSubtlety.WEAPONDPS = vanillaSubtlety.WEAPONDPS * 1.35  -- 2.222 → 3
 

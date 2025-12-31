@@ -10,15 +10,26 @@
   - Discipline: COMPLETE REWORK into Holy DPS support spec
   - Discipline: Spell Power HIGHLY valuable (Smite, Holy Fire, Resurgent Shield)
   - Discipline: Crit more valuable (Searing Light instant Smite procs)
-  - Smite (1.17.2): Coefficient increased ~+5%
-  - Chastise: 65% SP, grants 13/17/20% haste buff (April 2025)
   - Holy: Healing baseline -15%, but Spiritual Healing +30% compensates
   - Holy: Spirit more valuable (Spirit of Redemption +5%, Spiritual Guidance)
   - Shadow: Spell Power HIGHLY valuable (Mind Flay 75%, Mind Blast 60%)
   - Shadow: Spirit HIGHLY valuable (Improved Shadowform 15% regen while casting)
-  - Mind Flay: Coefficient 45%→75% (1.17.2)
-  - Pain Spike: 43% SP coefficient (April 2025)
-  - Power Word: Shield: 10% → 35% coefficient (+250%)
+  - Shadow: Shadow Mend reworked (1.18.0) - scales with 50% HEAL + 20% shadow SP
+
+  Hotfixes and Patch Changes:
+  - Power Word: Shield (1.17.2): 10%→35% coefficient (+250%)
+  - Mind Flay (1.17.2): Coefficient 45%→75%
+  - Mind Blast (1.17.2): Coefficient 42.85%→60%
+  - Pain Spike (1.17.2): Coefficient 42.85%→25%
+  - Smite (Nov 2024): Base damage -10% (reverts 1.17.2 buff)
+  - Searing Light (Nov 2024): 3s ICD added, mana reduction 40%→20%
+  - Resurgent Shield (Dec 2024): Shield SP bonus 6%→10% (+67%)
+  - Chastise (April 2025): Duration 6→8s, haste 10/13/15%→13/17/20%
+  - Smite (April 2025): Coefficient +5%
+  - Pain Spike (April 2025): Coefficient 25%→43%
+  - Vampiric Embrace (1.18.0): Cast time reverted to instant
+  - Shadow Mend (1.18.0): Reworked to 50% HEAL + 20% shadow SP
+  - Searing Light (Aug 2025): Mana reduction 20%→50%
 
   References:
   - docs/turtle-wow-priest-scaling-changes.md
@@ -47,6 +58,10 @@ end
 
 -- ============================================================================
 -- DISCIPLINE (HOLY DPS SUPPORT)
+-- Smite (Nov 2024): Base damage reverted, (April 2025): +5% coefficient
+-- Searing Light (Nov 2024): 3s ICD, (Aug 2025): 50% mana reduction
+-- Resurgent Shield (Dec 2024): Shield SP bonus 6%→10%
+-- Chastise (April 2025): Duration 6→8s, haste 13/17/20%
 -- ============================================================================
 
 -- Vanilla Baseline
@@ -177,9 +192,8 @@ end
 --    - Spiritual Healing: +30% (requires 5 points)
 --    - Swift Recovery: +6% with Renew active (requires 2 points)
 --    - Net with deep spec: -15% + 30% + 6% = +21%
---    - Conservative approach: Assume medium spec (+15% total for net 0%)
---    - Actually, let's use +10% to represent average deep Holy investment
-turtleHoly.HEAL = vanillaHoly.HEAL * 1.1  -- 0.81 → 0.891
+--    Compromise: +15% to balance casual vs deep spec investment
+turtleHoly.HEAL = vanillaHoly.HEAL * 1.15  -- 0.81 → 0.93
 
 -- 3. Spirit more valuable (Spirit of Redemption +5%, Spiritual Guidance conversion)
 --    Conservative: +10% value
@@ -209,6 +223,11 @@ end)
 
 -- ============================================================================
 -- SHADOW
+-- Mind Flay (1.17.2): Coefficient 45%→75%
+-- Mind Blast (1.17.2): Coefficient 42.85%→60%
+-- Pain Spike (1.17.2→April 2025): 42.85%→25%→43%
+-- Vampiric Embrace (1.18.0): Cast time reverted to instant
+-- Shadow Mend (1.18.0): Reworked to 50% HEAL + 20% shadow SP
 -- ============================================================================
 
 -- Vanilla Baseline
@@ -263,8 +282,9 @@ turtleShadow.SHADOWDMG = vanillaShadow.SHADOWDMG * 1.45  -- 1.0 → 1.45
 --    Conservative: +100% value (massive change from vanilla)
 turtleShadow.SPI = vanillaShadow.SPI * 2.0  -- 0.21 → 0.42
 
--- 6. Add Healing Power for Shadow Mend (50% healing power + 20% shadow spell power)
+-- 6. Add Healing Power for Shadow Mend (1.18.0 rework: 50% HEAL + 20% shadow SP)
 --    Conservative: Low value since Shadow focuses on DPS
+--    Note: 20% shadow SP component already covered by SHADOWDMG value
 turtleShadow.HEAL = 0.15  -- Minor healing power for Shadow Mend utility
 
 -- 7. Add CASTINGREG support (Meditation items in 1.16.0, medium value for Shadow)

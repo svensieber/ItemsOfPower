@@ -5,29 +5,37 @@
 
   Changes from Vanilla:
   - Hit Cap: 9% → 8% (all specs: +12.5% Hit Rating value)
-  - Rage Generation (1.17.2): 90% gear-dependent (AP/Crit/Hit/WeaponDPS), 10% weapon speed
-  - Armor Cap (1.18.0): Removed, diminishing returns beyond 75%
+  - Rage Generation: 90% gear-dependent (AP/Crit/Hit/WeaponDPS), 10% weapon speed
+  - Armor Cap: Removed (1.18.0), diminishing returns beyond 75%
+  - Arms: Crit HIGHLY valuable (Deep Wounds 2x speed)
+  - Fury: Haste HIGHLY valuable (Unbridled Wrath, Blood Drinker)
+  - Protection: Block Value HIGHLY valuable (Shield Slam scales BV + AP)
 
-  Arms Changes:
-  - Deep Wounds (1.17.2): 1.5s ticks (2× speed), 6s duration, Boss armor NOW applies
-  - Slam (Dec 2024): 2.5s cast, continues swing timer, replaces Decisive Strike
-  - Execute (1.18.0): CD removed, Precision Cut +45% base damage
-  - Boundless Anger: +10/20/30 max rage (100→130)
-  - Master of Arms Mace (Dec 2024): ArPen nerf 600→360 @ level 60
-
-  Fury Changes:
-  - Enrage (Nov 2024): Damage bonus 25%→15%, duration 12s→8s, no swing cap
-  - Blood Drinker (1.18.0): ALL attacks heal 1-2% max HP (not just crits)
-  - Bloodthirst (Dec 2024): No self-damage, 35% AP scaling, +10% movement speed
-  - Unbridled Wrath: 15-75% proc, DOUBLED for 2H (150%)
-  - Flurry (1.18.0): Also reduces Slam cast time
-
-  Protection Changes:
-  - Shield Slam (1.17.2): Scales with AP + Block Value, moved to row 5
+  Turtle WoW Hotfixes & Patches:
+  - Rage Generation (1.17.2): 90% gear-dependent, weapon speed less important
+  - Deep Wounds (1.17.2): 1.5s ticks (2× speed), 6s duration, Boss armor applies
+  - Shield Slam (1.17.2): Scales with AP + Block Value
+  - Unbridled Wrath (1.17.2): 15-75% proc, DOUBLED for 2H (150%)
   - Improved Shield Slam (Oct 2024): CD 4.5s, +70% block for 5s after use
+  - Enrage (Nov 2024): Damage bonus 25%→15%, duration 12s→8s, no swing cap
+  - Rend (Nov 2024): Now scales with 5% AP per tick
+  - Slam (Dec 2024): 2.5s cast, continues swing timer, replaces Decisive Strike
+  - Bloodthirst (Dec 2024): No self-damage, 35% AP scaling, +5% movement speed
+  - Enrage Talent (Dec 2024): 3/6/9/12/15%→4/8/12/16/20% (compensates nerf)
   - Concussion Blow (Dec 2024): CD 45s→20s, 100% armor pen, 2s stun
-  - Reprisal: Revenge +50% damage, 100% rage refund on success
-  - Shield Specialization: +1-5 rage per block
+  - Master of Arms Mace (Dec 2024): ArPen nerf 600→360 @ level 60
+  - Concussion Blow (April 2025): Stun 2s→3s
+  - Improved Pummel (April 2025): Rework to 50/100% movement slow
+  - Execute (1.18.0): CD removed
+  - Precision Cut (1.18.0): +15/30/45% Execute base damage
+  - Mortal Strike (1.18.0): 105-120%→115-130% weapon damage
+  - Bloodthirst (1.18.0): +5%→+10% movement speed
+  - Blood Drinker (1.18.0): ALL attacks heal 1-2% max HP (not just crits)
+  - Flurry (1.18.0): Also reduces Slam cast time
+  - Improved Berserker Rage (1.18.0): Restored, 5/10 rage + break snares
+  - Concussion Blow (1.18.0): Free (generates 10 rage instead of costing)
+  - Slam DW (Aug 2025): Off-hand swing timer reset for Dual Wield
+  - Blood Craze (Aug 2025): Enrage talent dependency removed
 
   References:
   - docs/turtle-wow-warrior-scaling-changes.md
@@ -55,11 +63,14 @@ end
 
 -- ============================================================================
 -- ARMS
+-- Deep Wounds (1.17.2): 1.5s ticks (2× speed), 6s duration, Boss armor applies
+-- Slam (Dec 2024): 2.5s cast, continues swing timer
+-- Master of Arms Mace (Dec 2024): ArPen nerf 600→360 @ level 60
+-- Execute (1.18.0): CD removed, Precision Cut +45% base damage
+-- Mortal Strike (1.18.0): 115-130% weapon damage
 -- ============================================================================
 
 -- Vanilla Baseline
--- NOTE: EXPERTISE was removed - it's a Cataclysm stat that doesn't exist in Vanilla/Turtle WoW.
--- Weapon Skill is handled differently in Vanilla (linear scaling in Turtle WoW since patch 1.17.2).
 local vanillaArms = ApplyMultiplier({
   STR = 1.0,
   AGI = 0.69,
@@ -67,6 +78,7 @@ local vanillaArms = ApplyMultiplier({
   SPI = 0.05,
   ATTACKPOWER = 0.45,
   TOHIT = 9.37931,        -- Pre-multiplied
+  EXPERTISE = 2.34483,    -- Expertise Rating (from ClassicHawsJon: 2.34483 * 1)
   CRIT = 7.225,           -- Physical crit
   HASTE = 4.5771,         -- Physical haste
   ARMORPEN = 2.75,        -- Armor Penetration (from ClassicHawsJon: 1.1 * 3.75 = 4.125, divided by 1.5 for base)
@@ -142,10 +154,15 @@ end)
 
 -- ============================================================================
 -- FURY
+-- Unbridled Wrath (1.17.2): 15-75% proc, DOUBLED for 2H (150%)
+-- Enrage (Nov 2024): 25%→15% damage, 8s duration, no swing cap
+-- Bloodthirst (Dec 2024): No self-damage, 35% AP, (1.18.0): +10% movement
+-- Enrage Talent (Dec 2024): 4/8/12/16/20% (compensates Nov nerf)
+-- Blood Drinker (1.18.0): ALL attacks heal 1-2% max HP
+-- Flurry (1.18.0): Also reduces Slam cast time
 -- ============================================================================
 
 -- Vanilla Baseline
--- NOTE: EXPERTISE was removed - it's a Cataclysm stat that doesn't exist in Vanilla/Turtle WoW.
 local vanillaFury = ApplyMultiplier({
   STR = 1.0,
   AGI = 0.57,
@@ -153,6 +170,7 @@ local vanillaFury = ApplyMultiplier({
   SPI = 0.05,
   ATTACKPOWER = 0.54,
   TOHIT = 5.34621,        -- Pre-multiplied
+  EXPERTISE = 1.33655,    -- Expertise Rating (from ClassicHawsJon: 2.34483 * 0.57)
   CRIT = 5.95,            -- Physical crit
   HASTE = 3.2923,         -- Physical haste
   ARMORPEN = 1.175,       -- Armor Penetration (from ClassicHawsJon: 0.47 * 3.75 = 1.7625, divided by 1.5 for base)
@@ -232,10 +250,15 @@ end)
 
 -- ============================================================================
 -- PROTECTION
+-- Shield Slam (1.17.2): Scales with AP + Block Value
+-- Shield Specialization (1.17.2): +1-5 rage per block
+-- Improved Shield Slam (Oct 2024): CD 4.5s, +70% block for 5s
+-- Concussion Blow (Dec 2024): CD 20s, 100% armor pen, 2s stun
+-- Concussion Blow (April 2025): Stun 2s→3s
+-- Concussion Blow (1.18.0): Free (generates 10 rage instead of costing)
 -- ============================================================================
 
 -- Vanilla Baseline
--- NOTE: EXPERTISE was removed - it's a Cataclysm stat that doesn't exist in Vanilla/Turtle WoW.
 local vanillaProtection = ApplyMultiplier({
   STR = 0.33,
   AGI = 0.59,
@@ -243,6 +266,7 @@ local vanillaProtection = ApplyMultiplier({
   SPI = 0.05,
   ATTACKPOWER = 0.06,
   TOHIT = 6.28414,        -- Pre-multiplied
+  EXPERTISE = 1.57104,    -- Expertise Rating (from ClassicHawsJon: 2.34483 * 0.67)
   CRIT = 2.38,
   HASTE = 1.6863,
   ARMORPEN = 0.475,       -- Armor Penetration (from ClassicHawsJon: 0.19 * 3.75 = 0.7125, divided by 1.5 for base)

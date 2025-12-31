@@ -471,13 +471,20 @@ do
       -- trim line
       tmpStr = trim(tmpStr)
 
-      local _, _, value, token = s.find(tmpStr, "^%+(%d+)%%?(.*)$")
+      -- Support both positive (+X) and negative (-X) values
+      local sign, value, token
+      _, _, sign, value, token = s.find(tmpStr, "^([%+%-])(%d+)%%?(.*)$")
       if not value then
-        _, _, token, value = s.find(tmpStr, "^(.*)%+(%d+)%%?$")
+        _, _, token, sign, value = s.find(tmpStr, "^(.-)([%+%-])(%d+)%%?$")
       end
       if token and value then
         -- trim token
         token = trim(token)
+        -- Convert to number and apply sign
+        value = tonumber(value)
+        if sign == "-" then
+          value = -value
+        end
         if self:CheckToken(bonuses, token, value) then
           found = true
         end

@@ -44,6 +44,25 @@ if not ItemsOfPower_PendingStatSets then
   ItemsOfPower_PendingStatSets = {}
 end
 
+
+-- Helper: Register new set OR update existing set's stats
+local function RegisterOrUpdateStatSet(name, stats)
+  local existingSet = ItemsOfPower.SetByName[name]
+  if existingSet then
+    -- Update stats in place (clear old, add new)
+    for k in pairs(existingSet.Stats) do
+      existingSet.Stats[k] = nil
+    end
+    for k, v in pairs(stats) do
+      existingSet.Stats[k] = v
+    end
+    ItemsOfPower:ClearCache()
+  else
+    local set = ItemsOfPower.SetTypes.StatSet:new(name, stats)
+    ItemsOfPower:RegisterSet(set)
+  end
+end
+
 -- Display Multiplier: Scale all weights for better readability
 -- Increase this value to make differences between items more visible
 local DISPLAY_MULTIPLIER = 10
@@ -121,16 +140,7 @@ turtleAffliction.CASTINGREG = 5.0  -- Medium value for Affliction mana efficienc
 
 -- Queue StatSet creation (delayed until OnEnable)
 table.insert(ItemsOfPower_PendingStatSets, function()
-  local stats = turtleAffliction
-
-  local set = ItemsOfPower.SetTypes.StatSet:new("TurtleWoW_Warlock_Affliction", stats)
-
-
-
-  if not ItemsOfPower.SetByName["TurtleWoW_Warlock_Affliction"] then
-    ItemsOfPower:RegisterSet(set)
-  else
-  end
+  RegisterOrUpdateStatSet("TurtleWoW_Warlock_Affliction", turtleAffliction)
 end)
 
 -- ============================================================================
@@ -209,16 +219,7 @@ turtleDemonology.CASTINGREG = 5.0  -- Medium value for Demonology mana efficienc
 
 -- Queue StatSet creation (delayed until OnEnable)
 table.insert(ItemsOfPower_PendingStatSets, function()
-  local stats = turtleDemonology
-
-  local set = ItemsOfPower.SetTypes.StatSet:new("TurtleWoW_Warlock_Demonology", stats)
-
-
-
-  if not ItemsOfPower.SetByName["TurtleWoW_Warlock_Demonology"] then
-    ItemsOfPower:RegisterSet(set)
-  else
-  end
+  RegisterOrUpdateStatSet("TurtleWoW_Warlock_Demonology", turtleDemonology)
 end)
 
 -- ============================================================================
@@ -293,15 +294,6 @@ turtleDestruction.CASTINGREG = 4.0  -- Low-medium value for Destruction mana eff
 
 -- Queue StatSet creation (delayed until OnEnable)
 table.insert(ItemsOfPower_PendingStatSets, function()
-  local stats = turtleDestruction
-
-  local set = ItemsOfPower.SetTypes.StatSet:new("TurtleWoW_Warlock_Destruction", stats)
-
-
-
-  if not ItemsOfPower.SetByName["TurtleWoW_Warlock_Destruction"] then
-    ItemsOfPower:RegisterSet(set)
-  else
-  end
+  RegisterOrUpdateStatSet("TurtleWoW_Warlock_Destruction", turtleDestruction)
 end)
 

@@ -41,6 +41,25 @@ if not ItemsOfPower_PendingStatSets then
   ItemsOfPower_PendingStatSets = {}
 end
 
+
+-- Helper: Register new set OR update existing set's stats
+local function RegisterOrUpdateStatSet(name, stats)
+  local existingSet = ItemsOfPower.SetByName[name]
+  if existingSet then
+    -- Update stats in place (clear old, add new)
+    for k in pairs(existingSet.Stats) do
+      existingSet.Stats[k] = nil
+    end
+    for k, v in pairs(stats) do
+      existingSet.Stats[k] = v
+    end
+    ItemsOfPower:ClearCache()
+  else
+    local set = ItemsOfPower.SetTypes.StatSet:new(name, stats)
+    ItemsOfPower:RegisterSet(set)
+  end
+end
+
 -- Display Multiplier: Scale all weights for better readability
 -- Increase this value to make differences between items more visible
 local DISPLAY_MULTIPLIER = 10
@@ -123,16 +142,7 @@ turtleBalance.ARCANEDMG = vanillaBalance.ARCANEDMG * 1.2  -- 0.64 → 0.768
 
 -- Queue StatSet creation (delayed until OnEnable)
 table.insert(ItemsOfPower_PendingStatSets, function()
-  local stats = turtleBalance
-
-  local set = ItemsOfPower.SetTypes.StatSet:new("TurtleWoW_Druid_Balance", stats)
-
-
-
-  if not ItemsOfPower.SetByName["TurtleWoW_Druid_Balance"] then
-    ItemsOfPower:RegisterSet(set)
-  else
-  end
+  RegisterOrUpdateStatSet("TurtleWoW_Druid_Balance", turtleBalance)
 end)
 
 -- ============================================================================
@@ -211,16 +221,7 @@ turtleFeralDamage.ARMORPEN = vanillaFeralDamage.ARMORPEN * 1.3  -- 1.154 → 1.5
 
 -- Queue StatSet creation (delayed until OnEnable)
 table.insert(ItemsOfPower_PendingStatSets, function()
-  local stats = turtleFeralDamage
-
-local set = ItemsOfPower.SetTypes.StatSet:new("TurtleWoW_Druid_Feral_Damage", stats)
-
-
-
-if not ItemsOfPower.SetByName["TurtleWoW_Druid_Feral_Damage"] then
-    ItemsOfPower:RegisterSet(set)
-  else
-  end
+  RegisterOrUpdateStatSet("TurtleWoW_Druid_Feral_Damage", turtleFeralDamage)
 end)
 
 -- ============================================================================
@@ -310,16 +311,7 @@ turtleFeralTank.ARMORPEN = vanillaFeralTank.ARMORPEN * 1.3  -- 0.577 → 0.75
 
 -- Queue StatSet creation (delayed until OnEnable)
 table.insert(ItemsOfPower_PendingStatSets, function()
-  local stats = turtleFeralTank
-
-local set = ItemsOfPower.SetTypes.StatSet:new("TurtleWoW_Druid_Feral_Tank", stats)
-
-
-
-if not ItemsOfPower.SetByName["TurtleWoW_Druid_Feral_Tank"] then
-    ItemsOfPower:RegisterSet(set)
-  else
-  end
+  RegisterOrUpdateStatSet("TurtleWoW_Druid_Feral_Tank", turtleFeralTank)
 end)
 
 -- ============================================================================
@@ -384,15 +376,6 @@ turtleRestoration.SPELLHASTE = vanillaRestoration.SPELLHASTE * 1.1  -- Slight bo
 
 -- Queue StatSet creation (delayed until OnEnable)
 table.insert(ItemsOfPower_PendingStatSets, function()
-  local stats = turtleRestoration
-
-  local set = ItemsOfPower.SetTypes.StatSet:new("TurtleWoW_Druid_Restoration", stats)
-
-
-
-  if not ItemsOfPower.SetByName["TurtleWoW_Druid_Restoration"] then
-    ItemsOfPower:RegisterSet(set)
-  else
-  end
+  RegisterOrUpdateStatSet("TurtleWoW_Druid_Restoration", turtleRestoration)
 end)
 

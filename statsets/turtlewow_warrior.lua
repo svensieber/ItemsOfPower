@@ -48,6 +48,25 @@ if not ItemsOfPower_PendingStatSets then
   ItemsOfPower_PendingStatSets = {}
 end
 
+
+-- Helper: Register new set OR update existing set's stats
+local function RegisterOrUpdateStatSet(name, stats)
+  local existingSet = ItemsOfPower.SetByName[name]
+  if existingSet then
+    -- Update stats in place (clear old, add new)
+    for k in pairs(existingSet.Stats) do
+      existingSet.Stats[k] = nil
+    end
+    for k, v in pairs(stats) do
+      existingSet.Stats[k] = v
+    end
+    ItemsOfPower:ClearCache()
+  else
+    local set = ItemsOfPower.SetTypes.StatSet:new(name, stats)
+    ItemsOfPower:RegisterSet(set)
+  end
+end
+
 -- Display Multiplier: Scale all weights for better readability
 -- Increase this value to make differences between items more visible
 local DISPLAY_MULTIPLIER = 10
@@ -140,16 +159,7 @@ turtleArms.ARMORPEN = vanillaArms.ARMORPEN * 1.35  -- 2.75 → 3.7125
 
 -- Queue StatSet creation (delayed until OnEnable)
 table.insert(ItemsOfPower_PendingStatSets, function()
-  local stats = turtleArms
-
-  local set = ItemsOfPower.SetTypes.StatSet:new("TurtleWoW_Warrior_Arms", stats)
-
-
-
-  if not ItemsOfPower.SetByName["TurtleWoW_Warrior_Arms"] then
-    ItemsOfPower:RegisterSet(set)
-  else
-  end
+  RegisterOrUpdateStatSet("TurtleWoW_Warrior_Arms", turtleArms)
 end)
 
 -- ============================================================================
@@ -236,16 +246,7 @@ turtleFury.ARMORPEN = vanillaFury.ARMORPEN * 1.35  -- 1.175 → 1.586
 
 -- Queue StatSet creation (delayed until OnEnable)
 table.insert(ItemsOfPower_PendingStatSets, function()
-  local stats = turtleFury
-
-  local set = ItemsOfPower.SetTypes.StatSet:new("TurtleWoW_Warrior_Fury", stats)
-
-
-
-  if not ItemsOfPower.SetByName["TurtleWoW_Warrior_Fury"] then
-    ItemsOfPower:RegisterSet(set)
-  else
-  end
+  RegisterOrUpdateStatSet("TurtleWoW_Warrior_Fury", turtleFury)
 end)
 
 -- ============================================================================
@@ -338,15 +339,6 @@ turtleProtection.ARMORPEN = vanillaProtection.ARMORPEN * 1.6  -- 0.475 → 0.76
 
 -- Queue StatSet creation (delayed until OnEnable)
 table.insert(ItemsOfPower_PendingStatSets, function()
-  local stats = turtleProtection
-
-  local set = ItemsOfPower.SetTypes.StatSet:new("TurtleWoW_Warrior_Protection", stats)
-
-
-
-  if not ItemsOfPower.SetByName["TurtleWoW_Warrior_Protection"] then
-    ItemsOfPower:RegisterSet(set)
-  else
-  end
+  RegisterOrUpdateStatSet("TurtleWoW_Warrior_Protection", turtleProtection)
 end)
 

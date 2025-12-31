@@ -45,6 +45,25 @@ if not ItemsOfPower_PendingStatSets then
   ItemsOfPower_PendingStatSets = {}
 end
 
+
+-- Helper: Register new set OR update existing set's stats
+local function RegisterOrUpdateStatSet(name, stats)
+  local existingSet = ItemsOfPower.SetByName[name]
+  if existingSet then
+    -- Update stats in place (clear old, add new)
+    for k in pairs(existingSet.Stats) do
+      existingSet.Stats[k] = nil
+    end
+    for k, v in pairs(stats) do
+      existingSet.Stats[k] = v
+    end
+    ItemsOfPower:ClearCache()
+  else
+    local set = ItemsOfPower.SetTypes.StatSet:new(name, stats)
+    ItemsOfPower:RegisterSet(set)
+  end
+end
+
 -- Display Multiplier: Scale all weights for better readability
 -- Increase this value to make differences between items more visible
 local DISPLAY_MULTIPLIER = 10
@@ -127,16 +146,7 @@ turtleElemental.CASTINGREG = 7.0  -- Medium-high value for Elemental mana effici
 
 -- Queue StatSet creation (delayed until OnEnable)
 table.insert(ItemsOfPower_PendingStatSets, function()
-  local stats = turtleElemental
-
-  local set = ItemsOfPower.SetTypes.StatSet:new("TurtleWoW_Shaman_Elemental", stats)
-
-
-
-  if not ItemsOfPower.SetByName["TurtleWoW_Shaman_Elemental"] then
-    ItemsOfPower:RegisterSet(set)
-  else
-  end
+  RegisterOrUpdateStatSet("TurtleWoW_Shaman_Elemental", turtleElemental)
 end)
 
 -- ============================================================================
@@ -234,16 +244,7 @@ turtleEnhancement.NATUREDMG = vanillaEnhancement.NATUREDMG * 1.15  -- 0.3 → 0.
 
 -- Queue StatSet creation (delayed until OnEnable)
 table.insert(ItemsOfPower_PendingStatSets, function()
-  local stats = turtleEnhancement
-
-  local set = ItemsOfPower.SetTypes.StatSet:new("TurtleWoW_Shaman_Enhancement", stats)
-
-
-
-  if not ItemsOfPower.SetByName["TurtleWoW_Shaman_Enhancement"] then
-    ItemsOfPower:RegisterSet(set)
-  else
-  end
+  RegisterOrUpdateStatSet("TurtleWoW_Shaman_Enhancement", turtleEnhancement)
 end)
 
 -- ============================================================================
@@ -306,15 +307,6 @@ turtleRestoration.CASTINGREG = 14.0  -- High value for Restoration mana sustain
 
 -- Queue StatSet creation (delayed until OnEnable)
 table.insert(ItemsOfPower_PendingStatSets, function()
-  local stats = turtleRestoration
-
-  local set = ItemsOfPower.SetTypes.StatSet:new("TurtleWoW_Shaman_Restoration", stats)
-
-
-
-  if not ItemsOfPower.SetByName["TurtleWoW_Shaman_Restoration"] then
-    ItemsOfPower:RegisterSet(set)
-  else
-  end
+  RegisterOrUpdateStatSet("TurtleWoW_Shaman_Restoration", turtleRestoration)
 end)
 

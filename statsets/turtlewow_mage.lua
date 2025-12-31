@@ -40,6 +40,25 @@ if not ItemsOfPower_PendingStatSets then
   ItemsOfPower_PendingStatSets = {}
 end
 
+
+-- Helper: Register new set OR update existing set's stats
+local function RegisterOrUpdateStatSet(name, stats)
+  local existingSet = ItemsOfPower.SetByName[name]
+  if existingSet then
+    -- Update stats in place (clear old, add new)
+    for k in pairs(existingSet.Stats) do
+      existingSet.Stats[k] = nil
+    end
+    for k, v in pairs(stats) do
+      existingSet.Stats[k] = v
+    end
+    ItemsOfPower:ClearCache()
+  else
+    local set = ItemsOfPower.SetTypes.StatSet:new(name, stats)
+    ItemsOfPower:RegisterSet(set)
+  end
+end
+
 -- Display Multiplier: Scale all weights for better readability
 -- Increase this value to make differences between items more visible
 local DISPLAY_MULTIPLIER = 10
@@ -130,15 +149,7 @@ turtleArcane.CASTINGREG = 8.0  -- Medium-high value for Arcane mana efficiency
 
 -- Queue StatSet creation (delayed until OnEnable)
 table.insert(ItemsOfPower_PendingStatSets, function()
-  local stats = turtleArcane
-
-  local set = ItemsOfPower.SetTypes.StatSet:new("TurtleWoW_Mage_Arcane", stats)
-
-
-
-  if not ItemsOfPower.SetByName["TurtleWoW_Mage_Arcane"] then
-    ItemsOfPower:RegisterSet(set)
-  end
+  RegisterOrUpdateStatSet("TurtleWoW_Mage_Arcane", turtleArcane)
 end)
 
 -- ============================================================================
@@ -209,15 +220,7 @@ turtleFire.CASTINGREG = 3.5  -- Low value for Fire (mana buffs in April 2025)
 
 -- Queue StatSet creation (delayed until OnEnable)
 table.insert(ItemsOfPower_PendingStatSets, function()
-  local stats = turtleFire
-
-  local set = ItemsOfPower.SetTypes.StatSet:new("TurtleWoW_Mage_Fire", stats)
-
-
-
-  if not ItemsOfPower.SetByName["TurtleWoW_Mage_Fire"] then
-    ItemsOfPower:RegisterSet(set)
-  end
+  RegisterOrUpdateStatSet("TurtleWoW_Mage_Fire", turtleFire)
 end)
 
 -- ============================================================================
@@ -287,13 +290,5 @@ turtleFrost.CASTINGREG = 5.0  -- Medium value for Frost mana efficiency
 
 -- Queue StatSet creation (delayed until OnEnable)
 table.insert(ItemsOfPower_PendingStatSets, function()
-  local stats = turtleFrost
-
-  local set = ItemsOfPower.SetTypes.StatSet:new("TurtleWoW_Mage_Frost", stats)
-
-
-
-  if not ItemsOfPower.SetByName["TurtleWoW_Mage_Frost"] then
-    ItemsOfPower:RegisterSet(set)
-  end
+  RegisterOrUpdateStatSet("TurtleWoW_Mage_Frost", turtleFrost)
 end)

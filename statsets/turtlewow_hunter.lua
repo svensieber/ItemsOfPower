@@ -43,6 +43,24 @@ if not ItemsOfPower_PendingStatSets then
   ItemsOfPower_PendingStatSets = {}
 end
 
+-- Helper: Register new set OR update existing set's stats
+local function RegisterOrUpdateStatSet(name, stats)
+  local existingSet = ItemsOfPower.SetByName[name]
+  if existingSet then
+    -- Update stats in place (clear old, add new)
+    for k in pairs(existingSet.Stats) do
+      existingSet.Stats[k] = nil
+    end
+    for k, v in pairs(stats) do
+      existingSet.Stats[k] = v
+    end
+    ItemsOfPower:ClearCache()
+  else
+    local set = ItemsOfPower.SetTypes.StatSet:new(name, stats)
+    ItemsOfPower:RegisterSet(set)
+  end
+end
+
 -- Display Multiplier: Scale all weights for better readability
 -- Increase this value to make differences between items more visible
 local DISPLAY_MULTIPLIER = 10
@@ -118,12 +136,7 @@ turtleMM.RANGEDCRIT = vanillaMM.CRIT * 1.25  -- Use CRIT as base, apply ×1.25
 
 -- Queue StatSet creation (delayed until OnEnable)
 table.insert(ItemsOfPower_PendingStatSets, function()
-  local stats = turtleMM
-  local set = ItemsOfPower.SetTypes.StatSet:new("TurtleWoW_Hunter_Marksmanship", stats)
-
-  if not ItemsOfPower.SetByName["TurtleWoW_Hunter_Marksmanship"] then
-    ItemsOfPower:RegisterSet(set)
-  end
+  RegisterOrUpdateStatSet("TurtleWoW_Hunter_Marksmanship", turtleMM)
 end)
 
 -- ============================================================================
@@ -205,15 +218,7 @@ turtleBM.ARMORPEN = vanillaBM.ARMORPEN * 1.3  -- 0.490 → 0.6375
 
 -- Queue StatSet creation (delayed until OnEnable)
 table.insert(ItemsOfPower_PendingStatSets, function()
-  local stats = turtleBM
-
-local set = ItemsOfPower.SetTypes.StatSet:new("TurtleWoW_Hunter_Beast_Mastery", stats)
-
-
-
-if not ItemsOfPower.SetByName["TurtleWoW_Hunter_Beast_Mastery"] then
-    ItemsOfPower:RegisterSet(set)
-  end
+  RegisterOrUpdateStatSet("TurtleWoW_Hunter_Beast_Mastery", turtleBM)
 end)
 
 -- ============================================================================
@@ -295,13 +300,5 @@ turtleSV.RANGEDATTACKPOWER = vanillaSV.RANGEDATTACKPOWER * 1.45
 
 -- Queue StatSet creation (delayed until OnEnable)
 table.insert(ItemsOfPower_PendingStatSets, function()
-  local stats = turtleSV
-
-  local set = ItemsOfPower.SetTypes.StatSet:new("TurtleWoW_Hunter_Survival", stats)
-
-
-
-  if not ItemsOfPower.SetByName["TurtleWoW_Hunter_Survival"] then
-    ItemsOfPower:RegisterSet(set)
-  end
+  RegisterOrUpdateStatSet("TurtleWoW_Hunter_Survival", turtleSV)
 end)

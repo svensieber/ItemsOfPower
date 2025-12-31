@@ -44,6 +44,25 @@ if not ItemsOfPower_PendingStatSets then
   ItemsOfPower_PendingStatSets = {}
 end
 
+
+-- Helper: Register new set OR update existing set's stats
+local function RegisterOrUpdateStatSet(name, stats)
+  local existingSet = ItemsOfPower.SetByName[name]
+  if existingSet then
+    -- Update stats in place (clear old, add new)
+    for k in pairs(existingSet.Stats) do
+      existingSet.Stats[k] = nil
+    end
+    for k, v in pairs(stats) do
+      existingSet.Stats[k] = v
+    end
+    ItemsOfPower:ClearCache()
+  else
+    local set = ItemsOfPower.SetTypes.StatSet:new(name, stats)
+    ItemsOfPower:RegisterSet(set)
+  end
+end
+
 -- Display Multiplier: Scale all weights for better readability
 -- Increase this value to make differences between items more visible
 local DISPLAY_MULTIPLIER = 10
@@ -126,16 +145,7 @@ turtleHoly.CASTINGREG = 15.0  -- High value for Holy Paladin mana sustain
 
 -- Queue StatSet creation (delayed until OnEnable)
 table.insert(ItemsOfPower_PendingStatSets, function()
-  local stats = turtleHoly
-
-  local set = ItemsOfPower.SetTypes.StatSet:new("TurtleWoW_Paladin_Holy", stats)
-
-
-
-  if not ItemsOfPower.SetByName["TurtleWoW_Paladin_Holy"] then
-    ItemsOfPower:RegisterSet(set)
-  else
-  end
+  RegisterOrUpdateStatSet("TurtleWoW_Paladin_Holy", turtleHoly)
 end)
 
 -- ============================================================================
@@ -231,16 +241,7 @@ turtleProtection.ARMORPEN = vanillaProtection.ARMORPEN * 1.3  -- 0.069 → 0.09
 
 -- Queue StatSet creation (delayed until OnEnable)
 table.insert(ItemsOfPower_PendingStatSets, function()
-  local stats = turtleProtection
-
-  local set = ItemsOfPower.SetTypes.StatSet:new("TurtleWoW_Paladin_Protection", stats)
-
-
-
-  if not ItemsOfPower.SetByName["TurtleWoW_Paladin_Protection"] then
-    ItemsOfPower:RegisterSet(set)
-  else
-  end
+  RegisterOrUpdateStatSet("TurtleWoW_Paladin_Protection", turtleProtection)
 end)
 
 -- ============================================================================
@@ -337,15 +338,6 @@ turtleRetribution.CASTINGREG = 4.0  -- Low-medium value for Retribution mana
 
 -- Queue StatSet creation (delayed until OnEnable)
 table.insert(ItemsOfPower_PendingStatSets, function()
-  local stats = turtleRetribution
-
-  local set = ItemsOfPower.SetTypes.StatSet:new("TurtleWoW_Paladin_Retribution", stats)
-
-
-
-  if not ItemsOfPower.SetByName["TurtleWoW_Paladin_Retribution"] then
-    ItemsOfPower:RegisterSet(set)
-  else
-  end
+  RegisterOrUpdateStatSet("TurtleWoW_Paladin_Retribution", turtleRetribution)
 end)
 

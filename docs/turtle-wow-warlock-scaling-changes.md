@@ -524,6 +524,94 @@ This document tracks all Warlock-specific changes from Turtle WoW that affect st
 
 ---
 
+## Version 1.18.1
+
+### Baseline Changes
+
+#### Curse of Exhaustion (Nerf)
+- **Mana Cost:** 8% → 14% base mana
+- **Impact:** Higher mana cost for kiting/PvP utility
+
+#### Curse of Tongues (Adjusted)
+- **Rank 1:** Cast speed reduction 50% → 30%
+- **Rank 2:** Mana cost 110 → 240
+- **Impact:** Rank 1 weaker, Rank 2 more expensive
+
+#### Enslave Demon (Changed)
+- **New Effect:** Reduces healing taken by enslaved demon by 50%
+- **Impact:** Enslaved demons harder to sustain
+
+#### Felhunter and Infernal (Nerf)
+- **Armor:** Reduced by 30%
+- **Impact:** ~5% less physical damage reduction
+
+#### Felguard Legion Strike (Adjusted)
+- **Healing Reduction:** 10% → 25%
+- **Impact:** Stronger healing debuff in PvP/PvE
+
+#### Felguard Axe Toss (Nerf)
+- **Stun Duration:** 4s → 2s
+- **Impact:** Reduced CC duration
+
+#### Searing Pain (Buff)
+- **GCD:** 1.5s → 1s
+- **Impact:** Higher sustained DPS potential
+
+#### Hellfire (Reworked)
+- **Spell Power Scaling:** 2.2% → 4.125% per tick
+- **Mana Cost:** Now initial + per-second cost (similar to Drain Soul)
+- **Impact:** CRITICAL - significantly higher spell power scaling
+
+#### Curse of Recklessness (Buff)
+- **GCD:** 1.5s → 1s
+- **Impact:** Faster curse application
+
+---
+
+### Affliction
+
+#### Sinister Pursuit (Moved)
+- **Location:** Moved to Demonology tree
+- **Effect:** Now +5/10% pet movement speed
+- **Impact:** No longer available to Affliction builds
+
+#### Master Conjuror (REMOVED)
+- **Impact:** Healthstone/Firestone/Spellstone improvements no longer available
+
+---
+
+### Demonology
+
+#### Master Summoner (Buffed)
+- **Additional Effect:** -25/50% Ritual of Doom cooldown
+- **Impact:** Faster Doomguard access
+
+#### Master Demonologist (Nerf)
+- **Greater Demons:** Healing reduction removed
+- **Impact:** Greater demons no longer penalize incoming healing
+
+#### Unleashed Potential (Buffed)
+- **Additional Effect:** Now also grants tracking buff
+- **Impact:** Quality of life improvement for pet management
+
+#### Soul Link (Nerf)
+- **Damage Transfer:** 25% → 20%
+- **Impact:** Less damage redirected to demon
+
+---
+
+### Tier Set Changes
+
+#### Affliction T3 (4pc) (Reworked)
+- **Effect:** Curse of Agony +100% damage for first 4 ticks
+- **Impact:** Front-loaded CoA damage, better for short fights
+
+#### Affliction T3.5 (3pc) (Nerf)
+- **Siphon Life Mana Return:** 50% → 25%
+- **Impact:** Reduced mana sustain from Siphon Life
+
+---
+
 ## Stat Priority Impact Summary
 
 ### Affliction
@@ -580,12 +668,13 @@ This document tracks all Warlock-specific changes from Turtle WoW that affect st
 2. **Drain Soul:** 16.67% → 20% coefficient
 3. **Dark Harvest:** 25% coefficient
 4. **Siphon Life:** 50% → 100% coefficient
-5. **Fel Intellect:** 10-30% total Intellect → demons
-6. **Fel Stamina:** 10-50% total Stamina → demons
-7. **Unleashed Potential:** 5-15% spell damage → demons
-8. **Demon AP Scaling:** 20-60% spell damage as demon AP
-9. **Imp Firebolt:** 10-40% spell power coefficient
-10. **Demonic Precision:** 30-90% hit/crit transfer
+5. **Hellfire:** 2.2% → 4.125% per tick coefficient (1.18.1)
+6. **Fel Intellect:** 10-30% total Intellect → demons
+7. **Fel Stamina:** 10-50% total Stamina → demons
+8. **Unleashed Potential:** 5-15% spell damage → demons
+9. **Demon AP Scaling:** 20-60% spell damage as demon AP
+10. **Imp Firebolt:** 10-40% spell power coefficient
+11. **Demonic Precision:** 30-90% hit/crit transfer
 
 ### Medium Priority
 1. **Improved Shadow Bolt:** +20% Shadow damage debuff
@@ -614,4 +703,4 @@ All information from official Turtle WoW changelogs:
 - `turtle-wow-changelogs/1.17.2-2025.04.01-changes.html` (lines 282-341)
 - `turtle-wow-changelogs/1.18.0-warlock-changes.html` (complete)
 
-**Last Updated:** Based on changelogs through Patch 1.18.0 (August 14, 2025 revision)
+**Last Updated:** Based on changelogs through Patch 1.18.1

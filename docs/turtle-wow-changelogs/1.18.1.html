@@ -1,0 +1,858 @@
+<div class="content"><span style="color:#4bd3ff"><strong
+    class="text-strong">UPDATES | Dated: TBD (1.18.1) 2026 </strong></span><br>
+  <br>
+  Please note that this is a <span style="color:#ffbf40">Preliminary Changelog</span>. Further changes may still be
+  made.<br>
+  <br>
+  <span style="color:#8dc63f"><strong class="text-strong"><span
+      style="font-size:125%;line-height:116%">ALL</span></strong></span><br>
+  <br>
+  Swapping <span style="color:#ffbf40">Librams</span>, <span style="color:#ffbf40">Totems</span> and <span
+      style="color:#ffbf40">Idols</span> in combat now properly incurs a GCD.<br>
+  <br>
+  <span style="opacity:0.7"><i>Developer Comment: This was an ongoing quirk that was being (ab)used. Normally we would fix these in our weekly changelogs but because of the gravity of this change we've moved this to a Class Changes cycle.</i></span><br>
+  <br>
+  <br>
+  <br>
+  <span style="color:#8dc63f"><strong class="text-strong"><span
+      style="font-size:125%;line-height:116%">PvP</span></strong></span><br>
+  <br>
+  The <span style="color:#ffbf40">PvP Dampening Debuff</span> introduced in 1.18.0 will now have dynamic reductions of
+  Magical and Physical damage based on your class / spec instead of a flat number for all classes.<br>
+  <br>
+  More information regarding numbers will be given at a later date.<br>
+  <br>
+  <span style="opacity:0.7"><i>Developer Comment: Turning these values class-dependent means that we will be less restricted in Design space of making all specs come to life and be viable without adding Player-target exceptions on a lot of spells.</i></span><br>
+  <br>
+  <br>
+  <span style="color:#8dc63f"><strong class="text-strong"><span
+      style="font-size:125%;line-height:116%">DRUID</span></strong></span><br>
+  <br>
+  <span style="color:#8dc63f"><b><span style="font-size:115%;line-height:116%">General</span></b></span>
+  <hr>
+  Reduced the threat modifier of <span style="color:#ffbf40">Maul</span> by 15%.<br>
+  Reduced the threat modifier of <span style="color:#ffbf40">Savage Bite</span> by 12%.<br>
+  <br>
+  <span style="opacity:0.7"><i>Developer Comment: Feral Bears have been overly prominent in their threat output, leaving little room for other tanks to shine. To reign in their presence, we’re reducing the threat modifiers on Maul and Savage Bite.</i></span><br>
+  <br>
+  <span style="color:#8dc63f"><b><span style="font-size:115%;line-height:116%">Balance</span></b></span>
+  <hr>
+  <span style="color:#ffbf40">Balance of All Things:</span> Reduced from 5 points to 3 points and functionality
+  reworked:<br>
+  "Damaging a target affected by <span style="color:#ffbf40">Insect Swarm</span> with your <span style="color:#ffbf40">Wrath</span>
+  spell returns 10/20/30% of its mana cost back to you.<br>
+  <br>
+  <span style="color:#ffbf40">Starfire</span> has a 2/4/6% higher chance to critically strike against targets affected
+  by <span style="color:#ffbf40">Moonfire</span>."<br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <span style="color:#8dc63f"><strong class="text-strong"><span
+      style="font-size:125%;line-height:116%">HUNTER</span></strong></span><br>
+  <br>
+  Ranged variant of Hunter has been one of the least changed classes in Class Changes 2 and has fallen behind other
+  damage dealers and melee Hunter not only in raw DPS, but also in terms of gameplay.<br>
+  Ranged Hunter is extremely timing-dependent and offers little reactivity in its rotation. In this patch, we are
+  reviewing the Hunter kit as a whole to ensure more abilities are useful and impactful, and reworking the talent trees
+  to make them more engaging in endgame content.<br>
+  <br>
+  <span style="color:#8dc63f"><b><span style="font-size:115%;line-height:116%">General</span></b></span>
+  <hr>
+  New Spell: <span style="color:#ffbf40">Aspect of the Viper</span> - Learned at Level 56.<br>
+  <br>
+  "The hunter takes on the aspect of the viper, regenerating 5% of maximum mana every 5 second. Only one Aspect can be
+  active at a time."<br>
+  <br>
+  (No Mana Cost)<br>
+  <br>
+  <span style="opacity:0.7"><i>Developer Comment: Hunter is a class that cannot reliably regain mana without proper set bonuses and can be quite mana-hungry. To offset this, we are adding a passive way to regain mana with the small drawback of occupying an Aspect slot.</i></span><br>
+
+  <hr>
+  <span style="color:#ffbf40">Trueshot Aura:</span> Now baseline, learned at Level 40.<br>
+  <br>
+  "Increases the attack power of party members within 45 yards by 3%, plus an additional 30."<br>
+  <br>
+  <span style="opacity:0.7"><i>Developer Comment: Trueshot Aura was a design-limiting ability and an uninteresting capstone. For that reason, we are making it baseline for all Hunters in a slightly toned-down version.</i></span><br>
+
+  <hr>
+  <span style="color:#ffbf40">Steady Shot:</span> Now baseline, learned at Level 20.<br>
+  <br>
+  <span style="opacity:0.7"><i>Developer Comment: Steady Shot has been a must-have ability for all ranged Hunters, while Aimed Shot was rendered almost useless by its existence. We believe such a core ability should be part of the baseline kit, so we are returning Steady Shot as one.</i></span><br>
+
+  <hr>
+  <span style="color:#ffbf40">Volley:</span> Has seen various changes.<br>
+  - Now a 3 second cast instead of a continuous channeled ability.<br>
+  - Mana Costs reduced:<br>
+  <span style="color:#ffbf40">Rank 1 (Level 40):</span> From 350 to 210<br>
+  <span style="color:#ffbf40">Rank 2 (Level 50):</span> From 420 to 270<br>
+  <span style="color:#ffbf40">Rank 3 (Level 60):</span> From 490 to 330<br>
+  - Now has Attack Power scaling:<br>
+  <span style="color:#ffbf40">Rank 1 (Level 40):</span> 4% Attack Power Scaling<br>
+  <span style="color:#ffbf40">Rank 2 (Level 50):</span> 5% Attack Power Scaling<br>
+  <span style="color:#ffbf40">Rank 3 (Level 60):</span> 6% Attack Power Scaling<br>
+  Any spell power scaling remains unchanged.<br>
+  <br>
+  <span style="opacity:0.7"><i>Developer Comment: Volley has always been interesting in concept but too weak to justify use in practice. Due to its channeled nature, its damage would have had to be increased to unreasonable levels to be viable. We are therefore converting it into a casted ability that does not require the Hunter to stop performing other actions for 10 seconds to reach its full potential.</i></span><br>
+
+  <hr>
+  <span style="color:#ffbf40">Arcane Shot:</span> Base damage values reduced but now scales with ranged weapon
+  damage.<br>
+  <br>
+  <span style="text-decoration:underline">Damage Values:</span><br>
+  <span style="color:#ffbf40">Rank 1 (Level 6):</span> Damage reduced from 13 to 10, added 10% ranged weapon damage.<br>
+  <span style="color:#ffbf40">Rank 2 (Level 12):</span> Damage reduced from 21 to 17, added 15% ranged weapon
+  damage.<br>
+  <span style="color:#ffbf40">Rank 3 (Level 20):</span> Damage reduced from 33 to 27, added 20% ranged weapon
+  damage.<br>
+  <span style="color:#ffbf40">Rank 4 (Level 28):</span> Damage reduced from 59 to 48, added 25% ranged weapon
+  damage.<br>
+  <span style="color:#ffbf40">Rank 5 (Level 36):</span> Damage reduced from 83 to 71, added 30% ranged weapon
+  damage.<br>
+  <span style="color:#ffbf40">Rank 6 (Level 44):</span> Damage reduced from 115 to 101, added 35% ranged weapon
+  damage.<br>
+  <span style="color:#ffbf40">Rank 7 (Level 52):</span> Damage reduced from 145 to 129, added 40% ranged weapon
+  damage.<br>
+  <span style="color:#ffbf40">Rank 8 (Level 60):</span> Damage reduced from 183 to 166, added 45% ranged weapon
+  damage.<br>
+  <br>
+  Any spell power scaling remains unchanged.<br>
+  <br>
+  <span style="opacity:0.7"><i>Developer Comment: Arcane Shot has been another Hunter ability that was underused and underpowered, lacking a meaningful place in the rotation. We are adding weapon damage scaling to make it a more rewarding button to press.</i></span><br>
+
+  <hr>
+  <span style="color:#ffbf40">Rapid Fire:</span> Now also decreases the cast time of <span style="color:#ffbf40">Aimed Shot</span>
+  and <span style="color:#ffbf40">Steady Shot</span> by 40%.<br>
+
+  <hr>
+  <span style="color:#ffbf40">Aimed Shot</span> and <span style="color:#ffbf40">Arcane Shot</span> are now on separate
+  independent cooldowns.<br>
+  <br>
+  <br>
+  <span style="color:#8dc63f"><b><span style="font-size:115%;line-height:116%">Marksmanship</span></b></span>
+  <hr>
+  <span style="color:#ffbf40">Aimed Shot:</span> Returned as the 3rd Row Keystone talent.<br>
+  Cast time reduced from 3 seconds to 2 seconds, Cooldown increased from 6 seconds to 26 seconds.<br>
+  <br>
+  <span style="opacity:0.7"><i>Developer Comment: Due to its long cast time, Aimed Shot struggled to find a place in the Hunter rotation. We are reducing its cast time and adding several Aimed Shot–centric talents to make it a cooldown worth pressing for Marksmanship.</i></span><br>
+
+  <hr>
+  New Keystone: <span style="color:#ffbf40">Experimental Ammunition</span> (5th Row)<br>
+  <br>
+  "Your <span style="color:#ffbf40">Aimed Shot</span> deals an additional 5% of its damage as Fire, Arcane or Nature
+  damage and grants you a benefit depending on the element:<br>
+  <br>
+  <span style="color:#ffbf40">Fire Ammunition:</span> Your next Multi-Shot hits explode for 20% ranged weapon damage in
+  5 yard radius.<br>
+  <br>
+  <span style="color:#ffbf40">Arcane Ammunition:</span> Your next Arcane Shot deals 100% increased damage and weakens
+  target's resistance to magic, increasing magic damage taken by 3% for 6 seconds.<br>
+  <br>
+  <span style="color:#ffbf40">Nature Ammunition:</span> Your next Serpent Sting deals 100% increased damage and applies
+  a corrosive poison that reduces target's armor by 4 per level (240 at Level 60) for 15 seconds."<br>
+  <br>
+  These effects last 1 minute and cycle between each other in the order of Fire, Arcane and Nature.<br>
+  Only one type of ammunition can be active at a time.<br>
+  <br>
+  <span style="opacity:0.7"><i>Developer Comment: The goal of this talent is to give unique, thematic effects to existing abilities that reinforce their roles, while encouraging the use of Aimed Shot and lesser-used Hunter abilities in combination with it.</i></span><br>
+
+  <hr>
+  New Capstone Talent: <span style="color:#ffbf40">Lock and Load</span> (1 rank, 7th row)<br>
+  "Your <span style="color:#ffbf40">Steady Shot</span>, <span style="color:#ffbf40">Aimed Shot</span> and <span
+      style="color:#ffbf40">Arcane Shot</span> critical strikes have a chance to reset the cooldown of <span
+      style="color:#ffbf40">Aimed Shot</span> and trigger Lock and Load. Lasts 10 seconds or until you cast <span
+      style="color:#ffbf40">Aimed Shot</span>.<br>
+  <br>
+  Lock and Load reduces the cast time of <span style="color:#ffbf40">Aimed Shot</span> by 1 second and causes your <span
+      style="color:#ffbf40">Aimed Shot</span> to damage all enemies in between you and the target."<br>
+  <br>
+  <span style="opacity:0.7"><i>Developer Comment: This capstone is intended to make the rotation more interactive through procs, improve endgame scaling, and reduce the impact of slight auto-shot delays by shifting more power into active abilities.</i></span><br>
+
+  <hr>
+  <span style="color:#ffbf40">Improved Stings:</span> Has been changed to:<br>
+  "Increases the damage done by your <span style="color:#ffbf40">Serpent Sting</span> by 6/12/18/24/30% ,increases the
+  mana drained by <span style="color:#ffbf40">Viper Sting</span> by 1/2/3/4/5% and <span style="color:#ffbf40">Scorpid Sting</span>
+  reduces attack speed by an additional 2/4/6/8/10%.<br>
+  and <span style="color:#ffbf40">Scorpid Sting</span> reduces attack speed by additional 2/4/6/8/10%"<br>
+
+  <hr>
+  <span style="color:#ffbf40">Improved Scorpid Sting:</span> Removed. Most of the effect has been merged with <span
+      style="color:#ffbf40">Improved Stings</span>.<br>
+
+  <hr>
+  <span style="color:#ffbf40">Swiftshot:</span> Has been changed to:<br>
+  "Reduces the cooldown of your <span style="color:#ffbf40">Arcane Shot</span> by 0.5/1/1.5 seconds and cooldown of your
+  <span style="color:#ffbf40">Aimed Shot</span> by 2/4/6 seconds"<br>
+
+  <hr>
+  <span style="color:#ffbf40">Ranged Weapon Specialization:</span> Ranged damage increase buffed from 1/2/3/4/5% to
+  2/4/6/8/10%.<br>
+
+  <hr>
+  <span style="color:#ffbf40">Barrage:</span> Now also reduces the cast time of <span
+      style="color:#ffbf40">Volley</span> by 1/1.5/2 seconds.<br>
+
+  <hr>
+  <span style="color:#ffbf40">Improved Steady Shot:</span> Renamed to <span
+      style="color:#ffbf40">Improved Marksmanship</span> and changed to:<br>
+  "Increases the damage of <span style="color:#ffbf40">Steady Shot</span> and <span
+      style="color:#ffbf40">Aimed Shot</span> by 5/10%."<br>
+  <br>
+  <br>
+  <br>
+  <span style="color:#8dc63f"><b><span style="font-size:115%;line-height:116%">Beast Mastery</span></b></span><br>
+  <br>
+  In the last patch, we reworked Beast Mastery, but the changes did not hit the mark.<br>
+  The specialization played awkwardly, so we are redesigning it again with a focus on smoother gameplay and preservation
+  of core Beast Mastery mechanics.<br>
+  <br>
+
+  <hr>
+  <span style="color:#ffbf40">Endurance Training:</span> Health increase buffed from 1/2/3/4/5% to 2/4/6/8/10%.<br>
+
+  <hr>
+  <span style="color:#ffbf40">Thick Hide:</span> Armor value increase buffed from 4/7/10% to 7/14/20%.<br>
+  <br>
+  <span style="opacity:0.7"><i>Developer Comment: Pets have been too fragile in open world content, and these changes should restore some of their durability.</i></span><br>
+
+  <hr>
+  New Talent: <span style="color:#ffbf40">Scent of Blood:</span> (3 Ranks, 5th Row)<br>
+  "Your attacks have a 5/10/15% chance to send your pet into a rage causing it to deal 40% additional damage for 8 sec."<br>
+
+  <hr>
+  Returning Talent: <span style="color:#ffbf40">Bestial Wrath:</span> (1 Rank, Row 5)<br>
+  "Send your pet into a rage, giving it the <span style="color:#ffbf40">Scent of Blood</span> effect for 18 sec. While
+  enraged, the beast does not feel pity or remorse or fear and it cannot be stopped unless killed."<br>
+  <br>
+  (1.5 Minute Cooldown, 12% Base Mana Cost, No Global Cooldown)<br>
+  <br>
+  <span style="opacity:0.7"><i>Developer Comment: Bestial Wrath has been one of the most requested abilities to return. We agree it is iconic, so we are restoring it with an additonal method of activating its effect for a limited duration.</i></span><br>
+
+  <hr>
+  <span style="color:#ffbf40">Kill Command:</span> Moved to be the Capstone talent and reworked:<br>
+  "Give the command to kill, causing your pet to instantly attack for 50% of its attack power. Can only be used after
+  the Hunter lands a critical strike on the target."<br>
+  <br>
+  (8 Second Cooldown, 5% Base Mana Cost, 45 Yard Range, No Global Cooldown)<br>
+  <br>
+  <span style="opacity:0.7"><i>Developer Comment: Our previous version of Kill Command was underpowered and required too much setup. This new version, inspired by The Burning Crusade, should provide familiar and beloved gameplay while being attack speed–agnostic.</i></span><br>
+
+  <hr>
+  <span style="color:#ffbf40">Baited Shot:</span> Removed.<br>
+  <br>
+  <span style="opacity:0.7"><i>Developer Comment: Baited Shot struggled to fit into the Hunter rotation. For that reason, it has been removed, with its core concept preserved within the Scent of Blood talent. The barbeque is over.</i></span><br>
+  <br>
+  <br>
+  <span style="color:#8dc63f"><b><span style="font-size:115%;line-height:116%">Survival</span></b></span>
+  <hr>
+  New Talent: <span style="color:#ffbf40">Alone Against the World</span> (2 Ranks, Row 2)<br>
+  While you have no pet under your control, all damage dealt is increased by 3/6%.<br>
+  <br>
+  <span style="opacity:0.7"><i>Developer Comment: Pet management is an important part of Hunter gameplay, but for some players it can be overwhelming. This talent allows Hunters to raid and run dungeons without managing a pet, even though optimal play with a pet will still yield slightly higher DPS.</i></span><br>
+
+  <hr>
+  <span style="color:#ffbf40">Surefooted:</span> Now increases hit chance by an additional 1/2/3% while dual
+  wielding.<br>
+  <br>
+  <span style="opacity:0.7"><i>Developer Comment: Dual Wield Hunter has struggled to reach hit cap, and this change should help players who enjoy that playstyle.</i></span><br>
+
+  <hr>
+  <span style="color:#ffbf40">Lacerate:</span> Damage increased from 35% to 40% of melee Attack Power, extra damage from
+  the sides increased from 10% to 15%. No longer makes the bleed tick faster when struck from the sides.<br>
+  <br>
+  <span style="opacity:0.7"><i>Developer Comment: The lack of throughput caused Lacerate to fall into the wayside in the hierarchy of ability priorities, so we're giving it an increase in damage a bigger incentive to use it from the sides. Hopefully these changes should make it feel more like the reactive ability it was meant to be.</i></span><br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <span style="color:#8dc63f"><strong class="text-strong"><span
+      style="font-size:125%;line-height:116%">MAGE</span></strong></span><br>
+  <br>
+  <span style="color:#8dc63f"><b><span style="font-size:115%;line-height:116%">Frost</span></b></span>
+  <hr>
+  <span style="color:#ffbf40">Ice Barrier:</span> Frost damage granted while the barrier is active is reduced from 15%
+  to 5% but now increases your Frost damage by 10% for 1 minute when cast, seperately and independently from the
+  barrier.<br>
+  <br>
+  <span style="opacity:0.7"><i>Developer Comment: The addition of the Frost damage increase while Ice Barrier is active has been successful in making it a desired capstone outside of instances you expect to be attacked or damaged semi-frequently but that same damage now feels punishing when it breaks the barrier and makes you lose that throughput power. <br>
+For this reason we've moved a big chunk of the damage increase to be on the Ice Barrier cast, allowing it to stay as a part of the rotation without being as punishing as it was before when its lost to area of effect damage especially in group content.</i></span><br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <span style="color:#8dc63f"><strong class="text-strong"><span
+      style="font-size:125%;line-height:116%">PALADIN</span></strong></span><br>
+  <br>
+  <span style="color:#8dc63f"><b><span style="font-size:115%;line-height:116%">General</span></b></span>
+  <hr>
+  Base damage of <span style="color:#ffbf40">Consecration</span> has been increased by 8% and now deals more damage
+  initially, and less damage with every tick.<br>
+  <br>
+  <span style="opacity:0.7"><i>Developer Comment: Consecration has been underperforming in faster paced content due to its slow damage profile. We are putting more power on the initial ticks to help with intant threat of Protection and AoE damage capabilities of Retribution.<br>
+On the first tick, Consecration deals 156% of the 1.18 base value, followed by 140%, 124%, and so on.<br>
+Full damage progression per tick is as follows:<br>
+156% → 140% → 124% → 108% → 92% → 76% → 60% → 44%.</i></span><br>
+  <br>
+  <br>
+  <span style="color:#8dc63f"><b><span style="font-size:115%;line-height:116%">Protection</span></b></span>
+  <hr>
+  <span style="color:#ffbf40">Holy Shield:</span> Additional threat modifier increased from 30% to 50%.<br>
+
+  <hr>
+  <span style="color:#ffbf40">Righteous Strikes:</span> Has been changed to: <br>
+  "Increases the damage and threat of your <span style="color:#ffbf40">Holy Strike</span> by 5/10/15/20/25%. <br>
+  <span style="color:#ffbf40">Crusader Strike</span> now grants you Zealous Defence for 10 seconds. Zealous Defence
+  reduces the damage of your next blocked attack by 6/12/18/24/30%."<br>
+
+  <hr>
+  <span style="color:#ffbf40">Holy Strike:</span> Now deals part of its damage as Physical damage.<br>
+  "Strike your target for X% weapon damage and additional Y as Holy damage, restoring Z health and Z mana to you and 4
+  allies within 10 yards. The healing effect is reduced by half on yourself."<br>
+  <br>
+  <span style="text-decoration:underline">Damage Values:</span><br>
+  <span style="color:#ffbf40">Rank 1 (Level 4):</span> 25% Weapon Damage + 11-13 Holy Damage<br>
+  <span style="color:#ffbf40">Rank 2 (Level 12):</span> 25% Weapon Damage + 22-28 Holy Damage<br>
+  <span style="color:#ffbf40">Rank 3 (Level 20):</span> 30% Weapon Damage + 34-38 Holy Damage<br>
+  <span style="color:#ffbf40">Rank 4 (Level 28):</span> 30% Weapon Damage + 52-58 Holy Damage<br>
+  <span style="color:#ffbf40">Rank 5 (Level 36):</span> 35% Weapon Damage + 71-77 Holy Damage<br>
+  <span style="color:#ffbf40">Rank 6 (Level 44):</span> 35% Weapon Damage + 91-98 Holy Damage<br>
+  <span style="color:#ffbf40">Rank 7 (Level 52):</span> 40% Weapon Damage + 106-118 Holy Damage<br>
+  <span style="color:#ffbf40">Rank 8 (Level 60):</span> 40% Weapon Damage + 129-146 Holy Damage<br>
+  Spellpower scaling has been increased from 43% to 71%.<br>
+  <br>
+  <span style="opacity:0.7"><i>Developer Comment: Protection Paladins were extremely strong during leveling and early endgame but scaled poorly in high-end raids. These changes slightly reduce early power while significantly improving late-game scaling.</i></span><br>
+  <br>
+  <br>
+  <span style="color:#8dc63f"><b><span style="font-size:115%;line-height:116%">Retribution</span></b></span>
+  <hr>
+  <span style="color:#ffbf40">Repentance:</span> Repent effect applied on immune creatures now scales with 8% of your
+  Attack Power per tick.<br>
+
+  <hr>
+  <span style="color:#ffbf40">Seal of Command:</span> Procs per minute increased from 7 to 9.<br>
+
+  <hr>
+  <span style="color:#ffbf40">Crusader Strike:</span> Rank 5's weapon damage percentage increased from 90% to 100%.<br>
+  <br>
+  <span style="opacity:0.7"><i>Developer Comment: Retribution paladins that leaned into attack power have been underperforming for the last few patches. These three changes should bring them closer in line to their hybrid counterparts.</i></span><br>
+  <br>
+  <br>
+  <span style="color:#8dc63f"><b><span style="font-size:115%;line-height:116%">Holy</span></b></span>
+  <hr>
+  <span style="color:#ffbf40">Daybreak:</span> Base healing value reduced from 289 to 248 and healing power scaling
+  reduced from 43% to 32%.<br>
+  <br>
+  <span style="opacity:0.7"><i>Developer Comment: In the previous patch, we changed the Holy Paladin capstone talent to offer something more unique than a simple healing increase. While the change was thematically successful, the raw power of Daybreak—especially when combined with the Tier 3.5 set bonus—was significantly too high.<br>
+We are therefore reducing the healing values and scaling of Daybreak substantially to give other healers more room to perform, while preserving the core identity of the talent.</i></span><br>
+  <br>
+  <br>
+  <span style="color:#8dc63f"><b><span style="font-size:115%;line-height:116%">Tier Bonus Changes</span></b></span>
+  <hr>
+  While usually we keep set bonus changes in the itemization changelog, the changes for paladin are significant enough
+  to warrant being put here.<br>
+
+  <hr>
+  <ul>
+    <li><span style="color:#ffbf40">Retribution Paladin Tier 3.5 (5 Set):</span> <span
+        style="color:#ffbf40">Crusade</span>'s attack speed bonus increased from 2% to 4% and its duration increased
+      from 15 seconds to 20 seconds but no longer stacks.
+    </li>
+  </ul>
+
+  <hr>
+  <ul>
+    <li><span style="color:#ffbf40">Holy Paladin Tier 3.5 (5 Set):</span> No longer adds additional affected targets to
+      <span style="color:#ffbf40">Holy Strike</span>.
+    </li>
+  </ul>
+
+  <hr>
+  <ul>
+    <li><span style="color:#ffbf40">Protection Paladin Tier 3.5:</span> Moved 5 Set Bonus to 3 Set Bonus. New 5 Set
+      Bonus is the following: "<span style="color:#ffbf40">Holy Shield</span> decreases your damage taken by 4%.".
+    </li>
+  </ul>
+
+  <hr>
+  <ul>
+    <li><span style="color:#ffbf40">Retribution/Protection Paladin Tier 2.5 (3 Set):</span> Effect changed to the
+      following: "Increases damage done by your <span style="color:#ffbf40">Judgement of Righteousness</span> and <span
+          style="color:#ffbf40">Judgement of Command</span> by 15%.".
+    </li>
+  </ul>
+
+  <br>
+  <br>
+  <span style="color:#8dc63f"><strong class="text-strong"><span
+      style="font-size:125%;line-height:116%">PRIEST</span></strong></span><br>
+  <br>
+  <span style="color:#8dc63f"><b><span style="font-size:115%;line-height:116%">General</span></b></span>
+  <hr>
+  <span style="color:#ffbf40">Heal</span> (Rank 4): Healing increased from 605-684 to 702-793.<br>
+  <span style="color:#ffbf40">Greater Heal</span> (Rank 1): Healing increased from 764-862 to 840-948.<br>
+  <span style="color:#ffbf40">Greater Heal</span> (Rank 2): Healing increased from 977-1097 to 1075-1207.<br>
+  <span style="color:#ffbf40">Greater Heal</span> (Rank 3): Healing increased from 1222-1369 to 1344-1506.<br>
+  <span style="color:#ffbf40">Greater Heal</span> (Rank 4): Healing increased from 1528-1706 to 1681-1877<br>
+  <span style="color:#ffbf40">Greater Heal</span> (Rank 5): Healing increased from 1671-1866 to 1881-2053<br>
+  <span style="color:#ffbf40">Flash Heal</span> (Rank 3): Healing increased from 278-335 to 297-358.<br>
+  <span style="color:#ffbf40">Flash Heal</span> (Rank 4): Healing increased from 340-407 to 364-435.<br>
+  <span style="color:#ffbf40">Flash Heal</span> (Rank 5): Healing increased from 440-524 to 471-561.<br>
+  <span style="color:#ffbf40">Flash Heal</span> (Rank 6): Healing increased from 548-651 to 586-697.<br>
+  <span style="color:#ffbf40">Flash Heal</span> (Rank 7): Healing increased from 690-815 to 738-872.<br>
+  <br>
+  <span style="opacity:0.7"><i>Developer Comment: We've initially pulled down on the healing values of Priest healing spells with the tradeoff of increasing the power of Spiritual Healing in the Holy talent tree to offset this power, encouraging priests that want to heal to specialize into it and less so towards the Discipline support elements.<br>
+This inadvertently led to some ranks barely having any number difference between pre-level 30 and post-level 30 ranks as the healing reduction change was only applied to healing spells level 30 or higher. This also caused healing without specializing into Holy much harder while leveling after level 30, so we've looked into these healing spells to increase the base healing values for a middle ground between original and current healing numbers.<br>
+We hope these changes mend these problems and make healing without specializing smoother in leveling, don't mind the pun.</i></span><br>
+
+  <hr>
+  <span style="color:#ffbf40">Pain Spike:</span> Cooldown reduced from 40 seconds to 30 seconds.<br>
+
+  <hr>
+  <span style="color:#ffbf40">Fade:</span> All ranks now reduce your total threat by 15% in addition to the flat amount
+  of threat.<br>
+  <br>
+  <span style="opacity:0.7"><i>Developer Comment: Fade being a flat amount of threat did not scale well both for the endgame and in the cases the threat values reach high values in longer fights, causing it to feel like a drop in the bucket.<br>
+For this reason we're adding on a percentage threat reduction in addition to the current flat threat, keeping Fade a powerful tool no matter the situation.</i></span><br>
+
+  <hr>
+  <span style="color:#ffbf40">Prayer of Healing:</span> Functionality reworked: "A powerful prayer healing your target
+  and their party members within 30 yards for X to Y." <br>
+  This means it can now be targeted to heal parties other than your own. Cast range remains at 40 yards.<br>
+  <br>
+  <span style="opacity:0.7"><i>Developer Comment: Prayer of Healing had the unwieldy limitation of only healing your own party, which made it very limited in raid environments. <br>
+With this change we aim to make it more versatile for its intended function of group healing and give agency over who gets the healing via the target and their party selection.</i></span><br>
+
+  <hr>
+  <span style="color:#ffbf40">Lightwell:</span> Now only has one rank, cooldown is reduced from 10 minutes to 5 minutes
+  and its functionality is reworked: "Creates a holy Lightwell at a chosen location. When healing a friendly target with
+  Lesser Heal, Flash Heal, Heal or Greater Heal, the Lightwell will heal an injured friendly target within 30 yards of
+  its location with Splendor of Light, healing it for an amount equal to 20% of the initial healing spell, depleting a
+  charge. Players cannot benefit from this effect more than once every 5 seconds. Lightwell lasts for 1 minute or 10
+  charges."<br>
+  <br>
+  <span style="opacity:0.7"><i>Developer Comment: Lightwell has stayed largely unused even after the additions of an earlier rank, a new talent and becoming a baseline spell due to it requiring manual use to utilize and often forcing players out of position.<br>
+Now it acts as a limited charge healing amplifier, causing your healing to be repeated as a percentage of its value on a wounded target if the target is within the range of the Lightwell and its healing amplification hasn't been triggered on the target for a few seconds.<br>
+We hope that this change shines some much needed light on Lightwell as a proper healing tool.</i></span><br>
+  <br>
+  <span style="color:#8dc63f"><b><span style="font-size:115%;line-height:116%">Discipline</span></b></span>
+  <hr>
+  <span style="color:#ffbf40">Searing Light:</span> Mana cost reduction increased from 50% to 60%.<br>
+  <br>
+  <span style="color:#8dc63f"><b><span style="font-size:115%;line-height:116%">Holy</span></b></span>
+  <hr>
+  <span style="color:#ffbf40">Reservoir of Light:</span> Effect reworked: "Increases the effectiveness of your
+  Lightwell's Splendor of Light by 33/66/100%."<br>
+  <br>
+  <span style="opacity:0.7"><i>Developer Comment: We've changed the effect of this talent due to the major rework done on Lightwell and its functionality.<br>
+This means the healing amplification is increased from 20% of the healing to 26.6/33.3/40%.</i></span><br>
+
+  <hr>
+  <span style="color:#ffbf40">Spirit of Redemption:</span> Granted spirit increased from 5% to 10%.<br>
+
+  <hr>
+  New Talent: <span style="color:#ffbf40">Book of Prayer</span> (Row 5 / 2 Points): <br>
+  "Whenever you cast a healing spell, you regain 15/30% of its mana cost if it is not a repeat of the previous healing
+  spell."<br>
+
+  <hr>
+  <span style="color:#ffbf40">Swift Recovery:</span> Renamed to "Empowered Recovery" and now also increases duration of
+  <span style="color:#ffbf40">Renew</span> by 3/6 seconds.<br>
+
+  <hr>
+  <span style="color:#ffbf40">Proclaim Champion</span>, <span style="color:#ffbf40">Empower Champion</span>, <span
+      style="color:#ffbf40">Champion's Grace</span>, <span style="color:#ffbf40">Champion's Bond</span> and <span
+      style="color:#ffbf40">Revive Champion</span>: Removed.<br>
+
+  <hr>
+  New Capstone: <span style="color:#ffbf40">Ascendance</span><br>
+  "Call upon your faith for divine aid. When activated, your healing spells cost 33% less mana, are cast 20% quicker and
+  grant their targets the Apotheosis effect, increasing their healing taken by 15% for 10 seconds. Lasts for 30 seconds.<br>
+  <br>
+  This spell can be cast while under crowd control effects and clears you of any of those when activated."<br>
+  (280 Mana, 5 Minute Cooldown)<br>
+  <br>
+  <span style="opacity:0.7"><i>Developer Comment: Proclaim Champion and its connected spells have struggled to find its place, feeling more like a capstone you give to your target rather than elevating yourself and suffered from some conflicts in its functionality, increasing damage of the target, reducing damage taken and giving the Priest mana when the target takes damage which benefit damage dealers and the tank the most respectively which meant its full power could never be utilized on the same target in group content.<br>
+For this reason we've pivoting from a direct target buff to a power boosting capstone, meant to feel like a proper reward for mastering your role as a bringer of the Light.</i></span><br>
+  <br>
+  <span style="color:#8dc63f"><b><span style="font-size:115%;line-height:116%">Shadow</span></b></span>
+  <hr>
+  <span style="color:#ffbf40">Improved Fade:</span> Effect reworked: “Reduces the threat returned when Fade ends by
+  25/50%.”. Also moved to Row 4 from Row 3.<br>
+  <br>
+  <span style="opacity:0.7"><i>Developer Comment: Improved Fade has largely stayed unused, only having niche uses such as triggering tier set bonuses related to Fade more often.<br>
+In combination with the Fade total threat reduction addition, this rework should allow the Priest to instead permanently remove part of the normal temporary threat reduction, making it a valuable tool for threat management.</i></span><br>
+
+  <hr>
+  <span style="color:#ffbf40">Improved Mana Burn:</span> Moved from Row 3 to Row 4.<br>
+  <br>
+  <span style="opacity:0.7"><i>Developer Comment: We've slightly adjusted Improved Mana Burn's talent location as Mana Burn is learned at level 24, meaning the talent upgraded a spell you didn't learn yet when the talent became accessible.</i></span><br>
+
+  <hr>
+  <span style="color:#ffbf40">Shadow Reach:</span> Now a 2 pointer instead of 3 pointer, increasing the range of your
+  Shadow damage spells by 10/20%.<br>
+  <br>
+  <span style="opacity:0.7"><i>Developer Comment: This point requirement reduction should better align this talent with similiar range increase talents that also cost 2 points.</i></span><br>
+
+  <hr>
+  <span style="color:#ffbf40">Shadow Weaving:</span> Effect reworked: “Your Shadow damage spells have a 20/40/60/80/100%
+  chance to grant you Shadow Weaving for 10 sec. Your Shadow damage spells apply a vulnerability increasing Shadow
+  damage taken by 3% per stack of Shadow Weaving for 15 sec. Stacks up to 5 times.”<br>
+  <br>
+  <span style="opacity:0.7"><i>Developer Comment: Shadow Weaving struggles heavily when there are multiple targets the Priest has to focus on, especially in the cases those targets die faster than Shadow Weaving can be accumulated on them, preventing them from reaching their full potential both in terms of damage and supporting other Shadow damage dealers.<br>
+We've shifted Shadow Weaving to be instead an effect that accumulates on the Priest themselves that applies the amount of stacks you accumulate on yourself as the Shadow damage increase debuff on the targets, allowing easier application for multiple targets and carrying over these stacks between creature packs if they're close.</i></span><br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <span style="color:#8dc63f"><strong class="text-strong"><span
+      style="font-size:125%;line-height:116%">ROGUE</span></strong></span><br>
+  <br>
+  We’re generally happy with the recent changes to Rogue, and community feedback shows that the class is largely
+  performing as intended. That said, in reviewing data across multiple environments, we've identified that Rogue is
+  currently a bit overperformant in certain areas.<br>
+  <br>
+  To address this, we're making a few targeted numerical adjustments aimed at bringing performance back in line without
+  changing how the class fundamentally plays.<br>
+  <br>
+  <span style="color:#8dc63f"><b><span style="font-size:115%;line-height:116%">General</span></b></span>
+  <hr>
+  <span style="color:#ffbf40">Poisons:</span> Reduced scaling at lower ranks:<br>
+  <br>
+  <span style="text-decoration:underline">Deadly Poison:</span><br>
+  <span style="color:#ffbf40">Rank 1 (Level 30):</span> 2% Attack Power Scaling per Tick (8% Scaling Total) -&gt; No
+  Attack Power Scaling<br>
+  <span style="color:#ffbf40">Rank 2 (Level 38):</span> 2% Attack Power Scaling per Tick (8% Scaling Total) -&gt; No
+  Attack Power Scaling<br>
+  <span style="color:#ffbf40">Rank 3 (Level 46):</span> 2% Attack Power Scaling per Tick (8% Scaling Total) -&gt; No
+  Attack Power Scaling<br>
+  <span style="color:#ffbf40">Rank 4 (Level 54):</span> 2% Attack Power Scaling per Tick (8% Scaling Total) -&gt; 1%
+  Attack Power Scaling per Tick (4% Scaling Total)<br>
+  <br>
+  <span style="text-decoration:underline">Instant Poison:</span><br>
+  <span style="color:#ffbf40">Rank 1 (Level 20):</span> 5% Attack Power Scaling -&gt; No Attack Power Scaling<br>
+  <span style="color:#ffbf40">Rank 2 (Level 28):</span> 5% Attack Power Scaling -&gt; 1% Attack Power Scaling<br>
+  <span style="color:#ffbf40">Rank 3 (Level 36):</span> 5% Attack Power Scaling -&gt; 1% Attack Power Scaling<br>
+  <span style="color:#ffbf40">Rank 4 (Level 44):</span> 5% Attack Power Scaling -&gt; 2% Attack Power Scaling<br>
+  <span style="color:#ffbf40">Rank 5 (Level 52):</span> 5% Attack Power Scaling -&gt; 2% Attack Power Scaling<br>
+  <br>
+  <span style="text-decoration:underline">Corrosive Poison:</span><br>
+  <span style="color:#ffbf40">Rank 1 (Level 56):</span> 1.9% Attack Power Scaling per Tick (7.6% Scaling Total) -&gt; 1%
+  Attack Power Scaling per Tick (4% Scaling Total)<br>
+  <br>
+  <span style="text-decoration:underline">Dissolvent Poison:</span><br>
+  <span style="color:#ffbf40">Rank 1 (Level 52):</span> 4.75% Attack Power Scaling -&gt; 2% Attack Power Scaling<br>
+  <br>
+  <span style="opacity:0.7"><i>Developer Comment: Early access to higher poison scaling was resulting in stronger-than-intended performance during leveling and early gearing. This change smooths out that curve while preserving endgame effectiveness.</i></span><br>
+
+  <hr>
+  <span style="color:#ffbf40">Blade Flurry:</span> Reduced Energy regeneration penalty from 30% to 20%.<br>
+  <br>
+  <span style="opacity:0.7"><i>Developer Comment: Blade Flurry should feel like a powerful cleave tool without overly punishing resource flow. This adjustment helps improve its usability while keeping its overall power in check.</i></span><br>
+  <br>
+  <span style="color:#8dc63f"><b><span style="font-size:115%;line-height:116%">Assassination</span></b></span>
+  <hr>
+  <span style="color:#ffbf40">Taste for Blood:</span> Physical damage bonus reduced from 1/2/3% to 1/1.5/2% and no
+  longer increases damage dealt by Corrosive Poison and Dissolvent Poison.<br>
+  <span style="color:#ffbf40">Noxious Assault:</span> Attack Power- scaling reduced from 35% to 30%.<br>
+  <br>
+  <span style="opacity:0.7"><i>Developer Comment: As mentioned earlier, adjusting the power of Rogue.</i></span><br>
+  <br>
+  <span style="color:#8dc63f"><b><span style="font-size:115%;line-height:116%">Combat</span></b></span>
+  <hr>
+  <span style="color:#ffbf40">Opportunity:</span> Opportunity: Damage bonus reduced from 4/8/12/16/20% to
+  3/6/9/12/15%.<br>
+  <br>
+  <span style="opacity:0.7"><i>Developer Comment: Combat dagger rogues are performing tad better than with any other weapons, this nerf will bring them more in line.</i></span><br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <span style="color:#8dc63f"><strong class="text-strong"><span
+      style="font-size:125%;line-height:116%">SHAMAN</span></strong></span><br>
+  <br>
+  Physical DPS Enhancement will see some small tweaks in patch 1.18.1. Tank Enhancement and spell-power–focused
+  Enhancement, however, are getting more meaningful updates to their core talents. These changes are aimed at
+  strengthening each playstyle’s identity and reducing overlap with similar mechanics found in other classes.<br>
+  <br>
+  <span style="color:#8dc63f"><b><span style="font-size:115%;line-height:116%">General</span></b></span><br>
+  <br>
+  <span style="color:#ffbf40">Lightning Shield:</span> Mana cost reduced across the board by roughly 25%<br>
+  <span style="color:#ffbf40">Rank 1 (Level 8):</span> 45 -&gt; 40<br>
+  <span style="color:#ffbf40">Rank 2 (Level 16):</span> 80 -&gt; 70<br>
+  <span style="color:#ffbf40">Rank 3 (Level 24):</span> 125 -&gt; 105<br>
+  <span style="color:#ffbf40">Rank 4 (Level 32):</span> 180 -&gt; 150<br>
+  <span style="color:#ffbf40">Rank 5 (Level 40):</span> 240 -&gt; 200<br>
+  <span style="color:#ffbf40">Rank 6 (Level 48):</span> 305 -&gt; 255<br>
+  <span style="color:#ffbf40">Rank 7 (Level 56):</span> 370 -&gt; 310<br>
+  <br>
+  <br>
+  <span style="color:#8dc63f"><b><span style="font-size:115%;line-height:116%">Enhancement</span></b></span><br>
+  <br>
+  <span style="color:#ffbf40">Stormstrike:</span> Can no-longer roll and trigger <span style="color:#ffbf40">Windfury Weapon</span>'s
+  effect twice.<br>
+
+  <hr>
+
+  <span style="color:#ffbf40">Windfury Weapon:</span> Each hit now has a 25% chance (was 20%).<br>
+
+  <hr>
+
+  All of the following changes are to affect <span style="color:#ffbf40">Elemental Weapons</span> and its
+  sub-effects:<br>
+  <br>
+  <span style="color:#ffbf40">Windfury:</span> Reworked to the following effect: “Gaining extra attacks increases your
+  attack speed by 1% for 5 sec. Stacks up to 2/4/6 times.”<br>
+  <br>
+  <span style="color:#ffbf40">Flametongue:</span> Reworked to the following effect: “Hitting enemies with your attacks
+  increases the damage done by your Fire Totems and spells by 10/20/30% for 5 sec.”<br>
+  <br>
+  <span style="opacity:0.7"><i>Developer Comment: Requiring the Shaman to actively engage in melee combat to keep the Fire damage increase active should make this effect lean more towards spell oriented Enhancement Shaman gameplay while requiring pure Fire damage Elemental Shamans to stay in melee range to utilize its full power.</i></span><br>
+  <br>
+  <span style="color:#ffbf40">Rockbiter:</span> Reworked to the following effect: “Your physical damage builds up an
+  earthen bulwark for 20% of the damage dealt, tripled while you're wearing a shield. The earthen bulwark absorbs
+  5/10/15% of incoming damage for 8 seconds or until the bulwark mitigates enough damage. The bulwark's durability
+  cannot exceed 20% of your maximum health.”<br>
+  <br>
+  <span style="opacity:0.7"><i>Developer Comment: Changing the Rockbiter Weapon effect from a passive damage reduction into an active component that's kept up by attacking should feel make it feel more active in active usage while deterring non-Enhancement specializations from using the effect as a passive benefit which led to them being more durable, especially in Player vs Player environments.</i></span><br>
+
+  <hr>
+  <span style="color:#ffbf40">Flurry:</span> Reworked to the following effect “Increases your attack speed by
+  8/11/14/17/20% for your next 3 swings after dealing a critical strike.”<br>
+  <br>
+  <span style="opacity:0.7"><i>Developer Comment: This change should increase the uptime of Flurry especially for spell oriented Enhancement Shaman gameplay, making it less punishing to have less physical critical strike chance compared to their physical oriented counterpart.</i></span><br>
+
+  <hr>
+
+  <span style="color:#ffbf40">Lightning Strike:</span> Water Shield's Attack Power-to-Mana ratio changed from 20:1 to
+  18:1.<br>
+  <br>
+  <span style="opacity:0.7"><i>Developer Comment: Shields are central to our vision of Enhancement, they are the specialization's biggest sink of mana, expecially in contexts where AOE damage is involved. This should improve the dependability of the specialization's mana bar.</i></span><br>
+  <br>
+  <br>
+  <span style="color:#8dc63f"><b><span style="font-size:115%;line-height:116%">Elemental</span></b></span><br>
+  <br>
+  <span style="color:#ffbf40">Eye of the Storm:</span> Renamed to <span style="color:#ffbf40">Call of Earth:</span><br>
+  <br>
+  "Earth Shield gains 1/2 additional charges and grants an additional 35/70% chance to avoid interruption while casting
+  a spell."<br>
+
+  <hr>
+
+  <span style="color:#ffbf40">Elemental Fury:</span> Now also affects Frost spells.
+  <hr>
+
+  <span style="color:#ffbf40">Earthquake:</span> Base damage values increased by 15%, cooldown reduced from 20 seconds
+  to 18 seconds.<br>
+  New Damage Values:<br>
+  <span style="color:#ffbf40">Rank 1 (Level 40):</span> 227-253 -&gt; 262-291<br>
+  <span style="color:#ffbf40">Rank 2 (Level 50):</span> 343-387 -&gt; 395-446<br>
+  <span style="color:#ffbf40">Rank 3 (Level 60):</span> 510-551 -&gt; 587-634<br>
+  <br>
+  <span style="opacity:0.7"><i>Developer Comment: When designing a class, we often look for ways to blend flavor with function. While this frequently involves fitting a square peg into a triangular slot, Elemental is particularly well suited to aligning form and function when enough creativity is applied. Proper spell pushback resistance has long been missing from Elemental, as Eye of the Storm saw little use in either PvP or PvE: in the former, critical hits occurred infrequently enough that the talent was often skipped, while in the latter, critical hits were almost always fatal regardless. As a result, we’ve decided to retire the talent in favor of a solution that better serves its intended purpose, while also reinforcing Elemental’s thematic identity. With this change, the Elemental tree now answers the call of Earth, Flame, and Thunder—now if only we could find a way to introduce the Call of Wind in time for the 21st of September.<br>
+<br>
+Although we generally view Elemental Shields as a concept better suited to Enhancement gameplay, and Water Shield as central to Restoration’s mana sustain, we are happy to give Earth Shield a place within the Elemental specialization. This allows Elemental shamans to make more meaningful use of the Earth element beyond its capstone talent. Note that the bonus from Earth’s Poise, the buff granted by this talent, stacks additively with other sources of spell pushback reduction.<br>
+<br>
+The changes to Earthquake are intended to elevate the spell into a capstone worthy not just in form, but in function. While the adjustments themselves are straightforward, our goal is to encourage shamans to use the spell in a wider range of scenarios, addressing the fact that its original damage values often felt underwhelming.</i></span><br>
+  <br>
+  <br>
+  <span style="color:#8dc63f"><b><span style="font-size:115%;line-height:116%">Tier Bonus Changes</span></b></span><br>
+
+  <ul>
+    <li><span style="color:#ffbf40">Restoration Shaman Tier 1 (3 Set):</span> Changed description to clarify the totem
+      radius is increased by 10 yards and not set to 30 yards.
+    </li>
+  </ul>
+  <hr>
+
+  <ul>
+    <li><span style="color:#ffbf40">Restoration Shaman Tier 1 (8 Set):</span> Reworked to the following: "Your Healing
+      Wave and Lesser Healing Wave have a 25% chance to surround the target with an earth wall, absorbing 250 damage.
+      Lasts 6 sec.".
+    </li>
+  </ul>
+
+  <span style="opacity:0.7"><i>As a final note, the Shaman class development team would like to sincerely thank the small, close-knit Shaman community. The thoughtful feedback shared on community servers and forums has been incredibly valuable, and it has played an important role alongside our usual log analysis work. We're confident it will continue to be valuable for the future development of the class as a whole.</i></span><br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <span style="color:#8dc63f"><strong class="text-strong"><span
+      style="font-size:125%;line-height:116%">WARLOCK</span></strong></span><br>
+  <br>
+  This patch aims to bring more quality of life and to deal with some unresolved issues limiting certain playstyles. We
+  will also address parts of warlock's kit that are problematic in PvP.<br>
+  <br>
+  <span style="color:#8dc63f"><b><span style="font-size:115%;line-height:116%">General</span></b></span><br>
+
+  <hr>
+  <span style="color:#ffbf40">Curse of Exhaustion:</span> mana cost increased from 8% to 14% base mana. (from 110 to 190
+  at lvl 60)<br>
+
+  <hr>
+  <span style="color:#ffbf40">Curse of Tongues:</span> Rank 1 cast speed reduction reduced from 50% to 30%.<br>
+  Rank 2 Mana cost increased from 110 to 240.<br>
+  <br>
+  <span style="opacity:0.7"><i>Developer Comment: We're giving the most powerful debilitating curses a cost increase better matching their impact.</i></span><br>
+
+  <hr>
+  <span style="color:#ffbf40">Enslave Demon:</span> Now reduces healing taken by the enslaved demon by 50%.<br>
+  <br>
+  <span style="opacity:0.7"><i>Developer Comment: The healing reduction is getting adjusted and shifted from Master Demonologist, so instead of affecting the warlock, it'll now affect Greater demons and enslaved demons found in the world (and instances).</i></span><br>
+
+  <hr>
+  <span style="color:#ffbf40">Ritual of Doom:</span> initial cast time increased from 5 seconds to 7 seconds and the
+  ritual channel duration reduced from 5 sec to 3 sec.<br>
+
+  <hr>
+  <span style="color:#ffbf40">Felhunter</span> and <span style="color:#ffbf40">Infernal:</span> Armor reduced by 30%,
+  resulting in about 5% lower damage reduction against physical attacks.<br>
+  <br>
+  <span style="opacity:0.7"><i>Developer Comment: Felhunter is a bit too well-rounded while Infernal's damage and health increase compared to vanilla justifies a little pull on their damage reduction when targeted.</i></span><br>
+
+  <hr>
+  <span style="color:#ffbf40">Felguard:</span> <span style="color:#ffbf40">Legion Strike</span>'s healing reduction
+  increased from 10% to 25%.<br>
+
+  <hr>
+  <span style="color:#ffbf40">Felguard:</span> <span style="color:#ffbf40">Axe Toss</span>' stun duration reduced from 4
+  seconds to 2 seconds.<br>
+  <br>
+  <span style="opacity:0.7"><i>Developer Comment: Stun of such duration often means a guaranteed kill in combination with Felguard's raw power, so we're giving the victim a more fair chance at survival.</i></span><br>
+
+  <hr>
+  <span style="color:#ffbf40">Searing Pain:</span> Global cooldown reduced from 1.5 seconds to 1 second.<br>
+  <br>
+  <span style="opacity:0.7"><i>Developer Comment: We're resolving the Searing Pain's lack of ability to benefit from haste effects, leaning into its swift spikey character.</i></span><br>
+
+  <hr>
+  <span style="color:#ffbf40">Hellfire:</span> Spell power scaling increased from 2.2% to 4.125% per tick and mana cost
+  is now reduced on the initial cast while costing mana for every second channeled.<br>
+  <span style="color:#ffbf40">Rank 1 (Level 30):</span> 645 Mana -&gt; 160 Mana + 30 Mana/Second<br>
+  <span style="color:#ffbf40">Rank 2 (Level 42):</span> 975 Mana -&gt; 240 Mana + 50 Mana/Second<br>
+  <span style="color:#ffbf40">Rank 3 (Level 54):</span> 1300 Mana -&gt; 325 Mana + 65 Mana/Second<br>
+
+  <hr>
+  <span style="color:#ffbf40">Ritual of Souls:</span> Soul Shard requirement increased from 1 to 3.<br>
+  <br>
+  <span style="opacity:0.7"><i>Developer Comment: Since its creation it has been intended for the Ritual of Souls to require more Soul Shards than simply conjuring a single Healthstone.</i></span><br>
+
+  <hr>
+  <span style="color:#ffbf40">Soulwell:</span> Now has a new model.<br>
+  <br>
+  <span style="opacity:0.7"><i>Developer Comment: This is to differentiate it from the Ritual of Doom.</i></span><br>
+
+  <hr>
+  <span style="color:#ffbf40">Curse of Recklessness:</span> Global cooldown reduced from 1.5 seconds to 1 second.<br>
+  <br>
+  <span style="opacity:0.7"><i>Developer Comment: For too long has the fear-juggling technique gone unnoticed, unsupported - no more.</i></span><br>
+  <br>
+  <br>
+  <span style="color:#8dc63f"><b><span style="font-size:115%;line-height:116%">Affliction</span></b></span>
+  <hr>
+  <span style="color:#ffbf40">Sinister Pursuit:</span> Changed into a 2-point Demonology talent, permanently increasing
+  your pets movement speed by 5/10%. This includes greater demons.<br>
+  <span style="color:#ffbf40">Master Conjuror:</span> Removed.<br>
+  <br>
+  <span style="opacity:0.7"><i>Developer Comment: Since this talent has been having trouble finding its niche, we're moving it to be a staple Demonology talent in much simpler form. Being able to have 3 types of the same Healthstone has also not been intended.</i></span><br>
+  <br>
+  <br>
+  <span style="color:#8dc63f"><b><span style="font-size:115%;line-height:116%">Demonology</span></b></span>
+  <hr>
+  <span style="color:#ffbf40">Master Summoner:</span> Now also reduces the cooldown of <span style="color:#ffbf40">Ritual of Doom</span>
+  by 25/50%.<br>
+
+  <hr>
+  <span style="color:#ffbf40">Master Demonologist:</span> Greater Demons' healing reduction removed from its effect.<br>
+
+  <hr>
+  <span style="color:#ffbf40">Unleashed Potential:</span> Now also provides the Warlock with a tracking buff.<br>
+
+  <hr>
+  <span style="color:#ffbf40">Soul Link:</span> Damage transfer reduced from 25% to 20%.<br>
+  <br>
+  <span style="opacity:0.7"><i>Developer Comment: Due to removal of the healing reduction from the warlock with Greater demons and because the recently introduced PvP dampening has been more beneficial for classes focusing on survivability, we're balancing out demonology warlock's durability.</i></span><br>
+  <br>
+  <span style="color:#8dc63f"><b><span style="font-size:115%;line-height:116%">Tier Bonus Changes</span></b></span><br>
+
+  <ul>
+    <li><span style="color:#ffbf40">Affliction Warlock Tier 3 (4 Set):</span> Effect changed to the following: "Your
+      Curse of Agony does 100% increased damage for the first 4 ticks.".
+    </li>
+  </ul>
+  <hr>
+
+  <ul>
+    <li><span style="color:#ffbf40">Affliction Warlock Tier 3.5 (3 Set):</span> Amount of mana gained from health
+      drained by Siphon Life reduced from 50% to 25%.
+    </li>
+  </ul>
+
+  <br>
+  <span style="color:#8dc63f"><strong class="text-strong"><span
+      style="font-size:125%;line-height:116%">WARRIOR</span></strong></span><br>
+  <br>
+  <span style="color:#8dc63f"><b><span style="font-size:115%;line-height:116%">General</span></b></span>
+  <hr>
+  Removed cooldown from <span style="color:#ffbf40">Hamstring</span>.<br>
+  <br>
+  <span style="opacity:0.7"><i>Developer Comment: <img alt="💀" class="emoji smilies" draggable="false"
+                                                       src="//cdn.jsdelivr.net/gh/twitter/twemoji@latest/assets/svg/1f480.svg">.</i></span><br>
+  <br>
+  <br>
+  <span style="color:#8dc63f"><b><span style="font-size:115%;line-height:116%">Fury</span></b></span>
+  <hr>
+  <span style="color:#ffbf40">Improved Whirlwind:</span> Renamed to <span style="color:#ffbf40">Ravager</span> and now
+  has an additional effect:<br>
+  "Reduces the cooldown of <span style="color:#ffbf40">Whirlwind</span> by 1/1.5/2 seconds and rage cost of <span
+      style="color:#ffbf40">Cleave</span> by 1/2/3."<br>
+  <br>
+  <span style="opacity:0.7"><i>Developer Comment: Talent points could previously be spent before Whirlwind was learned, which caused confusion for new players. We’ve added a small rage cost Reduction to cleave to fix this inconsistency without affecting balance in a significant way.</i></span><br>
+
+  <hr>
+  Cast time reduction granted to <span style="color:#ffbf40">Slam</span> by <span style="color:#ffbf40">Flurry</span>
+  has been corrected. For example, with 5 points spent in Flurry, Slam cast time will now properly be 1.92 seconds
+  instead of 1.75 seconds.<br>
+  <br>
+  <span style="opacity:0.7"><i>Developer Comment: In the previous patch, Flurry was updated to reduce Slam cast time, but an incorrect formula resulted in more reduction than intended.</i></span><br>
+  <br>
+  <br>
+  <span style="color:#8dc63f"><b><span style="font-size:115%;line-height:116%">Arms</span></b></span>
+  <hr>
+  Swapped position of <span style="color:#ffbf40">Boundless Anger</span> and <span
+      style="color:#ffbf40">Precision Cut</span> talents.<br>
+
+  <hr>
+  <span style="color:#ffbf40">Precision Cut:</span> Changed to the following:<br>
+  "Increases the damage done per extra rage point spent on <span style="color:#ffbf40">Execute</span> by 25/50/75%."<br>
+  <br>
+  <span style="opacity:0.7"><i>Developer Comment: The previous redesign of Precision Cut did not deliver satisfying Execute gameplay and made the ability feel underwhelming. Restoring increased damage per Rage spent allows Execute to better fulfill its role as a high-impact finisher for Arms Warriors.</i></span><br>
+  <br>
+  <br>
+  <span style="color:#8dc63f"><b><span style="font-size:115%;line-height:116%">Protection</span></b></span>
+  <hr>
+  <span style="color:#ffbf40">Defiance:</span> Changed to:<br>
+  "Increases the threat generated while in Defensive Stance by an additional 4/8/12/15/20%."<br>
+
+  <hr>
+  <span style="color:#ffbf40">Shield Slam:</span> Attack Power scaling increased from 15% to 20% and its additonal
+  threat modifier is increased from 50% to 75%.<br>
+  <br>
+  <span style="opacity:0.7"><i>Developer Comment: Protection Warriors have been falling behind other tanks. These changes provide targeted improvements, while a more comprehensive review of the Protection talent tree and overall kit is planned for the future.</i></span><br>
+  <br>
+  <span style="color:#8dc63f"><b><span style="font-size:115%;line-height:116%">Tier Bonus Changes</span></b></span><br>
+
+  <ul>
+    <li><span style="color:#ffbf40">Arms/Fury Warrior Tier 1 (3 Set):</span> Effect changed to the following: "Whenever
+      you hit with an ability, you have 10% chance to gain 15 rage.".
+    </li>
+  </ul>
+  <hr>
+
+  <ul>
+    <li><span style="color:#ffbf40">Arms/Fury Warrior Tier 3 (4 Set):</span> Effect changed to the following: "Increases
+      the critical strike damage bonus of your abilities by 4%.".
+    </li>
+  </ul>
+</div>

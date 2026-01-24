@@ -8,8 +8,8 @@
   - Holy: Spell Power more valuable (Holy Strike, Daybreak, Holy Shock)
   - Holy: Crit more valuable (Daybreak procs)
   - Holy: Illumination nerfed 100%→60% (1.17.2) - Spirit/mp5 more valuable
-  - Protection: Spell Power NERFED (Holy Shield SP coefficient 33%→15%)
-  - Protection: Block Value more valuable (Righteous Strikes rework Nov 2024)
+  - Protection: Spell Power BUFFED (Holy Strike 43%→71% SP scaling)
+  - Protection: Block Value more valuable (Righteous Strikes + Zealous Defence)
   - Protection: Block Chance NERFED (Redoubt halved Nov 2024)
   - Protection: Stamina more valuable (Righteous Defense mitigation)
   - Retribution: Spell Power BUFFED (Seal of Righteousness 2H: +27% net after April 2025)
@@ -17,6 +17,7 @@
   - Retribution: Strength more valuable (Holy Strike buff)
   - Retribution: Haste more valuable (Zeal multiplicative)
   - Retribution: Crit more valuable (Vengeance stacks)
+  - Retribution: Weapon Speed more valuable (Seal of Command PPM 7→9)
 
   Hotfixes and Patch Changes:
   - Shield of the Righteous (Oct 2024): CD 3→5 min, DR 40%→30%
@@ -32,6 +33,16 @@
   - Crusader Strike (1.18.0): SP coefficient 33%→20%
   - Seal of Righteousness (1.18.0): 2H 0.128→0.125 (minor nerf)
   - Daybreak (1.18.0): Reworked to 43% SP delayed heal
+
+  Patch 1.18.1 Changes:
+  - Holy Strike (1.18.1): Now deals weapon damage + Holy, SP 43%→71% (+65%)
+  - Holy Shield (1.18.1): Threat modifier 30%→50% (+67%)
+  - Righteous Strikes (1.18.1): Grants Zealous Defence (6-30% blocked damage reduction)
+  - Seal of Command (1.18.1): PPM 7→9 (+29%), increases weapon speed value
+  - Crusader Strike Rank 5 (1.18.1): Weapon damage 90%→100%
+  - Repentance (1.18.1): 8% AP per tick on immune creatures
+  - Daybreak (1.18.1): Base healing 289→248, SP 43%→32% (NERF)
+  - Consecration (1.18.1): +8% base damage, front-loaded (156%→44% per tick)
 
   References:
   - docs/turtle-wow-paladin-scaling-changes.md
@@ -79,6 +90,7 @@ end
 -- ============================================================================
 -- HOLY
 -- Daybreak (1.18.0): Reworked to 43% SP delayed heal
+-- Daybreak (1.18.1): Base healing 289→248, SP 43%→32% (NERF)
 -- ============================================================================
 
 -- Vanilla Baseline
@@ -119,9 +131,10 @@ turtleHoly.DMG = 0.3  -- Spell power for Holy Strike, Daybreak
 -- 1. Spell Haste Baseline Check
 -- Haste baseline check removed (vanilla values are correct)
 
--- 2. Healing Power slightly more valuable (Blessed Strikes healing scaling +25% healing power)
---    Conservative: +10% value
-turtleHoly.HEAL = vanillaHoly.HEAL * 1.1  -- 0.54 → 0.594
+-- 2. Healing Power adjustment (Blessed Strikes +25% healing power, but Daybreak nerfed 1.18.1)
+--    Daybreak: Base 289→248 (-14%), SP 43%→32% (-26%)
+--    Net effect: Slight nerf to HEAL value
+turtleHoly.HEAL = vanillaHoly.HEAL * 1.0  -- 0.54 (neutral after Daybreak nerf)
 
 -- 3. Spell Power more valuable (Holy Strike 43%, Daybreak 43%, Holy Shock 43%)
 --    Conservative: +15% value (starting from new baseline of 0.3)
@@ -155,6 +168,9 @@ end)
 -- Righteous Strikes (Nov 2024): Reworked from block chance to block value
 -- Holy Shield (Dec 2024): Block 50%→45%, SP 33%→15%
 -- Reckoning (April 2025): Proc rate DOUBLED (5-25%→10-50%)
+-- Holy Strike (1.18.1): Weapon damage + Holy, SP 43%→71% (+65%)
+-- Holy Shield (1.18.1): Threat modifier 30%→50% (+67%)
+-- Righteous Strikes (1.18.1): Zealous Defence (6-30% blocked damage reduction)
 -- ============================================================================
 
 -- Vanilla Baseline
@@ -210,14 +226,17 @@ turtleProtection.SPELLTOHIT = vanillaProtection.SPELLTOHIT * 1.125  -- 6.24 → 
 -- 3. Haste Baseline Check
 -- Haste baseline check removed (vanilla values are correct)
 
--- 4. Spell Power MAJOR NERF (Holy Shield 33%→15% SP, Shield of the Righteous CD 3→5 min, DR 40%→30%)
---    Combined nerfs severely reduce spell damage value for Protection
-turtleProtection.DMG = vanillaProtection.DMG * 0.5  -- 0.44 → 0.22
-turtleProtection.HOLYDMG = vanillaProtection.HOLYDMG * 0.5  -- 0.44 → 0.22
+-- 4. Spell Power adjustment (Holy Shield nerfed 33%→15%, but Holy Strike BUFFED 43%→71% in 1.18.1)
+--    Holy Strike now deals weapon damage + Holy damage, making SP more valuable
+--    Net effect: SP scaling restored, slight buff overall
+turtleProtection.DMG = vanillaProtection.DMG * 0.85  -- 0.44 → 0.37 (Holy Strike buff offsets Holy Shield nerf)
+turtleProtection.HOLYDMG = vanillaProtection.HOLYDMG * 0.85  -- 0.44 → 0.37
 
--- 5. Block Value HIGHLY valuable (Righteous Strikes BV scaling)
+-- 5. Block Value HIGHLY valuable (Righteous Strikes BV scaling + Zealous Defence 1.18.1)
+--    Zealous Defence: 6/12/18/24/30% blocked damage reduction from Righteous Strikes
 --    Shield of the Righteous DR-nerf (40%→30%) reduces effectiveness slightly
-turtleProtection.BLOCKVALUE = vanillaProtection.BLOCKVALUE * 1.45  -- 0.15 → 0.2175
+--    Net: +75% value (up from +45%)
+turtleProtection.BLOCKVALUE = vanillaProtection.BLOCKVALUE * 1.75  -- 0.15 → 0.2625
 
 -- 6. Stamina more valuable (Righteous Defense: -3-10% damage taken)
 --    Conservative: +10% value
@@ -252,6 +271,9 @@ end)
 -- Judgement of Righteousness (April 2025): Now uses melee hit/crit
 -- Crusader Strike (1.18.0): SP coefficient 33%→20%
 -- Seal of Righteousness (1.18.0): 2H 0.128→0.125 (net +27% vs Dec 2024)
+-- Seal of Command (1.18.1): PPM 7→9 (+29%), weapon speed more valuable for 2H
+-- Crusader Strike Rank 5 (1.18.1): Weapon damage 90%→100%
+-- Repentance (1.18.1): 8% AP per tick on immune creatures
 -- ============================================================================
 
 -- Vanilla Baseline
@@ -324,9 +346,10 @@ turtleRetribution.HASTE = turtleRetribution.HASTE * 1.2  -- 2.01 → 2.41
 turtleRetribution.CRIT = vanillaRetribution.CRIT * 1.15  -- 5.61 → 6.45
 turtleRetribution.SPELLCRIT = vanillaRetribution.SPELLCRIT * 1.15  -- 0.96 → 1.10
 
--- 8. WEAPONDPS valuable (Crusader Strike -10% weapon damage Nov 2024, balanced with Weapon Normalization)
---    Net effect: +45% value (reduced from +60%)
-turtleRetribution.WEAPONDPS = vanillaRetribution.WEAPONDPS * 1.45  -- 3.375 → 4.89
+-- 8. WEAPONDPS valuable (Crusader Strike 90%→100% weapon damage in 1.18.1)
+--    Seal of Command PPM 7→9 (+29%) makes weapon speed more valuable for 2H builds
+--    Combined effect: +65% value (up from +45%)
+turtleRetribution.WEAPONDPS = vanillaRetribution.WEAPONDPS * 1.65  -- 3.375 → 5.57
 
 -- 9. ARMORPEN more valuable (Armor Cap Removal 1.18.0)
 --    Conservative: +30% value
@@ -334,6 +357,10 @@ turtleRetribution.ARMORPEN = vanillaRetribution.ARMORPEN * 1.3  -- 0.069 → 0.0
 
 -- 10. Add CASTINGREG support (Meditation items in 1.16.0, low-medium value for Ret)
 turtleRetribution.CASTINGREG = 4.0  -- Low-medium value for Retribution mana
+
+-- 11. ATTACKPOWER more valuable (Crusader Strike 90%→100% weapon damage, Repentance 8% AP/tick)
+--     Conservative: +15% value
+turtleRetribution.ATTACKPOWER = vanillaRetribution.ATTACKPOWER * 1.15  -- 0.41 → 0.47
 
 
 -- Queue StatSet creation (delayed until OnEnable)

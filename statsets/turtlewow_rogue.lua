@@ -29,6 +29,15 @@
   - Honor Among Thieves (1.18.0): Own crits trigger, CD 2s→1.5s
   - Shadow of Death (1.18.0): 50-250% AP capacity based on combo points
   - Mark for Death (1.18.0): Party gains 30% rogue AP as AP, 18% as spell power
+  - Poison AP Scaling (1.18.1): NERFS to low ranks only (max ranks unchanged)
+    - Deadly Poison R1-3: AP scaling removed; R4: 2%→1%/tick
+    - Instant Poison R1-5: Reduced scaling
+    - Corrosive/Dissolvent Poison: Reduced scaling
+  - Blade Flurry (1.18.1): Energy regen penalty 30%→20% (buff for AoE)
+  - Taste for Blood (1.18.1): 1/2/3%→1/1.5/2% per CP (max 15%→10%)
+    - No longer affects Corrosive/Dissolvent Poison
+  - Noxious Assault (1.18.1): AP scaling 35%→30%
+  - Opportunity (1.18.1): Damage bonus 4/8/12/16/20%→3/6/9/12/15%
 
   LIMITATIONS (Complex mechanics that cannot be fully modeled with static weights):
   - Envenom: "Ramps up the damage of your poisons by 15% per combo point" is dynamic
@@ -88,6 +97,9 @@ end
 -- Vile Poisons (April 2025): 10/20/30% poison damage
 -- Envenom (April 2025): 30% effectiveness
 -- Corrosive Poison (1.18.0): -5% AP scaling
+-- Noxious Assault (1.18.1): AP scaling 35%→30% (NERF)
+-- Taste for Blood (1.18.1): Max 15%→10% physical amp, no longer affects Corrosive
+-- Note: Max-rank poison AP scaling unchanged in 1.18.1 (only low ranks nerfed)
 -- ============================================================================
 
 -- Vanilla Baseline (identical for all 3 Rogue specs in Vanilla)
@@ -133,9 +145,10 @@ turtleAssassination.TOHIT = vanillaAssassination.TOHIT * 1.125  -- 9.38 → 10.5
 --    - Instant Poison: +5% AP per proc
 --    - Deadly/Corrosive: +2%/tick (8% total for 4 ticks)
 --    - Envenom: +30% effectiveness multiplier (April 2025, was 25%)
---    - Noxious Assault: 35% AP direct damage
---    +60% value
-turtleAssassination.ATTACKPOWER = vanillaAssassination.ATTACKPOWER * 1.6  -- 0.45 → 0.72
+--    - Noxious Assault: 30% AP direct damage (1.18.1: nerfed from 35%)
+--    - Taste for Blood: Max 10% physical amp (1.18.1: nerfed from 15%)
+--    +55% value (reduced from +60% due to 1.18.1 nerfs)
+turtleAssassination.ATTACKPOWER = vanillaAssassination.ATTACKPOWER * 1.55  -- 0.45 → 0.70
 
 -- 4. Crit more valuable (Relentless Strikes: +5% finisher damage per stack, max 25%)
 --    Conservative: +10% value
@@ -160,6 +173,9 @@ end)
 -- Surprise Attack (Dec 2024): Reworked to 25% AP (was 120% weapon damage)
 -- Swift Strikes (1.18.0): REMOVED
 -- Blade Rush (1.18.0): +2/5% attack speed, Agility reduces energy tick time
+-- Blade Flurry (1.18.1): Energy regen penalty 30%→20% (buff for AoE)
+-- Opportunity (1.18.1): Damage bonus 20%→15% (NERF to backstab/ambush)
+-- Note: Max-rank poison AP scaling unchanged in 1.18.1 (only low ranks nerfed)
 -- ============================================================================
 
 -- Vanilla Baseline
@@ -218,8 +234,9 @@ turtleCombat.CRIT = vanillaCombat.CRIT * 1.1  -- 6.885 → 7.57
 -- 6. Haste: No documented bonus - using vanilla baseline
 
 -- 7. WEAPONDPS more valuable (Deadly Throw 100% weapon damage, Surprise Attack)
---    +50% value
-turtleCombat.WEAPONDPS = vanillaCombat.WEAPONDPS * 1.5  -- 2.222 → 3.33
+--    Opportunity nerf (1.18.1): 20%→15% backstab/ambush damage
+--    +45% value (reduced from +50% due to 1.18.1 Opportunity nerf)
+turtleCombat.WEAPONDPS = vanillaCombat.WEAPONDPS * 1.45  -- 2.222 → 3.22
 
 -- 7. ARMORPEN more valuable (Expose Armor earlier access + Armor Cap Removal)
 --    Conservative: +45% value
@@ -239,6 +256,7 @@ end)
 -- Honor Among Thieves (1.18.0): Own crits trigger, CD 2s→1.5s
 -- Shadow of Death (1.18.0): 50-250% AP capacity
 -- Mark for Death (1.18.0): 30% AP→party AP, 18%→spell power
+-- Note: 1.18.1 poison nerfs minimal impact (Subtlety doesn't focus on poison scaling)
 -- ============================================================================
 
 -- Vanilla Baseline

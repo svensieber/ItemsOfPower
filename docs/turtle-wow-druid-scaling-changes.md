@@ -439,6 +439,37 @@ This document tracks all Druid-specific changes from Turtle WoW that affect stat
 
 ---
 
+## Version 1.18.1
+
+### Feral Combat Changes (1.18.1)
+
+#### Maul Threat Reduction
+- **Previous:** Base threat modifier
+- **New:** Threat modifier reduced by 15%
+- **Impact:** Bear threat generation reduced, may require more Attack Power/Hit to maintain threat
+
+#### Savage Bite Threat Reduction
+- **Previous:** Base threat modifier (225% as of November 2024 hotfix)
+- **New:** Threat modifier reduced by 12%
+- **Impact:** Bear threat generation further reduced, affects overall tanking stat weights
+
+---
+
+### Balance Changes (1.18.1)
+
+#### Balance of All Things Rework
+- **Previous:** 5 points, Insect Swarm/Moonfire procs affected Starfire cast time/Wrath mana cost
+- **New:** 3 points with reworked effects:
+  - Wrath on Insect Swarm targets returns 10/20/30% of mana cost
+  - Starfire has 2/4/6% higher crit chance vs Moonfire targets
+- **Impact:**
+  - Fewer talent points required (3 vs 5)
+  - Crit rating value increased due to conditional crit bonus on Starfire
+  - Mana efficiency improved for Wrath spam on DoT targets
+  - Maintains importance of DoT uptime for rotation optimization
+
+---
+
 ## Stat Priority Impact Summary
 
 ### Balance Druid
@@ -549,8 +580,9 @@ All information compiled from official Turtle WoW changelogs:
 - 1.17.2-2025.04.01-changes.html (Form shifting, stat changes, Hurricane)
 - 1.18.0-druid-changes.html
 - 1.18.0-general-class-changes.html (Armor cap removal)
+- 1.18.1-druid-changes.html (Maul/Savage Bite threat nerfs, Balance of All Things rework)
 
-**Last Updated:** Based on changelogs from Patch 1.16.1 through 1.18.0 (Scars of the Past)
+**Last Updated:** Based on changelogs from Patch 1.16.1 through 1.18.1
 
 ---
 

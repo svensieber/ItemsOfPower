@@ -23,6 +23,15 @@
   - Swipe AP (Oct/Dec 2024): 8%→6%→4% = 50% nerf to AP scaling
   - Ancient Brutality: Generates rage on dodge (1.17.2)
   - Feral Adrenaline: REMOVED in 1.18.0 (no longer reduces GCD)
+  - Maul (1.18.1): Threat modifier reduced by 15%
+  - Savage Bite (1.18.1): Threat modifier reduced by 12%
+  - Impact: Bears need more stats to generate same threat level
+
+  Balance Changes (1.18.1):
+  - Balance of All Things: Reduced from 5 to 3 talent points, reworked:
+    - Wrath on Insect Swarm targets returns 10/20/30% mana cost
+    - Starfire has 2/4/6% higher crit chance vs Moonfire targets
+  - Impact: SPELLCRIT more valuable (conditional Starfire crit bonus)
 
   Restoration Changes:
   - Tree of Life Aura (1.17.0): Changed to healing power % multiplier
@@ -122,7 +131,9 @@ turtleBalance.SPELLTOHIT = vanillaBalance.SPELLTOHIT * 1.125  -- 9.68 → 10.89
 -- 3. Spell Crit EXTREMELY valuable (Eclipse 1.18.0: Damage = 10% + 60% of crit %)
 --    At 35% crit = 31% permanent damage bonus (vs old 25% proc-based buff)
 --    Crit now scales the Eclipse bonus itself, making it multiplicative
-turtleBalance.SPELLCRIT = vanillaBalance.SPELLCRIT * 1.65  -- 4.96 → 8.18
+--    1.18.1: Balance of All Things rework gives +6% crit on Starfire vs Moonfire targets
+--    This conditional crit bonus makes SPELLCRIT even more valuable (+5%)
+turtleBalance.SPELLCRIT = vanillaBalance.SPELLCRIT * 1.73  -- 4.96 → 8.58 (was 1.65)
 
 -- 7. Add CASTINGREG support (Meditation items in 1.16.0, moderate value for casters)
 turtleBalance.CASTINGREG = 5.0  -- Medium value for Balance mana efficiency
@@ -284,10 +295,13 @@ turtleFeralTank.STA = vanillaFeralTank.STA * 1.15  -- 1.0 → 1.15
 --    Conservative: +30% value
 turtleFeralTank.DODGE = vanillaFeralTank.DODGE * 1.3  -- 3.5872 → 4.66
 
--- 6. Attack Power REDUCED (Swipe nerfed 8%→4% = 50% AP value reduction for main AoE!)
---    Conservative: -10% value (Swipe nerf dominates, Maul/Savage Bite still scale)
-turtleFeralTank.ATTACKPOWER = vanillaFeralTank.ATTACKPOWER * 0.9  -- 0.34 → 0.306
-turtleFeralTank.ATTACKPOWERFERAL = vanillaFeralTank.ATTACKPOWERFERAL * 0.9
+-- 6. Attack Power value for threat generation
+--    Swipe nerfed 8%→4% = 50% AP value reduction for main AoE
+--    1.18.1: Maul threat -15%, Savage Bite threat -12% = need MORE AP for same threat
+--    Net effect: Swipe nerf (-10%) offset by threat nerf compensation (+8%)
+--    Conservative: -2% value (threat nerfs partially offset Swipe nerf)
+turtleFeralTank.ATTACKPOWER = vanillaFeralTank.ATTACKPOWER * 0.98  -- 0.34 → 0.333 (was 0.9)
+turtleFeralTank.ATTACKPOWERFERAL = vanillaFeralTank.ATTACKPOWERFERAL * 0.98
 
 -- 7. Agility more valuable (Dodge scaling + AP)
 --    Conservative: +10% value
@@ -297,8 +311,10 @@ turtleFeralTank.AGI = vanillaFeralTank.AGI * 1.1  -- 0.48 → 0.528
 --     Using vanilla baseline (no multiplier)
 
 -- 7b. Hit more valuable (Threat consistency critical after Swipe nerfs)
---     Conservative: +20% value
-turtleFeralTank.TOHIT = turtleFeralTank.TOHIT * 1.2  -- 1.50 → 1.80
+--     1.18.1: Maul/Savage Bite threat nerfs make hit even more important
+--     Missing attacks with nerfed threat abilities is more punishing
+--     Conservative: +30% value (was +20%, +10% for 1.18.1 threat nerfs)
+turtleFeralTank.TOHIT = turtleFeralTank.TOHIT * 1.3  -- 1.50 → 1.95 (was 1.2)
 
 -- 8. WEAPONDPS more valuable (Savage Bite 80% weapon damage, Maul weapon damage)
 --    Conservative: +15% value (lower priority than Cat, but still relevant)

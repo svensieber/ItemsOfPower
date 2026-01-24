@@ -27,6 +27,12 @@
   - Icicles (1.17.2): New rotational ability, 40% SP per icicle, roots caster
   - Icicles (Dec 2024): GCD 1.5s → 1s
   - Ice Barrier: +15% Frost damage while active (1.17.2)
+  - Ice Barrier (1.18.1): Rework - damage bonus decoupled from barrier survival
+    - While barrier active: +5% Frost damage (was 15%)
+    - On cast: +10% Frost damage buff for 1 minute (NEW, separate from barrier)
+    - Total with barrier up: +15% (unchanged magnitude)
+    - Key change: The 10% buff persists even if barrier breaks (e.g., from AoE)
+    - Impact: Frost damage bonus is now RELIABLE in group content
   - Shatter nerfed: 50% → 35% vs frozen, but Flash Freeze synergies
 
   References:
@@ -270,12 +276,14 @@ turtleFrost.SPELLTOHIT = vanillaFrost.SPELLTOHIT * 1.125  -- 9.76 → 10.98
 -- Haste baseline check removed (vanilla values are correct)
 
 -- 3. Spell Power more valuable (Frostbolt, Icicles 40% per icicle, Ice Barrier +15% Frost damage)
---    +35% value for Icicles + Ice Barrier damage bonus
-turtleFrost.DMG = vanillaFrost.DMG * 1.35  -- 1.0 → 1.35
+--    1.18.1: Ice Barrier rework - 10% damage buff now persists even if barrier breaks
+--    +40% value for Icicles + reliable Ice Barrier damage bonus (was +35% when situational)
+turtleFrost.DMG = vanillaFrost.DMG * 1.40  -- 1.0 → 1.40
 
--- 4. Frost Damage more valuable (Icicles, Ice Barrier +15% Frost damage while active)
---    +40% value for Ice Barrier uptime damage bonus
-turtleFrost.FROSTDMG = vanillaFrost.FROSTDMG * 1.4  -- 0.95 → 1.33
+-- 4. Frost Damage more valuable (Icicles, Ice Barrier +15% Frost damage)
+--    1.18.1: Damage bonus now reliable (10% buff decoupled from barrier survival)
+--    +45% value for consistent Ice Barrier damage bonus (was +40% when situational)
+turtleFrost.FROSTDMG = vanillaFrost.FROSTDMG * 1.45  -- 0.95 → 1.38
 
 -- 5. Crit unchanged (Shatter nerfed vs frozen, but raid bosses are freeze-immune anyway)
 --    Flash Freeze + Ice Barrier synergies offset the PvP nerf

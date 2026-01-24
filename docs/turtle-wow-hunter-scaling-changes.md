@@ -505,47 +505,186 @@ No changes - developers happy with current state.
 
 ---
 
+## Version 1.18.1
+
+### Baseline Changes
+
+#### New Ability: Aspect of the Viper (Level 56)
+- **Effect:** Regenerates 5% maximum mana every 5 seconds
+- **Cost:** No mana cost
+- **Impact:** New mana sustain option for longer fights
+
+#### Trueshot Aura
+- **Status:** Now baseline at Level 40
+- **Effect:** +3% Attack Power + 30 flat AP to party members
+- **Impact:** All hunters gain raid utility without Marksmanship spec
+
+#### Steady Shot
+- **Status:** Now baseline at Level 20
+- **Impact:** Core ability available to all specs earlier
+
+#### Volley Rework
+- **Previous:** Channeled ability
+- **New:** 3 second cast time
+- **Mana Cost:** Reduced across all ranks
+- **New Scaling:** Now scales with ranged Attack Power
+  - Rank 1: 4% AP coefficient
+  - Rank 2: 5% AP coefficient
+  - Rank 3: 6% AP coefficient
+- **Impact:** Ranged AP more valuable for AoE damage
+
+#### Arcane Shot Changes
+- **Base Damage:** Reduced
+- **New Scaling:** Now scales with ranged weapon damage
+  - Rank progression: 10-45% weapon damage scaling by rank
+- **Impact:** Ranged weapon DPS more valuable for Arcane Shot rotations
+
+#### Rapid Fire Enhancement
+- **New Effect:** Also reduces Aimed Shot and Steady Shot cast time by 40%
+- **Impact:** CRITICAL - Major DPS cooldown for Marksmanship, cast time abilities much stronger during burst
+
+#### Cooldown Separation
+- **Change:** Aimed Shot and Arcane Shot now on separate cooldowns
+- **Impact:** More flexible rotations, both abilities can be used closer together
+
+---
+
+### Beast Mastery Changes (1.18.1)
+
+#### Endurance Training
+- **Pet Health:** 1/2/3/4/5% → 2/4/6/8/10%
+- **Impact:** Pet survivability buff, reverts part of 1.18.0 nerf
+
+#### Thick Hide
+- **Pet Armor:** 4/7/10% → 7/14/20%
+- **Impact:** Pet tankiness significantly improved
+
+#### New Talent: Scent of Blood (Row 5, 3 Points)
+- **Effect:** 5/10/15% chance for pet to deal +40% damage for 8 seconds
+- **Trigger:** On pet hit (assumed)
+- **Impact:** Pet damage variance increase, synergy with fast-attacking pets
+
+#### Bestial Wrath RETURNED (Row 5)
+- **Effect:** Pet enters rage state for 18 seconds
+- **Cooldown:** 1.5 minutes
+- **Impact:** MAJOR - Pet burst damage cooldown returns
+
+#### Kill Command Rework (Capstone)
+- **Position:** Moved to capstone (Row 7)
+- **Trigger:** When hunter critically strikes
+- **Effect:** Pet attacks for 50% of hunter's Attack Power
+- **Cooldown:** 8 seconds
+- **Impact:** Hunter crit directly triggers pet damage, synergy between hunter stats and pet
+
+#### Baited Shot
+- **Status:** REMOVED
+- **Impact:** Kill Command replaces as capstone
+
+---
+
+### Marksmanship Changes (1.18.1)
+
+#### Aimed Shot Returned (Row 3 Keystone)
+- **Cast Time:** 2 seconds (was 3 seconds)
+- **Cooldown:** 26 seconds (was 6 seconds)
+- **Impact:** Now a hard-hitting burst ability rather than rotation filler
+
+#### New Talent: Experimental Ammunition (Row 5)
+- **Effect:** Aimed Shot deals +5% elemental damage
+- **Proc:** Cycles through Fire, Arcane, and Nature damage types
+- **Impact:** Elemental damage penetrates armor, minor DPS increase
+
+#### New Talent: Lock and Load (Capstone)
+- **Trigger:** Critical strike
+- **Effect:** Resets Aimed Shot cooldown and reduces cast time by 1 second
+- **Impact:** CRITICAL - Critical strike extremely valuable, enables burst windows
+
+#### Improved Stings Enhancement
+- **New Effect:** Also increases Serpent Sting damage by 6/12/18/24/30%
+- **New Effect:** Scorpid Sting now also reduces target attack speed
+- **Impact:** DoT damage increased, utility debuff enhanced
+
+#### Swiftshot Changes
+- **Previous:** Reduced Arcane Shot and Aimed Shot cooldown
+- **New:** -0.5/1/1.5 seconds Arcane Shot cooldown
+- **New:** -2/4/6 seconds Aimed Shot cooldown
+- **Impact:** More frequent ability usage, especially Aimed Shot
+
+#### Ranged Weapon Specialization Buff
+- **Previous:** 1/2/3/4/5% ranged damage
+- **New:** 2/4/6/8/10% ranged damage
+- **Impact:** Direct DPS increase doubled
+
+#### Barrage Enhancement
+- **New Effect:** Also reduces Volley cast time by 1/1.5/2 seconds
+- **Impact:** AoE damage output significantly increased
+
+#### Improved Steady Shot → Improved Marksmanship
+- **Renamed:** Improved Steady Shot → Improved Marksmanship
+- **Effect:** +5/10% Steady Shot AND Aimed Shot damage
+- **Impact:** Both core abilities benefit from talent
+
+---
+
+### Survival Changes (1.18.1)
+
+#### New Talent: Alone Against the World (Row 2, 2 Points)
+- **Effect:** +3/6% damage when fighting without a pet
+- **Impact:** Pet-less playstyle viable, minor damage compensation
+
+#### Surefooted Enhancement
+- **New Effect:** Also grants +1/2/3% hit chance while dual wielding
+- **Impact:** Dual wield hit cap easier to reach, frees up gear stats
+
+#### Lacerate Buff
+- **Melee AP Scaling:** 35% → 40%
+- **Side Damage Bonus:** 10% → 15%
+- **Impact:** Direct damage increase for main proc ability
+
+---
+
 ## Stat Priority Impact Summary
 
 ### Beast Mastery Hunter
 
 #### Extremely High Priority
-1. **Ranged Attack Power** - Spirit Bond grants pet 12/25% as Melee AP, 7/15% as Spell Power (1.17.2)
-2. **Agility** - Ranged AP conversion, crit for Kill Command/Baited Shot procs (1.18.0)
-3. **Ranged Hit Rating** - To 9% cap (6% with talents)
+1. **Ranged Attack Power** - Spirit Bond grants pet 12/25% as Melee AP, 7/15% as Spell Power (1.17.2); Kill Command deals 50% AP (1.18.1)
+2. **Agility** - Ranged AP conversion, crit for Kill Command procs (1.18.1)
+3. **Critical Strike** - Kill Command triggers on hunter crit (1.18.1)
+4. **Ranged Hit Rating** - To 9% cap (6% with talents)
 
 #### High Priority
-4. **Critical Strike** - Kill Command procs, Baited Shot trigger, pet crit damage (1.18.0)
 5. **Stamina** - Pet gets 6/12/18/24/30% of your Stamina (1.17.2)
-6. **Ranged Haste** - More shots, more Coordinated Assault procs (1.18.0)
+6. **Ranged Haste** - More shots, more Coordinated Assault procs, more crit opportunities (1.18.0)
 
 #### Medium Priority
 7. **Armor** - Pet gets 12/24/36% of your Armor (1.17.2)
 8. **Resistances** - Pet gets 20/40% with Elusiveness (1.17.2)
-9. **Intellect** - Mana pool for longer fights
+9. **Intellect** - Mana pool for longer fights (Aspect of the Viper helps sustain 1.18.1)
 
 ### Marksmanship Hunter
 
 #### Extremely High Priority
-1. **Ranged Attack Power** - Trueshot Aura scales with 3/4/5% AP (1.17.2)
-2. **Agility** - Ranged AP, critical strike
-3. **Ranged Hit Rating** - To 9% cap (6% with talents)
+1. **Critical Strike** - Lock and Load resets Aimed Shot CD, reduces cast time (1.18.1) - CRITICAL
+2. **Ranged Attack Power** - Trueshot Aura baseline +3% AP (1.18.1); Volley now scales with AP (1.18.1)
+3. **Ranged Weapon DPS** - Arcane Shot now scales 10-45% with weapon damage (1.18.1)
+4. **Agility** - Ranged AP, critical strike
+5. **Ranged Hit Rating** - To 9% cap (6% with talents)
 
 #### High Priority
-4. **Critical Strike** - Piercing Shots procs, Endless Quiver procs (1.17.2)
-5. **Ranged Haste** - More auto shots, more Endless Quiver procs
-6. **Intellect** - Mana pool
+6. **Ranged Haste** - More auto shots, more Endless Quiver procs, more crit opportunities
+7. **Intellect** - Mana pool (Aspect of the Viper helps sustain 1.18.1)
 
 #### Medium Priority
-7. **Stamina** - Survivability
-8. **Mp5** - Sustained DPS
+8. **Stamina** - Survivability
+9. **Mp5** - Sustained DPS
 
 ### Survival Hunter (Melee)
 
 #### Extremely High Priority
 1. **Agility** - Lightning Reflexes converts to AP at 20/40/60/80/100% (1.17.2)
-2. **Melee Attack Power** - Scales all melee abilities and Fire traps (1.17.2)
-3. **Melee Hit Rating** - To 9% cap (6% with talents)
+2. **Melee Attack Power** - Scales all melee abilities and Fire traps (1.17.2); Lacerate buffed to 40% AP (1.18.1)
+3. **Melee Hit Rating** - To 9% cap (6% with talents); Surefooted +1/2/3% dual wield hit (1.18.1)
 4. **Weapon DPS** - All abilities scale with weapon damage
 
 #### High Priority
@@ -555,27 +694,51 @@ No changes - developers happy with current state.
 
 #### Medium Priority
 8. **Stamina** - Survivability in melee
-9. **Intellect** - Mana for trap-heavy rotation
+9. **Intellect** - Mana for trap-heavy rotation (Aspect of the Viper helps sustain 1.18.1)
 10. **Armor** - Mitigation
+
+### Survival Hunter (Pet-less)
+
+#### Notes
+- **Alone Against the World (1.18.1):** +3/6% damage without pet
+- **Viable alternative:** Trade pet utility/damage for personal damage boost
+- **Stat priorities:** Same as melee Survival, but no pet-related stats needed
 
 ---
 
 ## Critical Scaling Breakpoints
 
-### Beast Mastery Pet Scaling (1.17.2)
+### Beast Mastery Pet Scaling (1.17.2 / 1.18.1)
 - **Spirit Bond (2 points):** Pet gains 25% Ranged AP as Melee AP, 15% as Spell Power
+- **Kill Command (1.18.1):** Pet attacks for 50% of hunter's AP on hunter crit
 - **Pet Hit Cap:** 8% with Bestial Precision (2 points)
 - **Pet Spell Hit Cap:** 18% with Bestial Precision (1.18.0)
-- **Example:** 2000 Ranged AP = 500 pet Melee AP + 300 pet Spell Power
+- **Example:** 2000 Ranged AP = 500 pet Melee AP + 300 pet Spell Power + 1000 Kill Command damage
+
+### Marksmanship Lock and Load (1.18.1)
+- **Trigger:** Critical strike resets Aimed Shot cooldown and reduces cast time by 1s
+- **Aimed Shot Cast Time:** 2s base, 1s after Lock and Load proc
+- **With Rapid Fire:** 1.2s base (40% reduction), 0.2s after Lock and Load
+- **Impact:** Critical strike becomes primary DPS stat for burst windows
+
+### Volley AP Scaling (1.18.1)
+- **Rank 1:** 4% AP coefficient per tick
+- **Rank 2:** 5% AP coefficient per tick
+- **Rank 3:** 6% AP coefficient per tick
+- **Example:** 2000 Ranged AP with Rank 3 = 120 damage per tick bonus
 
 ### Survival Lightning Reflexes (1.17.2)
 - **Rank 5:** 10% Agility + 100% Agi → Melee AP
 - **Example:** 300 Agility = 330 Agi + 330 Melee AP = 660 total AP contribution
 
-### Trueshot Aura Scaling (1.17.2)
-- **Rank 3 (Level 60):** 55 flat + 5% of recipient's AP
-- **Example:** Warrior with 2000 AP gains 55 + 100 = 155 AP
-- **Impact:** Scales throughout all gear tiers
+### Survival Dual Wield Hit (1.18.1)
+- **Surefooted:** +1/2/3% hit while dual wielding
+- **Impact:** Reduces hit cap requirement by 3%, freeing gear stats
+
+### Trueshot Aura (1.18.1 - Baseline)
+- **Effect:** +3% AP + 30 flat AP to party
+- **Example:** Warrior with 2000 AP gains 60 + 30 = 90 AP
+- **Impact:** All hunters provide raid utility baseline
 
 ---
 
@@ -591,8 +754,9 @@ All information compiled from official Turtle WoW changelogs:
 - 1.17.2-2024.12.20-changes.html
 - 1.17.2-2025.04.01-changes.html
 - 1.18.0-hunter-changes.html
+- 1.18.1-hunter-changes.html
 
-**Last Updated:** Based on changelogs through Patch 1.18.0 (Scars of the Past)
+**Last Updated:** Based on changelogs through Patch 1.18.1
 
 ---
 
@@ -602,19 +766,26 @@ All information compiled from official Turtle WoW changelogs:
 
 #### Beast Mastery
 1. **Spirit Bond (1.17.2):** Ranged AP converts to pet AP/Spell Power - CRITICAL scaling change
-2. **Kill Command + Baited Shot (1.18.0):** Pet-focused rotation, crit very valuable
-3. **Stat Transfers:** Stamina, Armor, Resistances all have value through pet scaling
-4. **Pet Hit Cap:** Can now be reached with Bestial Precision
+2. **Kill Command Rework (1.18.1):** Hunter crit triggers pet attack for 50% AP - crit now extremely valuable
+3. **Bestial Wrath Returned (1.18.1):** Pet burst cooldown available again
+4. **Scent of Blood (1.18.1):** Pet damage proc, synergy with fast pets
+5. **Stat Transfers:** Stamina, Armor, Resistances all have value through pet scaling
+6. **Pet Survivability Buffs (1.18.1):** Endurance Training and Thick Hide values doubled
 
 #### Marksmanship
-1. **Trueshot Aura Scaling (1.17.2):** Now 55 + 5% AP, scales into late game
-2. **Steady Shot:** Main DPS ability (1.17.2)
-3. **Piercing Shots (1.17.2):** Crit adds DoT component
-4. **Endless Quiver (1.17.2):** Proc-based extra attacks
+1. **Lock and Load (1.18.1):** Crit resets Aimed Shot CD - CRITICAL, crit becomes primary stat
+2. **Trueshot Aura Baseline (1.18.1):** Now 30 + 3% AP for all hunters
+3. **Arcane Shot Weapon Scaling (1.18.1):** 10-45% weapon damage - ranged weapon DPS more valuable
+4. **Volley AP Scaling (1.18.1):** 4/5/6% AP coefficient - ranged AP valuable for AoE
+5. **Rapid Fire Enhancement (1.18.1):** -40% Aimed/Steady cast time during burst
+6. **Ranged Weapon Specialization (1.18.1):** Doubled from 1-5% to 2-10%
+7. **Improved Marksmanship (1.18.1):** +5/10% to both Steady Shot and Aimed Shot
 
 #### Survival (Melee)
 1. **Lightning Reflexes (1.17.2):** Agility = 2 AP per point at max rank - CRITICAL
 2. **Untamed Trapper (1.17.2):** Fire traps scale with Melee AP
 3. **Mongoose Bite Dual Wield (1.18.0):** Dual wield now equal to 2H
-4. **Weapon DPS:** All melee abilities scale with weapon damage
-5. **Lacerate (1.18.0):** New proc ability, crit valuable
+4. **Surefooted Dual Wield Hit (1.18.1):** +1/2/3% hit while dual wielding - frees gear stats
+5. **Lacerate Buff (1.18.1):** 35% → 40% AP scaling, side bonus 10% → 15%
+6. **Alone Against the World (1.18.1):** Pet-less playstyle option +3/6% damage
+7. **Weapon DPS:** All melee abilities scale with weapon damage

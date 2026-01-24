@@ -712,17 +712,75 @@ This document tracks all Rogue-specific changes from Turtle WoW that affect stat
 
 ---
 
+## Version 1.18.1 - Poison Scaling Nerfs
+
+### General Changes
+
+#### Poison Attack Power Scaling Nerfs (Lower Ranks)
+
+**Deadly Poison:**
+- **Rank 1-3:** AP scaling removed entirely (was 2%/tick)
+- **Rank 4:** AP scaling 2%/tick → 1%/tick (8% → 4% total)
+- **Impact:** Lower level poison builds significantly weaker; max rank still viable at 2%/tick
+
+**Instant Poison:**
+- **Rank 1:** AP scaling 5% → 0%
+- **Rank 2-3:** AP scaling 5% → 1%
+- **Rank 4-5:** AP scaling 5% → 2%
+- **Max Rank (6):** Unchanged at 5% AP scaling
+- **Impact:** Leveling poison builds nerfed; endgame unchanged
+
+**Corrosive Poison:**
+- **Rank 1:** AP scaling 1.9%/tick → 1%/tick (7.6% → 4% total)
+- **Max Rank:** Unchanged
+- **Impact:** Lower rank less competitive with Deadly Poison
+
+**Dissolvent Poison:**
+- **Rank 1:** AP scaling 4.75% → 2%
+- **Max Rank:** Unchanged at 4.75% AP scaling
+- **Impact:** Lower rank significantly weaker
+
+#### Blade Flurry (Toggle Penalty Reduction)
+- **Energy Regen Penalty:** 30% → 20%
+- **Damage Penalty:** Unchanged at 20%
+- **Impact:** AoE situations less punishing for energy management
+
+---
+
+### Assassination Specialization
+
+#### Taste for Blood (Nerf)
+- **Physical Damage Bonus:** 1/2/3% per combo point → 1/1.5/2% per combo point
+- **Max Effect:** 15% at 5 CP → 10% at 5 CP
+- **Change:** No longer affects Corrosive Poison or Dissolvent Poison damage
+- **Impact:** Reduced physical damage amplification; Physical poisons no longer benefit
+
+#### Noxious Assault (Nerf)
+- **AP Scaling:** 35% → 30%
+- **Impact:** Reduced direct damage from primary Assassination combo generator
+
+---
+
+### Combat Specialization
+
+#### Opportunity (Nerf)
+- **Damage Bonus:** 4/8/12/16/20% → 3/6/9/12/15%
+- **Impact:** Reduced damage from abilities used from behind or while stealthed
+
+---
+
 ## Stat Priority Impact Summary
 
 ### All Specializations
 1. **Attack Power:**
-   - Poison scaling: Instant (5%), Deadly/Corrosive (8% per stack), Dissolvent (4.75%)
+   - Poison scaling (max rank): Instant (5%), Deadly/Corrosive (8% per stack), Dissolvent (4.75%)
+   - Lower poison ranks significantly weaker (1.18.1 nerfs)
    - Surprise Attack: 25% AP scaling
-   - Noxious Assault: 35% AP scaling (Assassination)
+   - Noxious Assault: 30% AP scaling (Assassination, nerfed from 35% in 1.18.1)
    - Shadow of Death: 50-250% AP capacity (Subtlety)
    - Mark for Death: Converts 30% AP to party AP, 18% to spell power
 2. **Energy Management:**
-   - Blade Flurry: -30% energy regen when active
+   - Blade Flurry: -20% energy regen when active (reduced from 30% in 1.18.1)
    - Blade Rush: Agility reduces energy tick time (1.18.0)
    - Vigor: Energy per poison application
    - Honor Among Thieves: Energy from crits
@@ -732,11 +790,11 @@ This document tracks all Rogue-specific changes from Turtle WoW that affect stat
 
 ### Assassination Priority Changes
 1. **Attack Power:**
-   - All poisons scale with AP (December 2024)
-   - Instant: 5% AP per proc
-   - Deadly/Corrosive: 8% AP per full stack
-   - Dissolvent: 4.75% AP per proc
-   - Noxious Assault: 35% AP direct damage
+   - All poisons scale with AP (December 2024), lower ranks nerfed (1.18.1)
+   - Instant: 5% AP per proc (max rank only; R1=0%, R2-3=1%, R4-5=2%)
+   - Deadly/Corrosive: 8% AP per full stack (max rank; R4 Deadly=4%, R1-3 Deadly=0%)
+   - Dissolvent: 4.75% AP per proc (max rank; R1=2%)
+   - Noxious Assault: 30% AP direct damage (nerfed from 35% in 1.18.1)
 2. **Critical Strike:**
    - Relentless Strikes: Finisher damage +5% per stack (max 25%)
    - Lethality: Crit damage for all combo generators
@@ -779,12 +837,17 @@ This document tracks all Rogue-specific changes from Turtle WoW that affect stat
 
 ## Critical Scaling Breakpoints
 
-### Poison Attack Power Scaling (December 2024 - Present)
-- **Instant Poison:** 5% AP per proc
-- **Deadly/Corrosive Poison:** 2% AP per tick × 4 ticks = 8% AP per stack
+### Poison Attack Power Scaling (December 2024 - Present, Nerfed 1.18.1)
+- **Instant Poison (Max Rank):** 5% AP per proc
+  - Lower ranks: R1=0%, R2-3=1%, R4-5=2% (1.18.1 nerf)
+- **Deadly Poison (Max Rank):** 2% AP per tick × 4 ticks = 8% AP per stack
   - 5 stacks = 40% AP total
-- **Dissolvent Poison:** 4.75% AP per proc (1.18.0)
-- **Impact:** Attack Power becomes primary stat for poison damage
+  - Lower ranks: R1-3=0%, R4=1%/tick (4% total) (1.18.1 nerf)
+- **Corrosive Poison (Max Rank):** 2% AP per tick × 4 ticks = 8% AP per stack
+  - Lower ranks: R1=1%/tick (4% total) (1.18.1 nerf)
+- **Dissolvent Poison (Max Rank):** 4.75% AP per proc (1.18.0)
+  - Lower ranks: R1=2% (1.18.1 nerf)
+- **Impact:** Attack Power primary stat for endgame poison damage; leveling builds significantly weaker
 
 ### Envenom Amplification
 - **Base:** 30% increased poison effectiveness (April 2025, was 25%)
@@ -830,12 +893,16 @@ This document tracks all Rogue-specific changes from Turtle WoW that affect stat
 
 ### High Priority Changes
 
-1. **Poison Attack Power Scaling (December 2024):**
-   - Instant Poison: Add 5% AP scaling per proc
-   - Deadly Poison: Add 2% AP per tick (8% total per stack)
-   - Corrosive Poison: Add 2% AP per tick (8% total per stack), reduced by 5% in 1.18.0
-   - Dissolvent Poison: Add 4.75% AP scaling per proc (1.18.0)
-   - Critical: Attack Power becomes primary damage stat for poison builds
+1. **Poison Attack Power Scaling (December 2024, Nerfed 1.18.1):**
+   - Instant Poison: 5% AP per proc (max rank only)
+     - Lower ranks: R1=0%, R2-3=1%, R4-5=2% (1.18.1)
+   - Deadly Poison: 2% AP per tick (8% total per stack, max rank only)
+     - Lower ranks: R1-3=0%, R4=1%/tick (4% total) (1.18.1)
+   - Corrosive Poison: 2% AP per tick (8% total per stack), reduced by 5% in 1.18.0
+     - Lower ranks: R1=1%/tick (4% total) (1.18.1)
+   - Dissolvent Poison: 4.75% AP scaling per proc (1.18.0, max rank only)
+     - Lower ranks: R1=2% (1.18.1)
+   - Critical: Attack Power primary for endgame; leveling builds significantly weaker
 
 2. **Envenom Amplification:**
    - 30% increased poison effectiveness (damage, slow, healing reduction)
@@ -853,18 +920,19 @@ This document tracks all Rogue-specific changes from Turtle WoW that affect stat
    - +2/5% attack speed
    - Critical: Agility becomes energy generation stat
 
-5. **Taste For Blood Scaling:**
-   - 1/2/3% physical damage per combo point
-   - Max: 15% at 5 CP
+5. **Taste For Blood Scaling (Nerfed 1.18.1):**
+   - 1/1.5/2% physical damage per combo point (was 1/2/3%)
+   - Max: 10% at 5 CP (was 15%)
+   - No longer affects Corrosive/Dissolvent Poison damage
    - Duration: 18-26 seconds (scales with Rupture)
-   - Critical: High combo point Rupture significantly more valuable
+   - Critical: Still valuable for physical damage, but weaker than before
 
 ### Medium Priority Changes
 
-1. **Blade Flurry Toggle (1.18.0):**
+1. **Blade Flurry Toggle (1.18.0, Buffed 1.18.1):**
    - Baseline at level 30
-   - Penalties: -30% energy regen, -20% damage
-   - Impact: Energy regen less valuable in AoE situations
+   - Penalties: -20% energy regen (was -30%), -20% damage
+   - Impact: Energy regen penalty less punishing in AoE situations
 
 2. **Wound Poison Rework:**
    - 5% healing reduction per stack (max 25%)
@@ -920,5 +988,6 @@ All information compiled from official Turtle WoW changelogs:
 - `turtle-wow-changelogs/1.17.2-2024.12.20-changes.html` (lines 429-466)
 - `turtle-wow-changelogs/1.17.2-2025.04.01-changes.html` (lines 342-368)
 - `turtle-wow-changelogs/1.18.0-rogue-changes.html` (complete file)
+- Patch 1.18.1 changelog (Poison scaling nerfs, Blade Flurry, Taste for Blood, Noxious Assault, Opportunity)
 
-**Last Updated:** Based on changelogs through Patch 1.18.0 (Scars of the Past) including August 2025 revision
+**Last Updated:** Based on changelogs through Patch 1.18.1

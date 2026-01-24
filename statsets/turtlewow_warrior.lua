@@ -36,6 +36,12 @@
   - Concussion Blow (1.18.0): Free (generates 10 rage instead of costing)
   - Slam DW (Aug 2025): Off-hand swing timer reset for Dual Wield
   - Blood Craze (Aug 2025): Enrage talent dependency removed
+  - Shield Slam (1.18.1): AP scaling 15%→20%, threat modifier 50%→75%
+  - Defiance (1.18.1): Threat increase 3/6/9/12/15%→4/8/12/15/20%
+  - Precision Cut (1.18.1): Reworked to +25/50/75% damage per extra rage on Execute
+  - Ravager (1.18.1): Renamed from Improved Whirlwind, also -1/2/3 rage on Cleave
+  - Flurry + Slam (1.18.1): Bug fix - cast time 1.75s→1.92s (was incorrectly faster)
+  - Hamstring (1.18.1): Cooldown removed
 
   References:
   - docs/turtle-wow-warrior-scaling-changes.md
@@ -87,6 +93,8 @@ end
 -- Master of Arms Mace (Dec 2024): ArPen nerf 600→360 @ level 60
 -- Execute (1.18.0): CD removed, Precision Cut +45% base damage
 -- Mortal Strike (1.18.0): 115-130% weapon damage
+-- Precision Cut (1.18.1): Reworked to +25/50/75% damage per extra rage on Execute
+--   (buffs Execute rage scaling, makes AP/Crit more valuable for rage dump)
 -- ============================================================================
 
 -- Vanilla Baseline
@@ -170,6 +178,8 @@ end)
 -- Enrage Talent (Dec 2024): 4/8/12/16/20% (compensates Nov nerf)
 -- Blood Drinker (1.18.0): ALL attacks heal 1-2% max HP
 -- Flurry (1.18.0): Also reduces Slam cast time
+-- Ravager (1.18.1): Renamed from Improved Whirlwind, also -1/2/3 rage on Cleave
+-- Flurry + Slam (1.18.1): Bug fix - cast time 1.75s→1.92s (slight Haste nerf)
 -- ============================================================================
 
 -- Vanilla Baseline
@@ -212,8 +222,9 @@ turtleFury.TOHIT = vanillaFury.TOHIT * 1.125  -- 5.35 → 6.01
 -- Haste baseline check removed (vanilla values are correct)
 
 -- 3. Haste HIGHLY valuable (Unbridled Wrath 75%/150% 2H, Blood Drinker per-attack heal, Flurry reduces Slam)
---    Conservative: +50% value (massive synergies)
-turtleFury.HASTE = turtleFury.HASTE * 1.5  -- 3.29 → 4.94
+--    Conservative: +43% value (massive synergies, but 1.18.1 Flurry+Slam bug fix nerfs slightly)
+--    1.18.1: Slam cast time fixed from 1.75s to 1.92s (~5% nerf to Haste value)
+turtleFury.HASTE = turtleFury.HASTE * 1.43  -- 3.29 → 4.70 (was 4.94 pre-1.18.1)
 
 -- 4. Critical Strike still valuable (Enrage nerfed 25%→15%, but Flurry+Slam synergy compensates)
 --    Conservative: +20% value (reduced from +30% due to Enrage nerf)
@@ -257,6 +268,8 @@ end)
 -- Concussion Blow (Dec 2024): CD 20s, 100% armor pen, 2s stun
 -- Concussion Blow (April 2025): Stun 2s→3s
 -- Concussion Blow (1.18.0): Free (generates 10 rage instead of costing)
+-- Shield Slam (1.18.1): AP scaling 15%→20% (+33%), threat modifier 50%→75% (+50%)
+-- Defiance (1.18.1): Threat increase 3/6/9/12/15%→4/8/12/15/20%
 -- ============================================================================
 
 -- Vanilla Baseline
@@ -305,8 +318,10 @@ turtleProtection.TOHIT = vanillaProtection.TOHIT * 1.125  -- 6.28 → 7.07
 turtleProtection.BLOCKVALUE = vanillaProtection.BLOCKVALUE * 1.7  -- 0.35 → 0.595
 
 -- 4. Attack Power HIGHLY valuable (Shield Slam AP, Rend 5% AP, Reprisal Revenge +50%)
---    Conservative: +45% value (threat generation)
-turtleProtection.ATTACKPOWER = vanillaProtection.ATTACKPOWER * 1.45  -- 0.06 → 0.087
+--    Conservative: +65% value (threat generation)
+--    1.18.1: Shield Slam AP scaling 15%→20% (+33%), threat modifier 50%→75% (+50%)
+--    Additional +14% on top of previous +45% → +65% total
+turtleProtection.ATTACKPOWER = vanillaProtection.ATTACKPOWER * 1.65  -- 0.06 → 0.099
 
 -- 5. Armor more valuable (75% cap removed + Toughness +15% shield absorption)
 --    Conservative: +35% value

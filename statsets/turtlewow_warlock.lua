@@ -33,6 +33,20 @@
     Infernal 60%, Felguard 60%, Doomguard 30% of spell damage as demon AP
   - Voidstone (Aug 2025): New stone, -10% spell threat for 30 minutes
 
+  Patch 1.18.1 Changes:
+  - Hellfire (1.18.1): Coefficient 2.2%→4.125% per tick (+88% buff, massive for AoE/Demo)
+  - Searing Pain (1.18.1): GCD 1.5s→1s (faster casting for Destro)
+  - Curse of Recklessness (1.18.1): GCD 1.5s→1s
+  - Soul Link (1.18.1): Damage transfer 25%→20% (less pet survivability)
+  - Master Demonologist (1.18.1): Greater Demons healing reduction removed (QoL)
+  - Sinister Pursuit (1.18.1): Moved from Affliction to Demonology
+  - Master Conjuror (1.18.1): Removed from Affliction
+  - Tier 3 4pc (1.18.1): Curse of Agony +100% damage first 4 ticks (front-loaded)
+  - Tier 3.5 3pc (1.18.1): Siphon Life mana return 50%→25% (mana sustain nerf)
+  - Curse of Exhaustion (1.18.1): Mana cost 8%→14%
+  - Curse of Tongues R1 (1.18.1): Reduction 50%→30%
+  - Felhunter/Infernal (1.18.1): -30% armor
+
   References:
   - docs/turtle-wow-warlock-scaling-changes.md
   - docs/vanilla-baseline-weights.md
@@ -83,6 +97,9 @@ end
 -- Dark Harvest (Nov 2024): 25% SP, (April 2025): 30% DoT haste
 -- Rapid Deterioration: Haste affects DoT tick speed at 50/100% efficiency
 -- Soul Siphon (Dec 2024): +2/4/6% per Affliction effect (max 4 = 24%)
+-- 1.18.1: Sinister Pursuit moved to Demonology, Master Conjuror removed
+-- 1.18.1: Tier 3 4pc CoA +100% damage first 4 ticks (front-loaded)
+-- 1.18.1: Tier 3.5 3pc Siphon Life mana return 50%→25% (mana sustain nerf)
 -- ============================================================================
 
 -- Vanilla Baseline
@@ -138,6 +155,10 @@ turtleAffliction.SPELLHASTE = turtleAffliction.SPELLHASTE * 1.3  -- 6.26 → 8.1
 --    Affliction has Life Tap sustain, but CASTINGREG still valuable
 turtleAffliction.CASTINGREG = 5.0  -- Medium value for Affliction mana efficiency
 
+-- 6. Mana Regen slightly less valuable (1.18.1: Tier 3.5 3pc Siphon Life mana 50%→25%)
+--    -10% value (less mana sustain from gear set bonus)
+turtleAffliction.MANAREG = vanillaAffliction.MANAREG * 0.9  -- Slightly less valuable due to set nerf
+
 -- Queue StatSet creation (delayed until OnEnable)
 table.insert(ItemsOfPower_PendingStatSets, function()
   RegisterOrUpdateStatSet("TurtleWoW_Warlock_Affliction", turtleAffliction)
@@ -151,6 +172,11 @@ end)
 -- Unleashed Potential (Dec 2024): 5-15% spell damage → demons (3 stacks)
 -- Imp Firebolt (April 2025): 10-40% SP coefficient by rank
 -- Demon AP Scaling (Aug 2025): 20-60% spell damage as demon AP
+-- 1.18.1: Hellfire coefficient 2.2%→4.125% per tick (+88% MASSIVE AoE buff)
+-- 1.18.1: Soul Link damage transfer 25%→20% (slight survivability nerf)
+-- 1.18.1: Master Demonologist Greater Demons healing reduction removed (QoL)
+-- 1.18.1: Sinister Pursuit moved from Affliction to Demonology
+-- 1.18.1: Felhunter/Infernal -30% armor (pet survivability nerf)
 -- ============================================================================
 
 -- Vanilla Baseline
@@ -199,16 +225,18 @@ turtleDemonology.SPELLTOHIT = vanillaDemonology.SPELLTOHIT * 1.3
 --    - Demon AP Scaling (Aug 2025): 20-60% spell damage as demon AP
 --    - Unleashed Potential: 5-15% spell damage → demons (3 stacks)
 --    - Imp Firebolt: 10-40% spell power coefficient
---    +55% value
-turtleDemonology.DMG = vanillaDemonology.DMG * 1.55  -- 1.0 → 1.55
+--    - Hellfire (1.18.1): Coefficient 2.2%→4.125% (+88% AoE buff)
+--    +70% value (increased from 55% due to Hellfire buff)
+turtleDemonology.DMG = vanillaDemonology.DMG * 1.70  -- 1.0 → 1.70
 
 -- 4. Intellect more valuable (Fel Intellect: 10/20/30% total Int → demons Dec 2024)
 --    +40% value
 turtleDemonology.INT = vanillaDemonology.INT * 1.4  -- 0.4 → 0.56
 
 -- 5. Stamina more valuable (Fel Stamina: 10-50% total Sta → demons Dec 2024)
---    +60% value
-turtleDemonology.STA = vanillaDemonology.STA * 1.6  -- 0.1 → 0.16
+--    1.18.1: Soul Link 25%→20% transfer = slight nerf to personal survivability
+--    +50% value (reduced from 60% due to Soul Link nerf)
+turtleDemonology.STA = vanillaDemonology.STA * 1.5  -- 0.1 → 0.15
 
 -- 6. Crit more valuable (Demonic Precision 30-90% crit transfer, Unleashed Potential stacks on crit)
 --    +35% value
@@ -216,6 +244,10 @@ turtleDemonology.SPELLCRIT = vanillaDemonology.SPELLCRIT * 1.35  -- 5.28 → 7.1
 
 -- 7. Add CASTINGREG support (Meditation items in 1.16.0, medium value for Demonology)
 turtleDemonology.CASTINGREG = 5.0  -- Medium value for Demonology mana efficiency
+
+-- 8. Fire Damage more valuable (1.18.1: Hellfire coefficient +88%)
+--    +40% value for Fire damage (Hellfire is Fire school)
+turtleDemonology.FIREDMG = vanillaDemonology.FIREDMG * 1.4  -- 0.8 → 1.12
 
 -- Queue StatSet creation (delayed until OnEnable)
 table.insert(ItemsOfPower_PendingStatSets, function()
@@ -229,6 +261,8 @@ end)
 -- Improved Soul Fire (Dec 2024): +8% Fire damage, 100% proc on cast
 -- Improved Soul Fire (1.18.0): +8%→+10% Fire damage
 -- Soul Fire (1.18.0): Coefficient 125%→114%
+-- 1.18.1: Searing Pain GCD 1.5s→1s (faster casting, slight DPS increase)
+-- 1.18.1: Hellfire coefficient 2.2%→4.125% per tick (+88% AoE option)
 -- ============================================================================
 
 -- Vanilla Baseline
@@ -291,6 +325,10 @@ turtleDestruction.FIREDMG = vanillaDestruction.FIREDMG * 1.2  -- 0.23 → 0.276
 -- 7. Add CASTINGREG support (Meditation items in 1.16.0, low-medium value for Destruction)
 --    Destruction has Life Tap + Improved Soul Fire regen
 turtleDestruction.CASTINGREG = 4.0  -- Low-medium value for Destruction mana efficiency
+
+-- 8. Haste slightly more valuable (1.18.1: Searing Pain GCD 1.5s→1s)
+--    +5% value (faster Searing Pain spam option)
+turtleDestruction.SPELLHASTE = vanillaDestruction.SPELLHASTE * 1.05  -- 9.23 → 9.70
 
 -- Queue StatSet creation (delayed until OnEnable)
 table.insert(ItemsOfPower_PendingStatSets, function()

@@ -577,6 +577,85 @@ This document tracks all Warrior-specific changes from Turtle WoW that affect st
 
 ---
 
+## Version 1.18.1 - Balance Adjustments
+
+### General
+
+#### Hamstring
+- **Cooldown:** Removed (was 6 seconds added in 1.17.2)
+- **Impact:** Restores Hamstring as a spammable ability for rage dumping and kiting control
+
+---
+
+### Fury Specialization
+
+#### Improved Whirlwind → Ravager (BUFF)
+- **Previous:** Reduced Whirlwind cooldown by 1/1.5/2 seconds
+- **New Effect:** Also reduces Cleave rage cost by 1/2/3 rage
+- **Impact:**
+  - Improves AoE rage efficiency for Cleave-focused builds
+  - Dual Wield and AoE grinding builds benefit from cheaper Cleave spam
+
+#### Flurry + Slam Interaction (BUG FIX)
+- **Change:** Slam cast time reduction from Flurry corrected
+- **Previous (Bugged):** 5-point Flurry resulted in 1.75s Slam cast time
+- **Corrected:** 5-point Flurry now correctly results in 1.92s Slam cast time
+- **Impact:**
+  - Slam cast time slightly longer than previously observed
+  - Flurry still valuable for Slam builds but slightly less effective than bugged values suggested
+
+---
+
+### Arms Specialization
+
+#### Boundless Anger and Precision Cut (POSITION SWAP)
+- **Change:** Talent positions swapped in the talent tree
+- **Impact:** Quality of life change for talent pathing; no mechanical changes
+
+#### Precision Cut (COMPLETE REWORK)
+- **Previous:** Increases Execute base damage by 15/30/45%
+- **New Effect:** Increases Execute damage by +25/50/75% per extra rage spent beyond base cost
+- **Impact:** CRITICAL change for Execute scaling
+  - Rewards rage pooling before Execute phase
+  - Extra rage spent now scales damage multiplicatively
+  - Boundless Anger (+30 max rage) synergy significantly increased
+  - High rage generation stats (AP, Crit, Hit) more valuable for Execute builds
+
+---
+
+### Protection Specialization
+
+#### Defiance (ADJUSTED)
+- **Previous Threat Increase:** Various values
+- **New Threat Increase:** 4/8/12/15/20% per rank
+- **Impact:** Standardized threat scaling; slight adjustment to Protection threat output
+
+#### Shield Slam (MAJOR BUFF)
+- **AP Scaling:** 15% → 20%
+- **Threat Modifier:** 50% → 75%
+- **Impact:**
+  - Attack Power significantly more valuable for Protection threat
+  - Shield Slam becomes even stronger as primary threat ability
+  - Block Value + AP dual scaling makes both stats premium for Protection
+
+---
+
+### Tier Set Changes
+
+#### Arms/Fury Tier 1 (3-piece bonus)
+- **Effect:** 10% chance to gain 15 rage on ability hit
+- **Impact:**
+  - Passive rage generation increases value of ability-heavy rotations
+  - Benefits both Arms and Fury specs using frequent ability casts
+
+#### Arms/Fury Tier 3 (4-piece bonus)
+- **Effect:** +4% critical damage bonus on abilities
+- **Impact:**
+  - Critical strike value increased for ability damage
+  - Synergizes with Execute spam and Mortal Strike/Bloodthirst builds
+
+---
+
 ## Stat Priority Impact Summary
 
 ### All Specializations (Baseline Changes)
@@ -803,5 +882,6 @@ All information compiled from official Turtle WoW changelogs:
 - `turtle-wow-changelogs/1.17.2-2024.12.20-changes.html` (MAJOR Warrior update - lines 467-562)
 - `turtle-wow-changelogs/1.17.2-2025.04.01-changes.html` (Concussion Blow buff, Improved Pummel rework)
 - `turtle-wow-changelogs/1.18.0-warrior-changes.html` (complete file including August 2025 revision)
+- `turtle-wow-changelogs/1.18.1-warrior-changes.html` (Patch 1.18.1 balance adjustments)
 
-**Last Updated:** Based on changelogs through Patch 1.18.0 (Scars of the Past) including August 2025 revision, and all hotfixes through April 2025
+**Last Updated:** Based on changelogs through Patch 1.18.1 (Balance Adjustments), including all hotfixes through April 2025

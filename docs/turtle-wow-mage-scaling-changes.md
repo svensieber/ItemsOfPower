@@ -386,6 +386,19 @@ This document tracks all Mage-specific changes from Turtle WoW that affect stat 
 
 ---
 
+## Version 1.18.1
+
+### Frost Changes (1.18.1)
+
+#### Ice Barrier
+- **Previous:** +15% Frost damage while barrier active
+- **New:** +5% Frost damage while barrier active, BUT casting Ice Barrier grants a separate buff: +10% Frost damage for 1 minute
+- **Key Mechanic:** The +10% damage buff is now DECOUPLED from the barrier itself
+- **Duration:** Barrier lasts up to 1 minute, damage buff always lasts 1 minute regardless of barrier status
+- **Impact:** SIGNIFICANT - In group content where AoE damage quickly breaks the barrier, Frost Mages no longer lose their damage bonus. The buff is now reliable rather than dependent on barrier survival. This makes the damage bonus much more consistent in raids.
+
+---
+
 ## Stat Priority Impact Summary
 
 ### Arcane Mage
@@ -423,7 +436,7 @@ This document tracks all Mage-specific changes from Turtle WoW that affect stat 
 ### Frost Mage
 
 #### Extremely High Priority
-1. **Spell Power** - Frostbolt, Icicles (40% per icicle), Ice Barrier gives +15% Frost damage
+1. **Spell Power** - Frostbolt, Icicles (40% per icicle), Ice Barrier gives +5% Frost damage while active + 10% Frost damage buff for 1min on cast (total +15% with barrier up)
 2. **Spell Crit** - Shatter +7/14/21/28/35% vs frozen (nerfed but still strong), Flash Freeze synergy
 
 #### High Priority
@@ -459,10 +472,12 @@ This document tracks all Mage-specific changes from Turtle WoW that affect stat 
 - **At Max Stacks:** 1 second cast time (5s reduction)
 - **Impact:** Instant-cast Pyroblast at 5 stacks
 
-### Ice Barrier Damage Bonus (1.17.2)
-- **Bonus:** +15% Frost damage while active
-- **Duration:** 1 minute
-- **Impact:** Must maintain for DPS increase
+### Ice Barrier Damage Bonus (1.17.2 → 1.18.1)
+- **Previous (1.17.2):** +15% Frost damage while barrier active
+- **Current (1.18.1):** +5% while barrier active, +10% for 1 minute on cast (separate buff)
+- **Total when barrier up:** +15% Frost damage (unchanged)
+- **When barrier breaks:** +10% Frost damage remains for full 1 minute
+- **Impact:** Damage bonus now reliable in group content; no longer requires barrier maintenance
 
 ---
 
@@ -476,8 +491,9 @@ All information compiled from official Turtle WoW changelogs:
 - 1.17.2-2024.12.20-changes.html (Arcane Rupture nerf, Hot Streak buff, Icicles GCD)
 - 1.17.2-2025.04.01-changes.html (Arcane Power rework, Fireball/Flamestrike mana costs, Pyroblast GCD)
 - 1.18.0-mage-changes.html
+- 1.18.1-mage-changes.html (Ice Barrier damage bonus rework)
 
-**Last Updated:** Based on changelogs through August 14, 2025 revision
+**Last Updated:** Based on changelogs through Patch 1.18.1
 
 ---
 
@@ -499,6 +515,6 @@ All information compiled from official Turtle WoW changelogs:
 
 #### Frost
 1. **Shatter (1.17.2):** 10/20/30/40/50% → 7/14/21/28/35% crit vs frozen
-2. **Ice Barrier (1.17.2):** +15% Frost damage while active
+2. **Ice Barrier (1.17.2 → 1.18.1):** +15% while active → +5% while active + 10% for 1min on cast (decoupled)
 3. **Icicles (1.17.2):** New rotational ability, 40% spell power per icicle
 4. **Flash Freeze (1.17.2):** Resets Icicles vs freeze-immune targets (raid bosses)

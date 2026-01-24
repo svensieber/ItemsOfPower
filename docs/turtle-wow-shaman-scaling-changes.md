@@ -786,6 +786,89 @@ This document tracks all Shaman-specific changes from Turtle WoW that affect sta
 
 ---
 
+## Version 1.18.1
+
+### General Changes
+
+#### Lightning Shield
+- **Mana Cost:** Reduced by approximately 25% across all ranks
+- **Impact:** Better mana efficiency for all specs using Lightning Shield
+
+---
+
+### Enhancement Specialization
+
+#### Stormstrike (Nerf)
+- **Change:** Can no longer proc Windfury Weapon twice
+- **Impact:** Reduced burst damage potential
+
+#### Windfury Weapon (Buffed)
+- **Proc Chance:** 20% → 25%
+- **Impact:** More frequent extra attacks, significant DPS increase
+
+#### Elemental Weapons (Complete Rework)
+- **Windfury Effect:**
+  - Previous: +10/20/30% attack speed after miss
+  - New: Grants 1% attack speed per extra attack for 5 seconds
+  - Stacks: 2/4/6 times based on talent rank
+  - Impact: Attack speed stacking buff on proc
+- **Flametongue Effect:**
+  - Previous: +10/20/30% Fire totem and spell damage
+  - New: +10/20/30% Fire Totem and spell damage for 5 seconds on hit
+  - Impact: Now a temporary buff on melee hit
+- **Rockbiter Effect:**
+  - Previous: -4/7/10% damage taken
+  - New: Builds absorb shield equal to 20% of physical damage dealt
+  - Shield amount: Tripled when using a shield
+  - Absorbs: 5/10/15% of incoming damage
+  - Maximum: 20% of HP
+  - Impact: CRITICAL - damage reduction replaced with active absorb mechanic
+
+#### Flurry (Reworked)
+- **New Effect:** +8/11/14/17/20% attack speed for next 3 swings after landing a critical strike
+- **Impact:** Now charge-based (3 swings) instead of time-based duration; crit-dependent uptime
+
+#### Lightning Strike (Adjusted)
+- **Water Shield AP-to-Mana Ratio:** 20:1 → 18:1
+- **Impact:** Water Shield empowerment slightly more efficient (18 AP = 1 mana instead of 20)
+
+---
+
+### Elemental Specialization
+
+#### Eye of the Storm → Call of Earth (Reworked)
+- **New Name:** Call of Earth
+- **Effect:**
+  - Earth Shield gains +1/2 additional charges
+  - +35/70% spell pushback resistance
+- **Impact:** Earth Shield longevity, survivability for casters
+
+#### Elemental Fury (Buffed)
+- **Change:** Now also affects Frost spells
+- **Previous:** +50/100% crit damage for Fire/Nature spells and Fire totems
+- **New:** +50/100% crit damage for Fire/Frost/Nature spells and Fire totems
+- **Impact:** Frost crit damage now scales with talent
+
+#### Earthquake (Buffed)
+- **Base Damage:** Increased by 15%
+- **Cooldown:** 20 seconds → 18 seconds
+- **Impact:** Higher burst AoE damage, more frequent usage
+
+---
+
+### Tier Set Changes
+
+#### Restoration Tier 1 (3-piece Bonus)
+- **Clarification:** Totem radius increased by +10 yards (not set to 30 yards)
+- **Impact:** Documentation fix, actual effect unchanged
+
+#### Restoration Tier 1 (8-piece Bonus)
+- **Previous:** (Unknown/different effect)
+- **New:** 25% chance when casting Healing Wave or Lesser Healing Wave to grant target 250 damage absorb for 6 seconds
+- **Impact:** Adds damage mitigation to healing rotation
+
+---
+
 ## Stat Priority Impact Summary
 
 ### All Specializations
@@ -800,7 +883,7 @@ This document tracks all Shaman-specific changes from Turtle WoW that affect sta
    - Chain Heal: 71.42% → 61.42% (nerf in 1.18.0)
    - Elemental Mastery: +15% damage for 10 seconds
 2. **Critical Strike:**
-   - Elemental Fury: +50/100% crit damage (simplified in 1.18.0)
+   - Elemental Fury: +50/100% crit damage for Fire/Frost/Nature (expanded in 1.18.1)
    - Fire totems inherit shaman crit (1.18.0)
    - Elemental Focus: 60% mana reduction on next 2 spells
 3. **Hit Rating:**
@@ -818,10 +901,10 @@ This document tracks all Shaman-specific changes from Turtle WoW that affect sta
    - Lightning Strike: Shield empowerment scales with AP (4 AP = 1 dmg for Lightning Shield)
    - Totemic Slam: 10% AP damage (Tauren racial)
 2. **Attack Speed:**
-   - Flurry: 8/11/14/17/20% (buffed from 7/9/11/13/15%)
+   - Flurry: 8/11/14/17/20% for 3 swings after crit (reworked in 1.18.1)
    - Bloodlust: 20% self (buffed from 15%)
-   - Windfury Weapon: 20% proc chance, 0.5s cooldown
-   - Elemental Weapons (Windfury): +10/20/30% speed after miss
+   - Windfury Weapon: 25% proc chance, 0.5s cooldown (buffed in 1.18.1)
+   - Elemental Weapons (Windfury): +1% attack speed per extra attack, stacks 2/4/6 times (reworked in 1.18.1)
 3. **Weapon Damage:**
    - Lightning Strike: 60% Physical + 20% Nature weapon damage
    - Stormstrike: +25% Nature damage on next 2 sources
@@ -867,11 +950,11 @@ This document tracks all Shaman-specific changes from Turtle WoW that affect sta
 
 ## Critical Scaling Breakpoints
 
-### Enhancement Attack Power Scaling (December 2024)
+### Enhancement Attack Power Scaling (December 2024, updated 1.18.1)
 - **Flame Shock:** 8.5% initial + 6% DoT total = 14.5% AP per cast
 - **Earth/Frost Shock:** 10% AP per cast
 - **Lightning Strike:** 4 AP = 1 Lightning Shield damage
-- **Water Shield:** 20 AP = 1 mana per proc
+- **Water Shield:** 18 AP = 1 mana per proc (improved from 20 AP in 1.18.1)
 - **Earth Shield:** 15 AP = 1 healing per proc
 - **Impact:** Attack Power primary stat for Enhancement damage
 
@@ -888,7 +971,8 @@ This document tracks all Shaman-specific changes from Turtle WoW that affect sta
 - **December 2024 Rework:** 2 max stacks, +5% Nature damage per stack, +50% crit damage per stack, 15 second duration
   - Max: 10% Nature damage, 100% crit damage bonus at 2 stacks
 - **1.18.0:** Replaced with Elemental Fury (+5/10% Fire/Nature damage, +50/100% crit damage, no stacking)
-- **Impact:** Evolved from slow ramp-up (5 stacks) → fast ramp-up (2 stacks) → instant bonus (no stacking)
+- **1.18.1:** Elemental Fury expanded to include Frost spells (+50/100% crit damage for Fire/Frost/Nature)
+- **Impact:** Evolved from slow ramp-up (5 stacks) → fast ramp-up (2 stacks) → instant bonus (no stacking) → expanded school coverage
 
 ### Ancestral Knowledge Scaling (December 2024)
 - **Previous:** 2-10% base stats only
@@ -899,7 +983,9 @@ This document tracks all Shaman-specific changes from Turtle WoW that affect sta
 - **Vanilla:** 20% chance, 3s cooldown
 - **1.17.2 Launch:** 15% chance, 6s cooldown (heavy nerf)
 - **November 2024:** 20% chance, 0.5s cooldown (mostly reverted)
-- **Impact:** Near-vanilla proc rate with reduced cooldown
+- **1.18.1:** 25% chance, 0.5s cooldown (buffed)
+- **Note:** Stormstrike can no longer proc Windfury twice (1.18.1)
+- **Impact:** Higher proc rate than vanilla, significantly reduced cooldown
 
 ### Fire Totem Scaling (1.18.0)
 - **Change:** Inherit shaman spell crit and spell hit
@@ -915,7 +1001,7 @@ This document tracks all Shaman-specific changes from Turtle WoW that affect sta
    - Flame Shock (R5-6): 8.5% AP initial + 1.5% AP per tick (6% total)
    - Earth Shock (R7): 10% AP
    - Frost Shock (R4): 10% AP
-   - Lightning Strike: Shield empowerment (4 AP per Lightning Shield damage, 20 AP per Water Shield mana, 15 AP per Earth Shield healing)
+   - Lightning Strike: Shield empowerment (4 AP per Lightning Shield damage, 18 AP per Water Shield mana [improved in 1.18.1], 15 AP per Earth Shield healing)
    - Critical: Attack Power becomes primary damage stat
 
 2. **Ancestral Knowledge (December 2024):**
@@ -936,17 +1022,17 @@ This document tracks all Shaman-specific changes from Turtle WoW that affect sta
    - Inherit spell crit and hit
    - Impact: Crit and hit rating now scale totems
 
-6. **Elemental Fury (1.18.0):**
+6. **Elemental Fury (1.18.0, updated 1.18.1):**
    - +5/10% Fire/Nature damage
-   - +50/100% crit damage
+   - +50/100% crit damage for Fire/Frost/Nature (Frost added in 1.18.1)
    - Simplified from Electrify stacking system
 
 ### Medium Priority Changes
 
 1. **Windfury Weapon:**
-   - 20% proc chance, 0.5s cooldown (November 2024)
+   - 25% proc chance, 0.5s cooldown (buffed in 1.18.1)
    - Lightning Strike can proc (December 2024)
-   - Stormstrike can proc (November 2024)
+   - Stormstrike can proc but not twice (limited in 1.18.1)
    - Impact: Proc-based DPS significant
 
 2. **Elemental Devastation (Hit Rating):**
@@ -960,8 +1046,8 @@ This document tracks all Shaman-specific changes from Turtle WoW that affect sta
    - Impact: Major haste cooldown
 
 4. **Flurry:**
-   - 8/11/14/17/20% attack speed
-   - Impact: Attack speed talent
+   - 8/11/14/17/20% attack speed for next 3 swings after crit (reworked in 1.18.1)
+   - Impact: Proc-based attack speed, requires critical strikes
 
 5. **Rockbiter Weapon:**
    - 35% all threat (buffed from 30%)
@@ -989,5 +1075,6 @@ All information compiled from official Turtle WoW changelogs:
 - `turtle-wow-changelogs/1.17.2-2024.12.20-changes.html` (lines 243-271)
 - `turtle-wow-changelogs/1.17.2-2025.04.01-changes.html` (lines 255-274)
 - `turtle-wow-changelogs/1.18.0-shaman-changes.html` (complete file)
+- Patch 1.18.1 changelog (Shaman changes)
 
-**Last Updated:** Based on changelogs through Patch 1.18.0 (Scars of the Past) including August 2025 revision
+**Last Updated:** Based on changelogs through Patch 1.18.1

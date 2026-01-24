@@ -34,6 +34,23 @@
   - Improved Fire Totems (Aug 2025): +5/10 yards Searing Totem range
   - Ancestral Swiftness (Aug 2025): Damage spells 25% reduced effectiveness
 
+  Patch 1.18.1 Changes:
+  Enhancement:
+  - Windfury Weapon: Proc chance 20%→25% (+25% more procs = more AP value)
+  - Stormstrike: Can no longer proc Windfury twice (nerf)
+  - Elemental Weapons rework:
+    - Windfury: +1% attack speed per extra attack, stacks 2/4/6 times (HASTE synergy)
+    - Flametongue: +10/20/30% Fire damage for 5s on hit (temporary, requires melee)
+    - Rockbiter: Now absorb shield (20% physical dealt, 5/10/15% absorb, max 20% HP)
+  - Flurry: Now 3 swings after crit (charge-based, CRIT value for uptime)
+  - Lightning Strike: Water Shield AP-to-Mana 20:1→18:1 (ATTACKPOWER more efficient)
+  Elemental:
+  - Elemental Fury: Now also affects Frost spells (FROSTDMG valuable if specced)
+  - Earthquake: +15% damage, CD 20s→18s (AoE SP scaling improved)
+  - Call of Earth (new): Earth Shield +1/2 charges, +35/70% pushback resistance
+  General:
+  - Lightning Shield: Mana cost -25% (less MP5 needed for Shield uptime)
+
   References:
   - docs/turtle-wow-shaman-scaling-changes.md
   - docs/vanilla-baseline-weights.md
@@ -84,6 +101,9 @@ end
 -- Elemental Fury (1.18.0): +5/10% Fire/Nature damage, +50/100% crit damage
 -- Molten Blast (1.18.0): 57.14% SP, refreshes Flame Shock
 -- Earthquake (1.18.0): 60% SP, new AoE capstone
+-- 1.18.1: Elemental Fury now also affects Frost spells (FROSTDMG valuable)
+-- 1.18.1: Earthquake +15% damage, CD 20s→18s (improved AoE SP scaling)
+-- 1.18.1: Lightning Shield mana cost -25% (less MP5 pressure)
 -- ============================================================================
 
 -- Vanilla Baseline
@@ -136,13 +156,26 @@ turtleElemental.DMG = vanillaElemental.DMG * 1.15  -- 1.0 → 1.15
 --    Fire damage now significant in Elemental rotation
 turtleElemental.FIREDMG = 0.75 * DISPLAY_MULTIPLIER  -- New stat for 1.18.0 Fire scaling
 
--- 5. Crit HIGHLY valuable (Elemental Fury: +50/100% crit damage, Fire totems inherit crit)
+-- 5. FROSTDMG added (1.18.1: Elemental Fury now affects Frost spells)
+--    Frost damage valuable if specced into Elemental Fury
+turtleElemental.FROSTDMG = 0.6 * DISPLAY_MULTIPLIER  -- New stat for 1.18.1 Frost scaling
+
+-- 6. Crit HIGHLY valuable (Elemental Fury: +50/100% crit damage, Fire totems inherit crit)
 --    ×1.3 for Elemental Fury +50/100% crit damage + Fire Totem crit inheritance
 turtleElemental.SPELLCRIT = vanillaElemental.SPELLCRIT * 1.3  -- 8.4 → 10.92
 
--- 6. Add CASTINGREG support (Meditation items in 1.16.0, medium-high value for Elemental)
+-- 7. Spell Power more valuable (1.18.1: Earthquake +15% damage, CD reduction)
+--    Increase DMG multiplier from 1.15 to 1.2 for improved AoE scaling
+turtleElemental.DMG = vanillaElemental.DMG * 1.2  -- 1.0 → 1.2 (was 1.15)
+
+-- 8. Add CASTINGREG support (Meditation items in 1.16.0, medium-high value for Elemental)
 --    Elemental is mana-hungry spec
-turtleElemental.CASTINGREG = 7.0  -- Medium-high value for Elemental mana efficiency
+--    1.18.1: Lightning Shield -25% mana cost reduces MP5 pressure slightly
+turtleElemental.CASTINGREG = 6.5  -- Slightly reduced from 7.0 due to Lightning Shield cost reduction
+
+-- 9. MANAREG slightly less valuable (1.18.1: Lightning Shield -25% mana cost)
+--    Reduce MANAREG multiplier slightly
+turtleElemental.MANAREG = vanillaElemental.MANAREG * 0.95  -- 1.14 → 1.08
 
 -- Queue StatSet creation (delayed until OnEnable)
 table.insert(ItemsOfPower_PendingStatSets, function()
@@ -157,6 +190,12 @@ end)
 -- Lightning Strike (Dec 2024): Now procs Windfury, mana cost increased
 -- Shock AP Scaling: Flame 14.5%, Earth/Frost 10%
 -- Lightning Strike (April 2025): +5% spell power to Nature portion
+-- 1.18.1: Windfury Weapon 20%→25% proc (+25% more procs, AP value up)
+-- 1.18.1: Stormstrike can no longer proc Windfury twice (nerf)
+-- 1.18.1: Elemental Weapons rework (Windfury +attack speed stacking, HASTE synergy)
+-- 1.18.1: Flurry now 3 swings after crit (charge-based, CRIT for uptime)
+-- 1.18.1: Lightning Strike AP-to-Mana 20:1→18:1 (AP more mana efficient)
+-- 1.18.1: Rockbiter now absorb shield (tanking, AP becomes defensive)
 -- ============================================================================
 
 -- Vanilla Baseline
@@ -201,20 +240,21 @@ for k, v in pairs(vanillaEnhancement) do
   turtleEnhancement[k] = v
 end
 
--- 1. Hit Cap Adjustment (Physical): Windfury 20% proc means more hits = hit cap more important
---    ×1.15 for hit cap + Windfury synergy
-turtleEnhancement.TOHIT = vanillaEnhancement.TOHIT * 1.15  -- 6.28 → 7.22
+-- 1. Hit Cap Adjustment (Physical): Windfury 25% proc (1.18.1) means more hits = hit cap more important
+--    ×1.2 for hit cap + Windfury 25% proc synergy (increased from 1.15)
+turtleEnhancement.TOHIT = vanillaEnhancement.TOHIT * 1.2  -- 6.28 → 7.54
 
 -- 2. Spell Hit Cap Adjustment (Hybrid)
 turtleEnhancement.SPELLTOHIT = vanillaEnhancement.SPELLTOHIT * 1.125  -- 1.78 → 2.01
 
--- 3. Haste HIGHLY valuable (Flurry 8/11/14/17/20%, Windfury 20% proc + 0.5s ICD synergy)
---    ×1.25 for Flurry buff + Windfury synergy
-turtleEnhancement.HASTE = vanillaEnhancement.HASTE * 1.25  -- 5.14 → 6.42
+-- 3. Haste HIGHLY valuable (Flurry charge-based 1.18.1, Windfury +attack speed stacking)
+--    ×1.35 for Flurry charge system + Windfury Elemental Weapons attack speed stacking
+turtleEnhancement.HASTE = vanillaEnhancement.HASTE * 1.35  -- 5.14 → 6.94
 
 -- 4. Attack Power HIGHLY valuable (Flame Shock 14.5% AP, Earth/Frost Shock 10% AP, Lightning Strike)
---    ×1.5 for Shock AP scaling + Lightning Strike shield scaling
-turtleEnhancement.ATTACKPOWER = vanillaEnhancement.ATTACKPOWER * 1.5  -- 0.5 → 0.75
+--    1.18.1: Windfury 25% proc (+25%), Lightning Strike AP-to-Mana 20:1→18:1 (+11%)
+--    ×1.7 for Shock AP scaling + improved Windfury + better mana efficiency
+turtleEnhancement.ATTACKPOWER = vanillaEnhancement.ATTACKPOWER * 1.7  -- 0.5 → 0.85
 
 -- 5. ALL STATS more valuable (Ancestral Knowledge: 1-5% total stats - CRITICAL!)
 --    Conservative: +5% value (matches max rank)
@@ -225,13 +265,15 @@ turtleEnhancement.INT = vanillaEnhancement.INT * 1.0   -- 0.34 → 0.34 (Stormst
 turtleEnhancement.SPI = vanillaEnhancement.SPI * 1.05  -- 0.05 → 0.0525
 
 -- 6. Crit more valuable (Element's Grace: +2-10% instant spell crit for shocks)
---    Physical crit unchanged, Spell crit ×1.2 for Element's Grace
-turtleEnhancement.CRIT = vanillaEnhancement.CRIT * 1.1  -- 8.33 → 9.16
+--    1.18.1: Flurry now charge-based (3 swings after crit) - crit maintains uptime
+--    Physical crit ×1.2 for Flurry charge uptime, Spell crit ×1.2 for Element's Grace
+turtleEnhancement.CRIT = vanillaEnhancement.CRIT * 1.2  -- 8.33 → 10.0
 turtleEnhancement.SPELLCRIT = vanillaEnhancement.SPELLCRIT * 1.2  -- 2.61 → 3.13
 
 -- 7. WEAPONDPS HIGHLY valuable (Lightning Strike 60% Phys + 20% Nature weapon dmg, procs Windfury)
---    ×1.45 for Lightning Strike + Windfury proc synergy
-turtleEnhancement.WEAPONDPS = vanillaEnhancement.WEAPONDPS * 1.45  -- 2.308 → 3.35
+--    1.18.1: Windfury 25% proc rate, Stormstrike can't double-proc (mixed)
+--    ×1.5 for improved Windfury proc rate
+turtleEnhancement.WEAPONDPS = vanillaEnhancement.WEAPONDPS * 1.5  -- 2.308 → 3.46
 
 -- 8. ARMORPEN more valuable (Armor Cap Removal 1.18.0)
 --    Conservative: +30% value
@@ -240,6 +282,14 @@ turtleEnhancement.ARMORPEN = vanillaEnhancement.ARMORPEN * 1.3  -- 0.346 → 0.4
 -- 9. NATUREDMG more valuable (Lightning Strike: +5% spell power scaling April 2025)
 --    Conservative: +15% value
 turtleEnhancement.NATUREDMG = vanillaEnhancement.NATUREDMG * 1.15  -- 0.3 → 0.345
+
+-- 10. FIREDMG added (1.18.1: Flametongue Elemental Weapons +10/20/30% Fire for 5s)
+--     Temporary buff requires melee engagement, moderate value
+turtleEnhancement.FIREDMG = 0.25 * DISPLAY_MULTIPLIER  -- New for 1.18.1 Flametongue rework
+
+-- NOTE: Rockbiter rework (1.18.1) creates absorb shield from AP damage dealt.
+-- This makes ATTACKPOWER partially defensive for Rockbiter users (tanking/offtank).
+-- Consider a separate "Enhancement Tank" set for Rockbiter-focused builds.
 
 
 -- Queue StatSet creation (delayed until OnEnable)
@@ -251,6 +301,8 @@ end)
 -- RESTORATION
 -- Chain Heal (1.18.0): SP coefficient 71.42%→61.42% = 0.86× (NERF)
 -- Improved Water Shield (Dec 2024): Changed to 3/6/9 mp5 + % per charge
+-- 1.18.1: Lightning Shield -25% mana cost (less MP5 needed for Shield uptime)
+-- 1.18.1: Call of Earth (new) - Earth Shield +1/2 charges, +35/70% pushback resist
 -- ============================================================================
 
 -- Vanilla Baseline
@@ -298,12 +350,14 @@ turtleRestoration.HEAL = vanillaRestoration.HEAL * 0.86  -- 0.9 → 0.774
 turtleRestoration.SPI = vanillaRestoration.SPI * 1.2  -- 0.61 → 0.732
 
 -- 4. MANAREG more valuable (Water Shield mp5 system more valuable)
---    ×1.15 for direct mp5 scaling with Improved Water Shield
-turtleRestoration.MANAREG = vanillaRestoration.MANAREG * 1.15  -- 1.33 → 1.53
+--    1.18.1: Lightning Shield -25% mana cost reduces overall MP5 pressure slightly
+--    ×1.1 for direct mp5 scaling with Improved Water Shield (reduced from 1.15)
+turtleRestoration.MANAREG = vanillaRestoration.MANAREG * 1.1  -- 1.33 → 1.46
 
 -- 5. Add CASTINGREG support (Meditation items in 1.16.0, HIGH value for Restoration)
 --    Resto healers benefit greatly from combat mana regen
-turtleRestoration.CASTINGREG = 14.0  -- High value for Restoration mana sustain
+--    1.18.1: Lightning Shield -25% mana cost slightly reduces CASTINGREG value
+turtleRestoration.CASTINGREG = 13.0  -- Slightly reduced from 14.0 due to Lightning Shield cost reduction
 
 -- Queue StatSet creation (delayed until OnEnable)
 table.insert(ItemsOfPower_PendingStatSets, function()

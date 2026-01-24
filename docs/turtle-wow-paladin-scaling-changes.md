@@ -382,31 +382,109 @@ This document tracks all Paladin-specific changes from Turtle WoW that affect st
 
 ---
 
+## Version 1.18.1
+
+### Baseline Changes
+
+#### Consecration
+- **Base Damage:** Increased by 8%
+- **Tick Distribution:** Now front-loaded (156%→140%→124%→108%→92%→76%→60%→44% per tick instead of even distribution)
+- **Impact:** Front-loaded damage improves burst threat generation and trash pack efficiency; spell power value remains unchanged but upfront damage is significantly higher
+
+---
+
+### Holy Specialization
+
+#### Daybreak
+- **Base Healing:** Reduced from 289 to 248 (~14% nerf)
+- **Healing Power Scaling:** Reduced from 43% to 32% (~26% nerf)
+- **Impact:** MAJOR - Significant reduction to Daybreak's contribution; healing power scaling for this ability reduced substantially
+
+---
+
+### Protection Specialization
+
+#### Holy Shield
+- **Threat Modifier:** Increased from 30% to 50%
+- **Impact:** Substantial threat boost for Protection Paladins using Holy Shield on cooldown; block value scaling for threat improved
+
+#### Righteous Strikes
+- **New Effect:** Now also grants Zealous Defence from Crusader Strike
+- **Zealous Defence:** 6/12/18/24/30% blocked damage reduction per talent point
+- **Impact:** MAJOR - Crusader Strike now provides significant damage reduction through blocked attacks; further increases block value importance for Protection
+
+#### Holy Strike
+- **Mechanic Change:** Now deals weapon damage (25-40% by rank) plus Holy damage instead of flat Holy damage
+- **Spell Power Scaling:** Increased from 43% to 71%
+- **Impact:** CRITICAL - Holy Strike now scales with both weapon damage AND spell power; attack power becomes relevant for Protection threat through Holy Strike, while spell power scaling receives a 65% buff
+
+---
+
+### Retribution Specialization
+
+#### Repentance
+- **Repent Effect:** Damage on immune creatures now scales with 8% AP per tick
+- **Impact:** Attack power now scales Repentance damage on immune targets
+
+#### Seal of Command
+- **Proc Rate:** PPM increased from 7 to 9 (~29% increase)
+- **Impact:** MAJOR - Seal of Command procs significantly more often, increasing its value relative to Seal of Righteousness for 2H Retribution builds
+
+#### Crusader Strike Rank 5
+- **Weapon Damage:** Increased from 90% to 100%
+- **Impact:** Endgame Crusader Strike damage restored to full weapon damage; buffs attack power scaling for max-level Retribution
+
+---
+
+### Tier Set Changes
+
+#### Retribution T3.5 (5-piece)
+- **Crusade Attack Speed:** 2% → 4%
+- **Crusade Duration:** 15 seconds → 20 seconds
+- **Stacking:** No longer stacks
+- **Impact:** Individual Crusade proc stronger but cannot stack; overall similar value but more consistent
+
+#### Holy T3.5 (5-piece)
+- **Change:** No longer adds targets to Holy Strike
+- **Impact:** Reduces Holy T3.5 value for group healing scenarios
+
+#### Protection T3.5
+- **3-piece Bonus:** Now receives the old 5-piece effect
+- **5-piece Bonus:** New effect - Holy Shield reduces damage taken by 4%
+- **Impact:** Earlier access to previous 5-piece bonus; new 5-piece provides flat damage reduction during Holy Shield uptime
+
+#### Retribution/Protection T2.5 (3-piece)
+- **Effect:** Now +15% Judgement of Righteousness/Command damage
+- **Impact:** Meaningful damage increase for Judgement-focused rotations; benefits both specs using these Seals
+
+---
+
 ## Stat Priority Impact Summary
 
 ### All Specializations
-1. **Spell Power:** Consecration (0.119 coefficient), Crusader Strike (33% → 20% after 1.18.0), and Holy Strike (43% damage + healing scaling) keep spell power relevant for every spec.
+1. **Spell Power:** Consecration (0.119 coefficient), Crusader Strike (20%), and Holy Strike (71% after 1.18.1, up from 43%) keep spell power relevant for every spec.
 2. **Hit & Weapon Skill:** The 8% hit cap (see general changes) plus the new two-hand weapon skill talent lower glancing penalties and should be reflected in melee weights.
 3. **Haste:** Zeal supplies 9% attack/cast speed at three stacks and jumps to 15% with Vengeful Strikes, making item haste multiplicative rather than optional.
 4. **Mana Sustain:** Doubled Seal of Wisdom returns and Blessed Strikes’ Holy Shock resets give Spirit/mp5 renewed importance for long fights.
 
 ### Holy Priority Changes
-1. **Spell Power:** Holy Strike + Blessed Strikes, Holy Shock buffs, and Daybreak’s delayed heal all scale directly with spell power.
-2. **Critical Strike:** Required to proc Daybreak and fuel repeated Holy Shock resets; crit remains the driver of burst throughput.
+1. **Spell Power:** Holy Strike + Blessed Strikes, Holy Shock buffs, and Daybreak's delayed heal all scale with spell power. Note: Daybreak's healing power scaling reduced from 43% to 32% in 1.18.1.
+2. **Critical Strike:** Required to proc Daybreak and fuel repeated Holy Shock resets; crit remains the driver of burst throughput despite Daybreak's base healing nerf.
 3. **Haste & Melee Hit:** Holy Judgement rewards frequent Judgements, while Crusader/Holy Strike uptime is mandatory for Blessed Strikes procs.
-4. **Intellect/Spirit:** Illumination’s nerf and the stronger Seal of Wisdom loop shift mana longevity toward Spirit, mp5, and on-hit returns.
+4. **Intellect/Spirit:** Illumination's nerf and the stronger Seal of Wisdom loop shift mana longevity toward Spirit, mp5, and on-hit returns.
 
 ### Protection Priority Changes
-1. **Block Value & Armor:** Post-hotfix Righteous Strikes boosts block damage, and Bulwark plus Holy Shield keep block value and armor at the top of the list.
-2. **Spell Power:** Consecration, Holy Strike, and even the nerfed Holy Shield still translate spell power into threat; do not zero it out.
-3. **Hit & Weapon Skill:** Higher taunt reliability (Improved Hand of Reckoning) and the need to land Crusader/Holy Strike keep weapon skill and hit meaningful.
-4. **Stamina/EH:** Righteous Defense and Bulwark reward effective health stacking even after Sacred Duty’s removal.
+1. **Block Value & Armor:** Post-hotfix Righteous Strikes boosts block damage, and 1.18.1's Zealous Defence adds up to 30% blocked damage reduction. Bulwark plus Holy Shield (now with 50% threat modifier) keep block value and armor at the top of the list.
+2. **Spell Power:** Consecration, Holy Strike (71% coefficient after 1.18.1), and Holy Shield translate spell power into threat; spell power value increased for Protection.
+3. **Attack Power:** Holy Strike now deals weapon damage (25-40%), making attack power relevant for Protection threat.
+4. **Hit & Weapon Skill:** Higher taunt reliability (Improved Hand of Reckoning) and the need to land Crusader/Holy Strike keep weapon skill and hit meaningful.
+5. **Stamina/EH:** Righteous Defense, Bulwark, and Prot T3.5 5pc (4% DR during Holy Shield) reward effective health stacking.
 
 ### Retribution Priority Changes
-1. **Strength & Attack Power:** Holy Strike’s Strength buff and Vengeful Strikes’ damage bonus make raw Strength the best-in-slot offensive stat.
-2. **Spell Power:** Seal of Righteousness/Command coefficients, Holy Strike’s healing/mana return, and Vengeance’s all-damage modifier still give spell power a strong secondary role despite the 1.18.0 Crusader Strike nerf.
-3. **Haste:** Zeal’s baseline 9% (15% with Vengeful Strikes) makes haste one of the highest marginal gains.
-4. **Critical Strike:** Necessary to layer Vengeance stacks, trigger Daybreak support healing, and maintain hybrid spell procs while the new threat reduction keeps crit safer to stack.
+1. **Strength & Attack Power:** Holy Strike's Strength buff, Vengeful Strikes' damage bonus, and Crusader Strike Rank 5 at 100% weapon damage make raw Strength the best-in-slot offensive stat.
+2. **Spell Power:** Seal of Righteousness/Command coefficients, Holy Strike (71% scaling), and Vengeance's all-damage modifier give spell power a strong secondary role.
+3. **Haste:** Zeal's baseline 9% (15% with Vengeful Strikes) makes haste one of the highest marginal gains. Seal of Command's increased PPM (7→9) further rewards faster attack speeds.
+4. **Critical Strike:** Necessary to layer Vengeance stacks, trigger Daybreak support healing (though Daybreak healing nerfed in 1.18.1), and maintain hybrid spell procs.
 
 ---
 
@@ -434,11 +512,12 @@ This document tracks all Paladin-specific changes from Turtle WoW that affect st
 ### High Priority Changes
 
 1. **Spell & Ability Coefficients:**
-   - Consecration coefficient set to 0.119 in 1.16.1.
-   - Crusader Strike uses a 33% spell power coefficient post-1.17.2, reduced to 20% in 1.18.0.
-   - Holy Strike deals 43% spell power damage and its healing scales with 5% healing power while returning flat health/mana.
-   - Daybreak’s 1.18.0 rework heals for 348–389 + 43% spell power when triggered.
+   - Consecration coefficient set to 0.119 in 1.16.1; base damage +8% in 1.18.1 with front-loaded tick distribution.
+   - Crusader Strike uses a 20% spell power coefficient (1.18.0); Rank 5 weapon damage restored to 100% in 1.18.1.
+   - Holy Strike deals weapon damage (25-40% by rank) plus 71% spell power damage (up from 43% in 1.18.1); healing scales with 5% healing power.
+   - Daybreak heals for 248 base (down from 289) + 32% spell power (down from 43%) after 1.18.1.
    - Holy Shock damage ranks restored with a 43% spell power coefficient.
+   - Seal of Command PPM increased from 7 to 9 in 1.18.1.
 
 2. **Zeal / Haste Engine:**
    - Zeal supplies 3% attack/casting speed per stack (9% total); Vengeful Strikes adds +2% per stack (15% total).
@@ -448,11 +527,13 @@ This document tracks all Paladin-specific changes from Turtle WoW that affect st
    - Blessed Strikes grants Crusader Strike a 20–100% chance to reset Holy Shock (–1s GCD) and multiplies Holy Strike healing by 30–150%, plus Dec 2024 healing-power scaling.
    - Vengeance stacks 1–5% all damage (3 stacks, 30s) with built-in threat reduction; ensure it applies to both spell and physical damage.
    - Vengeful Strikes adds 2/4/6/8/10% Crusader Strike damage and 4–20% Strength from Holy Strike; maintain the Zeal haste bonus.
+   - Righteous Strikes now also grants Zealous Defence (6/12/18/24/30% blocked damage reduction) from Crusader Strike in 1.18.1.
 
 4. **Threat & Mitigation Adjustments:**
-   - Holy Shield’s November nerf reduces block chance to 45%, spell power scaling to 15%, and threat to 30%.
-   - Righteous Strikes now boosts block damage per Zeal stack and lowers Holy Strike threat to 6/12/18/24/30%.
+   - Holy Shield block chance at 45%, spell power scaling at 15%; threat modifier increased from 30% to 50% in 1.18.1.
+   - Righteous Strikes boosts block damage per Zeal stack, lowers Holy Strike threat to 6/12/18/24/30%, and adds Zealous Defence (1.18.1).
    - Bulwark of the Righteous delivers 12 seconds of 30% DR and scales with 43% spell power.
+   - Prot T3.5 5pc now grants 4% damage reduction during Holy Shield (1.18.1).
 
 ### Medium Priority Changes
 
@@ -492,5 +573,6 @@ All information compiled from official Turtle WoW changelogs:
 - `turtle-wow-changelogs/1.17.2-2024.12.20-changes.html` (lines 117-197)
 - `turtle-wow-changelogs/1.17.2-2025.04.01-changes.html` (lines 166-222)
 - `turtle-wow-changelogs/1.18.0-paladin-changes.html` (complete file)
+- Patch 1.18.1 notes (Paladin sections)
 
-**Last Updated:** Based on changelogs through Patch 1.18.0 (Scars of the Past) and all hotfixes through April 2025
+**Last Updated:** Based on changelogs through Patch 1.18.1 and all hotfixes through January 2026

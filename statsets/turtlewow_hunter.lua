@@ -14,23 +14,37 @@
   Beast Mastery Turtle WoW Changes:
   - Spirit Bond (2pt): 25% RAP → pet Melee AP, 15% RAP → pet Spell Power
   - Bestial Precision (2pt): +4/8% phys hit, +9/18% spell hit, +5/10 weapon skill → pet
-  - Endurance Training: +30% STA → pet
+  - Endurance Training: +30% STA → pet (1.18.1: 2-10%, up from 1-5%)
+  - Thick Hide: Pet armor +7/14/20% (1.18.1, up from 4/7/10%)
   - Kill Command + Baited Shot (1.18.0): Pet crit-focused rotation
-  - Bestial Wrath: REMOVED in 1.18.0
+  - Kill Command (1.18.1): Pet attacks for 50% hunter AP on hunter crit
+  - Bestial Wrath: RETURNED in 1.18.1 (pet burst damage cooldown)
   - Bestial Swiftness: REMOVED in 1.18.0
 
   Marksmanship Turtle WoW Changes:
   - Piercing Shots: Crit applies bleed for 15/30% damage (1.17.2)
-  - Trueshot Aura: Now 55 + 5% of recipient's AP (1.17.2)
+  - Trueshot Aura: Now baseline +3% AP + 30 flat (1.18.1)
+  - Ranged Weapon Specialization: 2-10% damage (1.18.1, up from 1-5%)
+  - Lock and Load (1.18.1): New capstone - crit resets Aimed Shot CD
+  - Improved Marksmanship (1.18.1): +5/10% Steady/Aimed damage
 
   Survival Turtle WoW Changes (MAJOR REWORK - Melee Spec):
   - Mongoose Bite Dual Wield (1.18.0): Strikes with BOTH weapons
   - Savage Strikes: +13/25% offhand weapon damage (April 2025)
   - Vicious Strikes: +5/10% weapon damage (Aug 2025, nerfed from +10/20%)
   - Lightning Reflexes: 100% Agi → Melee AP at rank 5
-  - Lacerate: 35% AP + bleed for 20% damage (1.18.0)
+  - Lacerate: 40% AP + bleed (1.18.1, up from 35%)
   - Untamed Trapper: Fire traps scale with melee AP (1.17.2)
   - Rapid Strikes: REMOVED in 1.18.0 (effect moved to baseline Rapid Fire)
+  - Alone Against the World (1.18.1): +3/6% damage without pet
+  - Surefooted (1.18.1): +1/2/3% hit while dual wielding
+
+  General/All Specs (1.18.1):
+  - Aspect of the Viper: 5% max mana every 5s (reduces MP5 need)
+  - Steady Shot: Now baseline
+  - Volley: 3s cast with 4/5/6% AP scaling (ATTACKPOWER affects AoE)
+  - Arcane Shot: Scales with 10-45% ranged weapon damage
+  - Rapid Fire: Also -40% cast time on Aimed/Steady Shot
 
   References:
   - docs/turtle-wow-hunter-scaling-changes.md
@@ -119,20 +133,34 @@ end
 -- 1. Hit Cap Adjustment: 9% → 8% (+12.5%)
 turtleMM.TOHIT = vanillaMM.TOHIT * 1.125  -- 9.38 → 10.55
 
--- 2. Haste Baseline Check (ensure minimum 65% of Crit for ranged DPS)
--- Haste baseline check removed (vanilla values are correct)
+-- 2. Haste more valuable (Rapid Fire -40% cast time on Aimed/Steady Shot)
+--    Conservative: +15% value during cooldown windows
+turtleMM.HASTE = vanillaMM.HASTE * 1.15  -- 3.212 → 3.69
 
--- 3. RANGEDWEAPONDPS more valuable (Steady Shot 100% weapon dmg main rotation)
---    Conservative: +20% value
-turtleMM.RANGEDWEAPONDPS = vanillaMM.RANGEDWEAPONDPS * 1.2  -- 2.167 → 2.6
+-- 3. RANGEDWEAPONDPS more valuable (Steady Shot baseline, Arcane Shot 10-45% scaling)
+--    Ranged Weapon Specialization: 2-10% damage (up from 1-5%)
+--    Improved Marksmanship: +5/10% Steady/Aimed damage
+--    Increased from ×1.2 to ×1.4
+turtleMM.RANGEDWEAPONDPS = vanillaMM.RANGEDWEAPONDPS * 1.4  -- 2.167 → 3.03
 
--- 4. ARMORPEN more valuable (Armor Cap Removal 1.18.0)
+-- 4. RANGEDATTACKPOWER more valuable (Volley 4/5/6% AP scaling affects AoE)
+--    Conservative: +10% value
+turtleMM.RANGEDATTACKPOWER = vanillaMM.RANGEDATTACKPOWER * 1.1  -- 0.55 → 0.605
+
+-- 5. ARMORPEN more valuable (Armor Cap Removal 1.18.0)
 --    Conservative: +30% value
 turtleMM.ARMORPEN = vanillaMM.ARMORPEN * 1.3  -- 1.067 → 1.3875
 
--- 5. RANGEDCRIT more valuable (Piercing Shots: crit applies bleed for 15/30% damage)
---    Increased from ×1.15 to ×1.25
-turtleMM.RANGEDCRIT = vanillaMM.CRIT * 1.25  -- Use CRIT as base, apply ×1.25
+-- 6. RANGEDCRIT HIGHLY valuable (Piercing Shots bleed, Lock and Load resets Aimed Shot CD)
+--    Lock and Load capstone makes crit even more valuable
+--    Increased from ×1.25 to ×1.4
+turtleMM.RANGEDCRIT = vanillaMM.CRIT * 1.4  -- Use CRIT as base, apply ×1.4
+turtleMM.CRIT = vanillaMM.CRIT * 1.4  -- Also increase general CRIT for consistency
+
+-- 7. MANAREG reduced (Aspect of the Viper: 5% max mana every 5s)
+--    MP5 less critical with baseline mana sustain
+--    Conservative: -15% value
+turtleMM.MANAREG = vanillaMM.MANAREG * 0.85  -- 2.4 → 2.04
 
 -- Queue StatSet creation (delayed until OnEnable)
 table.insert(ItemsOfPower_PendingStatSets, function()
@@ -191,30 +219,40 @@ turtleBM.TOHIT = vanillaBM.TOHIT * 1.2
 --    Value 2.0 = ~18% of TOHIT value, reflecting pet-only benefit (not hunter attacks)
 turtleBM.SPELLTOHIT = 2.0 * DISPLAY_MULTIPLIER
 
--- 3. Stamina HIGHLY valuable (Endurance Training: +30% STA → pet)
---    Pet survival = raid DPS. Increased from ×1.1 to ×1.35
-turtleBM.STA = vanillaBM.STA * 1.35
+-- 3. Stamina HIGHLY valuable (Endurance Training: 2-10% pet health, up from 1-5%)
+--    Pet survival = raid DPS. Increased from ×1.35 to ×1.5
+turtleBM.STA = vanillaBM.STA * 1.5
 
--- 4. Armor more valuable (pet gets 36% via Thick Hide)
---    Conservative: +20% value
-turtleBM.ARMOR = vanillaBM.ARMOR * 1.2  -- 0.005 → 0.006
+-- 4. Armor more valuable (Thick Hide: +7/14/20% pet armor, up from 4/7/10%)
+--    Increased from ×1.2 to ×1.35
+turtleBM.ARMOR = vanillaBM.ARMOR * 1.35  -- 0.005 → 0.00675
 
--- 5. Crit more valuable (Kill Command, Baited Shot triggers)
---    Pet crit-focused rotation (1.18.0). Conservative: +15% value
-turtleBM.CRIT = vanillaBM.CRIT * 1.15  -- 6.8 → 7.82
+-- 5. Crit HIGHLY valuable (Kill Command: pet attacks for 50% hunter AP on hunter crit)
+--    Bestial Wrath returned: pet burst damage cooldown synergizes with crit
+--    Increased from ×1.15 to ×1.35
+turtleBM.CRIT = vanillaBM.CRIT * 1.35  -- 6.8 → 9.18
 
--- 6. Ranged AP HIGHLY valuable (Spirit Bond: 25% RAP → pet Melee AP, 15% RAP → pet Spell Power)
---    Effective: 1 RAP = 1.4 pet AP value. Increased from ×1.2 to ×1.5
-turtleBM.RANGEDATTACKPOWER = vanillaBM.RANGEDATTACKPOWER * 1.5
-turtleBM.ATTACKPOWER = vanillaBM.ATTACKPOWER * 1.5
+-- 6. Ranged AP EXTREMELY valuable (Spirit Bond + Kill Command 50% AP to pet on crit)
+--    Effective: 1 RAP = 1.65 pet AP value. Increased from ×1.5 to ×1.65
+turtleBM.RANGEDATTACKPOWER = vanillaBM.RANGEDATTACKPOWER * 1.65
+turtleBM.ATTACKPOWER = vanillaBM.ATTACKPOWER * 1.65
 
--- 7. RANGEDWEAPONDPS more valuable (Baited Shot 125% weapon damage after pet crit)
---    Conservative: +15% value
-turtleBM.RANGEDWEAPONDPS = vanillaBM.RANGEDWEAPONDPS * 1.15  -- 2.087 → 2.4
+-- 7. RANGEDWEAPONDPS more valuable (Baited Shot 125% weapon damage, Arcane Shot 10-45% scaling)
+--    Increased from ×1.15 to ×1.25
+turtleBM.RANGEDWEAPONDPS = vanillaBM.RANGEDWEAPONDPS * 1.25  -- 2.087 → 2.61
 
 -- 8. ARMORPEN more valuable (Armor Cap Removal 1.18.0)
 --    Conservative: +30% value
 turtleBM.ARMORPEN = vanillaBM.ARMORPEN * 1.3  -- 0.490 → 0.6375
+
+-- 9. Haste more valuable (Rapid Fire -40% cast time on Aimed/Steady Shot)
+--    Conservative: +10% value
+turtleBM.HASTE = vanillaBM.HASTE * 1.1  -- 4.015 → 4.42
+
+-- 10. MANAREG reduced (Aspect of the Viper: 5% max mana every 5s)
+--     MP5 less critical with baseline mana sustain
+--     Conservative: -15% value
+turtleBM.MANAREG = vanillaBM.MANAREG * 0.85  -- 2.4 → 2.04
 
 -- Queue StatSet creation (delayed until OnEnable)
 table.insert(ItemsOfPower_PendingStatSets, function()
@@ -263,12 +301,14 @@ for k, v in pairs(vanillaSV) do
   turtleSV[k] = v
 end
 
--- 1. Hit Cap Adjustment: Dual Wield requires more hit (9% cap remains but more attacks)
---    Increased from ×1.125 to ×1.25
-turtleSV.TOHIT = vanillaSV.TOHIT * 1.25
+-- 1. Hit Cap Adjustment: Surefooted +1/2/3% hit while dual wielding
+--    Dual wield hit cap easier to reach, but still valuable
+--    Reduced from ×1.25 to ×1.15
+turtleSV.TOHIT = vanillaSV.TOHIT * 1.15
 
--- 2. Haste Baseline Check
--- Haste baseline check removed (vanilla values are correct)
+-- 2. Haste more valuable (Rapid Fire -40% cast time on Aimed/Steady Shot)
+--    Conservative: +10% value
+turtleSV.HASTE = vanillaSV.HASTE * 1.1  -- 3.212 → 3.53
 
 -- 3. Crit more valuable (Lacerate procs after crit)
 --    Conservative: +10% value
@@ -285,18 +325,25 @@ turtleSV.WEAPONDPS = vanillaSV.WEAPONDPS * 2.0  -- 0.714 → 1.43
 turtleSV.RANGEDWEAPONDPS = vanillaSV.RANGEDWEAPONDPS * 1.15  -- 2.4 → 2.76
 
 -- 6. Agility EXTREMELY valuable (Lightning Reflexes: 100% Agi → Melee AP at rank 5)
+--    Alone Against the World: +3/6% damage without pet synergizes
 --    Example: 300 Agi = 330 Agi + 330 Melee AP with full talent
---    MAJOR: +45% value (increased from ×1.25 to ×1.45)
-turtleSV.AGI = vanillaSV.AGI * 1.45  -- 1.0 → 1.45
+--    MAJOR: +50% value (increased from ×1.45 to ×1.5)
+turtleSV.AGI = vanillaSV.AGI * 1.5  -- 1.0 → 1.5
 
 -- 7. ARMORPEN more valuable (Armor Cap Removal 1.18.0)
 --    Conservative: +30% value
 turtleSV.ARMORPEN = vanillaSV.ARMORPEN * 1.3  -- 0.808 → 1.05
 
--- 8. ATTACKPOWER HIGHLY valuable (Lacerate 35% AP + bleed, Untamed Trapper, Vicious Strikes)
---    New multiplier: ×1.45
-turtleSV.ATTACKPOWER = vanillaSV.ATTACKPOWER * 1.45
-turtleSV.RANGEDATTACKPOWER = vanillaSV.RANGEDATTACKPOWER * 1.45
+-- 8. ATTACKPOWER HIGHLY valuable (Lacerate 40% AP + bleed, up from 35%)
+--    Untamed Trapper, Vicious Strikes, Alone Against the World +6% damage
+--    Increased from ×1.45 to ×1.55
+turtleSV.ATTACKPOWER = vanillaSV.ATTACKPOWER * 1.55
+turtleSV.RANGEDATTACKPOWER = vanillaSV.RANGEDATTACKPOWER * 1.55
+
+-- 9. MANAREG reduced (Aspect of the Viper: 5% max mana every 5s)
+--     Melee spec has lower mana needs anyway
+--     Conservative: -20% value
+turtleSV.MANAREG = vanillaSV.MANAREG * 0.8  -- 2.4 → 1.92
 
 -- Queue StatSet creation (delayed until OnEnable)
 table.insert(ItemsOfPower_PendingStatSets, function()

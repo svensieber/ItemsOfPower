@@ -655,12 +655,118 @@ This document tracks all Priest-specific changes from Turtle WoW that affect sta
 
 ---
 
+## Version 1.18.1
+
+### Baseline Changes
+
+#### Heal Rank 4
+- **Healing:** 605-684 → 702-793 (~15% buff)
+- **Impact:** Mid-level healing significantly stronger
+
+#### Greater Heal (All Ranks)
+- **Change:** ~10% healing increase across all ranks (Rank 1-5)
+- **Impact:** Primary single-target healing significantly buffed
+
+#### Flash Heal (Ranks 3-7)
+- **Change:** ~7% healing increase for ranks 3-7
+- **Impact:** Emergency healing throughput improved
+
+#### Pain Spike
+- **Cooldown:** 40 seconds → 30 seconds
+- **Impact:** Higher uptime on burst damage, DPS increase for Shadow
+
+#### Fade
+- **New Effect:** Now also reduces total threat by 15% (in addition to existing flat threat reduction)
+- **Impact:** Better threat management, especially for high-threat healing situations
+
+#### Prayer of Healing
+- **New Effect:** Can now target other parties (not just your own)
+- **Impact:** Massive raid healing flexibility, no longer limited to own party
+
+#### Lightwell (COMPLETE REWORK)
+- **Previous:** Placed healing well that could be clicked for HoT
+- **New Effect:** Amplifies healing spells by 20% on nearby injured targets
+- **Charges:** 10
+- **Cooldown:** 5 minutes
+- **Impact:** CRITICAL - No longer a clickable well, now a passive healing amplifier affecting all healing spells
+
+---
+
+### Discipline Specialization
+
+#### Searing Light
+- **Mana Cost Reduction:** 50% → 60%
+- **Impact:** Better mana efficiency on instant Smite procs
+
+---
+
+### Holy Specialization
+
+#### Reservoir of Light (REWORKED)
+- **Previous:** Increases Lightwell charges by 1/3/5
+- **New Effect:** Increases Lightwell's Splendor of Light (healing amplification) by 33/66/100%
+- **Impact:** With 3 points, Lightwell amplifies healing by 40% instead of 20%
+
+#### Spirit of Redemption
+- **Spirit Bonus:** 5% → 10%
+- **Impact:** Spirit stat significantly more valuable for Holy Priests
+
+#### Book of Prayer (NEW Talent)
+- **Location:** Tier 5, 2 points
+- **Effect:** Regain 15/30% of mana cost if not repeating the previous healing spell
+- **Impact:** Rewards varied healing spell usage, significant mana efficiency for skilled play
+
+#### Swift Recovery → Empowered Recovery (REWORKED)
+- **Previous:** Healing spells heal for 3/6% more if target has Renew active
+- **New Effect:** Healing spells heal for 3/6% more if target has Renew active, AND increases Renew duration by 3/6 seconds
+- **Impact:** Renew duration extended to 18/21 seconds (from 15), better HoT uptime and synergy
+
+#### Holy Champion System (REMOVED)
+- **Removed Abilities:**
+  - Proclaim Champion
+  - Empower Champion
+  - Champion's Grace
+  - Champion's Bond
+  - Revive Champion
+- **Impact:** CRITICAL - Entire Holy Champion support playstyle removed from the game
+
+#### Ascendance (NEW Capstone Talent)
+- **Location:** Tier 7 (replaces Holy Champion)
+- **Effect:** 30 second duration:
+  - -33% mana cost on all spells
+  - +20% casting speed
+  - +15% healing taken by targets you heal
+- **Cooldown:** 5 minutes
+- **Impact:** CRITICAL - Powerful healing cooldown, benefits from Haste stat, major throughput and efficiency window
+
+---
+
+### Shadow Specialization
+
+#### Improved Fade (REWORKED)
+- **Previous Effect:** Reduces Fade cooldown
+- **New Effect:** Reduces threat returned when Fade ends by 25/50%
+- **Impact:** Synergizes with new Fade threat reduction, permanent threat reduction instead of temporary
+
+#### Shadow Reach
+- **Points Required:** 3 → 2
+- **Effect:** 10/20% increased range (was 6/10/15%)
+- **Impact:** Same max range bonus with fewer talent points, more flexible talent builds
+
+#### Shadow Weaving (REWORKED)
+- **Previous:** Stacks accumulate on target
+- **New Effect:** Stacks accumulate on the Priest, then apply to all targets hit
+- **Impact:** Much easier multi-target application, better for cleave/AoE situations
+
+---
+
 ## Stat Priority Impact Summary
 
 ### All Specializations
 1. **Spell Power:** Inner Fire grants spell damage (13-74 based on rank), major value increase for all specs
 2. **Inner Fire Scaling:** Improved Inner Fire talent affects spell damage component
-3. **Spirit:** Divine Spirit baseline, Spirit of Redemption +5% Spirit for Holy
+3. **Spirit:** Divine Spirit baseline, Spirit of Redemption +10% Spirit for Holy (buffed in 1.18.1)
+4. **Threat Management:** Fade now reduces total threat by 15%, Improved Fade reduces returned threat by 25/50%
 
 ### Discipline Priority Changes
 1. **Spell Power:**
@@ -672,35 +778,39 @@ This document tracks all Priest-specific changes from Turtle WoW that affect sta
    - Purifying Flames: +12% Holy damage for 8-10 seconds
    - Resurgent Shield: +6% of shield absorption as Holy spell damage
 2. **Critical Strike:**
-   - Searing Light: Crits proc instant Smite with 50% mana reduction
+   - Searing Light: Crits proc instant Smite with 60% mana reduction (buffed in 1.18.1)
    - Divinity: Affects Holy and Discipline spells
 3. **Intellect:** Mental Strength increases total Intellect + 1-3% casting speed
 4. **Haste:** Mental Strength adds 1-3% casting speed, Chastise grants 10-15% haste to allies
 
 ### Holy Priority Changes
 1. **Healing Power:**
-   - Base healing: -15% on all spells above level 30
+   - Base healing: -15% on all spells above level 30 (partially offset by 1.18.1 buffs to Heal/Greater Heal/Flash Heal)
    - Spiritual Healing: +6/12/18/24/30% (compensates nerf when deep spec)
-   - Swift Recovery: +3/6% when target has Renew
-   - Lightwell: 17% healing power scaling
+   - Empowered Recovery: +3/6% when target has Renew, +3/6s Renew duration (reworked in 1.18.1)
+   - Lightwell: 20% healing amplification on nearby injured targets (reworked in 1.18.1)
+   - Reservoir of Light: +33/66/100% Lightwell amplification (up to 40% with 3 points)
    - Spiritual Guidance: Spirit → healing conversion
 2. **Spirit:**
-   - Spirit of Redemption: +5% Spirit
+   - Spirit of Redemption: +10% Spirit (buffed from 5% in 1.18.1)
    - Spiritual Guidance: Converts Spirit to healing power
-   - More valuable for Holy than other specs
+   - MAJOR value increase for Holy in 1.18.1
 3. **Critical Strike:**
    - Divinity: Affects healing spells
-4. **Holy Champion Scaling:**
-   - Proclaim Champion: 5% damage reduction (was flat armor)
-   - Empower Champion: 5% damage increase (was flat AP/spell power)
-   - Scales with target's gear/level
+4. **Haste:**
+   - Ascendance: +20% casting speed during 30s window (new in 1.18.1)
+   - Haste stat now valuable for Holy during cooldown windows
+5. **Mana Efficiency:**
+   - Ascendance: -33% mana cost for 30 seconds (new in 1.18.1)
+   - Book of Prayer: 15/30% mana refund when varying healing spells (new in 1.18.1)
+   - MP5 value slightly reduced due to new mana recovery mechanics
 
 ### Shadow Priority Changes
 1. **Spell Power:**
    - Inner Fire: +13-74 spell damage baseline
    - Mind Flay: 45% → 75% coefficient (MAJOR buff)
    - Mind Blast: 42.85% → 60% coefficient
-   - Pain Spike: 42.85% → 25% coefficient (MAJOR nerf)
+   - Pain Spike: 42.85% → 43% coefficient, 30s cooldown (buffed in 1.18.1)
    - Shadow Mend: Scales with 50% healing power + 20% shadow spell power (1.18.0)
 2. **Spirit:**
    - Improved Shadowform: 15% mana regen continues while casting
@@ -709,6 +819,9 @@ This document tracks all Priest-specific changes from Turtle WoW that affect sta
    - Combat mana regen from Improved Shadowform reduces MP5 value slightly
 4. **Hybrid Healing:**
    - Shadow Mend: Benefits from shadow spell power (20% coefficient)
+5. **Talent Efficiency:**
+   - Shadow Reach: 2 points for 20% range (was 3 points, 1.18.1)
+   - Shadow Weaving: Stacks on Priest, easier multi-target application (1.18.1)
 
 ### Racial Scaling (Night Elf)
 1. **Ranged Weapon Stats:** Searing Shot scales with bow weapon damage + 33% spell power
@@ -725,10 +838,12 @@ This document tracks all Priest-specific changes from Turtle WoW that affect sta
 - **Impact:** Spell power value tripled for shielding
 
 ### Healing Power Deep Holy
-- **Baseline:** -15% healing for ranks above level 30
+- **Baseline:** -15% healing for ranks above level 30 (partially offset by 1.18.1 direct buffs)
 - **Spiritual Healing:** +30% at max rank (5 points)
-- **Swift Recovery:** +6% with Renew active (2 points)
-- **Net Result:** +21% healing with deep Holy spec vs -15% without
+- **Empowered Recovery:** +6% with Renew active, +6s Renew duration (2 points, reworked 1.18.1)
+- **Lightwell:** +20% healing amplification (40% with Reservoir of Light, reworked 1.18.1)
+- **Ascendance:** +15% healing taken on targets during 30s window (new 1.18.1)
+- **Net Result:** Significant healing throughput increase with deep Holy spec
 - **Breakpoint:** 7+ points in Holy tree to exceed vanilla healing
 
 ### Shadow Spell Power
@@ -738,7 +853,7 @@ This document tracks all Priest-specific changes from Turtle WoW that affect sta
 - **Impact:** Spell power highly valuable, Mind Flay especially strong
 
 ### Discipline DPS Combo
-- **Searing Light Proc:** Instant Smite with 50% mana reduction
+- **Searing Light Proc:** Instant Smite with 60% mana reduction (buffed in 1.18.1)
 - **Purifying Flames:** +12% Holy damage after Holy Fire
 - **Enlighten:** +10-15% spell damage
 - **Combined:** Potential for high burst DPS with cooldown stacking
@@ -760,16 +875,19 @@ This document tracks all Priest-specific changes from Turtle WoW that affect sta
    - Massive spell power value increase for shielding
 
 3. **Healing Power (Holy Deep Spec):**
-   - Baseline: -15% for ranks above level 30
+   - Baseline: -15% for ranks above level 30 (partially offset by 1.18.1 direct buffs)
+   - Heal Rank 4: +15% base healing (1.18.1)
+   - Greater Heal: +10% base healing all ranks (1.18.1)
+   - Flash Heal Ranks 3-7: +7% base healing (1.18.1)
    - Spiritual Healing: +6/12/18/24/30% (5 ranks)
-   - Swift Recovery: +3/6% with Renew active (2 ranks)
-   - Lightwell: 17% healing power coefficient
+   - Empowered Recovery: +3/6% with Renew active, +3/6s Renew duration (2 ranks, 1.18.1)
+   - Lightwell: 20% healing amplification (40% with Reservoir of Light, 1.18.1)
    - Net: Requires 7+ Holy talents to exceed vanilla healing
 
 4. **Shadow Spell Power Coefficients:**
    - Mind Flay: 45% → 75%
    - Mind Blast: 42.85% → 60%
-   - Pain Spike: 42.85% → 25%
+   - Pain Spike: 42.85% → 43%, 30s cooldown (buffed in 1.18.1)
    - Shadow Mend: 50% healing power + 20% shadow spell power (hybrid)
    - Holy Nova (in Shadowform): Available
 
@@ -785,7 +903,7 @@ This document tracks all Priest-specific changes from Turtle WoW that affect sta
    - Spirit significantly more valuable than vanilla for Shadow
 
 2. **Critical Strike (Discipline):**
-   - Searing Light: Crits proc instant Smite
+   - Searing Light: Crits proc instant Smite with 60% mana reduction (1.18.1)
    - Divinity: Affects both healing and damage
    - Crit more valuable for burst damage
 
@@ -795,14 +913,17 @@ This document tracks all Priest-specific changes from Turtle WoW that affect sta
 
 4. **Haste:**
    - Mental Strength: +1-3% casting speed
-   - Chastise: Grants 10-15% haste to allies
-   - New stat consideration
+   - Chastise: Grants 13-20% haste to allies
+   - Ascendance (Holy): +20% casting speed for 30s (1.18.1)
+   - Haste now more valuable for Holy due to Ascendance
 
 ### Low Priority Changes
 
 1. **Buff Mana Costs:** Significantly reduced across the board, MP5 slightly less valuable for buff maintenance
 
 2. **Threat Reduction:**
+   - Fade: -15% total threat (1.18.1)
+   - Improved Fade: -25/50% threat returned when Fade ends (1.18.1)
    - Holy Nova: 25% reduced threat (1.18.0)
    - Mind Blast: 200% → 170% threat modifier
    - Blessed Concentration: Available to Shadow via talent swap
@@ -826,5 +947,6 @@ All information compiled from official Turtle WoW changelogs:
 - `turtle-wow-changelogs/1.17.2-2024.12.20-changes.html` (lines 209-254)
 - `turtle-wow-changelogs/1.17.2-2025.04.01-changes.html` (lines 223-254)
 - `turtle-wow-changelogs/1.18.0-priest-changes.html` (complete file, lines 1-80 + August 2025 revision lines 5-7)
+- Patch 1.18.1 changelog (Priest changes)
 
-**Last Updated:** Based on changelogs through Patch 1.18.0 (Scars of the Past) and all hotfixes through August 2025
+**Last Updated:** Based on changelogs through Patch 1.18.1 and all hotfixes through January 2026

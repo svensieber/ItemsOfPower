@@ -58,3 +58,6 @@ statsets\turtlewow_shaman.lua
 statsets\turtlewow_mage.lua
 statsets\turtlewow_warlock.lua
 statsets\turtlewow_druid.lua
+
+# Turtle WoW HC Leveling StatSets
+statsets\turtlewow_hc_leveling.lua
